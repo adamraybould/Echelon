@@ -1,0 +1,77 @@
+#pragma once
+
+#ifdef ENGINE_EXPORTS
+#define ENGINE_API __declspec(dllexport)
+#else
+#define ENGINE_API __declspec(dllimport)
+#endif
+
+#include "Components/Component.h"
+#include "Engine/Commons.h"
+#include <vector>
+#include <iostream>
+
+namespace MapleEngine
+{
+	class ENGINE_API Entity
+	{
+	private:
+		Transform m_transform;
+		std::vector<Component*> m_components;
+
+		UInt m_ID; // Unique ID for the Entity
+
+	public:
+		Entity(UInt ID);
+		~Entity();
+
+		void Update(float dt);
+		void Render();
+
+		template<typename T>
+		T& AddComponent()
+		{
+			static_assert(std::is_base_of<Component, T>::value, "T must be a subclass of Component");
+			T* component = new T(*this);
+			m_components.push_back(component);
+
+			return *component;
+		}
+
+		template<typename T>
+		T* GetComponent()
+		{
+			for (auto i = m_components.begin(); i != m_components.end(); i++)
+			{
+				T* component = dynamic_cast<T*>(i->get());
+				if (component != nullptr)
+				{
+					return component;
+				}
+			}
+
+			std::cout << "Unable to find Component: " << typeid(T).name() << std::endl;
+			return nullptr;
+		}
+
+		template<typename T>
+		void RemoveComponent()
+		{
+			for (auto i = m_components.begin(); i != m_components.end(); i++)
+			{
+				if (dynamic_cast<T*>(i->get()) != nullptr)
+				{
+					m_components.erase(i);
+					return;
+				}
+			}
+		}
+		
+		void RemoveAllComponents();
+
+		Transform& Transform() { return m_transform;  }
+
+		/* Get ID of the Entity */
+		UInt& GetID() { return m_ID; }
+	};
+}
