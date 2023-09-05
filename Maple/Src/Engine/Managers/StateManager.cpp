@@ -1,5 +1,5 @@
-#include "Engine/Utils/StateManager.h"
-#include "Engine/Commons.h"
+#include "Engine/Managers/StateManager.h"
+#include "Engine/Utils/Commons.h"
 
 MapleEngine::StateManager* MapleEngine::StateManager::m_rInstance;
 

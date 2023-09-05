@@ -7,9 +7,11 @@
 #endif
 
 #include "SDL.h"
+#include "SDL_image.h"
 #include "Window.h"
 #include "EngineInterface.h"
-#include "Engine/Utils/StateManager.h"
+#include "Engine/Managers/AssetManager.h"
+#include "Engine/Managers/StateManager.h"
 #include <Engine/States/Level.h>
 
 namespace MapleEngine
@@ -19,6 +21,7 @@ namespace MapleEngine
 	private:
 		static Application* m_rInstance;
 
+		AssetManager* m_pAssetManager;
 		StateManager* m_pStateManager;
 
 		Window* m_pWindow;
@@ -40,6 +43,8 @@ namespace MapleEngine
 		void HandleInput();
 		void Update();
 		void Render();
+
+		static void DisplayError(const char* error, const char* errorTile, bool displaySDLError);
 
 		Window* GetWindow() { return m_pWindow; }
 		SDL_Renderer* GetRenderer() { return m_pWindow->GetRenderer(); }

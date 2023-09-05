@@ -21,7 +21,7 @@
     <ClCompile Include="Src\Game\Levels\TestLevel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Include\Game\States\GameState.cpp">
+    <ClCompile Include="Src\Game\States\GameState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

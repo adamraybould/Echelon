@@ -7,7 +7,7 @@
 #endif
 
 #include "Components/Component.h"
-#include "Engine/Commons.h"
+#include "Engine/Utils/Commons.h"
 #include <vector>
 #include <iostream>
 
@@ -15,8 +15,10 @@ namespace MapleEngine
 {
 	class ENGINE_API Entity
 	{
+	public:
+		Transform Transform;
+
 	private:
-		Transform m_transform;
 		std::vector<Component*> m_components;
 
 		UInt m_ID; // Unique ID for the Entity
@@ -68,8 +70,6 @@ namespace MapleEngine
 		}
 		
 		void RemoveAllComponents();
-
-		Transform& Transform() { return m_transform;  }
 
 		/* Get ID of the Entity */
 		UInt& GetID() { return m_ID; }

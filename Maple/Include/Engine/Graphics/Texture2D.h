@@ -6,7 +6,7 @@
 #define ENGINE_API __declspec(dllimport)
 #endif
 
-#include "Engine/Commons.h"
+#include "Engine/Utils/Commons.h"
 
 class SDL_Texture;
 
@@ -21,12 +21,14 @@ namespace MapleEngine
 		int m_height;
 
 	public:
-		Texture2D(const char* path);
 		Texture2D(SDL_Texture& texture);
 		~Texture2D();
 
 		void Free();
 
+		operator SDL_Texture* () const { return m_pTexture; }
+
+		/* Returns the raw SDL texture */
 		SDL_Texture* GetRawTexture() { return m_pTexture; }
 
 		/* Returns a Vector2 with the Width and Height of the Texture */

@@ -3,6 +3,8 @@
 #include <cstdlib>
 #include <iostream>
 #include <string>
+#include <tchar.h>
+#include <Windows.h>
 
 MapleEngine::Application* MapleEngine::Application::m_rInstance;
 
@@ -11,9 +13,7 @@ MapleEngine::Application::Application()
 	m_rInstance = this;
 
 	m_pWindow = nullptr;
-	m_isRunning = false;
-
-	m_pStateManager = new MapleEngine::StateManager();
+	m_isRunning = false;	
 
 	m_currentTime = SDL_GetPerformanceCounter();
 	m_prevTime = 0;
@@ -45,12 +45,14 @@ void MapleEngine::Application::Run()
 
 void MapleEngine::Application::Clean()
 {
+	delete m_pAssetManager;
 	delete m_pStateManager;
 
 	// Destroy the Window
 	delete m_pWindow;
 
-	// Quit SDL
+	// Clean Up SDL 
+	IMG_Quit();
 	SDL_Quit();
 }
 
@@ -108,22 +110,39 @@ void MapleEngine::Application::Render()
 	SDL_RenderPresent(m_pWindow->GetRenderer());
 }
 
+void MapleEngine::Application::DisplayError(const char* error, const char* errorTile, bool displaySDLError)
+{
+	std::string errorMessage = std::string(error) + (displaySDLError ? SDL_GetError() : "");
+	MessageBoxA(NULL, errorMessage.c_str(), errorTile, MB_ICONERROR | MB_OK);
+}
+
 void MapleEngine::Application::Initialize()
 {
 	// Initialize SDL
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
-		printf("SDL could not Initialize! SDL_Error: %s\n", SDL_GetError());
+		DisplayError("SDL could not Initialize! SDL_ERROR:", "SDL Error", true);
 		exit(1);
 	}
 	else
 	{
 		// Create Window with Renderer
 		m_pWindow = new Window();
-		if (!m_pWindow->CreateWindow("Echelon"))
+		if (!m_pWindow->Create("Echelon"))
 		{
-			printf("Window could not be created! SDL_ERROR: %s\n", SDL_GetError());
+			DisplayError("Window could not be created! SDL_ERROR:", "SDL Error", true);
 			exit(1);
 		}
 	}
+
+	// Initialize SDL Image
+	if (IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG) < 0)
+	{
+		DisplayError("SDL Image could not Initialize! SDL_ERROR:", "SDL Error", true);
+		exit(1);
+	}
+
+	// Initialize Managers
+	m_pAssetManager = new MapleEngine::AssetManager(*m_pWindow->GetRenderer());
+	m_pStateManager = new MapleEngine::StateManager();
 }

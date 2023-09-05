@@ -6,12 +6,15 @@
 #define ENGINE_API __declspec(dllimport)
 #endif
 
-ENGINE_API class SDL_Window;
-ENGINE_API class SDL_Renderer;
+struct SDL_Window;
+struct SDL_Renderer;
+
+const int SCREEN_WIDTH = 1024;
+const int SCREEN_HEIGHT = 768;
 
 namespace MapleEngine
 {
-	ENGINE_API class Window
+	class ENGINE_API Window
 	{
 	private:
 		SDL_Window* pWindow = nullptr;
@@ -20,7 +23,7 @@ namespace MapleEngine
 	public:
 		~Window();
 
-		bool CreateWindow(const char* title);
+		bool Create(const char* title);
 
 		void SetTitle(const char* title);
 
