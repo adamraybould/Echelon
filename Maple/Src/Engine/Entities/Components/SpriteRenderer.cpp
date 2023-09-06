@@ -25,7 +25,6 @@ void MapleEngine::SpriteRenderer::Render()
 	SDL_Rect dest = { ownerT.Position.X, ownerT.Position.Y, m_pSprite->GetSource().Width * ownerT.Scale.X, m_pSprite->GetSource().Height * ownerT.Scale.Y };
 	SDL_Rect src = { m_pSprite->GetSource().X, m_pSprite->GetSource().Y, m_pSprite->GetSource().Width, m_pSprite->GetSource().Height };
 
-	//SDL_RenderCopy(Application::GetInstance().GetRenderer(), m_pSprite->GetTexture(), &src, &dest);
 	SDL_RenderCopyEx(Application::GetInstance().GetRenderer(), m_pSprite->GetTexture(), &src, &dest, ownerT.Rotation, m_pSprite->GetOrigin(), SDL_FLIP_NONE);
 }
 

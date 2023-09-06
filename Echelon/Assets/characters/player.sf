@@ -1,0 +1,39 @@
+{
+  "textureAtlas": {
+    "texture": "player.png",
+    "regionWidth": 48,
+    "regionHeight": 48
+  },
+  "cycles": {
+    "idle_Down": {
+      "frames": [0,1,2,3,4,5]
+    },
+    "idle_Side": {
+      "frames": [6,7,8,9,10,11]
+    },
+    "idle_Up": {
+      "frames": [12,13,14,15,16,17]
+    },
+    "run_Down": {
+      "frames": [18,19,20,21,22,23]
+    },
+    "run_Side": {
+      "frames": [24,25,26,27,28,29]
+    },
+    "run_Up": {
+      "frames": [30,31,32,33,34,35]
+    },
+    "attack_Down": {
+      "frames": [36,37,38,39]
+    },
+    "attack_Side": {
+      "frames": [42,43,44,45]
+    },
+    "attack_Up": {
+      "frames": [48,49,50,51]
+    },
+    "death": {
+      "frames": [54,55,56]
+    }
+  }
+}

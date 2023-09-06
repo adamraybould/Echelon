@@ -31,7 +31,7 @@ namespace MapleEngine
 		/* Returns the raw SDL texture */
 		SDL_Texture* GetRawTexture() { return m_pTexture; }
 
-		/* Returns a Vector2 with the Width and Height of the Texture */
-		Vector2 GetSize() { return Vector2(m_width, m_height); }
+		UInt GetWidth() { return m_width; }
+		UInt GetHeight() { return m_height; }
 	};
 }

@@ -10,6 +10,9 @@ Echelon::GameState::GameState()
 
 void Echelon::GameState::Initialize()
 {
+	MapleEngine::AssetManager::LoadSpriteSheet("/characters/player", "Player");
+	MapleEngine::AssetManager::LoadSpriteSheet("/characters/slime", "Slime");
+	
 	Texture2D& texture = MapleEngine::AssetManager::LoadTexture("/characters/player.png");
 	Sprite* sprite = new Sprite(texture);
 
