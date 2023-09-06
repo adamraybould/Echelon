@@ -25,5 +25,7 @@ namespace MapleEngine
 		void Destroy() override;
 
 		void SetSprite(Sprite& sprite);
+
+		Sprite* GetSprite() { return m_pSprite; }
 	};
 }

@@ -24,12 +24,24 @@
     <ClCompile Include="Src\Game\States\GameState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Src\Game\Entities\Player.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Game\Entities\Slime.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\Game\Levels\TestLevel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Include\Game\States\GameState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Game\Entities\Player.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Game\Entities\Slime.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -27,14 +27,14 @@ namespace MapleEngine
 		Entity(UInt ID);
 		~Entity();
 
-		void Update(float dt);
-		void Render();
+		virtual void Update(float dt);
+		virtual void Render();
 
-		template<typename T>
-		T& AddComponent()
+		template<typename T, typename... Args>
+		T& AddComponent(Args&&... args)
 		{
 			static_assert(std::is_base_of<Component, T>::value, "T must be a subclass of Component");
-			T* component = new T(*this);
+			T* component = new T(std::forward<Args>(args)...);
 			m_components.push_back(component);
 
 			return *component;

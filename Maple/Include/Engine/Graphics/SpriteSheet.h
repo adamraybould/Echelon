@@ -45,5 +45,8 @@ namespace MapleEngine
 
 		/* Returns the number of Sprites within the Sprite Sheet */
 		UInt GetSpriteCount() { return m_spriteCount; }
+
+		/* Returns the Full Texture of the Sprite Sheet */
+		Texture2D& GetTextureAtlas() { return m_pTextureAtlas; }
 	};
 }

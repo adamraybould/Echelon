@@ -160,6 +160,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Include\Engine\Entities\Components\Animator.h" />
     <ClInclude Include="Include\Engine\Graphics\Animation.h" />
     <ClInclude Include="Include\Engine\Graphics\SpriteSheet.h" />
     <ClInclude Include="Include\Engine\Utils\Commons.h" />
@@ -179,6 +180,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="Src\Engine\Entities\Components\Animator.cpp" />
     <ClCompile Include="Src\Engine\Entities\Components\SpriteRenderer.cpp" />
     <ClCompile Include="Src\Engine\Entities\Entity.cpp" />
     <ClCompile Include="Src\Engine\Graphics\Sprite.cpp" />
