@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Src\Game\Entities\Components\PlayerMovement.cpp" />
     <ClCompile Include="Src\Game\Entities\Player.cpp" />
     <ClCompile Include="Src\Game\Entities\Slime.cpp" />
     <ClCompile Include="Src\Game\States\GameState.cpp" />
@@ -146,6 +147,7 @@
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Include\Game\Entities\Components\PlayerMovement.h" />
     <ClInclude Include="Include\Game\Entities\Player.h" />
     <ClInclude Include="Include\Game\Entities\Slime.h" />
     <ClInclude Include="Include\Game\Levels\TestLevel.h" />

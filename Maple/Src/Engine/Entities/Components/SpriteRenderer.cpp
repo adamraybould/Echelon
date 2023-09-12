@@ -1,10 +1,12 @@
 #include "Engine/Entities/Components/SpriteRenderer.h"
 #include "Engine/Main/Application.h"
 #include <SDL_image.h>
+#include <SDL.h>
 
 MapleEngine::SpriteRenderer::SpriteRenderer(Entity& entity) : Component(entity)
 {
 	m_pSprite = nullptr;
+	m_flip = SDL_FLIP_NONE;
 }
 
 void MapleEngine::SpriteRenderer::Initialize()
@@ -25,7 +27,7 @@ void MapleEngine::SpriteRenderer::Render()
 	SDL_Rect dest = { ownerT.Position.X, ownerT.Position.Y, m_pSprite->GetSource().Width * ownerT.Scale.X, m_pSprite->GetSource().Height * ownerT.Scale.Y };
 	SDL_Rect src = { m_pSprite->GetSource().X, m_pSprite->GetSource().Y, m_pSprite->GetSource().Width, m_pSprite->GetSource().Height };
 
-	SDL_RenderCopyEx(Application::GetInstance().GetRenderer(), m_pSprite->GetTexture(), &src, &dest, ownerT.Rotation, m_pSprite->GetOrigin(), SDL_FLIP_NONE);
+	SDL_RenderCopyEx(Application::GetInstance().GetRenderer(), m_pSprite->GetTexture(), &src, &dest, ownerT.Rotation, NULL, (SDL_RendererFlip)m_flip);
 }
 
 void MapleEngine::SpriteRenderer::Destroy()
@@ -36,4 +38,9 @@ void MapleEngine::SpriteRenderer::Destroy()
 void MapleEngine::SpriteRenderer::SetSprite(Sprite& sprite)
 {
 	m_pSprite = &sprite;
+}
+
+void MapleEngine::SpriteRenderer::SetFlip(bool value)
+{
+	m_flip = value ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE;
 }

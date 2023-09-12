@@ -47,6 +47,7 @@ void MapleEngine::Application::Clean()
 {
 	delete m_pAssetManager;
 	delete m_pStateManager;
+	delete m_pInputHandler;
 
 	// Destroy the Window
 	delete m_pWindow;
@@ -73,6 +74,8 @@ void MapleEngine::Application::HandleInput()
 				break;
 			}
 		}
+
+		m_pInputHandler->HandleInput(event);
 	}
 }
 
@@ -145,4 +148,5 @@ void MapleEngine::Application::Initialize()
 	// Initialize Managers
 	m_pAssetManager = new MapleEngine::AssetManager(*m_pWindow->GetRenderer());
 	m_pStateManager = new MapleEngine::StateManager();
+	m_pInputHandler = new MapleEngine::InputHandler();
 }

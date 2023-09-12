@@ -3,6 +3,7 @@
 #include <Engine/Entities/Components/Animator.h>
 #include <Engine/Managers/AssetManager.h>
 #include <Engine/Main/Window.h>
+#include "Game/Entities/Components/PlayerMovement.h"
 
 Echelon::Player::Player(UInt ID) : Entity(ID)
 {
@@ -14,6 +15,8 @@ Echelon::Player::Player(UInt ID) : Entity(ID)
 
 	Animator& animator = AddComponent<Animator>(*this, spriteRenderer, spriteSheet);
 	animator.SetAnimation("idle_Side");
+
+	PlayerMovement& movement = AddComponent<PlayerMovement>(*this);
 
 	Transform.Scale = Vector2(4, 4);
 	Transform.Position.X = (SCREEN_WIDTH / 2) + (sprite->GetOrigin().X * Transform.Scale.X);

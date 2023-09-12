@@ -15,6 +15,7 @@ namespace MapleEngine
 	{
 	private:
 		Sprite* m_pSprite;
+		int m_flip;
 
 	public:
 		SpriteRenderer(Entity& entity);
@@ -24,7 +25,11 @@ namespace MapleEngine
 		void Render() override;
 		void Destroy() override;
 
+		/* Set the Sprite to be Renderered */
 		void SetSprite(Sprite& sprite);
+
+		/* Set if the Sprite should be Flipped */
+		void SetFlip(bool value);
 
 		Sprite* GetSprite() { return m_pSprite; }
 	};

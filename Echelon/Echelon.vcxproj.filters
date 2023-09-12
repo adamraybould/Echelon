@@ -30,6 +30,9 @@
     <ClCompile Include="Src\Game\Entities\Slime.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Src\Game\Entities\Components\PlayerMovement.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\Game\Levels\TestLevel.h">
@@ -42,6 +45,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Include\Game\Entities\Slime.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Game\Entities\Components\PlayerMovement.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -12,6 +12,7 @@
 #include "EngineInterface.h"
 #include "Engine/Managers/AssetManager.h"
 #include "Engine/Managers/StateManager.h"
+#include "Engine/Managers/InputHandler.h"
 #include <Engine/States/Level.h>
 
 namespace MapleEngine
@@ -23,6 +24,7 @@ namespace MapleEngine
 
 		AssetManager* m_pAssetManager;
 		StateManager* m_pStateManager;
+		InputHandler* m_pInputHandler;
 
 		Window* m_pWindow;
 		bool m_isRunning;	

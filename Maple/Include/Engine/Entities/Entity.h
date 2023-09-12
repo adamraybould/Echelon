@@ -45,7 +45,7 @@ namespace MapleEngine
 		{
 			for (auto i = m_components.begin(); i != m_components.end(); i++)
 			{
-				T* component = dynamic_cast<T*>(i->get());
+				T* component = dynamic_cast<T*>(*i);
 				if (component != nullptr)
 				{
 					return component;

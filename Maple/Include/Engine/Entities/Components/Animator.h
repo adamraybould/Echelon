@@ -15,13 +15,14 @@ namespace MapleEngine
 {
 	class ENGINE_API Animator : public Component
 	{
+	public:
+		const Animation* CurrentAnimation;
+
 	private:
 		SpriteRenderer& m_rSpriteRenderer;
 		SpriteSheet& m_rSpriteSheet;
 
-		float m_speed; // Speed of the Animator
-
-		Animation* m_pCurrentAnimation;
+		float m_speed; // Animation Speed
 
 		int m_frame;
 		float m_frameTimer;
@@ -35,6 +36,10 @@ namespace MapleEngine
 		void Render() override;
 		void Destroy() override;
 
+		/* Sets a new Animation to be played */
 		void SetAnimation(const char* name);
+
+		void SetAnimationSpeed(const float speed) { m_speed = speed; }
+		int GetAnimationSpeed() const { return m_speed; }
 	};
 }
