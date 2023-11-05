@@ -20,7 +20,8 @@ namespace MapleEngine
 
 	enum class ENGINE_API Keys {
 		A, B, C, D, E, F, G, H, I, J, K, L, M,
-		N, O, P, Q, R, S, T, U, V, W, X, Y, Z
+		N, O, P, Q, R, S, T, U, V, W, X, Y, Z,
+		SPACE, CTRL, ALT, SHIFT
 	};
 
 	class ENGINE_API InputHandler

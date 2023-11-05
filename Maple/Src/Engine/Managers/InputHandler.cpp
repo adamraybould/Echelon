@@ -33,7 +33,8 @@ std::map<SDL_Keycode, Keys> keyMap =
 	{ SDLK_w, Keys::W },
 	{ SDLK_x, Keys::X },
 	{ SDLK_y, Keys::Y },
-	{ SDLK_z, Keys::Z }
+	{ SDLK_z, Keys::Z },
+	{ SDLK_SPACE, Keys::SPACE }
 };
 
 MapleEngine::InputHandler::InputHandler()
