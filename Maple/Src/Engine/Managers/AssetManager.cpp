@@ -50,8 +50,6 @@ MapleEngine::SpriteSheet& MapleEngine::AssetManager::LoadSpriteSheet(const char*
 {
 	CheckAssetManagerInitialized();
 
-	//TODO: Store Sprite Sheet in Array.
-
 	// Load the JSON .sf file for the Sprite Sheet.
 	std::string fileType = ".sf";
 	std::string assetPath = "Assets" + std::string(path) + fileType;
@@ -103,7 +101,7 @@ bool MapleEngine::AssetManager::CheckAssetManagerInitialized()
 		return true;
 	else
 	{
-		Application::DisplayError("AssetManager isn't Initialized!", "Engine Error", false);
+		Application::DisplayError("AssetManager Not Initialized!", "Engine Error", false);
 		exit(1);
 		return false;
 	}
