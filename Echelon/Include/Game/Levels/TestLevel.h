@@ -8,6 +8,8 @@ namespace Echelon
 	class TestLevel : public MapleEngine::Level
 	{
 	private:
+		Player* player;
+		Slime* slime;
 
 	public:
 		TestLevel();

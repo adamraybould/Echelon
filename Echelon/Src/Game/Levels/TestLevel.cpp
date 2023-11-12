@@ -2,8 +2,6 @@
 
 Echelon::TestLevel::TestLevel()
 {
-	CreateEntity<Player>();
-	CreateEntity<Slime>();
 }
 
 Echelon::TestLevel::~TestLevel()
@@ -12,7 +10,8 @@ Echelon::TestLevel::~TestLevel()
 
 void Echelon::TestLevel::InitializeLevel()
 {
-
+	player = &CreateEntity<Player>();
+	slime = &CreateEntity<Slime>();
 }
 
 void Echelon::TestLevel::Update(float dt)

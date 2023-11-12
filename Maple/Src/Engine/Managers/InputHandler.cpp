@@ -8,6 +8,7 @@ std::map<int, KeyState> MapleEngine::InputHandler::m_mouseStates;
 
 std::map<SDL_Keycode, Keys> keyMap =
 {
+	{ NULL,			Keys::NULLKEY },
 	{ SDLK_a,		Keys::A },
 	{ SDLK_b,		Keys::B },
 	{ SDLK_c,		Keys::C },
@@ -61,12 +62,19 @@ std::map<SDL_Keycode, Keys> keyMap =
 	{ SDLK_SPACE,	Keys::SPACE },
 	{ SDLK_LCTRL,	Keys::CTRL },
 	{ SDLK_LALT,	Keys::ALT },
-	{ SDLK_TAB,		Keys::TAB }
+	{ SDLK_TAB,		Keys::TAB },
+	{ SDLK_AC_BACK,	Keys::BACK },
+	{ SDLK_ESCAPE,	Keys::ESC },
 };
 
 MapleEngine::InputHandler::InputHandler()
 {
-	
+	// Adds all the Keys to the KeyStates, setting them to default KEY_UP
+	for (auto i = keyMap.begin(); i != keyMap.end(); i++)
+	{
+		Keys key = i->second;
+		m_keyStates.insert(std::make_pair(key, KeyState::KEY_UP));
+	}
 }
 
 MapleEngine::InputHandler::~InputHandler()

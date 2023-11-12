@@ -7,6 +7,12 @@ MapleEngine::Level::Level()
 
 MapleEngine::Level::~Level()
 {
+	for (auto i = m_entities.begin(); i != m_entities.end(); i++)
+	{
+		i->second.reset();
+	}
+
+	m_entities.clear();
 }
 
 void MapleEngine::Level::Update(float dt)
