@@ -34,11 +34,8 @@ void MapleEngine::EngineGUI::Render()
 	ImGui_ImplSDLRenderer2_NewFrame();
 	ImGui_ImplSDL2_NewFrame();
 	ImGui::NewFrame();
-	ImGui::DockSpaceOverViewport();
 
-	ImGui::Begin("Panel");
-	ImGui::Text("Hello World");
-	ImGui::End();
+	RenderMainGUI();
 
 	ImGui::Render();
 }
@@ -51,4 +48,19 @@ void MapleEngine::EngineGUI::RenderDrawData()
 void MapleEngine::EngineGUI::HandleInput(SDL_Event& event)
 {
 	ImGui_ImplSDL2_ProcessEvent(&event);
+}
+
+void MapleEngine::EngineGUI::RenderMainGUI()
+{
+	if (ImGui::Begin("Inspector"))
+	{
+		if (ImGui::CollapsingHeader("Assets"))
+		{
+			if (ImGui::TreeNode("Sprite Sheets"))
+			{
+				ImGui::TreePop();
+			}
+		}
+		ImGui::End();
+	}
 }

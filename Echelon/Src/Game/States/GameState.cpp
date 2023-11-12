@@ -3,28 +3,25 @@
 
 Echelon::GameState::GameState()
 {
-	player = new Player(0);
-	slime = new Slime(1);
+	m_pLevel = std::make_unique<TestLevel>();
 }
 
 Echelon::GameState::~GameState()
 {
-	delete player;
-	delete slime;
+	m_pLevel.reset();
 }
 
 void Echelon::GameState::Initialize()
 {
+	m_pLevel->InitializeLevel();
 }
 
 void Echelon::GameState::Update(float dt)
 {
-	player->Update(dt);
-	slime->Update(dt);
+	m_pLevel->Update(dt);
 }
 
 void Echelon::GameState::Render()
 {
-	player->Render();
-	slime->Render();
+	m_pLevel->Render();
 }

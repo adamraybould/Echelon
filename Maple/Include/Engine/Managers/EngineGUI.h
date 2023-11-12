@@ -14,5 +14,8 @@ namespace MapleEngine
 		void Render();
 		void RenderDrawData();
 		void HandleInput(SDL_Event& event);
+
+	private:
+		void RenderMainGUI();
 	};
 }

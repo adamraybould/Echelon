@@ -71,7 +71,6 @@ MapleEngine::InputHandler::InputHandler()
 
 MapleEngine::InputHandler::~InputHandler()
 {
-
 }
 
 void MapleEngine::InputHandler::HandleInput(SDL_Event& event)

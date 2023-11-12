@@ -9,16 +9,32 @@ MapleEngine::Level::~Level()
 {
 }
 
+void MapleEngine::Level::Update(float dt)
+{
+	for (auto i = m_entities.begin(); i != m_entities.end(); i++)
+	{
+		i->second->Update(dt);
+	}
+}
+
+void MapleEngine::Level::Render()
+{
+	for (auto i = m_entities.begin(); i != m_entities.end(); i++)
+	{
+		i->second->Render();
+	}
+}
+
 MapleEngine::Entity* MapleEngine::Level::GetEntityByID(UInt ID)
 {
-	std::map<UInt, UniquePtr<Entity>>::iterator pos = m_entities.find(ID);
+	std::map<UInt, SharedPtr<Entity>>::iterator pos = m_entities.find(ID);
 	if (pos != m_entities.end())
 	{
 		return pos->second.get();
 	}
 	else
 	{
-		std::cout << "No Entity with ID: " + std::to_string(ID) + " could be found!" << std::endl;
+		//std::cout << "No Entity with ID: " + std::to_string(ID) + " could be found!" << std::endl;
 		return nullptr;
 	}
 }
@@ -41,6 +57,7 @@ UInt MapleEngine::Level::GetNewID()
 	while (GetEntityByID(randomID) == nullptr)
 	{
 		randomID = rand();
+		break;
 	}
 
 	return randomID;

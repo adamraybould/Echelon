@@ -1,7 +1,6 @@
 #pragma once
 #include <Engine/Managers/StateManager.h>
-#include "Game/Entities/Player.h"
-#include "Game/Entities/Slime.h"
+#include "Game/Levels/TestLevel.h"
 
 using namespace MapleEngine;
 
@@ -10,8 +9,7 @@ namespace Echelon
 	class GameState : public MapleEngine::IState
 	{
 	private:
-		Player* player;
-		Slime* slime;
+		UniquePtr<TestLevel> m_pLevel;
 
 	public:
 		GameState();
