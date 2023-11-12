@@ -27,8 +27,8 @@ namespace MapleEngine
 
 		void SetTitle(const char* title);
 
-		SDL_Window* GetWindow() { return pWindow; }
-		SDL_Renderer* GetRenderer() { return pRenderer; }
+		SDL_Window& GetWindow() { return *pWindow; }
+		SDL_Renderer& GetRenderer() { return *pRenderer; }
 
 	private:
 		bool SetIcon();

@@ -11,6 +11,7 @@
 #include "Engine/Utils/Commons.h"
 #include "Window.h"
 #include "EngineInterface.h"
+#include "Engine/Managers/EngineGUI.h"
 #include "Engine/Managers/AssetManager.h"
 #include "Engine/Managers/StateManager.h"
 #include "Engine/Managers/InputHandler.h"
@@ -23,6 +24,7 @@ namespace MapleEngine
 	private:
 		static Application* m_rInstance;
 
+		UniquePtr<EngineGUI> m_pEngineGUI;
 		UniquePtr<AssetManager> m_pAssetManager;
 		UniquePtr<StateManager> m_pStateManager;
 		UniquePtr<InputHandler> m_pInputHandler;
@@ -50,7 +52,7 @@ namespace MapleEngine
 		static void DisplayError(const char* error, const char* errorTile, bool displaySDLError);
 
 		Window& GetWindow() { return *m_pWindow; }
-		SDL_Renderer& GetRenderer() { return *m_pWindow->GetRenderer(); }
+		SDL_Renderer& GetRenderer() { return m_pWindow->GetRenderer(); }
 
 	private:
 		/* Initializes the Application, creating the Window and starting the Game Loop.*/

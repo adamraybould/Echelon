@@ -4,7 +4,7 @@
 #include <iostream>
 #include <string>
 #include <tchar.h>
-#include <Windows.h>
+#include "Windows.h"
 
 MapleEngine::Application* MapleEngine::Application::m_rInstance;
 
@@ -45,6 +45,12 @@ void MapleEngine::Application::Run()
 
 void MapleEngine::Application::Clean()
 {
+	// Destroy Managers
+	m_pEngineGUI.reset();
+	m_pAssetManager.reset();
+	m_pStateManager.reset();
+	m_pInputHandler.reset();
+
 	// Destroy the Window
 	m_pWindow.reset();
 
@@ -58,6 +64,7 @@ void MapleEngine::Application::HandleInput()
 	SDL_Event event;
 	while (SDL_PollEvent(&event))
 	{
+		m_pEngineGUI->HandleInput(event);
 		switch (event.type)
 		{
 			case SDL_QUIT:
@@ -100,13 +107,17 @@ void MapleEngine::Application::Update()
 
 void MapleEngine::Application::Render()
 {
-	SDL_SetRenderDrawColor(m_pWindow->GetRenderer(), 0, 0, 0, 255);
-	SDL_RenderClear(m_pWindow->GetRenderer());
+	// Render ImGUI
+	m_pEngineGUI->Render();
+
+	SDL_SetRenderDrawColor(&m_pWindow->GetRenderer(), 0, 0, 0, 255);
+	SDL_RenderClear(&m_pWindow->GetRenderer());
 
 	// Render Code
 	m_pStateManager->RenderState();
 
-	SDL_RenderPresent(m_pWindow->GetRenderer());
+	m_pEngineGUI->RenderDrawData();
+	SDL_RenderPresent(&m_pWindow->GetRenderer());
 }
 
 void MapleEngine::Application::DisplayError(const char* error, const char* errorTile, bool displaySDLError)
@@ -142,6 +153,8 @@ void MapleEngine::Application::Initialize()
 	}
 
 	// Initialize Managers
+	m_pEngineGUI = std::make_unique<EngineGUI>(*m_pWindow);
+
 	m_pAssetManager = std::make_unique<AssetManager>();
 	m_pStateManager = std::make_unique<StateManager>();
 	m_pInputHandler = std::make_unique<InputHandler>();
