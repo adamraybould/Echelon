@@ -26,7 +26,6 @@ namespace MapleEngine
 	public:
 		Sprite(Texture2D& texture);
 		Sprite(SpriteSheet& spriteSheet);
-		~Sprite();
 
 		void SetSpriteSource(Rectangle rect);
 

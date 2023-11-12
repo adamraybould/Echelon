@@ -27,17 +27,22 @@ void MapleEngine::SpriteRenderer::Render()
 	SDL_Rect dest = { ownerT.Position.X, ownerT.Position.Y, m_pSprite->GetSource().Width * ownerT.Scale.X, m_pSprite->GetSource().Height * ownerT.Scale.Y };
 	SDL_Rect src = { m_pSprite->GetSource().X, m_pSprite->GetSource().Y, m_pSprite->GetSource().Width, m_pSprite->GetSource().Height };
 
-	SDL_RenderCopyEx(Application::GetInstance().GetRenderer(), m_pSprite->GetTexture(), &src, &dest, ownerT.Rotation, NULL, (SDL_RendererFlip)m_flip);
+	SDL_RenderCopyEx(&Application::GetInstance().GetRenderer(), m_pSprite->GetTexture(), &src, &dest, ownerT.Rotation, NULL, (SDL_RendererFlip)m_flip);
 }
 
 void MapleEngine::SpriteRenderer::Destroy()
 {
-	delete m_pSprite;
+	m_pSprite.reset();
 }
 
-void MapleEngine::SpriteRenderer::SetSprite(Sprite& sprite)
+void MapleEngine::SpriteRenderer::SetSprite(Texture2D& texture)
 {
-	m_pSprite = &sprite;
+	m_pSprite = std::make_unique<Sprite>(texture);
+}
+
+void MapleEngine::SpriteRenderer::SetSprite(SpriteSheet& spriteSheet)
+{
+	m_pSprite = std::make_unique<Sprite>(spriteSheet);
 }
 
 void MapleEngine::SpriteRenderer::SetFlip(bool value)

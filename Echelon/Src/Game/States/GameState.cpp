@@ -7,6 +7,12 @@ Echelon::GameState::GameState()
 	slime = new Slime(1);
 }
 
+Echelon::GameState::~GameState()
+{
+	delete player;
+	delete slime;
+}
+
 void Echelon::GameState::Initialize()
 {
 }

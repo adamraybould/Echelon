@@ -11,7 +11,8 @@ MapleEngine::SpriteSheet::SpriteSheet(Texture2D& texture, int spriteWidth, int s
 
 MapleEngine::SpriteSheet::~SpriteSheet()
 {
-	delete &m_pTextureAtlas;
+	// Is already destroyed in Sprite
+	//delete &m_pTextureAtlas;
 }
 
 void MapleEngine::SpriteSheet::AddAnimation(Animation& animation)

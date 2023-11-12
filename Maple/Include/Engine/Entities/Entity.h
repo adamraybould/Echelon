@@ -19,7 +19,7 @@ namespace MapleEngine
 		Transform Transform;
 
 	private:
-		std::vector<Component*> m_components;
+		std::vector<SharedPtr<Component>> m_components;
 
 		UInt m_ID; // Unique ID for the Entity
 
@@ -34,10 +34,9 @@ namespace MapleEngine
 		T& AddComponent(Args&&... args)
 		{
 			static_assert(std::is_base_of<Component, T>::value, "T must be a subclass of Component");
-			T* component = new T(std::forward<Args>(args)...);
-			m_components.push_back(component);
+			m_components.push_back(std::make_shared<T>(std::forward<Args>(args)...));
 
-			return *component;
+			return *std::dynamic_pointer_cast<T>(m_components.back());
 		}
 
 		template<typename T>
@@ -45,7 +44,7 @@ namespace MapleEngine
 		{
 			for (auto i = m_components.begin(); i != m_components.end(); i++)
 			{
-				T* component = dynamic_cast<T*>(*i);
+				T* component = std::dynamic_pointer_cast<T>(*i).get();
 				if (component != nullptr)
 				{
 					return component;
@@ -61,7 +60,8 @@ namespace MapleEngine
 		{
 			for (auto i = m_components.begin(); i != m_components.end(); i++)
 			{
-				if (dynamic_cast<T*>(i->get()) != nullptr)
+				T* component = std::dynamic_pointer_cast<T>(*i).get();
+				if (component != nullptr)
 				{
 					m_components.erase(i);
 					return;

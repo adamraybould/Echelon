@@ -14,11 +14,6 @@ MapleEngine::Sprite::Sprite(SpriteSheet& spriteSheet) : m_rTexture(spriteSheet.G
 	m_origin = Vector2(m_source.Width / 2, m_source.Height / 2);
 }
 
-MapleEngine::Sprite::~Sprite()
-{
-	delete &m_rTexture;
-}
-
 void MapleEngine::Sprite::SetSpriteSource(Rectangle rect)
 {
 	m_source = rect;

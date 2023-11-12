@@ -8,22 +8,18 @@
 
 #include "Engine/Graphics/Texture2D.h"
 #include "Engine/Graphics/SpriteSheet.h"
+#include "Engine/Utils/Commons.h"
 #include <map>
-
-struct SDL_Renderer;
 
 namespace MapleEngine
 {
 	class ENGINE_API AssetManager
 	{
 	private:
-		static SDL_Renderer* m_pRenderer;
-
-		// A List of Sprite Sheets Created
-		static std::map<std::string, SpriteSheet*> m_spriteSheets;
+		static std::map<std::string, UniquePtr<SpriteSheet>> m_loadedSpriteSheets;
+		static std::vector<UniquePtr<Texture2D>> m_loadedTextures;
 
 	public:
-		AssetManager(SDL_Renderer& renderer);
 		~AssetManager();
 
 		/* Loads and returns a 2D Texture. Returns a error texture if failed. */

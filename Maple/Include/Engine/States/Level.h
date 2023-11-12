@@ -14,7 +14,7 @@ namespace MapleEngine
 	class Level
 	{
 	private:
-		std::map<UInt, Entity*> m_entities;
+		std::map<UInt, UniquePtr<Entity>> m_entities;
 
 	public:
 		Level();
@@ -31,12 +31,9 @@ namespace MapleEngine
 			UInt ID = GetNewID();
 
 			static_assert(std::is_base_of<Entity, T>::value, "T must be a subclass of Entity");
-			T* entity = new T(ID);
+			m_entities.insert(std::make_pair(ID, std::make_unique<T>(ID)));
 
-			Entity& baseEntity = dynamic_cast<Entity&>(*entity);
-			m_entities.insert(std::make_pair(ID, entity));
-
-			return *entity;
+			return *m_entities[ID];
 		}
 
 		Entity* GetEntityByID(UInt ID);

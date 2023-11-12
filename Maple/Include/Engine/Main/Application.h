@@ -8,12 +8,13 @@
 
 #include "SDL.h"
 #include "SDL_image.h"
+#include "Engine/Utils/Commons.h"
 #include "Window.h"
 #include "EngineInterface.h"
 #include "Engine/Managers/AssetManager.h"
 #include "Engine/Managers/StateManager.h"
 #include "Engine/Managers/InputHandler.h"
-#include <Engine/States/Level.h>
+#include "Engine/States/Level.h"
 
 namespace MapleEngine
 {
@@ -22,11 +23,11 @@ namespace MapleEngine
 	private:
 		static Application* m_rInstance;
 
-		AssetManager* m_pAssetManager;
-		StateManager* m_pStateManager;
-		InputHandler* m_pInputHandler;
+		UniquePtr<AssetManager> m_pAssetManager;
+		UniquePtr<StateManager> m_pStateManager;
+		UniquePtr<InputHandler> m_pInputHandler;
 
-		Window* m_pWindow;
+		UniquePtr<Window> m_pWindow;
 		bool m_isRunning;	
 
 		Uint32 m_currentTime;
@@ -48,8 +49,8 @@ namespace MapleEngine
 
 		static void DisplayError(const char* error, const char* errorTile, bool displaySDLError);
 
-		Window* GetWindow() { return m_pWindow; }
-		SDL_Renderer* GetRenderer() { return m_pWindow->GetRenderer(); }
+		Window& GetWindow() { return *m_pWindow; }
+		SDL_Renderer& GetRenderer() { return *m_pWindow->GetRenderer(); }
 
 	private:
 		/* Initializes the Application, creating the Window and starting the Game Loop.*/

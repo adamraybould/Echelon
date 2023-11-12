@@ -11,10 +11,10 @@ MapleEngine::Level::~Level()
 
 MapleEngine::Entity* MapleEngine::Level::GetEntityByID(UInt ID)
 {
-	std::map<UInt, Entity*>::iterator pos = m_entities.find(ID);
+	std::map<UInt, UniquePtr<Entity>>::iterator pos = m_entities.find(ID);
 	if (pos != m_entities.end())
 	{
-		return pos->second;
+		return pos->second.get();
 	}
 	else
 	{

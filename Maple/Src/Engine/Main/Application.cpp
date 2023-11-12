@@ -45,12 +45,8 @@ void MapleEngine::Application::Run()
 
 void MapleEngine::Application::Clean()
 {
-	delete m_pAssetManager;
-	delete m_pStateManager;
-	delete m_pInputHandler;
-
 	// Destroy the Window
-	delete m_pWindow;
+	m_pWindow.reset();
 
 	// Clean Up SDL 
 	IMG_Quit();
@@ -130,7 +126,7 @@ void MapleEngine::Application::Initialize()
 	else
 	{
 		// Create Window with Renderer
-		m_pWindow = new Window();
+		m_pWindow = std::make_unique<Window>();
 		if (!m_pWindow->Create("Echelon"))
 		{
 			DisplayError("Window could not be created! SDL_ERROR:", "SDL Error", true);
@@ -146,7 +142,7 @@ void MapleEngine::Application::Initialize()
 	}
 
 	// Initialize Managers
-	m_pAssetManager = new MapleEngine::AssetManager(*m_pWindow->GetRenderer());
-	m_pStateManager = new MapleEngine::StateManager();
-	m_pInputHandler = new MapleEngine::InputHandler();
+	m_pAssetManager = std::make_unique<AssetManager>();
+	m_pStateManager = std::make_unique<StateManager>();
+	m_pInputHandler = std::make_unique<InputHandler>();
 }

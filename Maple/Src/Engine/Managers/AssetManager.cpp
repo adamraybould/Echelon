@@ -9,24 +9,24 @@
 
 const char* ERRORPATH = "Error.png";
 
-SDL_Renderer* MapleEngine::AssetManager::m_pRenderer;
-std::map<std::string, MapleEngine::SpriteSheet*> MapleEngine::AssetManager::m_spriteSheets;
-
-MapleEngine::AssetManager::AssetManager(SDL_Renderer& renderer)
-{
-	m_pRenderer = &renderer;
-}
+std::map<std::string, UniquePtr<MapleEngine::SpriteSheet>> MapleEngine::AssetManager::m_loadedSpriteSheets;
+std::vector<UniquePtr<MapleEngine::Texture2D>> MapleEngine::AssetManager::m_loadedTextures;
 
 MapleEngine::AssetManager::~AssetManager()
 {
 	// Clears up the Sprite Sheets
-	for (auto& pair : m_spriteSheets)
+	for (auto& pair : m_loadedSpriteSheets)
 	{
-		delete pair.second;
+		pair.second.reset();
 	}
-	m_spriteSheets.clear();
 
-	m_pRenderer = nullptr;
+	for (auto& texture : m_loadedTextures)
+	{
+		texture.reset();
+	}
+
+	m_loadedSpriteSheets.clear();
+	m_loadedTextures.clear();
 }
 
 MapleEngine::Texture2D& MapleEngine::AssetManager::LoadTexture(const char* path)
@@ -34,16 +34,17 @@ MapleEngine::Texture2D& MapleEngine::AssetManager::LoadTexture(const char* path)
 	CheckAssetManagerInitialized();
 
 	std::string assetPath = "Assets/" + std::string(path);
+	SDL_Renderer& renderer = Application::GetInstance().GetRenderer();
 
-	SDL_Texture* texture = IMG_LoadTexture(m_pRenderer, assetPath.c_str());
+	SDL_Texture* texture = IMG_LoadTexture(&renderer, assetPath.c_str());
 	if (texture == nullptr)
 	{
 		printf("Texture could not be found at path: %s\n", path);
-		texture = IMG_LoadTexture(m_pRenderer, ERRORPATH); // Sets the Texture to be an Error
+		texture = IMG_LoadTexture(&renderer, ERRORPATH); // Sets the Texture to be an Error
 	}
 
-	Texture2D* texture2D = new Texture2D(*texture);
-	return *texture2D;
+	m_loadedTextures.push_back(std::make_unique<Texture2D>(texture));
+	return *m_loadedTextures.back();
 }
 
 MapleEngine::SpriteSheet& MapleEngine::AssetManager::LoadSpriteSheet(const char* path, const char* sheetName)
@@ -69,7 +70,7 @@ MapleEngine::SpriteSheet& MapleEngine::AssetManager::LoadSpriteSheet(const char*
 	std::string tPath = std::string(path);
 	std::string texturePath = tPath.substr(0, tPath.find_last_of('/') + 1) + atlasTexture;
 	Texture2D& sheetTexture = LoadTexture(texturePath.c_str());
-	SpriteSheet* spriteSheet = new SpriteSheet(sheetTexture, spriteWidth, spriteHeight);
+	UniquePtr<SpriteSheet> spriteSheet = std::make_unique<SpriteSheet>(sheetTexture, spriteWidth, spriteHeight);
 
 	// Load Animations if there is any
 	if (data.isMember("cycles"))
@@ -91,13 +92,14 @@ MapleEngine::SpriteSheet& MapleEngine::AssetManager::LoadSpriteSheet(const char*
 		}
 	}
 
-	m_spriteSheets.insert(std::make_pair(sheetName, spriteSheet));
-	return *spriteSheet;
+	m_loadedSpriteSheets.insert(std::make_pair(sheetName, std::move(spriteSheet)));
+	std::cout << "Loaded SpriteSheet: " << texturePath << " | Size: " << sheetTexture.GetTextureMemorySize() << "KB" << std::endl;
+	return *m_loadedSpriteSheets[sheetName];
 }
 
 bool MapleEngine::AssetManager::CheckAssetManagerInitialized()
 {
-	if (m_pRenderer != nullptr)
+	if (&Application::GetInstance().GetRenderer() != nullptr)
 		return true;
 	else
 	{

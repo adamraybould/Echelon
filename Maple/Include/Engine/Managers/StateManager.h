@@ -8,6 +8,7 @@
 
 #include <vector>
 #include <iostream>
+#include "Engine/Utils/Commons.h"
 
 namespace MapleEngine
 {
@@ -26,8 +27,8 @@ namespace MapleEngine
 	private: 
 		static StateManager* m_rInstance;
 
-		IState* m_rState;
-		std::vector<IState*> m_states;
+		IState* m_pState;
+		std::vector<SharedPtr<IState>> m_states;
 
 	public:
 		static StateManager& GetInstance();
@@ -43,19 +44,18 @@ namespace MapleEngine
 		{
 			if (GetState<T>() != nullptr)
 			{
-				m_rState = nullptr;
-				m_rState = GetState<T>();
+				m_pState = nullptr;
+				m_pState = GetState<T>();
 			}
 			else
 			{
 				std::cout << "No State called " << typeid(T).name() << " was found. Creating one." << std::endl;
-				T* state = new T();
-				m_states.push_back(state);
-				m_rState = state;	
+				m_states.push_back(std::make_shared<T>());
+				m_pState = m_states.back().get();
 			}
 
 			// Initialize State
-			m_rState->Initialize();
+			m_pState->Initialize();
 		}
 
 		template <typename T>
@@ -76,6 +76,6 @@ namespace MapleEngine
 			return nullptr;
 		}
 
-		bool IsStateLoaded() { return m_rState != nullptr; }
+		bool IsStateLoaded() { return m_pState != nullptr; }
 	};
 }

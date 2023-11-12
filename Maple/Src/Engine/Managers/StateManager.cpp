@@ -11,7 +11,7 @@ MapleEngine::StateManager& MapleEngine::StateManager::GetInstance()
 MapleEngine::StateManager::StateManager()
 {
 	m_rInstance = this;
-	m_rState = nullptr;
+	m_pState = nullptr;
 }
 
 MapleEngine::StateManager::~StateManager()
@@ -19,19 +19,18 @@ MapleEngine::StateManager::~StateManager()
 	// Delete all States 
 	for (UInt i = 0; i < m_states.size(); i++)
 	{
-		IState* state = m_states[i];
-		delete state;
+		m_states[i].reset();
 	}
 
 	m_states.clear();
-	m_rState = nullptr;
+	m_pState = nullptr;
 }
 
 void MapleEngine::StateManager::UpdateState(float dt)
 {
 	if (IsStateLoaded())
 	{
-		m_rState->Update(dt);
+		m_pState->Update(dt);
 	}
 }
 
@@ -39,6 +38,6 @@ void MapleEngine::StateManager::RenderState()
 {
 	if (IsStateLoaded())
 	{
-		m_rState->Render();
+		m_pState->Render();
 	}
 }

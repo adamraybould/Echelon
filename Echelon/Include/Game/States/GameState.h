@@ -15,9 +15,11 @@ namespace Echelon
 
 	public:
 		GameState();
+		~GameState();
 
 		void Initialize() override;
 		void Update(float dt) override;
 		void Render() override;
+
 	};
 }

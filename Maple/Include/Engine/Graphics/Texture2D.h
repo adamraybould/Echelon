@@ -19,9 +19,10 @@ namespace MapleEngine
 
 		int m_width;
 		int m_height;
+		uint32_t m_format;
 
 	public:
-		Texture2D(SDL_Texture& texture);
+		Texture2D(SDL_Texture* texture);
 		~Texture2D();
 
 		void Free();
@@ -29,9 +30,12 @@ namespace MapleEngine
 		operator SDL_Texture* () const { return m_pTexture; }
 
 		/* Returns the raw SDL texture */
-		SDL_Texture* GetRawTexture() { return m_pTexture; }
+		SDL_Texture& GetRawTexture() { return *m_pTexture; }
 
 		UInt GetWidth() { return m_width; }
 		UInt GetHeight() { return m_height; }
+
+		/* Returns the Memory Size of this Texture in KB */
+		UInt GetTextureMemorySize();
 	};
 }

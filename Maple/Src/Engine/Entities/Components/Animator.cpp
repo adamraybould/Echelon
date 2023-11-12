@@ -26,7 +26,7 @@ void MapleEngine::Animator::Update(float dt)
 		m_frame++;
 		m_frameTimer = 0.0f;
 
-		m_rSpriteRenderer.GetSprite()->SetSpriteSource(m_rSpriteSheet.GetSprite(m_frame));
+		m_rSpriteRenderer.GetSprite().SetSpriteSource(m_rSpriteSheet.GetSprite(m_frame));
 	}
 }
 

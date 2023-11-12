@@ -8,13 +8,14 @@
 
 #include "Component.h"
 #include "Engine/Graphics/Sprite.h"
+#include "Engine/Utils/Commons.h"
 
 namespace MapleEngine
 {
 	class ENGINE_API SpriteRenderer : public Component
 	{
 	private:
-		Sprite* m_pSprite;
+		UniquePtr<Sprite> m_pSprite;
 		int m_flip;
 
 	public:
@@ -27,10 +28,12 @@ namespace MapleEngine
 
 		/* Set the Sprite to be Renderered */
 		void SetSprite(Sprite& sprite);
+		void SetSprite(Texture2D& texture);
+		void SetSprite(SpriteSheet& spriteSheet);
 
 		/* Set if the Sprite should be Flipped */
 		void SetFlip(bool value);
 
-		Sprite* GetSprite() { return m_pSprite; }
+		Sprite& GetSprite() { return *m_pSprite; }
 	};
 }
