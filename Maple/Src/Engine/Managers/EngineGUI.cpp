@@ -10,10 +10,12 @@ MapleEngine::EngineGUI::EngineGUI(Window& window)
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
 
-	ImGuiIO& io = ImGui::GetIO(); (void)io;
+	ImGuiIO& io = ImGui::GetIO();
 	io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
+	io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
+	io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
 
-	//ImGui::StyleColorsDark();
+	ImGui::StyleColorsDark();
 
 	// Setup backends
 	ImGui_ImplSDL2_InitForSDLRenderer(&window.GetWindow(), &window.GetRenderer());
@@ -32,6 +34,7 @@ void MapleEngine::EngineGUI::Render()
 	ImGui_ImplSDLRenderer2_NewFrame();
 	ImGui_ImplSDL2_NewFrame();
 	ImGui::NewFrame();
+	ImGui::DockSpaceOverViewport();
 
 	ImGui::Begin("Panel");
 	ImGui::Text("Hello World");
