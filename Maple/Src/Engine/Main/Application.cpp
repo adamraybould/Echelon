@@ -46,10 +46,10 @@ void MapleEngine::Application::Run()
 void MapleEngine::Application::Clean()
 {
 	// Destroy Managers
-	m_pEngineGUI.reset();
 	m_pAssetManager.reset();
 	m_pStateManager.reset();
 	m_pInputHandler.reset();
+	m_pEngineGUI.reset();
 
 	// Destroy the Window
 	m_pWindow.reset();
@@ -153,9 +153,9 @@ void MapleEngine::Application::Initialize()
 	}
 
 	// Initialize Managers
-	m_pEngineGUI = std::make_unique<EngineGUI>(*m_pWindow);
-
 	m_pAssetManager = std::make_unique<AssetManager>();
 	m_pStateManager = std::make_unique<StateManager>();
 	m_pInputHandler = std::make_unique<InputHandler>();
+
+	m_pEngineGUI = std::make_unique<EngineGUI>(*m_pWindow);
 }

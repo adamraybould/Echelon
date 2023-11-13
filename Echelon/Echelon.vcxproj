@@ -145,6 +145,7 @@
     <ClCompile Include="Src\Game\States\GameState.cpp" />
     <ClCompile Include="Src\Game\Levels\TestLevel.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Src\Game\World Gen\Block.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\Game\Entities\Components\PlayerMovement.h" />
@@ -152,6 +153,7 @@
     <ClInclude Include="Include\Game\Entities\Slime.h" />
     <ClInclude Include="Include\Game\Levels\TestLevel.h" />
     <ClInclude Include="Include\Game\States\GameState.h" />
+    <ClInclude Include="Include\Game\World Gen\Block.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

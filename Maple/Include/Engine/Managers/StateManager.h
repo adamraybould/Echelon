@@ -49,7 +49,7 @@ namespace MapleEngine
 			}
 			else
 			{
-				std::cout << "No State called " << typeid(T).name() << " was found. Creating one." << std::endl;
+				std::cout << "No State called " << typeid(T).name() << " was found. Creating one." << std::endl << std::endl;
 				m_states.push_back(std::make_shared<T>());
 				m_pState = m_states.back().get();
 			}
@@ -72,7 +72,7 @@ namespace MapleEngine
 				}
 			}
 
-			std::cout << "Unable to find Registered State: " << typeid(T).name() << std::endl;
+			//std::cout << "Unable to find Registered State: " << typeid(T).name() << std::endl;
 			return nullptr;
 		}
 

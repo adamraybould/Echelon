@@ -178,6 +178,7 @@
     <ClInclude Include="Include\Engine\Graphics\Texture2D.h" />
     <ClInclude Include="Include\Engine\Managers\StateManager.h" />
     <ClInclude Include="Include\Engine\Managers\AssetManager.h" />
+    <ClInclude Include="Include\Engine\Utils\Delegates.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>

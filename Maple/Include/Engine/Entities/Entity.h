@@ -31,7 +31,7 @@ namespace MapleEngine
 		virtual void Render();
 
 		template<typename T, typename... Args>
-		T& AddComponent(Args&&... args)
+		inline T& AddComponent(Args&&... args)
 		{
 			static_assert(std::is_base_of<Component, T>::value, "T must be a subclass of Component");
 			m_components.push_back(std::make_shared<T>(std::forward<Args>(args)...));
@@ -40,7 +40,7 @@ namespace MapleEngine
 		}
 
 		template<typename T>
-		T* GetComponent()
+		inline T* GetComponent()
 		{
 			for (auto i = m_components.begin(); i != m_components.end(); i++)
 			{
@@ -56,7 +56,7 @@ namespace MapleEngine
 		}
 
 		template<typename T>
-		void RemoveComponent()
+		inline void RemoveComponent()
 		{
 			for (auto i = m_components.begin(); i != m_components.end(); i++)
 			{

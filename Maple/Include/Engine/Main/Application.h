@@ -24,10 +24,10 @@ namespace MapleEngine
 	private:
 		static Application* m_rInstance;
 
-		UniquePtr<EngineGUI> m_pEngineGUI;
 		UniquePtr<AssetManager> m_pAssetManager;
 		UniquePtr<StateManager> m_pStateManager;
 		UniquePtr<InputHandler> m_pInputHandler;
+		UniquePtr<EngineGUI> m_pEngineGUI;
 
 		UniquePtr<Window> m_pWindow;
 		bool m_isRunning;	

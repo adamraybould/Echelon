@@ -25,7 +25,23 @@ namespace MapleEngine
 		virtual void Render();
 
 		template<typename T, typename... Args>
-		T& CreateEntity(Args&&... args)
+		inline T& CreateEntity(Vector2 position, Vector2 scale, Args&&... args)
+		{
+			// Get random ID for Entity
+			UInt ID = GetNewID();
+
+			static_assert(std::is_base_of<Entity, T>::value, "T must be a subclass of Entity");
+			m_entities.insert(std::make_pair(ID, std::make_shared<T>(ID, std::forward<Args>(args)...)));
+
+			Entity& entity = *m_entities[ID];
+			entity.Transform.Position = position;
+			entity.Transform.Scale = scale;
+
+			return *std::dynamic_pointer_cast<T>(m_entities[ID]);
+		}
+
+		template<typename T, typename... Args>
+		inline T& CreateEntity(Args&&... args)
 		{
 			// Get random ID for Entity
 			UInt ID = GetNewID();

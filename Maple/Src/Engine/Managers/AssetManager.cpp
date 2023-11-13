@@ -9,6 +9,7 @@
 
 const char* ERRORPATH = "Error.png";
 
+MultiCastEvent<void, MapleEngine::Texture2D*> MapleEngine::AssetManager::OnTextureLoaded;
 std::map<std::string, UniquePtr<MapleEngine::SpriteSheet>> MapleEngine::AssetManager::m_loadedSpriteSheets;
 std::vector<UniquePtr<MapleEngine::Texture2D>> MapleEngine::AssetManager::m_loadedTextures;
 
@@ -44,7 +45,12 @@ MapleEngine::Texture2D& MapleEngine::AssetManager::LoadTexture(const char* path)
 	}
 
 	m_loadedTextures.push_back(std::make_unique<Texture2D>(texture));
-	return *m_loadedTextures.back();
+	std::cout << "--- Loaded Texture: " << assetPath << " | Size: " << m_loadedTextures.back().get()->GetTextureMemorySize() << "KB ---" << std::endl;
+
+	Texture2D* loadedTexture = m_loadedTextures.back().get();
+	OnTextureLoaded.Broadcast(loadedTexture);
+
+	return *loadedTexture;
 }
 
 MapleEngine::SpriteSheet& MapleEngine::AssetManager::LoadSpriteSheet(const char* path, const char* sheetName)
@@ -93,7 +99,7 @@ MapleEngine::SpriteSheet& MapleEngine::AssetManager::LoadSpriteSheet(const char*
 	}
 
 	m_loadedSpriteSheets.insert(std::make_pair(sheetName, std::move(spriteSheet)));
-	std::cout << "Loaded SpriteSheet: " << texturePath << " | Size: " << sheetTexture.GetTextureMemorySize() << "KB" << std::endl;
+	//std::cout << "Loaded SpriteSheet: " << texturePath << " | Size: " << sheetTexture.GetTextureMemorySize() << "KB" << std::endl;
 	return *m_loadedSpriteSheets[sheetName];
 }
 

@@ -15,6 +15,9 @@ namespace MapleEngine
 {
 	class ENGINE_API AssetManager
 	{
+	public:
+		static MultiCastEvent<void, Texture2D*> OnTextureLoaded;
+
 	private:
 		static std::map<std::string, UniquePtr<SpriteSheet>> m_loadedSpriteSheets;
 		static std::vector<UniquePtr<Texture2D>> m_loadedTextures;

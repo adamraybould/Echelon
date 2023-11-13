@@ -5,8 +5,11 @@
 using namespace MapleEngine;
 namespace Echelon
 {
-	class PlayerMovement : public MapleEngine::Component
+	class PlayerMovement : public Component
 	{
+	public:
+		MultiCastEvent<void, void> OnMove;
+
 	private:
 		SpriteRenderer* m_spriteRenderer;
 		Animator* m_animator;
@@ -15,7 +18,7 @@ namespace Echelon
 		float m_movementSpeed;
 
 	public:
-		PlayerMovement(MapleEngine::Entity& entity);
+		PlayerMovement(Entity& entity);
 
 		void Initialize() override;
 		void Update(float dt) override;

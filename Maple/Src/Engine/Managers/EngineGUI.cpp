@@ -3,6 +3,9 @@
 #include <imgui.h>
 #include <imgui_impl_sdl2.h>
 #include <imgui_impl_sdlrenderer2.h>
+#include <iostream>
+#include "Engine/Graphics/Texture2D.h"
+#include "Engine/Managers/AssetManager.h"
 
 MapleEngine::EngineGUI::EngineGUI(Window& window)
 {
@@ -20,6 +23,8 @@ MapleEngine::EngineGUI::EngineGUI(Window& window)
 	// Setup backends
 	ImGui_ImplSDL2_InitForSDLRenderer(&window.GetWindow(), &window.GetRenderer());
 	ImGui_ImplSDLRenderer2_Init(&window.GetRenderer());
+
+	AssetManager::OnTextureLoaded.AddListener(this, &EngineGUI::Test);
 }
 
 MapleEngine::EngineGUI::~EngineGUI()
@@ -48,6 +53,11 @@ void MapleEngine::EngineGUI::RenderDrawData()
 void MapleEngine::EngineGUI::HandleInput(SDL_Event& event)
 {
 	ImGui_ImplSDL2_ProcessEvent(&event);
+}
+
+void MapleEngine::EngineGUI::Test(Texture2D* texture)
+{
+	std::cout << "Just Loaded Texture | Size: " << texture->GetTextureMemorySize() << "KB" << std::endl;
 }
 
 void MapleEngine::EngineGUI::RenderMainGUI()

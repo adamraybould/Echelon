@@ -4,6 +4,7 @@
 namespace MapleEngine
 {
 	class Window;
+	class Texture2D;
 
 	class EngineGUI
 	{
@@ -14,6 +15,8 @@ namespace MapleEngine
 		void Render();
 		void RenderDrawData();
 		void HandleInput(SDL_Event& event);
+
+		void Test(Texture2D* texture);
 
 	private:
 		void RenderMainGUI();
