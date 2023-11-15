@@ -8,6 +8,7 @@
 
 #include <cmath>
 #include <memory>
+#include <iostream>
 #include "Delegates.h"
 
 using UInt = unsigned int;

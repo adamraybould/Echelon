@@ -55,7 +55,10 @@ namespace MapleEngine
 
 		/* Returns the Index of the First Animation Frame */
 		int GetStartIndex() const { return Frames[0].Index; }
+
 		/* Returns the Index of the Last Animation Frame */
 		int GetLastIndex() const { return Frames[Frames.size() - 1].Index; }
+
+		int GetFrameCount() const { return Frames.size(); }
 	};
 }

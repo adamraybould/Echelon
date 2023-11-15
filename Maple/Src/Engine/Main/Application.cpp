@@ -102,6 +102,7 @@ void MapleEngine::Application::Update()
 		m_lastTitleUpdateTicks = currentTitleUpdateTicks;
 	}
 
+	m_pEngineGUI->Update(deltaTime);
 	m_pStateManager->UpdateState(deltaTime);
 }
 

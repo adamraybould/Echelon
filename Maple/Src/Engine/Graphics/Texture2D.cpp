@@ -3,9 +3,10 @@
 #include "SDL_image.h"
 #include <iostream>
 
-MapleEngine::Texture2D::Texture2D(SDL_Texture* texture)
+MapleEngine::Texture2D::Texture2D(SDL_Texture* texture, std::string path)
 {
 	m_pTexture = texture;
+	m_texturePath = path;
 
 	// Gets details about the Texture
 	SDL_QueryTexture(texture, &m_format, nullptr, &m_width, &m_height);

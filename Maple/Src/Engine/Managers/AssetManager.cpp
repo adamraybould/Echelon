@@ -44,7 +44,7 @@ MapleEngine::Texture2D& MapleEngine::AssetManager::LoadTexture(const char* path)
 		texture = IMG_LoadTexture(&renderer, ERRORPATH); // Sets the Texture to be an Error
 	}
 
-	m_loadedTextures.push_back(std::make_unique<Texture2D>(texture));
+	m_loadedTextures.push_back(std::make_unique<Texture2D>(texture, assetPath));
 	std::cout << "--- Loaded Texture: " << assetPath << " | Size: " << m_loadedTextures.back().get()->GetTextureMemorySize() << "KB ---" << std::endl;
 
 	Texture2D* loadedTexture = m_loadedTextures.back().get();

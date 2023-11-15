@@ -37,6 +37,9 @@ namespace MapleEngine
 		/* Returns a Rect for a Sprite in the Sprite Sheet */
 		Rectangle GetSprite(UInt index);
 
+		/* Returns a Map of all Animations attached to this Sprite Sheet */
+		std::map<std::string, Animation>& GetAllAnimations() { return m_animations; }
+
 		/* Returns the Width of a Sprite */
 		UInt GetSpriteWidth() { return m_spriteWidth; }
 

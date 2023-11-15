@@ -31,6 +31,9 @@ namespace MapleEngine
 		/* Loads and returns a Sprite Sheet from a .SF file. Returns a error texture if failed */
 		static SpriteSheet& LoadSpriteSheet(const char* path, const char* sheetName);
 
+		static std::map<std::string, UniquePtr<SpriteSheet>>& GetLoadedSpriteSheets() { return m_loadedSpriteSheets; }
+		static std::vector<UniquePtr<Texture2D>>& GetLoadedTextures() { return m_loadedTextures; }
+
 	private:
 		static bool CheckAssetManagerInitialized();
 	};

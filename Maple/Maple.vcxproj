@@ -163,6 +163,7 @@
     <ClInclude Include="Include\Engine\Entities\Components\Animator.h" />
     <ClInclude Include="Include\Engine\Graphics\Animation.h" />
     <ClInclude Include="Include\Engine\Graphics\SpriteSheet.h" />
+    <ClInclude Include="Include\Engine\GUI\AnimationPlayer.h" />
     <ClInclude Include="Include\Engine\Managers\EngineGUI.h" />
     <ClInclude Include="Include\Engine\Managers\InputHandler.h" />
     <ClInclude Include="Include\Engine\Utils\Commons.h" />
@@ -185,6 +186,7 @@
     <ClCompile Include="..\..\ImGui\imgui.cpp" />
     <ClCompile Include="..\..\ImGui\imgui_tables.cpp" />
     <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="Src\Engine\GUI\AnimationPlayer.cpp" />
     <ClCompile Include="Src\Engine\ImGui\imgui.cpp" />
     <ClCompile Include="Src\Engine\ImGui\imgui_demo.cpp" />
     <ClCompile Include="Src\Engine\ImGui\imgui_draw.cpp" />
