@@ -1,6 +1,6 @@
 #include "Engine/Entities/Entity.h"
 
-MapleEngine::Entity::Entity(UInt ID)
+MapleEngine::Entity::Entity(UInt64 ID)
 {
 	m_ID = ID;
 }

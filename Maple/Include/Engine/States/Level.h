@@ -6,7 +6,7 @@
 #define ENGINE_API __declspec(dllimport)
 #endif
 
-#include "Engine/Entities/Entity.h"
+#include "Engine/Managers/EntityManager.h"
 #include <map> 
 
 namespace MapleEngine
@@ -14,7 +14,7 @@ namespace MapleEngine
 	class ENGINE_API Level
 	{
 	private:
-		std::map<UInt, SharedPtr<Entity>> m_entities;
+		UniquePtr<EntityManager> m_entityManager;
 
 	public:
 		Level();
@@ -25,34 +25,18 @@ namespace MapleEngine
 		virtual void Render();
 
 		template<typename T, typename... Args>
-		inline T& CreateEntity(Vector2 position, Vector2 scale, Args&&... args)
+		inline T& CreateEntity(Vector2 position, float rotation, Vector2 scale, Args&&... args)
 		{
-			// Get random ID for Entity
-			UInt ID = GetNewID();
-
-			static_assert(std::is_base_of<Entity, T>::value, "T must be a subclass of Entity");
-			m_entities.insert(std::make_pair(ID, std::make_shared<T>(ID, std::forward<Args>(args)...)));
-
-			Entity& entity = *m_entities[ID];
+			T& entity = CreateEntity<T>(std::forward<Args>(args)...);
 			entity.Transform.Position = position;
+			entity.Transform.Rotation = rotation;
 			entity.Transform.Scale = scale;
-
-			return *std::dynamic_pointer_cast<T>(m_entities[ID]);
+			return entity;
 		}
 
 		template<typename T, typename... Args>
-		inline T& CreateEntity(Args&&... args)
-		{
-			// Get random ID for Entity
-			UInt ID = GetNewID();
+		inline T& CreateEntity(Args&&... args) { return m_entityManager->CreateEntity<T>(args...); }
 
-			static_assert(std::is_base_of<Entity, T>::value, "T must be a subclass of Entity");
-			m_entities.insert(std::make_pair(ID, std::make_shared<T>(ID, std::forward<Args>(args)...)));
-
-			return *std::dynamic_pointer_cast<T>(m_entities[ID]);
-		}
-
-		Entity* GetEntityByID(UInt ID);
 		void DestroyEntity(Entity& entity);
 
 	private:

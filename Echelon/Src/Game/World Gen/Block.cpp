@@ -5,5 +5,5 @@
 
 Echelon::Block::Block(UInt ID) : Entity(ID)
 {
-	Texture2D blockTexture = AssetManager::LoadTexture("objects/rocks.png");
+	Texture2D& blockTexture = AssetManager::LoadTexture("/objects/rocks.png");
 }

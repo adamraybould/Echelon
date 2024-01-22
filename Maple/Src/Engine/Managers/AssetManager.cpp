@@ -48,7 +48,6 @@ MapleEngine::Texture2D& MapleEngine::AssetManager::LoadTexture(const char* path)
 	std::cout << "--- Loaded Texture: " << assetPath << " | Size: " << m_loadedTextures.back().get()->GetTextureMemorySize() << "KB ---" << std::endl;
 
 	Texture2D* loadedTexture = m_loadedTextures.back().get();
-	OnTextureLoaded.Broadcast(loadedTexture);
 
 	return *loadedTexture;
 }

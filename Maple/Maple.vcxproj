@@ -164,7 +164,10 @@
     <ClInclude Include="Include\Engine\Graphics\Animation.h" />
     <ClInclude Include="Include\Engine\Graphics\SpriteSheet.h" />
     <ClInclude Include="Include\Engine\GUI\AnimationPlayer.h" />
-    <ClInclude Include="Include\Engine\Managers\EngineGUI.h" />
+    <ClInclude Include="Include\Engine\GUI\EngineGUI.h" />
+    <ClInclude Include="Include\Engine\GUI\Windows\GUITexturesWindow.h" />
+    <ClInclude Include="Include\Engine\GUI\Windows\GUIWindow.h" />
+    <ClInclude Include="Include\Engine\Managers\EntityManager.h" />
     <ClInclude Include="Include\Engine\Managers\InputHandler.h" />
     <ClInclude Include="Include\Engine\Utils\Commons.h" />
     <ClInclude Include="Include\Engine\Entities\Components\Component.h" />
@@ -180,12 +183,16 @@
     <ClInclude Include="Include\Engine\Managers\StateManager.h" />
     <ClInclude Include="Include\Engine\Managers\AssetManager.h" />
     <ClInclude Include="Include\Engine\Utils\Delegates.h" />
+    <ClInclude Include="Include\Engine\Utils\MathF.h" />
+    <ClInclude Include="Include\Engine\Utils\ProjectUtils.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\ImGui\imgui.cpp" />
     <ClCompile Include="..\..\ImGui\imgui_tables.cpp" />
     <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="Src\Engine\GUI\Windows\GUITexturesWindow.cpp" />
+    <ClCompile Include="Include\Engine\Managers\EntityManager.cpp" />
     <ClCompile Include="Src\Engine\GUI\AnimationPlayer.cpp" />
     <ClCompile Include="Src\Engine\ImGui\imgui.cpp" />
     <ClCompile Include="Src\Engine\ImGui\imgui_demo.cpp" />
@@ -194,7 +201,7 @@
     <ClCompile Include="Src\Engine\ImGui\imgui_impl_sdlrenderer2.cpp" />
     <ClCompile Include="Src\Engine\ImGui\imgui_tables.cpp" />
     <ClCompile Include="Src\Engine\ImGui\imgui_widgets.cpp" />
-    <ClCompile Include="Src\Engine\Managers\EngineGUI.cpp" />
+    <ClCompile Include="Src\Engine\GUI\EngineGUI.cpp" />
     <ClCompile Include="Src\Engine\Managers\InputHandler.cpp" />
     <ClCompile Include="Src\Engine\Entities\Components\Animator.cpp" />
     <ClCompile Include="Src\Engine\Entities\Components\SpriteRenderer.cpp" />
@@ -216,6 +223,7 @@
     </ClCompile>
     <ClCompile Include="Src\Engine\Main\Application.cpp" />
     <ClCompile Include="Src\Engine\Utils\Commons.cpp" />
+    <ClCompile Include="Src\Engine\Utils\ProjectUtils.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

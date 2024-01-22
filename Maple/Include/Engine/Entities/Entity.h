@@ -21,10 +21,10 @@ namespace MapleEngine
 	private:
 		std::vector<SharedPtr<Component>> m_components;
 
-		UInt m_ID; // Unique ID for the Entity
+		UInt64 m_ID; // Unique ID for the Entity
 
 	public:
-		Entity(UInt ID);
+		Entity(UInt64 ID);
 		~Entity();
 
 		virtual void Update(float dt);
@@ -72,6 +72,6 @@ namespace MapleEngine
 		void RemoveAllComponents();
 
 		/* Get ID of the Entity */
-		UInt& GetID() { return m_ID; }
+		UInt64& GetID() { return m_ID; }
 	};
 }
