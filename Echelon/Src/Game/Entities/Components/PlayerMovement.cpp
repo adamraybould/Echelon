@@ -24,31 +24,29 @@ void Echelon::PlayerMovement::Update(float dt)
 	if (InputHandler::IsKeyDown(Keys::W))
 	{
 		m_velocity = Vector2(m_velocity.X, -m_movementSpeed);
-		m_animator->SetAnimation("run_Up");
+		m_animator->SetAnimation("Run_Up");
 	}
 	else if (InputHandler::IsKeyDown(Keys::S))
 	{
 		m_velocity = Vector2(m_velocity.X, m_movementSpeed);
-		m_animator->SetAnimation("run_Down");
+		m_animator->SetAnimation("Run_Down");
 	}
 
 	if (InputHandler::IsKeyDown(Keys::A))
 	{
 		m_velocity = Vector2(-m_movementSpeed, m_velocity.Y);
 
-		m_animator->SetAnimation("run_Side");
-		m_spriteRenderer->SetFlip(true);
+		m_animator->SetAnimation("Run_Left");
 	}
 	else if (InputHandler::IsKeyDown(Keys::D))
 	{
 		m_velocity = Vector2(m_movementSpeed, m_velocity.Y);
 
-		m_animator->SetAnimation("run_Side");
-		m_spriteRenderer->SetFlip(false);
+		m_animator->SetAnimation("Run_Right");
 	}
 
 	if (m_velocity == Vector2::Zero())
-		m_animator->SetAnimation("idle_Side");
+		m_animator->SetAnimation("Idle_Left");
 }
 
 void Echelon::PlayerMovement::Render()

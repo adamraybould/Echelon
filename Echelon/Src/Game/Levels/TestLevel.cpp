@@ -12,8 +12,6 @@ Echelon::TestLevel::~TestLevel()
 void Echelon::TestLevel::InitializeLevel()
 {
 	player = &CreateEntity<Player>();
-	slime = &CreateEntity<Slime>();
-	CreateEntity<Block>();
 }
 
 void Echelon::TestLevel::Update(float dt)

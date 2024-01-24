@@ -27,7 +27,6 @@ namespace MapleEngine
 		void Destroy() override;
 
 		/* Set the Sprite to be Renderered */
-		void SetSprite(Sprite& sprite);
 		void SetSprite(Texture2D& texture);
 		void SetSprite(SpriteSheet& spriteSheet);
 

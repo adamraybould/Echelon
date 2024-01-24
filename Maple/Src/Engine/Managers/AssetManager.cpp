@@ -66,10 +66,10 @@ MapleEngine::SpriteSheet& MapleEngine::AssetManager::LoadSpriteSheet(const char*
 	reader.parse(file, data);
 
 	// Read the Sprite Sheet data
-	Json::Value atlasData = data["textureAtlas"];
-	std::string atlasTexture = atlasData["texture"].asString();
-	int spriteWidth = atlasData["regionWidth"].asInt();
-	int spriteHeight = atlasData["regionHeight"].asInt();
+	Json::Value atlasData = data["TextureAtlas"];
+	std::string atlasTexture = atlasData["Texture"].asString();
+	int spriteWidth = atlasData["RegionWidth"].asInt();
+	int spriteHeight = atlasData["RegionHeight"].asInt();
 	
 	// Gets the Texture from the same file location
 	std::string tPath = std::string(path);
@@ -78,15 +78,15 @@ MapleEngine::SpriteSheet& MapleEngine::AssetManager::LoadSpriteSheet(const char*
 	UniquePtr<SpriteSheet> spriteSheet = std::make_unique<SpriteSheet>(sheetTexture, spriteWidth, spriteHeight);
 
 	// Load Animations if there is any
-	if (data.isMember("cycles"))
+	if (data.isMember("Cycles"))
 	{
-		const Json::Value cycles = data["cycles"];
+		const Json::Value cycles = data["Cycles"];
 		for (const auto& animationName : cycles.getMemberNames())
 		{
 			Animation animation = Animation(animationName.c_str());
 
 			// Loop through every frame in the Animation and add it
-			const Json::Value frames = cycles[animationName]["frames"];
+			const Json::Value frames = cycles[animationName]["Frames"];
 			for (const auto& frame : frames)
 			{
 				animation.AddAnimationFrame(Frame(frame.asInt()));
@@ -98,7 +98,6 @@ MapleEngine::SpriteSheet& MapleEngine::AssetManager::LoadSpriteSheet(const char*
 	}
 
 	m_loadedSpriteSheets.insert(std::make_pair(sheetName, std::move(spriteSheet)));
-	//std::cout << "Loaded SpriteSheet: " << texturePath << " | Size: " << sheetTexture.GetTextureMemorySize() << "KB" << std::endl;
 	return *m_loadedSpriteSheets[sheetName];
 }
 

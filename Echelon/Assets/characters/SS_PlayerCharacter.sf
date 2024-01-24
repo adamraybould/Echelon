@@ -1,0 +1,129 @@
+{
+  "TextureAtlas": {
+    "Texture": "SS_PlayerCharacter.png",
+    "RegionWidth": 48,
+    "RegionHeight": 48
+  },
+  "Cycles": {
+    "Idle_Down": {
+      "Frames": [0,1,2,3,4,5,6,7],
+      "IsLooping": true,
+      "FrameDuration": 0.1
+    },
+    "Idle_Up": {
+      "Frames": [8,9,10,11,12,13,14,15],
+      "IsLooping": true,
+      "FrameDuration": 0.1
+    },
+    "Idle_Left": {
+      "Frames": [16,17,18,19,20,21,22,23],
+      "IsLooping": true,
+      "FrameDuration": 0.1
+    },
+    "Idle_Right": {
+      "Frames": [24,25,26,27,28,29,30,31],
+      "IsLooping": true,
+      "FrameDuration": 0.1
+    },
+    "Walk_Down": {
+      "Frames": [32,33,34,35,36,37,38,39],
+      "IsLooping": true,
+      "FrameDuration": 0.1
+    },
+    "Walk_Up": {
+      "Frames": [40,41,42,43,44,45,46,47],
+      "IsLooping": true,
+      "FrameDuration": 0.1
+    },
+    "Walk_Right": {
+      "Frames": [48,49,50,51,52,53,54,55],
+      "IsLooping": true,
+      "FrameDuration": 0.1
+    },
+    "Walk_Left": {
+      "Frames": [56,57,58,59,60,61,62,63],
+      "IsLooping": true,
+      "FrameDuration": 0.1
+    },
+    "Run_Down": {
+      "Frames": [64,65,66,67,68,69,70,71],
+      "IsLooping": true,
+      "FrameDuration": 0.1
+    },
+    "Run_Up": {
+      "Frames": [72,73,74,75,76,77,78,79],
+      "IsLooping": true,
+      "FrameDuration": 0.1
+    },
+    "Run_Right": {
+      "Frames": [80,81,82,83,84,85,86,87],
+      "IsLooping": true,
+      "FrameDuration": 0.1
+    },
+    "Run_Left": {
+      "Frames": [88,89,90,91,92,93,94,95],
+      "IsLooping": true,
+      "FrameDuration": 0.1
+    },
+    "Hoe_Down": {
+      "Frames": [96,97,98,99,100,101,102,103],
+      "IsLooping": true,
+      "FrameDuration": 0.1
+    },
+    "Hoe_Up": {
+      "Frames": [104,105,106,107,108,109,110,111],
+      "IsLooping": true,
+      "FrameDuration": 0.1
+    },
+    "Hoe_Left": {
+      "Frames": [112,113,114,115,116,117,118,119],
+      "IsLooping": true,
+      "FrameDuration": 0.1
+    },
+    "Hoe_Right": {
+      "Frames": [120,121,122,123,124,125,126,127],
+      "IsLooping": true,
+      "FrameDuration": 0.1
+    },
+    "Chop_Down": {
+      "Frames": [128,129,130,131,132,133,134,135],
+      "IsLooping": true,
+      "FrameDuration": 0.1
+    },
+    "Chop_Up": {
+      "Frames": [136,137,138,139,140,141,142,143],
+      "IsLooping": true,
+      "FrameDuration": 0.1
+    },
+    "Chop_Left": {
+      "Frames": [144,145,146,147,148,149,150,151],
+      "IsLooping": true,
+      "FrameDuration": 0.1
+    },
+    "Chop_Right": {
+      "Frames": [152,153,154,155,156,157,158,159],
+      "IsLooping": true,
+      "FrameDuration": 0.1
+    },
+    "Water_Down": {
+      "Frames": [160,161,162,163,164,165,166,167],
+      "IsLooping": true,
+      "FrameDuration": 0.1
+    },
+    "Water_Up": {
+      "Frames": [168,169,170,171,172,173,174,175],
+      "IsLooping": true,
+      "FrameDuration": 0.1
+    },
+    "Water_Left": {
+      "Frames": [176,177,178,179,180,181,182,183],
+      "IsLooping": true,
+      "FrameDuration": 0.1
+    },
+    "Water_Right": {
+      "Frames": [184,185,186,187,188,189,190,191],
+      "IsLooping": true,
+      "FrameDuration": 0.1
+    }
+  }
+}

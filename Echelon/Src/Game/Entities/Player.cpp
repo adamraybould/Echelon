@@ -7,13 +7,13 @@
 
 Echelon::Player::Player(UInt ID) : Entity(ID)
 {
-	SpriteSheet& spriteSheet = MapleEngine::AssetManager::LoadSpriteSheet("/characters/player", "Player");
+	SpriteSheet& spriteSheet = MapleEngine::AssetManager::LoadSpriteSheet("/Characters/SS_PlayerCharacter", "Player");
 
 	SpriteRenderer& spriteRenderer = AddComponent<SpriteRenderer>(*this);
 	spriteRenderer.SetSprite(spriteSheet);
 
 	Animator& animator = AddComponent<Animator>(*this, spriteRenderer, spriteSheet);
-	animator.SetAnimation("idle_Side");
+	animator.SetAnimation("Idle_Left");
 
 	PlayerMovement& movement = AddComponent<PlayerMovement>(*this);
 
