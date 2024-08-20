@@ -7,8 +7,12 @@ namespace Engine::Systems
     class EntityManager;
 }
 
-class SDL_Renderer;
+namespace Engine::Rendering
+{
+    class Renderer;
+}
 
+using namespace Engine::Rendering;
 namespace Engine::States
 {
     class Level
@@ -23,10 +27,10 @@ namespace Engine::States
 
         virtual void Initialize();
         virtual void Update(float delta);
-        virtual void Render(SDL_Renderer& renderer);
+        virtual void Render(Renderer& renderer);
 
         UInt64 GetID() const { return m_ID; }
-        Systems::EntityManager& GetEntityManager() { return *m_pEntityManager; }
+        Systems::EntityManager& GetEntityManager() const { return *m_pEntityManager; }
     };
 }
 

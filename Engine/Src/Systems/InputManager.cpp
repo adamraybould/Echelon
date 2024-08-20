@@ -65,6 +65,10 @@ namespace Engine::Systems
         { SDLK_TAB,     Keys::TAB },
         { SDLK_AC_BACK, Keys::BACK },
         { SDLK_ESCAPE,  Keys::ESC },
+        { SDLK_UP, Keys::UP },
+        { SDLK_DOWN, Keys::DOWN },
+        { SDLK_LEFT, Keys::LEFT },
+        { SDLK_RIGHT, Keys::RIGHT },
     };
 
     InputManager::InputManager()

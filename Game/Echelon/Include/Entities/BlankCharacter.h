@@ -1,11 +1,6 @@
-#ifndef PLAYERCHARACTER_H
-#define PLAYERCHARACTER_H
+#ifndef BLANKCHARACTER_H
+#define BLANKCHARACTER_H
 #include "ECS/Entity.h"
-
-namespace Echelon::Entities::Components
-{
-    class PlayerController;
-}
 
 namespace Engine::ECS
 {
@@ -13,17 +8,15 @@ namespace Engine::ECS
 }
 
 using namespace Engine::ECS;
-using namespace Echelon::Entities::Components;
 namespace Echelon::Entities
 {
-    class PlayerCharacter : public Entity
+    class BlankCharacter : public Entity
     {
     private:
         SpriteRenderer* m_renderer;
-        PlayerController* m_playerController;
 
     public:
-        PlayerCharacter();
+        BlankCharacter();
 
         void Initialize() override;
         void Update(float delta) override;
@@ -31,4 +24,4 @@ namespace Echelon::Entities
     };
 }
 
-#endif //PLAYERCHARACTER_H
+#endif //BLANKCHARACTER_H

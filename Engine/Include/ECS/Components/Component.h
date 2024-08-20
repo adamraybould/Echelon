@@ -2,8 +2,12 @@
 #define COMPONENT_H
 #include "Utility/Commons.h"
 
-class SDL_Renderer;
+namespace Engine::Rendering
+{
+    class Renderer;
+}
 
+using namespace Engine::Rendering;
 namespace Engine::ECS
 {
     class Entity;
@@ -21,7 +25,7 @@ namespace Engine::ECS
 
         virtual void Initialize() = 0;
         virtual void Update(float delta) = 0;
-        virtual void Render(SDL_Renderer& renderer) = 0;
+        virtual void Render(Renderer& renderer) = 0;
         virtual void Destroy() = 0;
 
         /* Returns the Owner of this Component */

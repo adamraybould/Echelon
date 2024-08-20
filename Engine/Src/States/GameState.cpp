@@ -29,7 +29,7 @@ namespace Engine::States
         }
     }
 
-    void GameState::Render(SDL_Renderer& renderer)
+    void GameState::Render(Renderer& renderer)
     {
         if (m_pLevelManager != nullptr)
         {

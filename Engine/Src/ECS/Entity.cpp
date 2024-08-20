@@ -25,7 +25,7 @@ namespace Engine::ECS
         }
     }
 
-    void Entity::Render(SDL_Renderer& renderer)
+    void Entity::Render(Renderer& renderer)
     {
         for(UInt i = 0; i < m_components.size(); i++)
         {

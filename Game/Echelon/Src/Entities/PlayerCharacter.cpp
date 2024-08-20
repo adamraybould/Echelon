@@ -24,7 +24,7 @@ namespace Echelon::Entities
         Entity::Update(delta);
     }
 
-    void PlayerCharacter::Render(SDL_Renderer& renderer)
+    void PlayerCharacter::Render(Renderer& renderer)
     {
         Entity::Render(renderer);
     }

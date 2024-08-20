@@ -3,12 +3,8 @@
 #include "ECS/Entity.h"
 #include "Utility/Commons.h"
 
-namespace Engine::ECS
-{
-    class Entity;
-}
-
 using namespace Engine::ECS;
+using namespace Engine::Rendering;
 namespace Engine::Systems
 {
     class EntityManager
@@ -22,7 +18,7 @@ namespace Engine::Systems
 
         void InitializeEntities();
         void UpdateEntities(float delta);
-        void RenderEntities(SDL_Renderer& renderer);
+        void RenderEntities(Renderer& renderer);
 
         /* Returns an Entity with the Specified ID */
         Entity* GetEntity(UInt64 ID);

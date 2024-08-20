@@ -20,7 +20,7 @@ namespace Echelon::Entities::Components
 
         void Initialize() override;
         void Update(float delta) override;
-        void Render(SDL_Renderer& renderer) override;
+        void Render(Renderer& renderer) override;
         void Destroy() override;
 
     private:

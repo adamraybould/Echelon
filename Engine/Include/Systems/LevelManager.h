@@ -19,8 +19,8 @@ namespace Engine::Systems
         ~LevelManager();
 
         void Initialize() const;
-        void Update(float delta);
-        void Render(SDL_Renderer& renderer);
+        void Update(float delta) const;
+        void Render(Renderer& renderer) const;
 
         template<typename T>
         bool AddLevel()

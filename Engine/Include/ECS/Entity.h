@@ -3,6 +3,7 @@
 #include "Components/Component.h"
 #include "Utility/Commons.h"
 
+using namespace Engine::Rendering;
 namespace Engine::ECS
 {
     class Entity
@@ -19,7 +20,7 @@ namespace Engine::ECS
 
         virtual void Initialize() = 0;
         virtual void Update(float delta);
-        virtual void Render(SDL_Renderer& renderer);
+        virtual void Render(Renderer& renderer);
 
         template<typename T, typename... Args>
         inline T& AddComponent(Args&&... args)

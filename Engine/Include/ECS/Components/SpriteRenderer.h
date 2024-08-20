@@ -22,7 +22,7 @@ namespace Engine::ECS
 
         void Initialize() override;
         void Update(float delta) override;
-        void Render(SDL_Renderer& renderer) override;
+        void Render(Renderer& renderer) override;
         void Destroy() override;
 
         /* Sets the Sprite source rect to a new Frame. Only works with Sprite Sheets */

@@ -1,9 +1,8 @@
 #include "ECS/Components/SpriteRenderer.h"
 #include "ECS/Entity.h"
 #include "Graphics/Sprite.h"
-#include <SDL.h>
-
 #include "Graphics/SpriteSheet.h"
+#include "Rendering/Renderer.h"
 
 namespace Engine::ECS
 {
@@ -21,18 +20,19 @@ namespace Engine::ECS
     {
     }
 
-    void SpriteRenderer::Render(SDL_Renderer& renderer)
+    void SpriteRenderer::Render(Renderer& renderer)
     {
         // Ignore if no Sprite is Set
         if (m_pSprite == nullptr)
             return;
 
         Transform& transform = GetOwner().Transform();
+        Camera& camera = renderer.GetCamera();
 
-        SDL_Rect dest = { transform.Position.X, transform.Position.Y, m_pSprite->GetSource().Width * transform.Scale.X, m_pSprite->GetSource().Height * transform.Scale.Y };
+        SDL_Rect dest = { transform.Position.X - camera.Transform().Position.X, transform.Position.Y - camera.Transform().Position.Y, m_pSprite->GetSource().Width * transform.Scale.X, m_pSprite->GetSource().Height * transform.Scale.Y };
         SDL_Rect src = { m_pSprite->GetSource().X, m_pSprite->GetSource().Y, m_pSprite->GetSource().Width, m_pSprite->GetSource().Height };
 
-        SDL_RenderCopyEx(&renderer, &m_pSprite->GetRawTexture(), &src, &dest, transform.Rotation, NULL, (SDL_RendererFlip)m_flipped);
+        SDL_RenderCopyEx(renderer, &m_pSprite->GetRawTexture(), &src, &dest, transform.Rotation, NULL, static_cast<SDL_RendererFlip>(m_flipped));
     }
 
     void SpriteRenderer::Destroy()

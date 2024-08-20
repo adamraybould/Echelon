@@ -1,4 +1,4 @@
-#include "../../Include/Systems/StateSystem.h"
+#include "Systems/StateSystem.h"
 
 namespace Engine::Systems
 {
@@ -35,7 +35,7 @@ namespace Engine::Systems
         }
     }
 
-    void StateSystem::Render(SDL_Renderer& renderer) const
+    void StateSystem::Render(Renderer& renderer) const
     {
         if (IsStateLoaded())
         {

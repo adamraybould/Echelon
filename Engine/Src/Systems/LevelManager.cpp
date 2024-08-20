@@ -28,7 +28,7 @@ namespace Engine::Systems
         }
     }
 
-    void LevelManager::Update(float delta)
+    void LevelManager::Update(float delta) const
     {
         if (m_currentLevel != nullptr)
         {
@@ -36,7 +36,7 @@ namespace Engine::Systems
         }
     }
 
-    void LevelManager::Render(SDL_Renderer& renderer)
+    void LevelManager::Render(Renderer& renderer) const
     {
         if (m_currentLevel != nullptr)
         {

@@ -25,7 +25,7 @@ namespace Echelon::Entities::Components
         ProcessMovement(delta);
     }
 
-    void PlayerController::Render(SDL_Renderer& renderer)
+    void PlayerController::Render(Renderer& renderer)
     {
     }
 

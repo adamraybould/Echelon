@@ -39,6 +39,11 @@ add_library(Engine STATIC
         Src/Graphics/SpriteSheet.cpp
         Include/Systems/InputManager.h
         Src/Systems/InputManager.cpp
+        Include/Rendering/Camera.h
+        Src/Rendering/Camera.cpp
+        Include/Utility/Constants.h
+        Include/Rendering/Renderer.h
+        Src/Rendering/Renderer.cpp
 )
 
 target_include_directories(Engine PUBLIC

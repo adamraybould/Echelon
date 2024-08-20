@@ -1,5 +1,7 @@
 #include "Systems/EntityManager.h"
 
+#include "Rendering/Renderer.h"
+
 namespace Engine::Systems
 {
     EntityManager::EntityManager()
@@ -32,7 +34,7 @@ namespace Engine::Systems
         }
     }
 
-    void EntityManager::RenderEntities(SDL_Renderer& renderer)
+    void EntityManager::RenderEntities(Renderer& renderer)
     {
         for (auto i = m_entities.begin(); i != m_entities.end(); ++i)
         {

@@ -196,6 +196,20 @@ build Engine/CMakeFiles/Engine.dir/Src/Systems/InputManager.cpp.obj: CXX_COMPILE
   OBJECT_DIR = Engine\CMakeFiles\Engine.dir
   OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Systems
 
+build Engine/CMakeFiles/Engine.dir/Src/Rendering/Camera.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Rendering/Camera.cpp || cmake_object_order_depends_target_Engine
+  DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Rendering\Camera.cpp.obj.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -I"D:/Game Projects/C++/SDL2-2.30.6/x86_64-w64-mingw32/include/SDL2" -IC:/Users/codel/.vcpkg-clion/vcpkg/installed/x64-mingw-dynamic/include
+  OBJECT_DIR = Engine\CMakeFiles\Engine.dir
+  OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Rendering
+
+build Engine/CMakeFiles/Engine.dir/Src/Rendering/Renderer.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Rendering/Renderer.cpp || cmake_object_order_depends_target_Engine
+  DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Rendering\Renderer.cpp.obj.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -I"D:/Game Projects/C++/SDL2-2.30.6/x86_64-w64-mingw32/include/SDL2" -IC:/Users/codel/.vcpkg-clion/vcpkg/installed/x64-mingw-dynamic/include
+  OBJECT_DIR = Engine\CMakeFiles\Engine.dir
+  OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Rendering
+
 
 # =============================================================================
 # Link build statements for STATIC_LIBRARY target Engine
@@ -204,7 +218,7 @@ build Engine/CMakeFiles/Engine.dir/Src/Systems/InputManager.cpp.obj: CXX_COMPILE
 #############################################
 # Link the static library Engine\libEngine.a
 
-build Engine/libEngine.a: CXX_STATIC_LIBRARY_LINKER__Engine_Debug Engine/CMakeFiles/Engine.dir/Src/Main/Application.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Main/Window.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Main/IProgram.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Systems/StateSystem.cpp.obj Engine/CMakeFiles/Engine.dir/Src/States/GameState.cpp.obj Engine/CMakeFiles/Engine.dir/Src/ECS/Entity.cpp.obj Engine/CMakeFiles/Engine.dir/Src/ECS/Components/Component.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Graphics/Texture2D.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Graphics/AssetManager.cpp.obj Engine/CMakeFiles/Engine.dir/Src/ECS/Components/SpriteRenderer.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Graphics/Sprite.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Utility/Utility.cpp.obj Engine/CMakeFiles/Engine.dir/Src/States/Level.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Systems/LevelManager.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Systems/EntityManager.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Graphics/SpriteSheet.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Systems/InputManager.cpp.obj
+build Engine/libEngine.a: CXX_STATIC_LIBRARY_LINKER__Engine_Debug Engine/CMakeFiles/Engine.dir/Src/Main/Application.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Main/Window.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Main/IProgram.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Systems/StateSystem.cpp.obj Engine/CMakeFiles/Engine.dir/Src/States/GameState.cpp.obj Engine/CMakeFiles/Engine.dir/Src/ECS/Entity.cpp.obj Engine/CMakeFiles/Engine.dir/Src/ECS/Components/Component.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Graphics/Texture2D.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Graphics/AssetManager.cpp.obj Engine/CMakeFiles/Engine.dir/Src/ECS/Components/SpriteRenderer.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Graphics/Sprite.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Utility/Utility.cpp.obj Engine/CMakeFiles/Engine.dir/Src/States/Level.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Systems/LevelManager.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Systems/EntityManager.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Graphics/SpriteSheet.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Systems/InputManager.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Rendering/Camera.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Rendering/Renderer.cpp.obj
   LANGUAGE_COMPILE_FLAGS = -g
   OBJECT_DIR = Engine\CMakeFiles\Engine.dir
   POST_BUILD = cd .
@@ -277,6 +291,13 @@ build Game/CMakeFiles/Game.dir/Echelon/Src/Entities/Components/PlayerController.
   OBJECT_DIR = Game\CMakeFiles\Game.dir
   OBJECT_FILE_DIR = Game\CMakeFiles\Game.dir\Echelon\Src\Entities\Components
 
+build Game/CMakeFiles/Game.dir/Echelon/Src/Entities/BlankCharacter.cpp.obj: CXX_COMPILER__Game_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Game/Echelon/Src/Entities/BlankCharacter.cpp || cmake_object_order_depends_target_Game
+  DEP_FILE = Game\CMakeFiles\Game.dir\Echelon\Src\Entities\BlankCharacter.cpp.obj.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  INCLUDES = -I"D:/Game Projects/C++/Echelon/Game/Echelon/Include" -I"D:/Game Projects/C++/Echelon/Engine/Include" -I"D:/Game Projects/C++/SDL2-2.30.6/x86_64-w64-mingw32/include/SDL2" -IC:/Users/codel/.vcpkg-clion/vcpkg/installed/x64-mingw-dynamic/include
+  OBJECT_DIR = Game\CMakeFiles\Game.dir
+  OBJECT_FILE_DIR = Game\CMakeFiles\Game.dir\Echelon\Src\Entities
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Game
@@ -285,7 +306,7 @@ build Game/CMakeFiles/Game.dir/Echelon/Src/Entities/Components/PlayerController.
 #############################################
 # Link the executable Game\Game.exe
 
-build Game/Game.exe: CXX_EXECUTABLE_LINKER__Game_Debug Game/CMakeFiles/Game.dir/Echelon/Src/Main.cpp.obj Game/CMakeFiles/Game.dir/Echelon/Src/Entities/PlayerCharacter.cpp.obj Game/CMakeFiles/Game.dir/Echelon/Src/Levels/MainLevel.cpp.obj Game/CMakeFiles/Game.dir/Echelon/Src/Entities/Components/PlayerController.cpp.obj | Engine/libEngine.a D$:/Game$ Projects/C++/SDL2-2.30.6/x86_64-w64-mingw32/lib/libSDL2main.a D$:/Game$ Projects/C++/SDL2-2.30.6/x86_64-w64-mingw32/lib/libSDL2.dll.a D$:/Game$ Projects/C++/SDL2-2.30.6/x86_64-w64-mingw32/lib/libSDL2_image.dll.a C$:/Users/codel/.vcpkg-clion/vcpkg/installed/x64-mingw-dynamic/lib/libjsoncpp.dll.a || Engine/libEngine.a
+build Game/Game.exe: CXX_EXECUTABLE_LINKER__Game_Debug Game/CMakeFiles/Game.dir/Echelon/Src/Main.cpp.obj Game/CMakeFiles/Game.dir/Echelon/Src/Entities/PlayerCharacter.cpp.obj Game/CMakeFiles/Game.dir/Echelon/Src/Levels/MainLevel.cpp.obj Game/CMakeFiles/Game.dir/Echelon/Src/Entities/Components/PlayerController.cpp.obj Game/CMakeFiles/Game.dir/Echelon/Src/Entities/BlankCharacter.cpp.obj | Engine/libEngine.a D$:/Game$ Projects/C++/SDL2-2.30.6/x86_64-w64-mingw32/lib/libSDL2main.a D$:/Game$ Projects/C++/SDL2-2.30.6/x86_64-w64-mingw32/lib/libSDL2.dll.a D$:/Game$ Projects/C++/SDL2-2.30.6/x86_64-w64-mingw32/lib/libSDL2_image.dll.a C$:/Users/codel/.vcpkg-clion/vcpkg/installed/x64-mingw-dynamic/lib/libjsoncpp.dll.a || Engine/libEngine.a
   FLAGS = -g
   LINK_LIBRARIES = Engine/libEngine.a  -lmingw32  -mwindows  "D:/Game Projects/C++/SDL2-2.30.6/x86_64-w64-mingw32/lib/libSDL2main.a"  "D:/Game Projects/C++/SDL2-2.30.6/x86_64-w64-mingw32/lib/libSDL2.dll.a"  "D:/Game Projects/C++/SDL2-2.30.6/x86_64-w64-mingw32/lib/libSDL2_image.dll.a"  C:/Users/codel/.vcpkg-clion/vcpkg/installed/x64-mingw-dynamic/lib/libjsoncpp.dll.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = Game\CMakeFiles\Game.dir

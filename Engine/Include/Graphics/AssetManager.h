@@ -4,22 +4,27 @@
 #include "SpriteSheet.h"
 #include "Texture2D.h"
 
+namespace Engine::Rendering
+{
+    class Renderer;
+}
+
 namespace Engine
 {
     class Application;
 }
 
+using namespace Engine::Rendering;
 namespace Engine::Graphics
 {
     class AssetManager
     {
     private:
-        static Application* m_application;
-
+        static Renderer* m_renderer;
         static Array<UniquePtr<Texture2D>> m_loadedTextures; // An Array of Loaded Textures
 
     public:
-        AssetManager(Application& application);
+        AssetManager(Renderer& renderer);
         ~AssetManager();
 
         /* Loads a Raw SDL Texture */

@@ -9,6 +9,8 @@ add_executable(Game
         Echelon/Src/Levels/MainLevel.cpp
         Echelon/Include/Entities/Components/PlayerController.h
         Echelon/Src/Entities/Components/PlayerController.cpp
+        Echelon/Include/Entities/BlankCharacter.h
+        Echelon/Src/Entities/BlankCharacter.cpp
 )
 
 target_include_directories(Game PRIVATE

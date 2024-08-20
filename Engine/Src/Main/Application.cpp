@@ -4,6 +4,7 @@
 #include <SDL_image.h>
 #include <SDL_timer.h>
 
+#include "Rendering/Renderer.h"
 #include "States/GameState.h"
 
 namespace Engine
@@ -52,6 +53,7 @@ namespace Engine
         m_pStateSystem.reset();
         m_pInputManager.reset();
 
+        m_pRenderer.reset();
         m_pWindow.reset();
 
         IMG_Quit();
@@ -99,6 +101,7 @@ namespace Engine
             m_lastTitleUpdateTicks = currentTitleUpdateTicks;
         }
 
+        m_pRenderer->Update(deltaTime);
         m_pStateSystem->Update(deltaTime);
     }
 
@@ -107,7 +110,7 @@ namespace Engine
         SDL_SetRenderDrawColor(&m_pWindow->GetRenderer(), 0, 0, 0, 255);
         SDL_RenderClear(&m_pWindow->GetRenderer());
 
-        m_pStateSystem->Render(GetRenderer());
+        m_pStateSystem->Render(*m_pRenderer);
 
         SDL_RenderPresent(&m_pWindow->GetRenderer());
     }
@@ -133,6 +136,8 @@ namespace Engine
                 DisplayError("Window could not be created! SDL_ERROR:", "SDL Error", true);
                 exit(1);
             }
+
+            m_pRenderer = std::make_unique<Renderer>(m_pWindow->GetRenderer());
         }
 
         if (IMG_Init(IMG_INIT_PNG | IMG_INIT_PNG) < 0)
@@ -142,7 +147,7 @@ namespace Engine
         }
 
         // Initialize Systems
-        m_pAssetManager = std::make_unique<Graphics::AssetManager>(*this);
+        m_pAssetManager = std::make_unique<Graphics::AssetManager>(*m_pRenderer);
 
         m_pStateSystem = std::make_unique<Systems::StateSystem>();
         m_pStateSystem->AddState<States::GameState>(true);

@@ -31,7 +31,7 @@ namespace Engine::States
         }
     }
 
-    void Level::Render(SDL_Renderer& renderer)
+    void Level::Render(Renderer& renderer)
     {
         if (m_pEntityManager != nullptr)
         {

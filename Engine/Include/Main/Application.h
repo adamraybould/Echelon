@@ -16,6 +16,7 @@ namespace Engine
         static Application* m_pInstance;
 
         UniquePtr<Window> m_pWindow;
+        UniquePtr<Renderer> m_pRenderer;
         bool m_isRunning;
 
         UniquePtr<Graphics::AssetManager> m_pAssetManager;
@@ -41,7 +42,7 @@ namespace Engine
         static void DisplayError(const char* error, const char* errorTile, bool displaySDLError);
 
         Window& GetWindow() const { return *m_pWindow; }
-        SDL_Renderer& GetRenderer() const { return m_pWindow->GetRenderer(); }
+        Renderer& GetRenderer() const { return *m_pRenderer; }
 
     private:
         void Initialize();

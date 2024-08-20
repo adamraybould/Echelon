@@ -2,6 +2,7 @@
 
 #include <fstream>
 #include <SDL_image.h>
+#include "Rendering/Renderer.h"
 #include "Graphics/Sprite.h"
 #include "Main/Application.h"
 #include <json/json.h>
@@ -9,13 +10,12 @@
 namespace Engine::Graphics
 {
     const char* ERROR_TEXTURE = "Error.png";
-
-    Application* AssetManager::m_application;
+    Renderer* AssetManager::m_renderer;
     Array<UniquePtr<Texture2D>> AssetManager::m_loadedTextures;
 
-    AssetManager::AssetManager(Application& application)
+    AssetManager::AssetManager(Renderer& renderer)
     {
-        m_application = &application;
+        m_renderer = &renderer;
     }
 
     AssetManager::~AssetManager()
@@ -31,13 +31,12 @@ namespace Engine::Graphics
     SDL_Texture& AssetManager::LoadRawTexture(const char* filePath)
     {
         std::string texturePath = "Assets/" + std::string(filePath);
-        SDL_Renderer* renderer = &m_application->GetRenderer();
 
-        SDL_Texture* texture = IMG_LoadTexture(renderer, texturePath.c_str());
+        SDL_Texture* texture = IMG_LoadTexture(*m_renderer, texturePath.c_str());
         if (texture == nullptr)
         {
             printf("Failed to load texture: %s\n", SDL_GetError());
-            texture = IMG_LoadTexture(renderer, ERROR_TEXTURE);
+            texture = IMG_LoadTexture(*m_renderer, ERROR_TEXTURE);
         }
 
         return *texture;
@@ -46,13 +45,12 @@ namespace Engine::Graphics
     Texture2D& AssetManager::LoadTexture2D(const char* filePath)
     {
         std::string texturePath = "Assets/" + std::string(filePath);
-        SDL_Renderer* renderer = &m_application->GetRenderer();
 
-        SDL_Texture* texture = IMG_LoadTexture(renderer, texturePath.c_str());
+        SDL_Texture* texture = IMG_LoadTexture(*m_renderer, texturePath.c_str());
         if (texture == nullptr)
         {
             printf("Failed to load texture: %s\n", SDL_GetError());
-            texture = IMG_LoadTexture(renderer, ERROR_TEXTURE);
+            texture = IMG_LoadTexture(*m_renderer, ERROR_TEXTURE);
         }
 
         m_loadedTextures.push_back(std::make_unique<Texture2D>(texture));
@@ -65,13 +63,12 @@ namespace Engine::Graphics
     Sprite& AssetManager::LoadSprite(const char* filePath)
     {
         std::string texturePath = "Assets/" + std::string(filePath);
-        SDL_Renderer* renderer = &m_application->GetRenderer();
 
-        SDL_Texture* texture = IMG_LoadTexture(renderer, texturePath.c_str());
+        SDL_Texture* texture = IMG_LoadTexture(*m_renderer, texturePath.c_str());
         if (texture == nullptr)
         {
             printf("Failed to load texture: %s\n", SDL_GetError());
-            texture = IMG_LoadTexture(renderer, ERROR_TEXTURE);
+            texture = IMG_LoadTexture(*m_renderer, ERROR_TEXTURE);
         }
 
         m_loadedTextures.push_back(std::make_unique<Sprite>(texture));

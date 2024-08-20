@@ -1,6 +1,7 @@
 #include "Main/Window.h"
 #include <SDL.h>
 #include <SDL_image.h>
+#include "Utility/Constants.h"
 
 namespace Engine
 {

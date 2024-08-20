@@ -1,9 +1,13 @@
 #ifndef STATEMANAGER_H
 #define STATEMANAGER_H
-#include "../Utility/Commons.h"
+#include "Utility/Commons.h"
 
-class SDL_Renderer;
+namespace Engine::Rendering
+{
+    class Renderer;
+}
 
+using namespace Engine::Rendering;
 namespace Engine::Systems
 {
     struct State
@@ -13,7 +17,7 @@ namespace Engine::Systems
 
         virtual void Initialize() = 0;
         virtual void Update(float delta) = 0;
-        virtual void Render(SDL_Renderer& renderer) = 0;
+        virtual void Render(Renderer& renderer) = 0;
     };
 
     class StateSystem
@@ -28,7 +32,7 @@ namespace Engine::Systems
 
         void Initialize() const;
         void Update(float delta) const;
-        void Render(SDL_Renderer& renderer) const;
+        void Render(Renderer& renderer) const;
 
         bool IsStateLoaded() const { return m_pCurrentState != nullptr; }
 

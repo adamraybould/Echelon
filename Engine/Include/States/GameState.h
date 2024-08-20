@@ -20,7 +20,7 @@ namespace Engine::States
 
         void Initialize() override;
         void Update(float delta) override;
-        void Render(SDL_Renderer& renderer) override;
+        void Render(Renderer& renderer) override;
     };
 }
 
