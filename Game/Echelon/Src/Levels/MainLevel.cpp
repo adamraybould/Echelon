@@ -10,11 +10,12 @@ namespace Echelon::Levels
 {
     MainLevel::MainLevel()
     {
-        m_pPlayer = &CreateEntity<PlayerCharacter>();
+        //Vector2 centerPosition = Vector2((SCREEN_WIDTH / 2) - 32, (SCREEN_HEIGHT / 2) - 32);
+        m_pPlayer = &Instantiate<PlayerCharacter>();
 
-        CreateEntity<BlankCharacter>(GetRandomPositionOnScreen());
-        CreateEntity<BlankCharacter>(GetRandomPositionOnScreen());
-        CreateEntity<BlankCharacter>(GetRandomPositionOnScreen());
+        BlankCharacter& blank1 = Instantiate<BlankCharacter>(GetRandomPositionOnScreen());
+        BlankCharacter& blank2 = Instantiate<BlankCharacter>(GetRandomPositionOnScreen());
+        BlankCharacter& blank3 = Instantiate<BlankCharacter>(GetRandomPositionOnScreen());
     }
 
     void MainLevel::Initialize()
@@ -36,8 +37,8 @@ namespace Echelon::Levels
     {
         Random rand;
 
-        int randomXPos = rand.GetInt(0, SCREEN_WIDTH - 32);
-        int randomYPos = rand.GetInt(0, SCREEN_HEIGHT - 32);
+        int randomXPos = rand.GetInt(-500, 500);
+        int randomYPos = rand.GetInt(-500, 500);
         return Vector2(randomXPos, randomYPos);
     }
 }

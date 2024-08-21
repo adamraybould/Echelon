@@ -19,9 +19,15 @@ namespace Engine::Rendering
 
         void Update(float delta) const;
 
+        void RenderScreen();
+        void UpdateScreen() const;
+
         Camera& GetCamera() const { return *m_pCamera; }
 
         operator SDL_Renderer*() const { return &m_renderer; }
+
+    private:
+        void SetViewport() const;
     };
 }
 

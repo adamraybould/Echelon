@@ -1,10 +1,15 @@
 #include "Systems/InputManager.h"
+
+#include <iostream>
 #include <SDL.h>
+
+#include "Utility/MathF.h"
 
 namespace Engine::Systems
 {
     Map<Keys, KeyState> InputManager::m_keyStates;
     Map<int, KeyState> InputManager::m_mouseStates;
+    float InputManager::m_mouseWheel;
 
     Map<SDL_Keycode, Keys> keyMap =
     {
@@ -95,6 +100,21 @@ namespace Engine::Systems
 
         if (SDL_KEYUP == event.type)
             m_keyStates[key] = KeyState::KEY_UP;
+
+        HandleMouse(event);
+    }
+
+    void InputManager::HandleMouse(SDL_Event& event)
+    {
+        if (event.type == SDL_MOUSEWHEEL)
+        {
+            m_mouseWheel = MathF::Clamp(event.wheel.y, -1.0, 1.0);
+        }
+    }
+
+    void InputManager::Reset()
+    {
+        m_mouseWheel = 0.0f;
     }
 
     bool InputManager::IsKeyDown(Keys key)

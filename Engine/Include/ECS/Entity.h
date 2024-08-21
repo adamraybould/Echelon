@@ -1,6 +1,7 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 #include "Components/Component.h"
+#include "Components/Transform.h"
 #include "Utility/Commons.h"
 
 using namespace Engine::Rendering;
@@ -9,7 +10,7 @@ namespace Engine::ECS
     class Entity
     {
     private:
-        Transform m_transform;
+        Transform* m_transform;
         UInt64 m_ID;
 
         Array<UniquePtr<Component>> m_components;
@@ -70,7 +71,7 @@ namespace Engine::ECS
         void RemoveAllComponents();
 
         UInt32 GetID() const { return m_ID; }
-        Transform& Transform() { return m_transform; }
+        Transform& GetTransform() const { return *m_transform; }
     };
 }
 

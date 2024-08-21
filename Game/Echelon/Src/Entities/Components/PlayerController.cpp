@@ -69,7 +69,8 @@ namespace Echelon::Entities::Components
             m_isSprinting = false;
         }
 
-        GetOwner().Transform().Position += movementDirection.Normalize() * (GetMovementSpeed() * delta);
+        Vector2 newPosition = GetOwner().GetTransform().GetWorldPosition() + movementDirection.Normalize() * (GetMovementSpeed() * delta);
+        GetOwner().GetTransform().SetWorldPosition(newPosition);
     }
 
     float PlayerController::GetMovementSpeed() const

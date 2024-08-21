@@ -23,10 +23,10 @@ namespace Engine::ECS
     public:
         Component(Entity& owner);
 
-        virtual void Initialize() = 0;
-        virtual void Update(float delta) = 0;
-        virtual void Render(Renderer& renderer) = 0;
-        virtual void Destroy() = 0;
+        virtual void Initialize() {}
+        virtual void Update(float delta) {}
+        virtual void Render(Renderer& renderer) {}
+        virtual void Destroy() {}
 
         /* Returns the Owner of this Component */
         Entity& GetOwner() const { return m_rOwner; }

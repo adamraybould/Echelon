@@ -6,6 +6,8 @@ namespace Engine::ECS
     Entity::Entity()
     {
         m_ID = Utility::GenerateUniqueID();
+
+        m_transform = &AddComponent<Transform>(*this);
     }
 
     Entity::~Entity()
@@ -15,7 +17,7 @@ namespace Engine::ECS
 
     void Entity::Update(float delta)
     {
-        for(UInt i = 0; i < m_components.size(); i++)
+        for (UInt i = 0; i < m_components.size(); i++)
         {
             Component& component = *m_components[i];
             if (component.IsActive())
@@ -23,17 +25,31 @@ namespace Engine::ECS
                 component.Update(delta);
             }
         }
+
+        // Update Children
+        Array<Transform*> children = m_transform->GetChildren();
+        for (UInt i = 0; i < children.size(); i++)
+        {
+            children[i]->GetOwner().Update(delta);
+        }
     }
 
     void Entity::Render(Renderer& renderer)
     {
-        for(UInt i = 0; i < m_components.size(); i++)
+        for (UInt i = 0; i < m_components.size(); i++)
         {
             Component& component = *m_components[i];
             if (component.IsActive())
             {
                 component.Render(renderer);
             }
+        }
+
+        // Render Children
+        Array<Transform*> children = m_transform->GetChildren();
+        for (UInt i = 0; i < children.size(); i++)
+        {
+            children[i]->GetOwner().Render(renderer);
         }
     }
 

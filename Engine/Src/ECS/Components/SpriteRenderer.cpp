@@ -26,13 +26,25 @@ namespace Engine::ECS
         if (m_pSprite == nullptr)
             return;
 
-        Transform& transform = GetOwner().Transform();
+        Vector2 position = GetOwner().GetTransform().GetWorldPosition();
+        float rotation = GetOwner().GetTransform().GetWorldRotation();
+        Vector2 scale = GetOwner().GetTransform().GetWorldScale();
+
         Camera& camera = renderer.GetCamera();
 
-        SDL_Rect dest = { transform.Position.X - camera.Transform().Position.X, transform.Position.Y - camera.Transform().Position.Y, m_pSprite->GetSource().Width * transform.Scale.X, m_pSprite->GetSource().Height * transform.Scale.Y };
+        Vector2 screenPosition = camera.CalculateScreenPosition(position);
+
+        SDL_Rect dest =
+            {
+            screenPosition.X - (m_pSprite->GetSource().Width * scale.X * 0.5f),
+            screenPosition.Y - (m_pSprite->GetSource().Height * scale.Y * 0.5f),
+                m_pSprite->GetSource().Width * scale.X,
+                m_pSprite->GetSource().Height * scale.Y
+            };
+
         SDL_Rect src = { m_pSprite->GetSource().X, m_pSprite->GetSource().Y, m_pSprite->GetSource().Width, m_pSprite->GetSource().Height };
 
-        SDL_RenderCopyEx(renderer, &m_pSprite->GetRawTexture(), &src, &dest, transform.Rotation, NULL, static_cast<SDL_RendererFlip>(m_flipped));
+        SDL_RenderCopyEx(renderer, &m_pSprite->GetRawTexture(), &src, &dest, rotation, NULL, static_cast<SDL_RendererFlip>(m_flipped));
     }
 
     void SpriteRenderer::Destroy()

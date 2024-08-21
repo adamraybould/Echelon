@@ -62,6 +62,8 @@ namespace Engine
 
     void Application::HandleInput()
     {
+        m_pInputManager->Reset();
+
         SDL_Event event;
         while (SDL_PollEvent(&event))
         {
@@ -107,12 +109,11 @@ namespace Engine
 
     void Application::Render() const
     {
-        SDL_SetRenderDrawColor(&m_pWindow->GetRenderer(), 0, 0, 0, 255);
-        SDL_RenderClear(&m_pWindow->GetRenderer());
+        m_pRenderer->RenderScreen();
 
         m_pStateSystem->Render(*m_pRenderer);
 
-        SDL_RenderPresent(&m_pWindow->GetRenderer());
+        m_pRenderer->UpdateScreen();
     }
 
     void Application::DisplayError(const char* error, const char* errorTile, bool displaySDLError)

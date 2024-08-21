@@ -26,11 +26,11 @@ namespace Engine
     class Random
     {
     private:
-        std::mt19937 m_gen;
         std::random_device m_rd;
+        std::mt19937 m_gen;
 
     public:
-        Random() : m_gen(std::chrono::system_clock::now().time_since_epoch().count()) {}
+        Random() : m_gen(m_rd()) {}
 
         int GetInt(int min, int max)
         {

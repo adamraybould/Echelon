@@ -40,7 +40,7 @@
 			{
 				"command" : 2,
 				"file" : 1,
-				"line" : 49,
+				"line" : 51,
 				"parent" : 0
 			}
 		]
@@ -98,7 +98,8 @@
 				34,
 				36,
 				38,
-				41
+				41,
+				43
 			]
 		}
 	],
@@ -138,7 +139,8 @@
 				35,
 				37,
 				39,
-				40
+				40,
+				42
 			]
 		},
 		{
@@ -163,7 +165,8 @@
 				34,
 				36,
 				38,
-				41
+				41,
+				43
 			]
 		}
 	],
@@ -396,6 +399,17 @@
 			"backtrace" : 2,
 			"compileGroupIndex" : 0,
 			"path" : "Engine/Src/Rendering/Renderer.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"path" : "Engine/Include/ECS/Components/Transform.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "Engine/Src/ECS/Components/Transform.cpp",
 			"sourceGroupIndex" : 1
 		}
 	],

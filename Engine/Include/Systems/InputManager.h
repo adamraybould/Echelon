@@ -28,14 +28,22 @@ namespace Engine::Systems
         static Map<Keys, KeyState> m_keyStates;
         static Map<int, KeyState> m_mouseStates;
 
+        static float m_mouseWheel;
+
     public:
         InputManager();
         ~InputManager();
 
         void HandleInput(SDL_Event& event);
+        void HandleMouse(SDL_Event& event);
+
+        void Reset();
 
         /* Returns if a Key is Pressed */
         static bool IsKeyDown(Keys key);
+
+        /* Returns the Movement of the Mouse Wheel */
+        static float GetMouseWheel() { return m_mouseWheel; }
     };
 }
 

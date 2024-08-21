@@ -30,7 +30,11 @@ namespace Engine::Systems
     {
         for (auto i = m_entities.begin(); i != m_entities.end(); ++i)
         {
-            i->second->Update(delta);
+            Entity& entity = *i->second;
+            if (!entity.GetTransform().HasParent())
+            {
+                entity.Update(delta);
+            }
         }
     }
 
@@ -38,7 +42,11 @@ namespace Engine::Systems
     {
         for (auto i = m_entities.begin(); i != m_entities.end(); ++i)
         {
-            i->second->Render(renderer);
+            Entity& entity = *i->second;
+            if (!entity.GetTransform().HasParent())
+            {
+                entity.Render(renderer);
+            }
         }
     }
 

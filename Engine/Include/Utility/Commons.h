@@ -69,6 +69,7 @@ struct Vector2
 	Vector2& operator*=(const float scale) { X *= scale; Y *= scale; return *this; }
 	Vector2& operator*=(const Vector2& rhs) { X *= rhs.X; Y *= rhs.Y; return *this; }
 	Vector2 operator/(const float scale) const { return Vector2(X / scale, Y / scale); }
+	Vector2 operator/(const Vector2& rhs) const { return Vector2(X / rhs.X, Y / rhs.Y); }
 	Vector2& operator/=(const float scale) { X /= scale; Y /= scale; return *this; }
 	bool operator==(const Vector2& rhs) const { return (X == rhs.X) && (Y == rhs.Y); }
 	bool operator!=(const Vector2& rhs) const { return (X != rhs.X) && (Y != rhs.Y); }
@@ -107,10 +108,9 @@ struct Rectangle
 	float Right() { return X + Width; }
 	float Top() { return Y; }
 	float Bottom() { return Y + Height; }
-
-	operator SDL_Rect* () const;
 };
 
+/*
 struct Transform
 {
 	Vector2 Position;
@@ -139,5 +139,6 @@ struct Transform
 		Scale = scale;
 	}
 };
+*/
 
 #endif //COMMONS_H

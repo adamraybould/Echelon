@@ -44,6 +44,8 @@ add_library(Engine STATIC
         Include/Utility/Constants.h
         Include/Rendering/Renderer.h
         Src/Rendering/Renderer.cpp
+        Include/ECS/Components/Transform.h
+        Src/ECS/Components/Transform.cpp
 )
 
 target_include_directories(Engine PUBLIC

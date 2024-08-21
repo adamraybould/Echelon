@@ -210,6 +210,13 @@ build Engine/CMakeFiles/Engine.dir/Src/Rendering/Renderer.cpp.obj: CXX_COMPILER_
   OBJECT_DIR = Engine\CMakeFiles\Engine.dir
   OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Rendering
 
+build Engine/CMakeFiles/Engine.dir/Src/ECS/Components/Transform.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/ECS/Components/Transform.cpp || cmake_object_order_depends_target_Engine
+  DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\ECS\Components\Transform.cpp.obj.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -I"D:/Game Projects/C++/SDL2-2.30.6/x86_64-w64-mingw32/include/SDL2" -IC:/Users/codel/.vcpkg-clion/vcpkg/installed/x64-mingw-dynamic/include
+  OBJECT_DIR = Engine\CMakeFiles\Engine.dir
+  OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\ECS\Components
+
 
 # =============================================================================
 # Link build statements for STATIC_LIBRARY target Engine
@@ -218,7 +225,7 @@ build Engine/CMakeFiles/Engine.dir/Src/Rendering/Renderer.cpp.obj: CXX_COMPILER_
 #############################################
 # Link the static library Engine\libEngine.a
 
-build Engine/libEngine.a: CXX_STATIC_LIBRARY_LINKER__Engine_Debug Engine/CMakeFiles/Engine.dir/Src/Main/Application.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Main/Window.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Main/IProgram.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Systems/StateSystem.cpp.obj Engine/CMakeFiles/Engine.dir/Src/States/GameState.cpp.obj Engine/CMakeFiles/Engine.dir/Src/ECS/Entity.cpp.obj Engine/CMakeFiles/Engine.dir/Src/ECS/Components/Component.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Graphics/Texture2D.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Graphics/AssetManager.cpp.obj Engine/CMakeFiles/Engine.dir/Src/ECS/Components/SpriteRenderer.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Graphics/Sprite.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Utility/Utility.cpp.obj Engine/CMakeFiles/Engine.dir/Src/States/Level.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Systems/LevelManager.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Systems/EntityManager.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Graphics/SpriteSheet.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Systems/InputManager.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Rendering/Camera.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Rendering/Renderer.cpp.obj
+build Engine/libEngine.a: CXX_STATIC_LIBRARY_LINKER__Engine_Debug Engine/CMakeFiles/Engine.dir/Src/Main/Application.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Main/Window.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Main/IProgram.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Systems/StateSystem.cpp.obj Engine/CMakeFiles/Engine.dir/Src/States/GameState.cpp.obj Engine/CMakeFiles/Engine.dir/Src/ECS/Entity.cpp.obj Engine/CMakeFiles/Engine.dir/Src/ECS/Components/Component.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Graphics/Texture2D.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Graphics/AssetManager.cpp.obj Engine/CMakeFiles/Engine.dir/Src/ECS/Components/SpriteRenderer.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Graphics/Sprite.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Utility/Utility.cpp.obj Engine/CMakeFiles/Engine.dir/Src/States/Level.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Systems/LevelManager.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Systems/EntityManager.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Graphics/SpriteSheet.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Systems/InputManager.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Rendering/Camera.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Rendering/Renderer.cpp.obj Engine/CMakeFiles/Engine.dir/Src/ECS/Components/Transform.cpp.obj
   LANGUAGE_COMPILE_FLAGS = -g
   OBJECT_DIR = Engine\CMakeFiles\Engine.dir
   POST_BUILD = cd .

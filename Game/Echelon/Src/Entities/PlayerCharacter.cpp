@@ -16,7 +16,7 @@ namespace Echelon::Entities
 
     void PlayerCharacter::Initialize()
     {
-        Transform().Scale = Vector2(4.0f, 4.0f);
+        GetTransform().Scale = Vector2(3.0f, 3.0f);
     }
 
     void PlayerCharacter::Update(float delta)
