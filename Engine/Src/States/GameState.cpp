@@ -1,7 +1,7 @@
-#include "States/GameState.h"
-#include "Systems/LevelManager.h"
+#include "Engine/States/GameState.h"
+#include "Engine/Systems/LevelManager.h"
 
-namespace Engine::States
+namespace Core::States
 {
     GameState::GameState()
     {

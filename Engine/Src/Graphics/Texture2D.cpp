@@ -1,8 +1,8 @@
-#include "Graphics/Texture2D.h"
+#include "Engine/Graphics/Texture2D.h"
 
 #include <SDL_render.h>
 
-namespace Engine::Graphics
+namespace Core::Graphics
 {
     Texture2D::Texture2D(SDL_Texture* texture)
     {

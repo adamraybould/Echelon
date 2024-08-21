@@ -1,8 +1,8 @@
-#include "Systems/EntityManager.h"
+#include "Engine/Systems/EntityManager.h"
 
-#include "Rendering/Renderer.h"
+#include "Engine/Rendering/Renderer.h"
 
-namespace Engine::Systems
+namespace Core::Systems
 {
     EntityManager::EntityManager()
     {

@@ -1,8 +1,8 @@
-#include "Rendering/Renderer.h"
+#include "Engine/Rendering/Renderer.h"
 
-#include "Utility/Constants.h"
+#include "Engine/Utility/Constants.h"
 
-namespace Engine::Rendering
+namespace Core::Rendering
 {
     Renderer::Renderer(SDL_Renderer& renderer) : m_renderer(renderer)
     {

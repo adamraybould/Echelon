@@ -2,50 +2,53 @@
 cmake_minimum_required(VERSION 3.29)
 
 add_library(Engine STATIC
-        Include/Main/IProgram.h
-        Src/Main/Application.cpp
-        Include/Main/Application.h
-        Src/Main/Window.cpp
-        Include/Main/Window.h
-        Include/Utility/Commons.h
-        Include/Utility/Delegates.h
-        Src/Main/IProgram.cpp
-        Include/Utility/MathF.h
-        Include/Systems/StateSystem.h
+        Include/Engine/Core/IProgram.h
+        Src/Core/Application.cpp
+        Include/Engine/Core/Application.h
+        Src/Core/Window.cpp
+        Include/Engine/Core/Window.h
+        Include/Engine/Utility/Commons.h
+        Include/Engine/Utility/Delegates.h
+        Src/Core/IProgram.cpp
+        Include/Engine/Utility/MathF.h
+        Include/Engine/Systems/StateSystem.h
         Src/Systems/StateSystem.cpp
-        Include/States/GameState.h
+        Include/Engine/States/GameState.h
         Src/States/GameState.cpp
-        Include/ECS/Entity.h
-        Src/ECS/Entity.cpp
-        Include/ECS/Components/Component.h
-        Src/ECS/Components/Component.cpp
-        Include/Utility/Utility.h
-        Include/Graphics/Texture2D.h
+        Include/Engine/Core/ECS/Entity.h
+        Src/Core/ECS/Entity.cpp
+        Include/Engine/Core/ECS/Components/Component.h
+        Src/Core/ECS/Components/Component.cpp
+        Include/Engine/Utility/Utility.h
+        Include/Engine/Graphics/Texture2D.h
         Src/Graphics/Texture2D.cpp
-        Include/Graphics/AssetManager.h
+        Include/Engine/Graphics/AssetManager.h
         Src/Graphics/AssetManager.cpp
-        Include/ECS/Components/SpriteRenderer.h
-        Src/ECS/Components/SpriteRenderer.cpp
-        Include/Graphics/Sprite.h
+        Include/Engine/Core/ECS/Components/SpriteRenderer.h
+        Src/Core/ECS/Components/SpriteRenderer.cpp
+        Include/Engine/Graphics/Sprite.h
         Src/Graphics/Sprite.cpp
         Src/Utility/Utility.cpp
-        Include/States/Level.h
+        Include/Engine/States/Level.h
         Src/States/Level.cpp
-        Include/Systems/LevelManager.h
+        Include/Engine/Systems/LevelManager.h
         Src/Systems/LevelManager.cpp
-        Include/Systems/EntityManager.h
+        Include/Engine/Systems/EntityManager.h
         Src/Systems/EntityManager.cpp
-        Include/Graphics/SpriteSheet.h
+        Include/Engine/Graphics/SpriteSheet.h
         Src/Graphics/SpriteSheet.cpp
-        Include/Systems/InputManager.h
+        Include/Engine/Systems/InputManager.h
         Src/Systems/InputManager.cpp
-        Include/Rendering/Camera.h
+        Include/Engine/Rendering/Camera.h
         Src/Rendering/Camera.cpp
-        Include/Utility/Constants.h
-        Include/Rendering/Renderer.h
+        Include/Engine/Utility/Constants.h
+        Include/Engine/Rendering/Renderer.h
         Src/Rendering/Renderer.cpp
-        Include/ECS/Components/Transform.h
-        Src/ECS/Components/Transform.cpp
+        Include/Engine/Core/ECS/Components/Transform.h
+        Src/Core/ECS/Components/Transform.cpp
+        Include/Engine/Core/Maths/Vector2.h
+        Include/Engine/Core/Maths/Quaternion.h
+        Include/Engine/Core/Maths/Rectangle.h
 )
 
 target_include_directories(Engine PUBLIC
@@ -53,10 +56,12 @@ target_include_directories(Engine PUBLIC
         ${SDL2_INCLUDE_DIR}
         ${SDL2_IMAGE_INCLUDE_DIRS}
         ${JSONCPP_INCLUDE_DIRS}
+        ${IMGUI_INCLUDE_DIR}
 )
 
 target_link_libraries(Engine PRIVATE
         ${SDL2_LIBRARY}
         ${SDL2_IMAGE_LIBRARIES}
         ${JSONCPP_LIBRARY}
+        ${IMGUI_LIBRARY}
 )

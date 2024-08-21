@@ -1,9 +1,9 @@
-#include "Rendering/Camera.h"
-#include "Systems/InputManager.h"
-#include "Utility/Constants.h"
+#include "Engine/Rendering/Camera.h"
+#include "Engine/Systems/InputManager.h"
+#include "Engine/Utility/Constants.h"
 
-using namespace Engine::Systems;
-namespace Engine::Rendering
+using namespace Core::Systems;
+namespace Core::Rendering
 {
     Camera* Camera::m_instance;
 

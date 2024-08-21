@@ -1,11 +1,10 @@
-#include "Systems/InputManager.h"
+#include "Engine/Systems/InputManager.h"
 
 #include <iostream>
 #include <SDL.h>
+#include "Engine/Utility/MathF.h"
 
-#include "Utility/MathF.h"
-
-namespace Engine::Systems
+namespace Core::Systems
 {
     Map<Keys, KeyState> InputManager::m_keyStates;
     Map<int, KeyState> InputManager::m_mouseStates;

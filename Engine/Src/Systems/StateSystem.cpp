@@ -1,6 +1,6 @@
-#include "Systems/StateSystem.h"
+#include "Engine/Systems/StateSystem.h"
 
-namespace Engine::Systems
+namespace Core::Systems
 {
     StateSystem::StateSystem()
     {

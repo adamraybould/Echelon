@@ -1,13 +1,13 @@
-#include "Graphics/AssetManager.h"
+#include "Engine/Graphics/AssetManager.h"
 
 #include <fstream>
 #include <SDL_image.h>
-#include "Rendering/Renderer.h"
-#include "Graphics/Sprite.h"
-#include "Main/Application.h"
+#include "Engine/Rendering/Renderer.h"
+#include "Engine/Graphics/Sprite.h"
+#include "Engine/Core/Application.h"
 #include <json/json.h>
 
-namespace Engine::Graphics
+namespace Core::Graphics
 {
     const char* ERROR_TEXTURE = "Error.png";
     Renderer* AssetManager::m_renderer;

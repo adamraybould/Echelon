@@ -1,6 +1,6 @@
-#include "Utility/Utility.h"
+#include "Engine/Utility/Utility.h"
 
-namespace Engine
+namespace Core
 {
     UInt64 Utility::IDCounter;
 }

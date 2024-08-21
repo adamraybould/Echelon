@@ -1,6 +1,6 @@
-#include "Graphics/SpriteSheet.h"
+#include "Engine/Graphics/SpriteSheet.h"
 
-namespace Engine::Graphics
+namespace Core::Graphics
 {
     SpriteSheet::SpriteSheet(SDL_Texture* texture, UInt frameWidth, UInt frameHeight): Sprite(texture)
     {

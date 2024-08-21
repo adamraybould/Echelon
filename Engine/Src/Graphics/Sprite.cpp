@@ -1,6 +1,6 @@
-#include "Graphics/Sprite.h"
+#include "Engine/Graphics/Sprite.h"
 
-namespace Engine::Graphics
+namespace Core::Graphics
 {
     Sprite::Sprite(SDL_Texture* texture) : Texture2D(texture)
     {

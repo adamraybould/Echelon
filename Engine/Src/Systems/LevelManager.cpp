@@ -1,6 +1,6 @@
-#include "Systems/LevelManager.h"
+#include "Engine/Systems/LevelManager.h"
 
-namespace Engine::Systems
+namespace Core::Systems
 {
     LevelManager* LevelManager::m_pInstance;
 

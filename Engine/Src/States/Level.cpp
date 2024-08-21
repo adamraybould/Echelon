@@ -1,8 +1,8 @@
-#include "States/Level.h"
-#include "Systems/EntityManager.h"
-#include "Utility/Utility.h"
+#include "Engine/States/Level.h"
+#include "Engine/Systems/EntityManager.h"
+#include "Engine/Utility/Utility.h"
 
-namespace Engine::States
+namespace Core::States
 {
     Level::Level()
     {
