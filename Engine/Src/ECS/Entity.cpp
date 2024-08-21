@@ -7,7 +7,7 @@ namespace Engine::ECS
     {
         m_ID = Utility::GenerateUniqueID();
 
-        m_transform = &AddComponent<Transform>(*this);
+        m_transform = &AddComponent<Transform>();
     }
 
     Entity::~Entity()

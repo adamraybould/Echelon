@@ -110,35 +110,4 @@ struct Rectangle
 	float Bottom() { return Y + Height; }
 };
 
-/*
-struct Transform
-{
-	Vector2 Position;
-	float Rotation;
-	Vector2 Scale;
-
-	Transform()
-	{
-		Position = Vector2(0, 0);
-		Rotation = 0.0f;
-		Scale = Vector2::One();
-	}
-
-	Transform(Vector2 position) : Transform(position, 0.0f, Vector2::One())
-	{
-	}
-
-	Transform(Vector2 position, Vector2 scale) : Transform(position, 0.0f, scale)
-	{
-	}
-
-	Transform(Vector2 position, float rotation, Vector2 scale)
-	{
-		Position = position;
-		Rotation = rotation;
-		Scale = scale;
-	}
-};
-*/
-
 #endif //COMMONS_H

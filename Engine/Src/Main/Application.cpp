@@ -113,7 +113,7 @@ namespace Engine
 
         m_pStateSystem->Render(*m_pRenderer);
 
-        m_pRenderer->UpdateScreen();
+        m_pRenderer->PresentScreen();
     }
 
     void Application::DisplayError(const char* error, const char* errorTile, bool displaySDLError)

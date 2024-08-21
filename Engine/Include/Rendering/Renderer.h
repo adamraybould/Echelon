@@ -10,7 +10,7 @@ namespace Engine::Rendering
     {
     private:
         SDL_Renderer& m_renderer;
-
+        
         UniquePtr<Camera> m_pCamera;
 
     public:
@@ -19,11 +19,10 @@ namespace Engine::Rendering
 
         void Update(float delta) const;
 
-        void RenderScreen();
-        void UpdateScreen() const;
+        void RenderScreen() const;
+        void PresentScreen() const;
 
         Camera& GetCamera() const { return *m_pCamera; }
-
         operator SDL_Renderer*() const { return &m_renderer; }
 
     private:

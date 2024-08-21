@@ -28,7 +28,7 @@ namespace Engine::ECS
         {
             static_assert(std::is_base_of_v<Component, T>, "T must be a subclass of Component");
 
-            UniquePtr<Component> component = std::make_unique<T>(std::forward<Args>(args)...);
+            UniquePtr<Component> component = std::make_unique<T>(static_cast<Entity&>(*this), std::forward<Args>(args)...);
             m_components.push_back(std::move(component));
 
             return *dynamic_cast<T*>(m_components.back().get());

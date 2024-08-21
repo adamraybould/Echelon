@@ -62,6 +62,12 @@ namespace Engine::ECS
         }
     }
 
+    void Transform::AddWorldPosition(const Vector2& position)
+    {
+        Vector2 newPosition = GetWorldPosition() + position;
+        SetWorldPosition(newPosition);
+    }
+
     Vector2 Transform::GetWorldPosition() const
     {
         if (HasParent())

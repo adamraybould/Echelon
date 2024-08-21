@@ -31,7 +31,6 @@ namespace Engine::ECS
         Vector2 scale = GetOwner().GetTransform().GetWorldScale();
 
         Camera& camera = renderer.GetCamera();
-
         Vector2 screenPosition = camera.CalculateScreenPosition(position);
 
         SDL_Rect dest =

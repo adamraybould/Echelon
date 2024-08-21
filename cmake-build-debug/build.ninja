@@ -305,6 +305,13 @@ build Game/CMakeFiles/Game.dir/Echelon/Src/Entities/BlankCharacter.cpp.obj: CXX_
   OBJECT_DIR = Game\CMakeFiles\Game.dir
   OBJECT_FILE_DIR = Game\CMakeFiles\Game.dir\Echelon\Src\Entities
 
+build Game/CMakeFiles/Game.dir/Echelon/Src/Entities/Components/CameraFollow.cpp.obj: CXX_COMPILER__Game_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Game/Echelon/Src/Entities/Components/CameraFollow.cpp || cmake_object_order_depends_target_Game
+  DEP_FILE = Game\CMakeFiles\Game.dir\Echelon\Src\Entities\Components\CameraFollow.cpp.obj.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  INCLUDES = -I"D:/Game Projects/C++/Echelon/Game/Echelon/Include" -I"D:/Game Projects/C++/Echelon/Engine/Include" -I"D:/Game Projects/C++/SDL2-2.30.6/x86_64-w64-mingw32/include/SDL2" -IC:/Users/codel/.vcpkg-clion/vcpkg/installed/x64-mingw-dynamic/include
+  OBJECT_DIR = Game\CMakeFiles\Game.dir
+  OBJECT_FILE_DIR = Game\CMakeFiles\Game.dir\Echelon\Src\Entities\Components
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Game
@@ -313,7 +320,7 @@ build Game/CMakeFiles/Game.dir/Echelon/Src/Entities/BlankCharacter.cpp.obj: CXX_
 #############################################
 # Link the executable Game\Game.exe
 
-build Game/Game.exe: CXX_EXECUTABLE_LINKER__Game_Debug Game/CMakeFiles/Game.dir/Echelon/Src/Main.cpp.obj Game/CMakeFiles/Game.dir/Echelon/Src/Entities/PlayerCharacter.cpp.obj Game/CMakeFiles/Game.dir/Echelon/Src/Levels/MainLevel.cpp.obj Game/CMakeFiles/Game.dir/Echelon/Src/Entities/Components/PlayerController.cpp.obj Game/CMakeFiles/Game.dir/Echelon/Src/Entities/BlankCharacter.cpp.obj | Engine/libEngine.a D$:/Game$ Projects/C++/SDL2-2.30.6/x86_64-w64-mingw32/lib/libSDL2main.a D$:/Game$ Projects/C++/SDL2-2.30.6/x86_64-w64-mingw32/lib/libSDL2.dll.a D$:/Game$ Projects/C++/SDL2-2.30.6/x86_64-w64-mingw32/lib/libSDL2_image.dll.a C$:/Users/codel/.vcpkg-clion/vcpkg/installed/x64-mingw-dynamic/lib/libjsoncpp.dll.a || Engine/libEngine.a
+build Game/Game.exe: CXX_EXECUTABLE_LINKER__Game_Debug Game/CMakeFiles/Game.dir/Echelon/Src/Main.cpp.obj Game/CMakeFiles/Game.dir/Echelon/Src/Entities/PlayerCharacter.cpp.obj Game/CMakeFiles/Game.dir/Echelon/Src/Levels/MainLevel.cpp.obj Game/CMakeFiles/Game.dir/Echelon/Src/Entities/Components/PlayerController.cpp.obj Game/CMakeFiles/Game.dir/Echelon/Src/Entities/BlankCharacter.cpp.obj Game/CMakeFiles/Game.dir/Echelon/Src/Entities/Components/CameraFollow.cpp.obj | Engine/libEngine.a D$:/Game$ Projects/C++/SDL2-2.30.6/x86_64-w64-mingw32/lib/libSDL2main.a D$:/Game$ Projects/C++/SDL2-2.30.6/x86_64-w64-mingw32/lib/libSDL2.dll.a D$:/Game$ Projects/C++/SDL2-2.30.6/x86_64-w64-mingw32/lib/libSDL2_image.dll.a C$:/Users/codel/.vcpkg-clion/vcpkg/installed/x64-mingw-dynamic/lib/libjsoncpp.dll.a || Engine/libEngine.a
   FLAGS = -g
   LINK_LIBRARIES = Engine/libEngine.a  -lmingw32  -mwindows  "D:/Game Projects/C++/SDL2-2.30.6/x86_64-w64-mingw32/lib/libSDL2main.a"  "D:/Game Projects/C++/SDL2-2.30.6/x86_64-w64-mingw32/lib/libSDL2.dll.a"  "D:/Game Projects/C++/SDL2-2.30.6/x86_64-w64-mingw32/lib/libSDL2_image.dll.a"  C:/Users/codel/.vcpkg-clion/vcpkg/installed/x64-mingw-dynamic/lib/libjsoncpp.dll.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = Game\CMakeFiles\Game.dir

@@ -15,6 +15,19 @@ namespace Engine
         {
             return value < min ? min : value > max ? max : value;
         }
+
+        static float Lerp(float start, float end, float factor)
+        {
+            return start + (end - start) * factor;
+        }
+
+        static Vector2 Lerp(const Vector2& start, const Vector2& end, const float factor)
+        {
+            float x = start.X + (end.X - start.X) * factor;
+            float y = start.Y + (end.Y - start.Y) * factor;
+
+            return Vector2(x, y);
+        }
     };
 }
 

@@ -21,7 +21,8 @@ namespace Engine::ECS
         bool m_isActive{};
 
     public:
-        Component(Entity& owner);
+        explicit Component(Entity& owner);
+        virtual ~Component() = default;
 
         virtual void Initialize() {}
         virtual void Update(float delta) {}

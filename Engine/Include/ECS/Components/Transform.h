@@ -7,10 +7,9 @@ namespace Engine::ECS
     class Transform : public Component
     {
     public:
-        // Local Transform
-        Vector2 Position;
-        float Rotation;
-        Vector2 Scale;
+        Vector2 Position;   // Local Position
+        float Rotation;     // Local Rotation
+        Vector2 Scale;      // Local Scale
 
     private:
         Transform* m_parent;
@@ -31,6 +30,7 @@ namespace Engine::ECS
         Array<Transform*>& GetChildren() { return m_children; }
 
         void SetWorldPosition(const Vector2& position);
+        void AddWorldPosition(const Vector2& position);
         Vector2 GetWorldPosition() const;
 
         void SetWorldRotation(float rotation);

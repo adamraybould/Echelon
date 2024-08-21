@@ -1,15 +1,16 @@
 #include "Rendering/Camera.h"
-
-#include <iostream>
-
 #include "Systems/InputManager.h"
 #include "Utility/Constants.h"
 
 using namespace Engine::Systems;
 namespace Engine::Rendering
 {
+    Camera* Camera::m_instance;
+
     Camera::Camera()
     {
+        m_instance = this;
+
         m_cameraOrigin = Vector2::Zero();
         m_viewport = CalculateViewport();
 
@@ -19,12 +20,23 @@ namespace Engine::Rendering
         m_zoomSpeed = 4.0f;
     }
 
+    void Camera::Initialize()
+    {
+    }
+
     void Camera::Update(float delta)
     {
+        Entity::Update(delta);
+
         ProcessMovement(delta);
         ProcessZoom(delta);
 
         m_viewport = CalculateViewport();
+    }
+
+    void Camera::Render(Renderer& renderer)
+    {
+        Entity::Render(renderer);
     }
 
     Vector2 Camera::CalculateScreenPosition(const Vector2& worldPosition) const
@@ -38,7 +50,7 @@ namespace Engine::Rendering
         return screenPosition + m_cameraOrigin;
     }
 
-    void Camera::ProcessMovement(float delta)
+    void Camera::ProcessMovement(float delta) const
     {
         Vector2 movementDirection = Vector2::Zero();
 
@@ -60,7 +72,7 @@ namespace Engine::Rendering
             movementDirection = Vector2(1.0f, movementDirection.Y);
         }
 
-        m_cameraPosition += movementDirection.Normalize() * (m_movementSpeed * delta);
+        GetTransform().Position += movementDirection.Normalize() * (m_movementSpeed * delta);
     }
 
     void Camera::ProcessZoom(float delta)
@@ -69,15 +81,12 @@ namespace Engine::Rendering
 
         float zoomX = SCREEN_WIDTH / m_zoom;
         float zoomY = SCREEN_HEIGHT / m_zoom;
-        Vector2 newPosition = m_cameraPosition + Vector2((SCREEN_WIDTH - zoomX) * 0.5f, (SCREEN_HEIGHT  - zoomY) * 0.5f);
+        Vector2 newPosition = GetTransform().GetWorldPosition() + Vector2((SCREEN_WIDTH - zoomX) * 0.5f, (SCREEN_HEIGHT  - zoomY) * 0.5f);
         m_cameraOrigin = newPosition;
     }
 
     Rectangle Camera::CalculateViewport() const
     {
-        float zoomX = SCREEN_WIDTH / m_zoom;
-        float zoomY = SCREEN_HEIGHT / m_zoom;
-
         return Rectangle(0.0f, 0.0f, SCREEN_WIDTH / m_zoom, SCREEN_HEIGHT / m_zoom);
     }
 }

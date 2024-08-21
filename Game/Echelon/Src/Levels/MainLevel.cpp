@@ -2,6 +2,8 @@
 
 #include "Entities/BlankCharacter.h"
 #include "Entities/PlayerCharacter.h"
+#include "Entities/Components/CameraFollow.h"
+#include "Rendering/Camera.h"
 #include "Utility/Constants.h"
 #include "Utility/Utility.h"
 
@@ -16,6 +18,8 @@ namespace Echelon::Levels
         BlankCharacter& blank1 = Instantiate<BlankCharacter>(GetRandomPositionOnScreen());
         BlankCharacter& blank2 = Instantiate<BlankCharacter>(GetRandomPositionOnScreen());
         BlankCharacter& blank3 = Instantiate<BlankCharacter>(GetRandomPositionOnScreen());
+
+        Camera::Main()->AddComponent<CameraFollow>(*m_pPlayer);
     }
 
     void MainLevel::Initialize()

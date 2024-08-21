@@ -11,7 +11,7 @@ namespace Echelon::Entities
     BlankCharacter::BlankCharacter()
     {
         Engine::Graphics::SpriteSheet& spriteSheet = Engine::Graphics::AssetManager::LoadSpriteSheet("Characters/SS_HumanBase");
-        m_renderer = &AddComponent<SpriteRenderer>(*this, spriteSheet);
+        m_renderer = &AddComponent<SpriteRenderer>(spriteSheet);
 
         Engine::Random rand;
         m_renderer->SetSpriteFrame(rand.Choose(0, 4));

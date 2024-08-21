@@ -1,12 +1,16 @@
 #ifndef CAMERA_H
 #define CAMERA_H
+#include "ECS/Entity.h"
 #include "Utility/Commons.h"
 
+using namespace Engine::ECS;
 namespace Engine::Rendering
 {
-    class Camera
+    class Camera : public Entity
     {
     private:
+        static Camera* m_instance;
+
         Vector2 m_cameraOrigin;
         Vector2 m_cameraPosition;
 
@@ -20,7 +24,9 @@ namespace Engine::Rendering
     public:
         Camera();
 
-        void Update(float delta);
+        void Initialize() override;
+        void Update(float delta) override;
+        void Render(Renderer& renderer) override;
 
         Vector2 CalculateScreenPosition(const Vector2& worldPosition) const;
         Vector2 CalculateWorldPosition(const Vector2& screenPosition) const;
@@ -29,8 +35,10 @@ namespace Engine::Rendering
         Rectangle& GetViewport() { return m_viewport; }
         float GetZoom() { return m_zoom; }
 
+        static Camera* Main() { return m_instance; }
+
     private:
-        void ProcessMovement(float delta);
+        void ProcessMovement(float delta) const;
         void ProcessZoom(float delta);
 
         Rectangle CalculateViewport() const;

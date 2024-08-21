@@ -11,6 +11,8 @@ add_executable(Game
         Echelon/Src/Entities/Components/PlayerController.cpp
         Echelon/Include/Entities/BlankCharacter.h
         Echelon/Src/Entities/BlankCharacter.cpp
+        Echelon/Include/Entities/Components/CameraFollow.h
+        Echelon/Src/Entities/Components/CameraFollow.cpp
 )
 
 target_include_directories(Game PRIVATE
