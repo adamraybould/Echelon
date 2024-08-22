@@ -8,12 +8,12 @@
 
 namespace Echelon::Entities
 {
-    BlankCharacter::BlankCharacter()
+    BlankCharacter::BlankCharacter(const char* name) : Entity(name)
     {
-        Core::Graphics::SpriteSheet& spriteSheet = Core::Graphics::AssetManager::LoadSpriteSheet("Characters/SS_HumanBase");
+        SpriteSheet& spriteSheet = AssetManager::LoadSpriteSheet("Characters/SS_HumanBase");
         m_renderer = &AddComponent<SpriteRenderer>(spriteSheet);
 
-        Core::Random rand;
+        Random rand;
         m_renderer->SetSpriteFrame(rand.Choose(0, 4));
 
         m_orbitSpeed = rand.GetFloat(10.0f, 60.0f);

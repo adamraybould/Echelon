@@ -5,6 +5,7 @@
 #include <vector>
 
 template <typename T, typename R> using Delegate = std::function<T(R)>;
+using DelegateVoid = std::function<void()>;
 
 template <typename T, typename R>
 class MultiCastEvent
@@ -32,7 +33,7 @@ template<>
 class MultiCastEvent<void, void>
 {
 private:
-    std::vector<Delegate<void, void>> m_listeners;
+    std::vector<DelegateVoid> m_listeners;
 
 public:
     inline void Broadcast()
@@ -43,7 +44,7 @@ public:
         }
     }
 
-    inline void AddListener(const Delegate<void, void>& function)
+    inline void AddListener(const DelegateVoid& function)
     {
         m_listeners.push_back(function);
     }

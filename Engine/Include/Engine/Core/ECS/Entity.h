@@ -4,28 +4,41 @@
 #include "Components/Transform.h"
 #include "Engine/Utility/Commons.h"
 
-using namespace Core::Rendering;
 using namespace Core::Components;
 namespace Core
 {
     class Entity
     {
     private:
-        Components::Transform* m_transform;
         UInt64 m_ID;
+        const char* m_name;
+
+        Rectangle m_bounds;
+
+        Transform* m_transform;
 
         Array<UniquePtr<Component>> m_components;
 
     public:
-        Entity();
+        Entity(const char* name);
         virtual ~Entity();
 
         virtual void Initialize() = 0;
         virtual void Update(float delta);
         virtual void Render(Renderer& renderer);
 
+        void RemoveAllComponents();
+
+        void SetBounds(const Rectangle rect) { m_bounds = rect; }
+        Rectangle GetBounds() const { return m_bounds; }
+
+        UInt32 GetID() const { return m_ID; }
+        const char* GetName() const { return m_name; }
+
+        Transform& GetTransform() const { return *m_transform; }
+
         template<typename T, typename... Args>
-        inline T& AddComponent(Args&&... args)
+        T& AddComponent(Args&&... args)
         {
             static_assert(std::is_base_of_v<Component, T>, "T must be a subclass of Component");
 
@@ -36,29 +49,29 @@ namespace Core
         }
 
         template<typename T>
-        inline void RemoveComponent()
+        void RemoveComponent()
         {
             static_assert(std::is_base_of_v<Component, T>, "T must be a subclass of Component");
 
-            for (auto i = m_components.begin(); i != m_components.end(); ++i)
+            for (const auto& componentPtr : m_components)
             {
-                T* component = dynamic_cast<T*>(m_components.back().get());
+                T* component = dynamic_cast<T*>(componentPtr.get());
                 if (component != nullptr)
                 {
-                    m_components.erase(i);
+                    m_components.erase(component);
                     return;
                 }
             }
         }
 
         template<typename T>
-        inline T* GetComponent()
+        T* GetComponent()
         {
             static_assert(std::is_base_of_v<Component, T>, "T must be a subclass of Component");
 
-            for (auto i = m_components.begin(); i != m_components.end(); ++i)
+            for (const auto& componentPtr : m_components)
             {
-                T* component = dynamic_cast<T*>(m_components.back().get());
+                T* component = dynamic_cast<T*>(componentPtr.get());
                 if (component != nullptr)
                 {
                     return component;
@@ -68,11 +81,6 @@ namespace Core
             //printf("Unable to find Component: " + typeid(T).name());
             return nullptr;
         }
-
-        void RemoveAllComponents();
-
-        UInt32 GetID() const { return m_ID; }
-        Transform& GetTransform() const { return *m_transform; }
     };
 }
 

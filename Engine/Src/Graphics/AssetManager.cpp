@@ -2,7 +2,7 @@
 
 #include <fstream>
 #include <SDL_image.h>
-#include "Engine/Rendering/Renderer.h"
+#include "../../Include/Engine/Core/Renderer.h"
 #include "Engine/Graphics/Sprite.h"
 #include "Engine/Core/Application.h"
 #include <json/json.h>

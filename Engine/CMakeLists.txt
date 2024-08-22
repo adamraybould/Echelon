@@ -1,5 +1,5 @@
 # Engine/CMakeLists.txt
-cmake_minimum_required(VERSION 3.29)
+cmake_minimum_required(VERSION 3.8)
 
 add_library(Engine STATIC
         Include/Engine/Core/IProgram.h
@@ -11,8 +11,8 @@ add_library(Engine STATIC
         Include/Engine/Utility/Delegates.h
         Src/Core/IProgram.cpp
         Include/Engine/Utility/MathF.h
-        Include/Engine/Systems/StateSystem.h
-        Src/Systems/StateSystem.cpp
+        Include/Engine/Core/Systems/StateSystem.h
+        Src/Core/Systems/StateSystem.cpp
         Include/Engine/States/GameState.h
         Src/States/GameState.cpp
         Include/Engine/Core/ECS/Entity.h
@@ -31,37 +31,39 @@ add_library(Engine STATIC
         Src/Utility/Utility.cpp
         Include/Engine/States/Level.h
         Src/States/Level.cpp
-        Include/Engine/Systems/LevelManager.h
-        Src/Systems/LevelManager.cpp
-        Include/Engine/Systems/EntityManager.h
-        Src/Systems/EntityManager.cpp
+        Include/Engine/Core/Systems/LevelManager.h
+        Src/Core/Systems/LevelManager.cpp
+        Include/Engine/Core/Systems/EntityManager.h
+        Src/Core/Systems/EntityManager.cpp
         Include/Engine/Graphics/SpriteSheet.h
         Src/Graphics/SpriteSheet.cpp
-        Include/Engine/Systems/InputManager.h
-        Src/Systems/InputManager.cpp
-        Include/Engine/Rendering/Camera.h
-        Src/Rendering/Camera.cpp
+        Include/Engine/Core/Systems/InputManager.h
+        Src/Core/Systems/InputManager.cpp
+        Include/Engine/Core/Camera.h
+        Src/Core/Camera.cpp
         Include/Engine/Utility/Constants.h
-        Include/Engine/Rendering/Renderer.h
-        Src/Rendering/Renderer.cpp
+        Include/Engine/Core/Renderer.h
+        Src/Core/Renderer.cpp
         Include/Engine/Core/ECS/Components/Transform.h
         Src/Core/ECS/Components/Transform.cpp
         Include/Engine/Core/Maths/Vector2.h
         Include/Engine/Core/Maths/Quaternion.h
         Include/Engine/Core/Maths/Rectangle.h
+        Include/Engine/Core/Editor/EngineGUI.h
+        Src/Core/Editor/EngineGUI.cpp
+        Include/Engine/Core/Editor/GUIWindow.h
+        Include/Engine/Core/Editor/Windows/GUIWindow_EntityInfo.h
+        Src/Core/Editor/Windows/GUIWindow_EntityInfo.cpp
+        Include/Engine/Core/Singleton.h
 )
 
 target_include_directories(Engine PUBLIC
         ${CMAKE_SOURCE_DIR}/Engine/Include
-        ${SDL2_INCLUDE_DIR}
-        ${SDL2_IMAGE_INCLUDE_DIRS}
-        ${JSONCPP_INCLUDE_DIRS}
-        ${IMGUI_INCLUDE_DIR}
+        ${CMAKE_SOURCE_DIR}/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include
 )
 
-target_link_libraries(Engine PRIVATE
-        ${SDL2_LIBRARY}
-        ${SDL2_IMAGE_LIBRARIES}
-        ${JSONCPP_LIBRARY}
-        ${IMGUI_LIBRARY}
-)
+target_link_libraries(Engine PRIVATE ZLIB::ZLIB)
+target_link_libraries(Engine PRIVATE $<TARGET_NAME_IF_EXISTS:SDL2::SDL2main> $<IF:$<TARGET_EXISTS:SDL2::SDL2>,SDL2::SDL2,SDL2::SDL2-static>)
+target_link_libraries(Engine PRIVATE $<IF:$<TARGET_EXISTS:SDL2_image::SDL2_image>,SDL2_image::SDL2_image,SDL2_image::SDL2_image-static>)
+target_link_libraries(Engine PRIVATE imgui::imgui)
+target_link_libraries(Engine PRIVATE JsonCpp::JsonCpp)

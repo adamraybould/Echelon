@@ -22,7 +22,7 @@ namespace Echelon::Entities
         PlayerController* m_playerController;
 
     public:
-        PlayerCharacter();
+        PlayerCharacter(const char* name);
 
         void Initialize() override;
         void Update(float delta) override;

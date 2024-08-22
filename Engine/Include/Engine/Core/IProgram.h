@@ -3,6 +3,8 @@
 
 namespace Core
 {
+    class Application;
+
     class IProgram
     {
     public:

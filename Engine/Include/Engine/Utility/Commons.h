@@ -6,9 +6,9 @@
 
 #include <cstdint>
 #include <memory>
-#include <SDL_stdinc.h>
 #include <vector>
 #include <map>
+#include <SDL2/SDL_stdinc.h>
 
 using namespace Core::Maths;
 
@@ -22,5 +22,23 @@ template <typename Key, typename Value> using Map = std::map<Key, Value>;
 template <typename T> using UniquePtr = std::unique_ptr<T>;
 template <typename T> using SharedPtr = std::shared_ptr<T>;
 template <typename T> using WeakPtr = std::weak_ptr<T>;
+
+struct MinMaxRange
+{
+    float Min;
+    float Max;
+
+    MinMaxRange()
+    {
+        Min = 0.0f;
+        Max = 0.0f;
+    }
+
+    MinMaxRange(float min, float max)
+    {
+        Min = min;
+        Max = max;
+    }
+};
 
 #endif //COMMONS_H

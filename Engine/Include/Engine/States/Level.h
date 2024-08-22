@@ -1,69 +1,68 @@
 #ifndef LEVEL_H
 #define LEVEL_H
 #include "Engine/Utility/Commons.h"
-#include "Engine/Systems/EntityManager.h"
+#include "Engine/Core/Systems/EntityManager.h"
 
-namespace Core::Rendering
+namespace Core
 {
     class Renderer;
-}
 
-using namespace Core::Rendering;
-namespace Core::States
-{
-    class Level
+    using namespace Systems;
+    namespace States
     {
-    private:
-        UInt64 m_ID;
-        UniquePtr<Systems::EntityManager> m_pEntityManager;
-
-    public:
-        Level();
-        virtual ~Level();
-
-        virtual void Initialize();
-        virtual void Update(float delta);
-        virtual void Render(Renderer& renderer);
-
-        UInt64 GetID() const { return m_ID; }
-        Systems::EntityManager& GetEntityManager() const { return *m_pEntityManager; }
-
-        template<typename T, typename... Args>
-        inline T& Instantiate(Transform& parent, Args... args)
+        class Level
         {
-            T& entity = GetEntityManager().CreateEntity<T>(std::forward<Args>(args)...);
+        private:
+            EntityManager& m_entityManager;
+            UInt64 m_ID;
 
-            Entity& baseEntity = static_cast<Entity&>(entity);
-            parent.AddChild(baseEntity.GetTransform());
-            return entity;
-        }
+        public:
+            Level(EntityManager& entityManager);
+            virtual ~Level();
 
-        template<typename T, typename... Args>
-        inline T& Instantiate(const Vector2 position = {0, 0}, const float rotation = 0.0f, const Vector2 scale = {1, 1}, Args... args)
-        {
-            T& entity = GetEntityManager().CreateEntity<T>(std::forward<Args>(args)...);
+            virtual void Initialize() = 0;
+            virtual void Update(float delta) = 0;
+            virtual void Render(Renderer& renderer) = 0;
 
-            Entity& baseEntity = static_cast<Entity&>(entity);
-            baseEntity.GetTransform().SetWorldPosition(position);
-            baseEntity.GetTransform().SetWorldRotation(rotation);
-            baseEntity.GetTransform().SetWorldScale(scale);
+            UInt64 GetID() const { return m_ID; }
 
-            return entity;
-        }
+            template<typename T, typename... Args>
+            inline T& Instantiate(const char* name, Transform& parent, Args... args)
+            {
+                T& entity = m_entityManager.CreateEntity<T>(name, std::forward<Args>(args)...);
 
-        template<typename T, typename... Args>
-        inline T& Instantiate(const Vector2 position, const float rotation, Transform& parent, Args... args)
-        {
-            T& entity = GetEntityManager().CreateEntity<T>(std::forward<Args>(args)...);
+                Entity& baseEntity = static_cast<Entity&>(entity);
+                parent.AddChild(baseEntity.GetTransform());
+                return entity;
+            }
 
-            Entity& baseEntity = static_cast<Entity&>(entity);
-            baseEntity.GetTransform().SetWorldPosition(position);
-            baseEntity.GetTransform().SetWorldRotation(rotation);
+            template<typename T, typename... Args>
+            inline T& Instantiate(const char* name, const Vector2 position = {0, 0}, const float rotation = 0.0f, const Vector2 scale = {1, 1}, Args... args)
+            {
+                T& entity = m_entityManager.CreateEntity<T>(name, std::forward<Args>(args)...);
 
-            parent.AddChild(baseEntity.GetTransform());
-            return entity;
-        }
-    };
+                Entity& baseEntity = static_cast<Entity&>(entity);
+                baseEntity.GetTransform().SetWorldPosition(position);
+                baseEntity.GetTransform().SetWorldRotation(rotation);
+                baseEntity.GetTransform().SetWorldScale(scale);
+
+                return entity;
+            }
+
+            template<typename T, typename... Args>
+            inline T& Instantiate(const char* name, const Vector2 position, const float rotation, Transform& parent, Args... args)
+            {
+                T& entity = m_entityManager.CreateEntity<T>(name, std::forward<Args>(args)...);
+
+                Entity& baseEntity = static_cast<Entity&>(entity);
+                baseEntity.GetTransform().SetWorldPosition(position);
+                baseEntity.GetTransform().SetWorldRotation(rotation);
+
+                parent.AddChild(baseEntity.GetTransform());
+                return entity;
+            }
+        };
+    }
 }
 
 #endif //LEVEL_H

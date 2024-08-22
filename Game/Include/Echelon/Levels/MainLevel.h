@@ -19,7 +19,7 @@ namespace Echelon::Levels
         PlayerCharacter* m_pPlayer;
 
     public:
-        MainLevel();
+        MainLevel(EntityManager& entityManager);
 
         void Initialize() override;
         void Update(float delta) override;

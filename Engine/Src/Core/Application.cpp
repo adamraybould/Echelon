@@ -1,6 +1,7 @@
 #include "Engine/Core/Application.h"
-#include "Engine/Rendering/Renderer.h"
+#include "../../Include/Engine/Core/Renderer.h"
 #include "Engine/States/GameState.h"
+#include "Engine/Core/Editor/EngineGUI.h"
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_timer.h>
@@ -47,11 +48,12 @@ namespace Core
 
     void Application::Clean()
     {
+        m_pEngineGUI.reset();
+
         m_pAssetManager.reset();
         m_pStateSystem.reset();
         m_pInputManager.reset();
 
-        m_pRenderer.reset();
         m_pWindow.reset();
 
         IMG_Quit();
@@ -65,6 +67,7 @@ namespace Core
         SDL_Event event;
         while (SDL_PollEvent(&event))
         {
+            m_pEngineGUI->HandleInput(event);
             switch (event.type)
             {
                 case SDL_QUIT:
@@ -101,17 +104,20 @@ namespace Core
             m_lastTitleUpdateTicks = currentTitleUpdateTicks;
         }
 
-        m_pRenderer->Update(deltaTime);
+        m_pWindow->GetRenderer().Update(deltaTime);
+        m_pEngineGUI->Update(deltaTime);
         m_pStateSystem->Update(deltaTime);
     }
 
     void Application::Render() const
     {
-        m_pRenderer->RenderScreen();
+        m_pEngineGUI->Render(GetRenderer());
+        m_pWindow->GetRenderer().RenderScreen();
 
-        m_pStateSystem->Render(*m_pRenderer);
+        m_pStateSystem->Render(GetRenderer());
 
-        m_pRenderer->PresentScreen();
+        m_pEngineGUI->RenderImGui(GetRenderer());
+        GetRenderer().PresentScreen();
     }
 
     void Application::DisplayError(const char* error, const char* errorTile, bool displaySDLError)
@@ -135,8 +141,6 @@ namespace Core
                 DisplayError("Window could not be created! SDL_ERROR:", "SDL Error", true);
                 exit(1);
             }
-
-            m_pRenderer = std::make_unique<Renderer>(m_pWindow->GetRenderer());
         }
 
         if (IMG_Init(IMG_INIT_PNG | IMG_INIT_PNG) < 0)
@@ -146,11 +150,13 @@ namespace Core
         }
 
         // Initialize Systems
-        m_pAssetManager = std::make_unique<Graphics::AssetManager>(*m_pRenderer);
-
-        m_pStateSystem = std::make_unique<Systems::StateSystem>();
+        m_pStateSystem = std::make_unique<StateSystem>();
         m_pStateSystem->AddState<States::GameState>(true);
 
-        m_pInputManager = std::make_unique<Systems::InputManager>();
+        m_pInputManager = std::make_unique<InputManager>(GetRenderer().GetCamera());
+
+        m_pEngineGUI = std::make_unique<Editor::EngineGUI>(*m_pWindow, *m_pStateSystem, *m_pInputManager);
+
+        m_pAssetManager = std::make_unique<Graphics::AssetManager>(m_pWindow->GetRenderer());
     }
 }

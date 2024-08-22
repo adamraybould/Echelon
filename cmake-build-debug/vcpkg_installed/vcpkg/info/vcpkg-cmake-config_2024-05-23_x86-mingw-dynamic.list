@@ -1,0 +1,8 @@
+x86-mingw-dynamic/
+x86-mingw-dynamic/share/
+x86-mingw-dynamic/share/vcpkg-cmake-config/
+x86-mingw-dynamic/share/vcpkg-cmake-config/copyright
+x86-mingw-dynamic/share/vcpkg-cmake-config/vcpkg-port-config.cmake
+x86-mingw-dynamic/share/vcpkg-cmake-config/vcpkg.spdx.json
+x86-mingw-dynamic/share/vcpkg-cmake-config/vcpkg_abi_info.txt
+x86-mingw-dynamic/share/vcpkg-cmake-config/vcpkg_cmake_config_fixup.cmake

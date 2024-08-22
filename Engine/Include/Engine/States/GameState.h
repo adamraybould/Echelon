@@ -1,27 +1,36 @@
 #ifndef GAMESTATE_H
 #define GAMESTATE_H
-#include "Engine/Systems/StateSystem.h"
+#include "Engine/Core/Systems/StateSystem.h"
 
-namespace Core::Systems
+namespace Core
 {
-    class LevelManager;
-}
-
-namespace Core::States
-{
-    class GameState : public Systems::State
+    namespace Systems
     {
-    private:
-        UniquePtr<Systems::LevelManager> m_pLevelManager;
+        class EntityManager;
+        class LevelManager;
+    }
 
-    public:
-        GameState();
-        ~GameState() override;
+    using namespace Systems;
+    namespace States
+    {
+        class GameState final : public State
+        {
+        private:
+            UniquePtr<EntityManager> m_pEntityManager;
+            UniquePtr<LevelManager> m_pLevelManager;
 
-        void Initialize() override;
-        void Update(float delta) override;
-        void Render(Renderer& renderer) override;
-    };
+        public:
+            GameState();
+            ~GameState() override;
+
+            void Initialize() override;
+            void Update(float delta) override;
+            void Render(Renderer& renderer) override;
+
+            EntityManager& GetEntityManager() const { return *m_pEntityManager; }
+            LevelManager& GetLevelManager() const { return *m_pLevelManager; }
+        };
+    }
 }
 
 #endif //GAMESTATE_H

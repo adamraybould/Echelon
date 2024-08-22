@@ -1,16 +1,19 @@
 #ifndef WINDOW_H
 #define WINDOW_H
+#include "Engine/Utility/Commons.h"
 
 struct SDL_Window;
 struct SDL_Renderer;
 
 namespace Core
 {
+    class Renderer;
+
     class Window
     {
     private:
         SDL_Window* m_pWindow = nullptr;
-        SDL_Renderer* m_pRenderer = nullptr;
+        UniquePtr<Renderer> m_pRenderer;
 
     public:
         ~Window();
@@ -19,7 +22,7 @@ namespace Core
         void SetTitle(const char* title);
 
         SDL_Window& GetWindow() const { return *m_pWindow; }
-        SDL_Renderer& GetRenderer() const { return *m_pRenderer; }
+        Renderer& GetRenderer() const { return *m_pRenderer; }
 
     private:
         bool SetIcon();

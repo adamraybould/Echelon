@@ -2,6 +2,7 @@
 #define CAMERAFOLLOW_H
 #include "Engine/Core/ECS/Components/Component.h"
 
+using namespace Core;
 namespace Echelon::Entities::Components
 {
     class CameraFollow final : public Component

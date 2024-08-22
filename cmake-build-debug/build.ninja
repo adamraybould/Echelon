@@ -80,142 +80,156 @@ build cmake_object_order_depends_target_Engine: phony || .
 build Engine/CMakeFiles/Engine.dir/Src/Core/Application.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Core/Application.cpp || cmake_object_order_depends_target_Engine
   DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Core\Application.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -I"D:/Game Projects/C++/Libraries/SDL2-2.30.6/x86_64-w64-mingw32/include/SDL2" -IC:/Users/codel/.vcpkg-clion/vcpkg/installed/x64-mingw-dynamic/include
+  INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include/SDL2"
   OBJECT_DIR = Engine\CMakeFiles\Engine.dir
   OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Core
 
 build Engine/CMakeFiles/Engine.dir/Src/Core/Window.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Core/Window.cpp || cmake_object_order_depends_target_Engine
   DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Core\Window.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -I"D:/Game Projects/C++/Libraries/SDL2-2.30.6/x86_64-w64-mingw32/include/SDL2" -IC:/Users/codel/.vcpkg-clion/vcpkg/installed/x64-mingw-dynamic/include
+  INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include/SDL2"
   OBJECT_DIR = Engine\CMakeFiles\Engine.dir
   OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Core
 
 build Engine/CMakeFiles/Engine.dir/Src/Core/IProgram.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Core/IProgram.cpp || cmake_object_order_depends_target_Engine
   DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Core\IProgram.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -I"D:/Game Projects/C++/Libraries/SDL2-2.30.6/x86_64-w64-mingw32/include/SDL2" -IC:/Users/codel/.vcpkg-clion/vcpkg/installed/x64-mingw-dynamic/include
+  INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include/SDL2"
   OBJECT_DIR = Engine\CMakeFiles\Engine.dir
   OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Core
 
-build Engine/CMakeFiles/Engine.dir/Src/Systems/StateSystem.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Systems/StateSystem.cpp || cmake_object_order_depends_target_Engine
-  DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Systems\StateSystem.cpp.obj.d
+build Engine/CMakeFiles/Engine.dir/Src/Core/Systems/StateSystem.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Core/Systems/StateSystem.cpp || cmake_object_order_depends_target_Engine
+  DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Core\Systems\StateSystem.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -I"D:/Game Projects/C++/Libraries/SDL2-2.30.6/x86_64-w64-mingw32/include/SDL2" -IC:/Users/codel/.vcpkg-clion/vcpkg/installed/x64-mingw-dynamic/include
+  INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include/SDL2"
   OBJECT_DIR = Engine\CMakeFiles\Engine.dir
-  OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Systems
+  OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Core\Systems
 
 build Engine/CMakeFiles/Engine.dir/Src/States/GameState.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/States/GameState.cpp || cmake_object_order_depends_target_Engine
   DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\States\GameState.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -I"D:/Game Projects/C++/Libraries/SDL2-2.30.6/x86_64-w64-mingw32/include/SDL2" -IC:/Users/codel/.vcpkg-clion/vcpkg/installed/x64-mingw-dynamic/include
+  INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include/SDL2"
   OBJECT_DIR = Engine\CMakeFiles\Engine.dir
   OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\States
 
 build Engine/CMakeFiles/Engine.dir/Src/Core/ECS/Entity.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Core/ECS/Entity.cpp || cmake_object_order_depends_target_Engine
   DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Core\ECS\Entity.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -I"D:/Game Projects/C++/Libraries/SDL2-2.30.6/x86_64-w64-mingw32/include/SDL2" -IC:/Users/codel/.vcpkg-clion/vcpkg/installed/x64-mingw-dynamic/include
+  INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include/SDL2"
   OBJECT_DIR = Engine\CMakeFiles\Engine.dir
   OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Core\ECS
 
 build Engine/CMakeFiles/Engine.dir/Src/Core/ECS/Components/Component.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Core/ECS/Components/Component.cpp || cmake_object_order_depends_target_Engine
   DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Core\ECS\Components\Component.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -I"D:/Game Projects/C++/Libraries/SDL2-2.30.6/x86_64-w64-mingw32/include/SDL2" -IC:/Users/codel/.vcpkg-clion/vcpkg/installed/x64-mingw-dynamic/include
+  INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include/SDL2"
   OBJECT_DIR = Engine\CMakeFiles\Engine.dir
   OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Core\ECS\Components
 
 build Engine/CMakeFiles/Engine.dir/Src/Graphics/Texture2D.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Graphics/Texture2D.cpp || cmake_object_order_depends_target_Engine
   DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Graphics\Texture2D.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -I"D:/Game Projects/C++/Libraries/SDL2-2.30.6/x86_64-w64-mingw32/include/SDL2" -IC:/Users/codel/.vcpkg-clion/vcpkg/installed/x64-mingw-dynamic/include
+  INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include/SDL2"
   OBJECT_DIR = Engine\CMakeFiles\Engine.dir
   OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Graphics
 
 build Engine/CMakeFiles/Engine.dir/Src/Graphics/AssetManager.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Graphics/AssetManager.cpp || cmake_object_order_depends_target_Engine
   DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Graphics\AssetManager.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -I"D:/Game Projects/C++/Libraries/SDL2-2.30.6/x86_64-w64-mingw32/include/SDL2" -IC:/Users/codel/.vcpkg-clion/vcpkg/installed/x64-mingw-dynamic/include
+  INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include/SDL2"
   OBJECT_DIR = Engine\CMakeFiles\Engine.dir
   OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Graphics
 
 build Engine/CMakeFiles/Engine.dir/Src/Core/ECS/Components/SpriteRenderer.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Core/ECS/Components/SpriteRenderer.cpp || cmake_object_order_depends_target_Engine
   DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Core\ECS\Components\SpriteRenderer.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -I"D:/Game Projects/C++/Libraries/SDL2-2.30.6/x86_64-w64-mingw32/include/SDL2" -IC:/Users/codel/.vcpkg-clion/vcpkg/installed/x64-mingw-dynamic/include
+  INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include/SDL2"
   OBJECT_DIR = Engine\CMakeFiles\Engine.dir
   OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Core\ECS\Components
 
 build Engine/CMakeFiles/Engine.dir/Src/Graphics/Sprite.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Graphics/Sprite.cpp || cmake_object_order_depends_target_Engine
   DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Graphics\Sprite.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -I"D:/Game Projects/C++/Libraries/SDL2-2.30.6/x86_64-w64-mingw32/include/SDL2" -IC:/Users/codel/.vcpkg-clion/vcpkg/installed/x64-mingw-dynamic/include
+  INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include/SDL2"
   OBJECT_DIR = Engine\CMakeFiles\Engine.dir
   OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Graphics
 
 build Engine/CMakeFiles/Engine.dir/Src/Utility/Utility.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Utility/Utility.cpp || cmake_object_order_depends_target_Engine
   DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Utility\Utility.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -I"D:/Game Projects/C++/Libraries/SDL2-2.30.6/x86_64-w64-mingw32/include/SDL2" -IC:/Users/codel/.vcpkg-clion/vcpkg/installed/x64-mingw-dynamic/include
+  INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include/SDL2"
   OBJECT_DIR = Engine\CMakeFiles\Engine.dir
   OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Utility
 
 build Engine/CMakeFiles/Engine.dir/Src/States/Level.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/States/Level.cpp || cmake_object_order_depends_target_Engine
   DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\States\Level.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -I"D:/Game Projects/C++/Libraries/SDL2-2.30.6/x86_64-w64-mingw32/include/SDL2" -IC:/Users/codel/.vcpkg-clion/vcpkg/installed/x64-mingw-dynamic/include
+  INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include/SDL2"
   OBJECT_DIR = Engine\CMakeFiles\Engine.dir
   OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\States
 
-build Engine/CMakeFiles/Engine.dir/Src/Systems/LevelManager.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Systems/LevelManager.cpp || cmake_object_order_depends_target_Engine
-  DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Systems\LevelManager.cpp.obj.d
+build Engine/CMakeFiles/Engine.dir/Src/Core/Systems/LevelManager.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Core/Systems/LevelManager.cpp || cmake_object_order_depends_target_Engine
+  DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Core\Systems\LevelManager.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -I"D:/Game Projects/C++/Libraries/SDL2-2.30.6/x86_64-w64-mingw32/include/SDL2" -IC:/Users/codel/.vcpkg-clion/vcpkg/installed/x64-mingw-dynamic/include
+  INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include/SDL2"
   OBJECT_DIR = Engine\CMakeFiles\Engine.dir
-  OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Systems
+  OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Core\Systems
 
-build Engine/CMakeFiles/Engine.dir/Src/Systems/EntityManager.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Systems/EntityManager.cpp || cmake_object_order_depends_target_Engine
-  DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Systems\EntityManager.cpp.obj.d
+build Engine/CMakeFiles/Engine.dir/Src/Core/Systems/EntityManager.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Core/Systems/EntityManager.cpp || cmake_object_order_depends_target_Engine
+  DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Core\Systems\EntityManager.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -I"D:/Game Projects/C++/Libraries/SDL2-2.30.6/x86_64-w64-mingw32/include/SDL2" -IC:/Users/codel/.vcpkg-clion/vcpkg/installed/x64-mingw-dynamic/include
+  INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include/SDL2"
   OBJECT_DIR = Engine\CMakeFiles\Engine.dir
-  OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Systems
+  OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Core\Systems
 
 build Engine/CMakeFiles/Engine.dir/Src/Graphics/SpriteSheet.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Graphics/SpriteSheet.cpp || cmake_object_order_depends_target_Engine
   DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Graphics\SpriteSheet.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -I"D:/Game Projects/C++/Libraries/SDL2-2.30.6/x86_64-w64-mingw32/include/SDL2" -IC:/Users/codel/.vcpkg-clion/vcpkg/installed/x64-mingw-dynamic/include
+  INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include/SDL2"
   OBJECT_DIR = Engine\CMakeFiles\Engine.dir
   OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Graphics
 
-build Engine/CMakeFiles/Engine.dir/Src/Systems/InputManager.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Systems/InputManager.cpp || cmake_object_order_depends_target_Engine
-  DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Systems\InputManager.cpp.obj.d
+build Engine/CMakeFiles/Engine.dir/Src/Core/Systems/InputManager.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Core/Systems/InputManager.cpp || cmake_object_order_depends_target_Engine
+  DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Core\Systems\InputManager.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -I"D:/Game Projects/C++/Libraries/SDL2-2.30.6/x86_64-w64-mingw32/include/SDL2" -IC:/Users/codel/.vcpkg-clion/vcpkg/installed/x64-mingw-dynamic/include
+  INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include/SDL2"
   OBJECT_DIR = Engine\CMakeFiles\Engine.dir
-  OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Systems
+  OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Core\Systems
 
-build Engine/CMakeFiles/Engine.dir/Src/Rendering/Camera.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Rendering/Camera.cpp || cmake_object_order_depends_target_Engine
-  DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Rendering\Camera.cpp.obj.d
+build Engine/CMakeFiles/Engine.dir/Src/Core/Camera.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Core/Camera.cpp || cmake_object_order_depends_target_Engine
+  DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Core\Camera.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -I"D:/Game Projects/C++/Libraries/SDL2-2.30.6/x86_64-w64-mingw32/include/SDL2" -IC:/Users/codel/.vcpkg-clion/vcpkg/installed/x64-mingw-dynamic/include
+  INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include/SDL2"
   OBJECT_DIR = Engine\CMakeFiles\Engine.dir
-  OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Rendering
+  OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Core
 
-build Engine/CMakeFiles/Engine.dir/Src/Rendering/Renderer.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Rendering/Renderer.cpp || cmake_object_order_depends_target_Engine
-  DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Rendering\Renderer.cpp.obj.d
+build Engine/CMakeFiles/Engine.dir/Src/Core/Renderer.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Core/Renderer.cpp || cmake_object_order_depends_target_Engine
+  DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Core\Renderer.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -I"D:/Game Projects/C++/Libraries/SDL2-2.30.6/x86_64-w64-mingw32/include/SDL2" -IC:/Users/codel/.vcpkg-clion/vcpkg/installed/x64-mingw-dynamic/include
+  INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include/SDL2"
   OBJECT_DIR = Engine\CMakeFiles\Engine.dir
-  OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Rendering
+  OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Core
 
 build Engine/CMakeFiles/Engine.dir/Src/Core/ECS/Components/Transform.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Core/ECS/Components/Transform.cpp || cmake_object_order_depends_target_Engine
   DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Core\ECS\Components\Transform.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -I"D:/Game Projects/C++/Libraries/SDL2-2.30.6/x86_64-w64-mingw32/include/SDL2" -IC:/Users/codel/.vcpkg-clion/vcpkg/installed/x64-mingw-dynamic/include
+  INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include/SDL2"
   OBJECT_DIR = Engine\CMakeFiles\Engine.dir
   OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Core\ECS\Components
+
+build Engine/CMakeFiles/Engine.dir/Src/Core/Editor/EngineGUI.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Core/Editor/EngineGUI.cpp || cmake_object_order_depends_target_Engine
+  DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Core\Editor\EngineGUI.cpp.obj.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include/SDL2"
+  OBJECT_DIR = Engine\CMakeFiles\Engine.dir
+  OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Core\Editor
+
+build Engine/CMakeFiles/Engine.dir/Src/Core/Editor/Windows/GUIWindow_EntityInfo.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Core/Editor/Windows/GUIWindow_EntityInfo.cpp || cmake_object_order_depends_target_Engine
+  DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Core\Editor\Windows\GUIWindow_EntityInfo.cpp.obj.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include/SDL2"
+  OBJECT_DIR = Engine\CMakeFiles\Engine.dir
+  OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Core\Editor\Windows
 
 
 # =============================================================================
@@ -225,7 +239,7 @@ build Engine/CMakeFiles/Engine.dir/Src/Core/ECS/Components/Transform.cpp.obj: CX
 #############################################
 # Link the static library Engine\libEngine.a
 
-build Engine/libEngine.a: CXX_STATIC_LIBRARY_LINKER__Engine_Debug Engine/CMakeFiles/Engine.dir/Src/Core/Application.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Core/Window.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Core/IProgram.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Systems/StateSystem.cpp.obj Engine/CMakeFiles/Engine.dir/Src/States/GameState.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Core/ECS/Entity.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Core/ECS/Components/Component.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Graphics/Texture2D.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Graphics/AssetManager.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Core/ECS/Components/SpriteRenderer.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Graphics/Sprite.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Utility/Utility.cpp.obj Engine/CMakeFiles/Engine.dir/Src/States/Level.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Systems/LevelManager.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Systems/EntityManager.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Graphics/SpriteSheet.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Systems/InputManager.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Rendering/Camera.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Rendering/Renderer.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Core/ECS/Components/Transform.cpp.obj
+build Engine/libEngine.a: CXX_STATIC_LIBRARY_LINKER__Engine_Debug Engine/CMakeFiles/Engine.dir/Src/Core/Application.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Core/Window.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Core/IProgram.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Core/Systems/StateSystem.cpp.obj Engine/CMakeFiles/Engine.dir/Src/States/GameState.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Core/ECS/Entity.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Core/ECS/Components/Component.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Graphics/Texture2D.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Graphics/AssetManager.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Core/ECS/Components/SpriteRenderer.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Graphics/Sprite.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Utility/Utility.cpp.obj Engine/CMakeFiles/Engine.dir/Src/States/Level.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Core/Systems/LevelManager.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Core/Systems/EntityManager.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Graphics/SpriteSheet.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Core/Systems/InputManager.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Core/Camera.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Core/Renderer.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Core/ECS/Components/Transform.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Core/Editor/EngineGUI.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Core/Editor/Windows/GUIWindow_EntityInfo.cpp.obj
   LANGUAGE_COMPILE_FLAGS = -g
   OBJECT_DIR = Engine\CMakeFiles\Engine.dir
   POST_BUILD = cd .
@@ -273,42 +287,42 @@ build cmake_object_order_depends_target_Game: phony || cmake_object_order_depend
 build Game/CMakeFiles/Game.dir/Src/Main.cpp.obj: CXX_COMPILER__Game_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Game/Src/Main.cpp || cmake_object_order_depends_target_Game
   DEP_FILE = Game\CMakeFiles\Game.dir\Src\Main.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -I"D:/Game Projects/C++/Echelon/Game/Include" -I"D:/Game Projects/C++/Echelon/Engine/Include" -I"D:/Game Projects/C++/Libraries/SDL2-2.30.6/x86_64-w64-mingw32/include/SDL2" -IC:/Users/codel/.vcpkg-clion/vcpkg/installed/x64-mingw-dynamic/include
+  INCLUDES = -I"D:/Game Projects/C++/Echelon/Game/Include" -I"D:/Game Projects/C++/Echelon/Engine/Include" -I"D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include"
   OBJECT_DIR = Game\CMakeFiles\Game.dir
   OBJECT_FILE_DIR = Game\CMakeFiles\Game.dir\Src
 
 build Game/CMakeFiles/Game.dir/Src/Entities/PlayerCharacter.cpp.obj: CXX_COMPILER__Game_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Game/Src/Entities/PlayerCharacter.cpp || cmake_object_order_depends_target_Game
   DEP_FILE = Game\CMakeFiles\Game.dir\Src\Entities\PlayerCharacter.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -I"D:/Game Projects/C++/Echelon/Game/Include" -I"D:/Game Projects/C++/Echelon/Engine/Include" -I"D:/Game Projects/C++/Libraries/SDL2-2.30.6/x86_64-w64-mingw32/include/SDL2" -IC:/Users/codel/.vcpkg-clion/vcpkg/installed/x64-mingw-dynamic/include
+  INCLUDES = -I"D:/Game Projects/C++/Echelon/Game/Include" -I"D:/Game Projects/C++/Echelon/Engine/Include" -I"D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include"
   OBJECT_DIR = Game\CMakeFiles\Game.dir
   OBJECT_FILE_DIR = Game\CMakeFiles\Game.dir\Src\Entities
 
 build Game/CMakeFiles/Game.dir/Src/Levels/MainLevel.cpp.obj: CXX_COMPILER__Game_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Game/Src/Levels/MainLevel.cpp || cmake_object_order_depends_target_Game
   DEP_FILE = Game\CMakeFiles\Game.dir\Src\Levels\MainLevel.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -I"D:/Game Projects/C++/Echelon/Game/Include" -I"D:/Game Projects/C++/Echelon/Engine/Include" -I"D:/Game Projects/C++/Libraries/SDL2-2.30.6/x86_64-w64-mingw32/include/SDL2" -IC:/Users/codel/.vcpkg-clion/vcpkg/installed/x64-mingw-dynamic/include
+  INCLUDES = -I"D:/Game Projects/C++/Echelon/Game/Include" -I"D:/Game Projects/C++/Echelon/Engine/Include" -I"D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include"
   OBJECT_DIR = Game\CMakeFiles\Game.dir
   OBJECT_FILE_DIR = Game\CMakeFiles\Game.dir\Src\Levels
 
 build Game/CMakeFiles/Game.dir/Src/Entities/Components/PlayerController.cpp.obj: CXX_COMPILER__Game_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Game/Src/Entities/Components/PlayerController.cpp || cmake_object_order_depends_target_Game
   DEP_FILE = Game\CMakeFiles\Game.dir\Src\Entities\Components\PlayerController.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -I"D:/Game Projects/C++/Echelon/Game/Include" -I"D:/Game Projects/C++/Echelon/Engine/Include" -I"D:/Game Projects/C++/Libraries/SDL2-2.30.6/x86_64-w64-mingw32/include/SDL2" -IC:/Users/codel/.vcpkg-clion/vcpkg/installed/x64-mingw-dynamic/include
+  INCLUDES = -I"D:/Game Projects/C++/Echelon/Game/Include" -I"D:/Game Projects/C++/Echelon/Engine/Include" -I"D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include"
   OBJECT_DIR = Game\CMakeFiles\Game.dir
   OBJECT_FILE_DIR = Game\CMakeFiles\Game.dir\Src\Entities\Components
 
 build Game/CMakeFiles/Game.dir/Src/Entities/BlankCharacter.cpp.obj: CXX_COMPILER__Game_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Game/Src/Entities/BlankCharacter.cpp || cmake_object_order_depends_target_Game
   DEP_FILE = Game\CMakeFiles\Game.dir\Src\Entities\BlankCharacter.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -I"D:/Game Projects/C++/Echelon/Game/Include" -I"D:/Game Projects/C++/Echelon/Engine/Include" -I"D:/Game Projects/C++/Libraries/SDL2-2.30.6/x86_64-w64-mingw32/include/SDL2" -IC:/Users/codel/.vcpkg-clion/vcpkg/installed/x64-mingw-dynamic/include
+  INCLUDES = -I"D:/Game Projects/C++/Echelon/Game/Include" -I"D:/Game Projects/C++/Echelon/Engine/Include" -I"D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include"
   OBJECT_DIR = Game\CMakeFiles\Game.dir
   OBJECT_FILE_DIR = Game\CMakeFiles\Game.dir\Src\Entities
 
 build Game/CMakeFiles/Game.dir/Src/Entities/Components/CameraFollow.cpp.obj: CXX_COMPILER__Game_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Game/Src/Entities/Components/CameraFollow.cpp || cmake_object_order_depends_target_Game
   DEP_FILE = Game\CMakeFiles\Game.dir\Src\Entities\Components\CameraFollow.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -I"D:/Game Projects/C++/Echelon/Game/Include" -I"D:/Game Projects/C++/Echelon/Engine/Include" -I"D:/Game Projects/C++/Libraries/SDL2-2.30.6/x86_64-w64-mingw32/include/SDL2" -IC:/Users/codel/.vcpkg-clion/vcpkg/installed/x64-mingw-dynamic/include
+  INCLUDES = -I"D:/Game Projects/C++/Echelon/Game/Include" -I"D:/Game Projects/C++/Echelon/Engine/Include" -I"D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include"
   OBJECT_DIR = Game\CMakeFiles\Game.dir
   OBJECT_FILE_DIR = Game\CMakeFiles\Game.dir\Src\Entities\Components
 
@@ -320,11 +334,11 @@ build Game/CMakeFiles/Game.dir/Src/Entities/Components/CameraFollow.cpp.obj: CXX
 #############################################
 # Link the executable Game\Game.exe
 
-build Game/Game.exe: CXX_EXECUTABLE_LINKER__Game_Debug Game/CMakeFiles/Game.dir/Src/Main.cpp.obj Game/CMakeFiles/Game.dir/Src/Entities/PlayerCharacter.cpp.obj Game/CMakeFiles/Game.dir/Src/Levels/MainLevel.cpp.obj Game/CMakeFiles/Game.dir/Src/Entities/Components/PlayerController.cpp.obj Game/CMakeFiles/Game.dir/Src/Entities/BlankCharacter.cpp.obj Game/CMakeFiles/Game.dir/Src/Entities/Components/CameraFollow.cpp.obj | Engine/libEngine.a D$:/Game$ Projects/C++/Libraries/SDL2-2.30.6/x86_64-w64-mingw32/lib/libSDL2main.a D$:/Game$ Projects/C++/Libraries/SDL2-2.30.6/x86_64-w64-mingw32/lib/libSDL2.dll.a D$:/Game$ Projects/C++/Libraries/SDL2-2.30.6/x86_64-w64-mingw32/lib/libSDL2_image.dll.a C$:/Users/codel/.vcpkg-clion/vcpkg/installed/x64-mingw-dynamic/lib/libjsoncpp.dll.a || Engine/libEngine.a
+build Game/Game.exe: CXX_EXECUTABLE_LINKER__Game_Debug Game/CMakeFiles/Game.dir/Src/Main.cpp.obj Game/CMakeFiles/Game.dir/Src/Entities/PlayerCharacter.cpp.obj Game/CMakeFiles/Game.dir/Src/Levels/MainLevel.cpp.obj Game/CMakeFiles/Game.dir/Src/Entities/Components/PlayerController.cpp.obj Game/CMakeFiles/Game.dir/Src/Entities/BlankCharacter.cpp.obj Game/CMakeFiles/Game.dir/Src/Entities/Components/CameraFollow.cpp.obj | Engine/libEngine.a vcpkg_installed/x86-mingw-dynamic/debug/lib/libzlibd.dll.a vcpkg_installed/x86-mingw-dynamic/debug/lib/libSDL2maind.a vcpkg_installed/x86-mingw-dynamic/debug/lib/libSDL2_imaged.dll.a vcpkg_installed/x86-mingw-dynamic/debug/lib/libimguid.a vcpkg_installed/x86-mingw-dynamic/debug/lib/libSDL2d.dll.a vcpkg_installed/x86-mingw-dynamic/debug/lib/libjsoncpp.dll.a || Engine/libEngine.a
   FLAGS = -g
-  LINK_LIBRARIES = Engine/libEngine.a  -lmingw32  -mwindows  "D:/Game Projects/C++/Libraries/SDL2-2.30.6/x86_64-w64-mingw32/lib/libSDL2main.a"  "D:/Game Projects/C++/Libraries/SDL2-2.30.6/x86_64-w64-mingw32/lib/libSDL2.dll.a"  "D:/Game Projects/C++/Libraries/SDL2-2.30.6/x86_64-w64-mingw32/lib/libSDL2_image.dll.a"  C:/Users/codel/.vcpkg-clion/vcpkg/installed/x64-mingw-dynamic/lib/libjsoncpp.dll.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  LINK_LIBRARIES = Engine/libEngine.a  vcpkg_installed/x86-mingw-dynamic/debug/lib/libzlibd.dll.a  vcpkg_installed/x86-mingw-dynamic/debug/lib/libSDL2maind.a  -lshell32  -Wl,--undefined=WinMain  vcpkg_installed/x86-mingw-dynamic/debug/lib/libSDL2_imaged.dll.a  vcpkg_installed/x86-mingw-dynamic/debug/lib/libimguid.a  vcpkg_installed/x86-mingw-dynamic/debug/lib/libSDL2d.dll.a  vcpkg_installed/x86-mingw-dynamic/debug/lib/libjsoncpp.dll.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = Game\CMakeFiles\Game.dir
-  POST_BUILD = C:\Windows\system32\cmd.exe /C "cd /D "D:\Game Projects\C++\Echelon\cmake-build-debug\Game" && C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noprofile -executionpolicy Bypass -file C:/Users/codel/.vcpkg-clion/vcpkg/scripts/buildsystems/msbuild/applocal.ps1 -targetBinary "D:/Game Projects/C++/Echelon/cmake-build-debug/Game/Game.exe" -installedDir C:/Users/codel/.vcpkg-clion/vcpkg/installed/x86-mingw-dynamic/debug/bin -OutVariable out"
+  POST_BUILD = C:\Windows\system32\cmd.exe /C "cd /D "D:\Game Projects\C++\Echelon\cmake-build-debug\Game" && C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noprofile -executionpolicy Bypass -file C:/Users/codel/.vcpkg-clion/vcpkg/scripts/buildsystems/msbuild/applocal.ps1 -targetBinary "D:/Game Projects/C++/Echelon/cmake-build-debug/Game/Game.exe" -installedDir "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/debug/bin" -OutVariable out"
   PRE_LINK = cd .
   TARGET_FILE = Game\Game.exe
   TARGET_IMPLIB = Game\libGame.dll.a
@@ -395,14 +409,14 @@ build Game/all: phony Game/Game.exe
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | C$:/Users/codel/.vcpkg-clion/vcpkg/scripts/buildsystems/vcpkg.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeCInformation.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeCXXInformation.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeCommonLanguageInclude.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeDependentOption.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeGenericSystem.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeInitializeConfigs.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeLanguageInformation.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeRCInformation.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeSystemSpecificInformation.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeSystemSpecificInitialize.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CheckCSourceCompiles.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CheckIncludeFile.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CheckLibraryExists.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Compiler/GNU-C.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Compiler/GNU-CXX.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Compiler/GNU.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/FindPackageHandleStandardArgs.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/FindPackageMessage.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/FindPkgConfig.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/FindThreads.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Internal/CheckSourceCompiles.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-GNU-C.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-GNU-CXX.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-GNU.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-Initialize.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-windres.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/WindowsPaths.cmake CMakeCache.txt CMakeFiles/3.29.6/CMakeCCompiler.cmake CMakeFiles/3.29.6/CMakeCXXCompiler.cmake CMakeFiles/3.29.6/CMakeRCCompiler.cmake CMakeFiles/3.29.6/CMakeSystem.cmake D$:/Game$ Projects/C++/Echelon/CMakeLists.txt D$:/Game$ Projects/C++/Echelon/Engine/CMakeLists.txt D$:/Game$ Projects/C++/Echelon/Game/CMakeLists.txt D$:/Game$ Projects/C++/Echelon/cmake_modules/FIndJsonCpp.cmake D$:/Game$ Projects/C++/Echelon/cmake_modules/FindImGUI.cmake D$:/Game$ Projects/C++/Echelon/cmake_modules/FindSDL2.cmake D$:/Game$ Projects/C++/Echelon/cmake_modules/FindSDL2_image.cmake
+build build.ninja: RERUN_CMAKE | C$:/Users/codel/.vcpkg-clion/vcpkg/scripts/buildsystems/vcpkg.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeCInformation.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeCXXInformation.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeCommonLanguageInclude.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeDependentOption.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeFindDependencyMacro.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeGenericSystem.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeInitializeConfigs.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeLanguageInformation.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeRCInformation.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeSystemSpecificInformation.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeSystemSpecificInitialize.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Compiler/GNU-C.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Compiler/GNU-CXX.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Compiler/GNU.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/FeatureSummary.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/FindPNG.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/FindPackageHandleStandardArgs.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/FindPackageMessage.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/FindZLIB.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-GNU-C.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-GNU-CXX.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-GNU.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-Initialize.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-windres.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/WindowsPaths.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/SelectLibraryConfigurations.cmake CMakeCache.txt CMakeFiles/3.29.6/CMakeCCompiler.cmake CMakeFiles/3.29.6/CMakeCXXCompiler.cmake CMakeFiles/3.29.6/CMakeRCCompiler.cmake CMakeFiles/3.29.6/CMakeSystem.cmake D$:/Game$ Projects/C++/Echelon/CMakeLists.txt D$:/Game$ Projects/C++/Echelon/Engine/CMakeLists.txt D$:/Game$ Projects/C++/Echelon/Game/CMakeLists.txt D$:/Game$ Projects/C++/Echelon/vcpkg.json vcpkg_installed/x86-mingw-dynamic/share/SDL2_image/SDL2_image-shared-targets-debug.cmake vcpkg_installed/x86-mingw-dynamic/share/SDL2_image/SDL2_image-shared-targets-release.cmake vcpkg_installed/x86-mingw-dynamic/share/SDL2_image/SDL2_image-shared-targets.cmake vcpkg_installed/x86-mingw-dynamic/share/SDL2_image/SDL2_imageConfig.cmake vcpkg_installed/x86-mingw-dynamic/share/SDL2_image/SDL2_imageConfigVersion.cmake vcpkg_installed/x86-mingw-dynamic/share/imgui/imgui-config.cmake vcpkg_installed/x86-mingw-dynamic/share/imgui/imgui-targets-debug.cmake vcpkg_installed/x86-mingw-dynamic/share/imgui/imgui-targets-release.cmake vcpkg_installed/x86-mingw-dynamic/share/imgui/imgui-targets.cmake vcpkg_installed/x86-mingw-dynamic/share/jsoncpp/jsoncpp-namespaced-targets.cmake vcpkg_installed/x86-mingw-dynamic/share/jsoncpp/jsoncpp-targets-debug.cmake vcpkg_installed/x86-mingw-dynamic/share/jsoncpp/jsoncpp-targets-release.cmake vcpkg_installed/x86-mingw-dynamic/share/jsoncpp/jsoncpp-targets.cmake vcpkg_installed/x86-mingw-dynamic/share/jsoncpp/jsoncppConfig.cmake vcpkg_installed/x86-mingw-dynamic/share/jsoncpp/jsoncppConfigVersion.cmake vcpkg_installed/x86-mingw-dynamic/share/png/vcpkg-cmake-wrapper.cmake vcpkg_installed/x86-mingw-dynamic/share/sdl2/SDL2Config.cmake vcpkg_installed/x86-mingw-dynamic/share/sdl2/SDL2ConfigVersion.cmake vcpkg_installed/x86-mingw-dynamic/share/sdl2/SDL2Targets-debug.cmake vcpkg_installed/x86-mingw-dynamic/share/sdl2/SDL2Targets-release.cmake vcpkg_installed/x86-mingw-dynamic/share/sdl2/SDL2Targets.cmake vcpkg_installed/x86-mingw-dynamic/share/sdl2/SDL2mainTargets-debug.cmake vcpkg_installed/x86-mingw-dynamic/share/sdl2/SDL2mainTargets-release.cmake vcpkg_installed/x86-mingw-dynamic/share/sdl2/SDL2mainTargets.cmake vcpkg_installed/x86-mingw-dynamic/share/sdl2/sdlfind.cmake vcpkg_installed/x86-mingw-dynamic/share/zlib/vcpkg-cmake-wrapper.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build C$:/Users/codel/.vcpkg-clion/vcpkg/scripts/buildsystems/vcpkg.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeCInformation.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeCXXInformation.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeCommonLanguageInclude.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeDependentOption.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeGenericSystem.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeInitializeConfigs.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeLanguageInformation.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeRCInformation.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeSystemSpecificInformation.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeSystemSpecificInitialize.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CheckCSourceCompiles.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CheckIncludeFile.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CheckLibraryExists.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Compiler/GNU-C.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Compiler/GNU-CXX.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Compiler/GNU.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/FindPackageHandleStandardArgs.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/FindPackageMessage.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/FindPkgConfig.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/FindThreads.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Internal/CheckSourceCompiles.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-GNU-C.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-GNU-CXX.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-GNU.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-Initialize.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-windres.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/WindowsPaths.cmake CMakeCache.txt CMakeFiles/3.29.6/CMakeCCompiler.cmake CMakeFiles/3.29.6/CMakeCXXCompiler.cmake CMakeFiles/3.29.6/CMakeRCCompiler.cmake CMakeFiles/3.29.6/CMakeSystem.cmake D$:/Game$ Projects/C++/Echelon/CMakeLists.txt D$:/Game$ Projects/C++/Echelon/Engine/CMakeLists.txt D$:/Game$ Projects/C++/Echelon/Game/CMakeLists.txt D$:/Game$ Projects/C++/Echelon/cmake_modules/FIndJsonCpp.cmake D$:/Game$ Projects/C++/Echelon/cmake_modules/FindImGUI.cmake D$:/Game$ Projects/C++/Echelon/cmake_modules/FindSDL2.cmake D$:/Game$ Projects/C++/Echelon/cmake_modules/FindSDL2_image.cmake: phony
+build C$:/Users/codel/.vcpkg-clion/vcpkg/scripts/buildsystems/vcpkg.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeCInformation.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeCXXInformation.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeCommonLanguageInclude.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeDependentOption.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeFindDependencyMacro.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeGenericSystem.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeInitializeConfigs.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeLanguageInformation.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeRCInformation.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeSystemSpecificInformation.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeSystemSpecificInitialize.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Compiler/GNU-C.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Compiler/GNU-CXX.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Compiler/GNU.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/FeatureSummary.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/FindPNG.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/FindPackageHandleStandardArgs.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/FindPackageMessage.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/FindZLIB.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-GNU-C.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-GNU-CXX.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-GNU.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-Initialize.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-windres.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/WindowsPaths.cmake C$:/Users/codel/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.29/Modules/SelectLibraryConfigurations.cmake CMakeCache.txt CMakeFiles/3.29.6/CMakeCCompiler.cmake CMakeFiles/3.29.6/CMakeCXXCompiler.cmake CMakeFiles/3.29.6/CMakeRCCompiler.cmake CMakeFiles/3.29.6/CMakeSystem.cmake D$:/Game$ Projects/C++/Echelon/CMakeLists.txt D$:/Game$ Projects/C++/Echelon/Engine/CMakeLists.txt D$:/Game$ Projects/C++/Echelon/Game/CMakeLists.txt D$:/Game$ Projects/C++/Echelon/vcpkg.json vcpkg_installed/x86-mingw-dynamic/share/SDL2_image/SDL2_image-shared-targets-debug.cmake vcpkg_installed/x86-mingw-dynamic/share/SDL2_image/SDL2_image-shared-targets-release.cmake vcpkg_installed/x86-mingw-dynamic/share/SDL2_image/SDL2_image-shared-targets.cmake vcpkg_installed/x86-mingw-dynamic/share/SDL2_image/SDL2_imageConfig.cmake vcpkg_installed/x86-mingw-dynamic/share/SDL2_image/SDL2_imageConfigVersion.cmake vcpkg_installed/x86-mingw-dynamic/share/imgui/imgui-config.cmake vcpkg_installed/x86-mingw-dynamic/share/imgui/imgui-targets-debug.cmake vcpkg_installed/x86-mingw-dynamic/share/imgui/imgui-targets-release.cmake vcpkg_installed/x86-mingw-dynamic/share/imgui/imgui-targets.cmake vcpkg_installed/x86-mingw-dynamic/share/jsoncpp/jsoncpp-namespaced-targets.cmake vcpkg_installed/x86-mingw-dynamic/share/jsoncpp/jsoncpp-targets-debug.cmake vcpkg_installed/x86-mingw-dynamic/share/jsoncpp/jsoncpp-targets-release.cmake vcpkg_installed/x86-mingw-dynamic/share/jsoncpp/jsoncpp-targets.cmake vcpkg_installed/x86-mingw-dynamic/share/jsoncpp/jsoncppConfig.cmake vcpkg_installed/x86-mingw-dynamic/share/jsoncpp/jsoncppConfigVersion.cmake vcpkg_installed/x86-mingw-dynamic/share/png/vcpkg-cmake-wrapper.cmake vcpkg_installed/x86-mingw-dynamic/share/sdl2/SDL2Config.cmake vcpkg_installed/x86-mingw-dynamic/share/sdl2/SDL2ConfigVersion.cmake vcpkg_installed/x86-mingw-dynamic/share/sdl2/SDL2Targets-debug.cmake vcpkg_installed/x86-mingw-dynamic/share/sdl2/SDL2Targets-release.cmake vcpkg_installed/x86-mingw-dynamic/share/sdl2/SDL2Targets.cmake vcpkg_installed/x86-mingw-dynamic/share/sdl2/SDL2mainTargets-debug.cmake vcpkg_installed/x86-mingw-dynamic/share/sdl2/SDL2mainTargets-release.cmake vcpkg_installed/x86-mingw-dynamic/share/sdl2/SDL2mainTargets.cmake vcpkg_installed/x86-mingw-dynamic/share/sdl2/sdlfind.cmake vcpkg_installed/x86-mingw-dynamic/share/zlib/vcpkg-cmake-wrapper.cmake: phony
 
 
 #############################################

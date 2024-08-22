@@ -1,15 +1,14 @@
-cmake_minimum_required(VERSION 3.29)
+cmake_minimum_required(VERSION 3.8)
 project(Echelon)
 
 set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake_modules)
+#set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake_modules)
 
-set(SDL2_PATH "D:/Game Projects/C++/Libraries/SDL2-2.30.6/x86_64-w64-mingw32")
-find_package(SDL2 REQUIRED)
-find_package(SDL2_image REQUIRED)
-
-find_package(JsonCpp REQUIRED)
-find_package(ImGui REQUIRED)
+find_package(ZLIB REQUIRED)
+find_package(SDL2 CONFIG REQUIRED)
+find_package(SDL2_image CONFIG REQUIRED)
+find_package(imgui CONFIG REQUIRED)
+find_package(jsoncpp CONFIG REQUIRED)
 
 add_subdirectory(Engine)
 add_subdirectory(Game)

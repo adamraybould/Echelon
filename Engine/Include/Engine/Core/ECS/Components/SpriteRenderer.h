@@ -2,32 +2,33 @@
 #define SPRITERENDERER_H
 #include "Component.h"
 
-namespace Core::Graphics
+namespace Core
 {
-    class Texture2D;
-    class Sprite;
-}
+    namespace Graphics { class Texture2D; class Sprite; }
 
-using namespace Core::Graphics;
-namespace Core::Components
-{
-    class SpriteRenderer : public Component
+    using namespace Graphics;
+    namespace Components
     {
-    private:
-        Sprite* m_pSprite;
-        UInt m_flipped;
+        class SpriteRenderer : public Component
+        {
+        private:
+            Sprite& m_sprite;
+            UInt m_flipped;
 
-    public:
-        SpriteRenderer(Entity& owner, Sprite& sprite);
+        public:
+            SpriteRenderer(Entity& owner, Sprite& sprite);
 
-        void Initialize() override;
-        void Update(float delta) override;
-        void Render(Renderer& renderer) override;
-        void Destroy() override;
+            void Initialize() override;
+            void Update(float delta) override;
+            void Render(Renderer& renderer) override;
+            void Destroy() override;
 
-        /* Sets the Sprite source rect to a new Frame. Only works with Sprite Sheets */
-        void SetSpriteFrame(UInt frameIndex) const;
-    };
+            /* Sets the Sprite source rect to a new Frame. Only works with Sprite Sheets */
+            void SetSpriteFrame(UInt frameIndex) const;
+
+            Sprite& GetSprite() const;
+        };
+    }
 }
 
 #endif //SPRITERENDERER_H

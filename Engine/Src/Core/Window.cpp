@@ -3,12 +3,14 @@
 #include <SDL.h>
 #include <SDL_image.h>
 
+#include "Engine/Core/Renderer.h"
+
 namespace Core
 {
     Window::~Window()
     {
         SDL_DestroyWindow(m_pWindow);
-        SDL_DestroyRenderer(m_pRenderer);
+        m_pRenderer.reset();
     }
 
     bool Window::Create(const char* title)
@@ -20,9 +22,11 @@ namespace Core
         SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "nearest");
 
         int rendererFlags = SDL_RENDERER_ACCELERATED;
-        m_pRenderer = SDL_CreateRenderer(m_pWindow, -1, rendererFlags);
-        if (m_pRenderer == nullptr)
+        SDL_Renderer* renderer = SDL_CreateRenderer(m_pWindow, -1, rendererFlags);
+        if (renderer == nullptr)
             return false;
+
+        m_pRenderer = std::make_unique<Renderer>(*renderer);
 
         if (!SetIcon())
             return false;

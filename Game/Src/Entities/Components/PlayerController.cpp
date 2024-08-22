@@ -3,7 +3,7 @@
 #include <iostream>
 
 #include <Engine/Core/ECS/Entity.h>
-#include <Engine/Systems/InputManager.h>
+#include <Engine/Core/Systems/InputManager.h>
 
 using namespace Core::Systems;
 namespace Echelon::Entities::Components

@@ -18,7 +18,7 @@ namespace Echelon::Entities
         float m_orbitRadius;
 
     public:
-        BlankCharacter();
+        BlankCharacter(const char* name);
 
         void Initialize() override;
         void Update(float delta) override;
