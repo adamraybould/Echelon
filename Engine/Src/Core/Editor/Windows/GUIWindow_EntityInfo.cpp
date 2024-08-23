@@ -1,12 +1,15 @@
 #include "Engine/Core/Editor/Windows/GUIWindow_EntityInfo.h"
 
 #include <imgui.h>
+#include <iostream>
 
 #include "Engine/Core/Window.h"
 #include "Engine/Core/ECS/Entity.h"
 #include "Engine/Core/ECS/Components/SpriteRenderer.h"
 #include "../../../../Include/Engine/Core/Renderer.h"
 #include "../../../../Include/Engine/Core/Camera.h"
+#include "Engine/Utility/Constants.h"
+#include "Engine/Utility/MathF.h"
 
 namespace Core::Editor
 {
@@ -25,9 +28,6 @@ namespace Core::Editor
         {
             m_pEntitySprite = &spriteRenderer->GetSprite();
         }
-
-        Vector2 entityScreenPosition = GetEntityScreenPosition(*m_pEntity);
-        m_position = entityScreenPosition;
     }
 
     void GUIWindow_EntityInfo::CloseWindow()
@@ -44,12 +44,29 @@ namespace Core::Editor
         if (m_pEntity == nullptr)
             return;
 
-        int offsetX = WINDOW_WIDTH * 0.5f;
-        int offsetY = WINDOW_HEIGHT * 0.8f;
+        Camera& camera = m_engineGUI.GetEngineWindow().GetRenderer().GetCamera();
+        float zoom = camera.GetZoom();
+        zoom = MathF::Clamp(zoom, 0.5f, 1.0f);
 
-        ImVec2 windowPos = ImVec2(m_position.X + offsetX, m_position.Y - offsetY);
+        float offsetX = WINDOW_WIDTH * 0.2f;
+        float offsetY = WINDOW_HEIGHT * 1.2f;
+
+        Vector2 entityScreenPosition = GetEntityScreenPosition(*m_pEntity);
+        //entityScreenPosition *= zoom;
+
+        Vector2 offsetFromCamera((m_pEntity->GetTransform().Position.X - camera.GetPosition().X),(m_pEntity->GetTransform().Position.Y - camera.GetPosition().Y));
+
+        // Adjust window position based on zoom
+        Vector2 windowOffset = Vector2((offsetFromCamera.X) + (SCREEN_WIDTH * 0.5f) + offsetX, (offsetFromCamera.Y) + (SCREEN_HEIGHT * 0.5f) - offsetY);
+
+        //Vector2 windowOffset = Vector2((entityScreenPosition.X / zoom) + (SCREEN_WIDTH * 0.5f) + offsetX, (entityScreenPosition.Y / zoom) + (SCREEN_HEIGHT * 0.5f) - offsetY);
+
+        //std::cout << zoom << std::endl;
+
+        ImVec2 windowPos = ImVec2(windowOffset.X * zoom, windowOffset.Y * zoom);
         ImGui::SetNextWindowPos(windowPos, ImGuiCond_Always);
-        ImGui::SetNextWindowSize(ImVec2(WINDOW_WIDTH, WINDOW_HEIGHT), ImGuiCond_Once);
+
+        ImGui::SetNextWindowSize(ImVec2(WINDOW_WIDTH, WINDOW_HEIGHT), ImGuiCond_Always);
 
         Vector2 entityWorldPosition = m_pEntity->GetTransform().GetWorldPosition();
         std::string positionText = "(" + std::to_string(entityWorldPosition.X) + ", " + std::to_string(entityWorldPosition.Y) + ")";

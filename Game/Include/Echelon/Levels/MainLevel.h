@@ -3,12 +3,6 @@
 #include "Echelon/Entities/PlayerCharacter.h"
 #include "Engine/States/Level.h"
 
-namespace Core::Rendering
-{
-    class Camera;
-}
-
-using namespace Core::Rendering;
 using namespace Core::States;
 using namespace Echelon::Entities;
 namespace Echelon::Levels

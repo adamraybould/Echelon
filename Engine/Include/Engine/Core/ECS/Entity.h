@@ -14,7 +14,6 @@ namespace Core
         const char* m_name;
 
         Rectangle m_bounds;
-
         Transform* m_transform;
 
         Array<UniquePtr<Component>> m_components;

@@ -21,6 +21,9 @@ namespace Core::Systems
         /* Returns an Entity with the Specified ID */
         Entity* GetEntity(UInt64 ID);
 
+        /* Returns an Entity with the Specified Name */
+        Entity* GetEntity(const char* name);
+
         /* Returns an Entity at a Point in the World */
         Entity* GetEntityAtPoint(const Vector2& point);
 

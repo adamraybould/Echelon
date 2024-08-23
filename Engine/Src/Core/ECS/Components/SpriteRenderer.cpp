@@ -4,6 +4,8 @@
 #include "Engine/Core/Renderer.h"
 #include <SDL_render.h>
 
+#include "Engine/Utility/Constants.h"
+
 namespace Core::Components
 {
     SpriteRenderer::SpriteRenderer(Entity& owner, Sprite& sprite) : Component(owner), m_sprite(sprite)
@@ -30,6 +32,7 @@ namespace Core::Components
 
         Camera& camera = renderer.GetCamera();
         Vector2 screenPosition = camera.CalculateScreenPosition(position);
+        screenPosition = Vector2(screenPosition.X + (SCREEN_WIDTH * 0.5f), screenPosition.Y + (SCREEN_HEIGHT * 0.5f));
 
         SDL_Rect dest =
             {

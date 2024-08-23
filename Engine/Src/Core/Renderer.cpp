@@ -4,7 +4,7 @@ namespace Core
 {
     Renderer::Renderer(SDL_Renderer& renderer) : m_renderer(renderer)
     {
-        m_pCamera = std::make_unique<Camera>("Main Camera");
+        m_pCamera = std::make_unique<Camera>("Camera");
     }
 
     Renderer::~Renderer()

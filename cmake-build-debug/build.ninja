@@ -326,6 +326,20 @@ build Game/CMakeFiles/Game.dir/Src/Entities/Components/CameraFollow.cpp.obj: CXX
   OBJECT_DIR = Game\CMakeFiles\Game.dir
   OBJECT_FILE_DIR = Game\CMakeFiles\Game.dir\Src\Entities\Components
 
+build Game/CMakeFiles/Game.dir/Src/Entities/Mobs/Gunbot.cpp.obj: CXX_COMPILER__Game_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Game/Src/Entities/Mobs/Gunbot.cpp || cmake_object_order_depends_target_Game
+  DEP_FILE = Game\CMakeFiles\Game.dir\Src\Entities\Mobs\Gunbot.cpp.obj.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  INCLUDES = -I"D:/Game Projects/C++/Echelon/Game/Include" -I"D:/Game Projects/C++/Echelon/Engine/Include" -I"D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include"
+  OBJECT_DIR = Game\CMakeFiles\Game.dir
+  OBJECT_FILE_DIR = Game\CMakeFiles\Game.dir\Src\Entities\Mobs
+
+build Game/CMakeFiles/Game.dir/Src/Entities/Mobs/Drillbot.cpp.obj: CXX_COMPILER__Game_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Game/Src/Entities/Mobs/Drillbot.cpp || cmake_object_order_depends_target_Game
+  DEP_FILE = Game\CMakeFiles\Game.dir\Src\Entities\Mobs\Drillbot.cpp.obj.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  INCLUDES = -I"D:/Game Projects/C++/Echelon/Game/Include" -I"D:/Game Projects/C++/Echelon/Engine/Include" -I"D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include"
+  OBJECT_DIR = Game\CMakeFiles\Game.dir
+  OBJECT_FILE_DIR = Game\CMakeFiles\Game.dir\Src\Entities\Mobs
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Game
@@ -334,7 +348,7 @@ build Game/CMakeFiles/Game.dir/Src/Entities/Components/CameraFollow.cpp.obj: CXX
 #############################################
 # Link the executable Game\Game.exe
 
-build Game/Game.exe: CXX_EXECUTABLE_LINKER__Game_Debug Game/CMakeFiles/Game.dir/Src/Main.cpp.obj Game/CMakeFiles/Game.dir/Src/Entities/PlayerCharacter.cpp.obj Game/CMakeFiles/Game.dir/Src/Levels/MainLevel.cpp.obj Game/CMakeFiles/Game.dir/Src/Entities/Components/PlayerController.cpp.obj Game/CMakeFiles/Game.dir/Src/Entities/BlankCharacter.cpp.obj Game/CMakeFiles/Game.dir/Src/Entities/Components/CameraFollow.cpp.obj | Engine/libEngine.a vcpkg_installed/x86-mingw-dynamic/debug/lib/libzlibd.dll.a vcpkg_installed/x86-mingw-dynamic/debug/lib/libSDL2maind.a vcpkg_installed/x86-mingw-dynamic/debug/lib/libSDL2_imaged.dll.a vcpkg_installed/x86-mingw-dynamic/debug/lib/libimguid.a vcpkg_installed/x86-mingw-dynamic/debug/lib/libSDL2d.dll.a vcpkg_installed/x86-mingw-dynamic/debug/lib/libjsoncpp.dll.a || Engine/libEngine.a
+build Game/Game.exe: CXX_EXECUTABLE_LINKER__Game_Debug Game/CMakeFiles/Game.dir/Src/Main.cpp.obj Game/CMakeFiles/Game.dir/Src/Entities/PlayerCharacter.cpp.obj Game/CMakeFiles/Game.dir/Src/Levels/MainLevel.cpp.obj Game/CMakeFiles/Game.dir/Src/Entities/Components/PlayerController.cpp.obj Game/CMakeFiles/Game.dir/Src/Entities/BlankCharacter.cpp.obj Game/CMakeFiles/Game.dir/Src/Entities/Components/CameraFollow.cpp.obj Game/CMakeFiles/Game.dir/Src/Entities/Mobs/Gunbot.cpp.obj Game/CMakeFiles/Game.dir/Src/Entities/Mobs/Drillbot.cpp.obj | Engine/libEngine.a vcpkg_installed/x86-mingw-dynamic/debug/lib/libzlibd.dll.a vcpkg_installed/x86-mingw-dynamic/debug/lib/libSDL2maind.a vcpkg_installed/x86-mingw-dynamic/debug/lib/libSDL2_imaged.dll.a vcpkg_installed/x86-mingw-dynamic/debug/lib/libimguid.a vcpkg_installed/x86-mingw-dynamic/debug/lib/libSDL2d.dll.a vcpkg_installed/x86-mingw-dynamic/debug/lib/libjsoncpp.dll.a || Engine/libEngine.a
   FLAGS = -g
   LINK_LIBRARIES = Engine/libEngine.a  vcpkg_installed/x86-mingw-dynamic/debug/lib/libzlibd.dll.a  vcpkg_installed/x86-mingw-dynamic/debug/lib/libSDL2maind.a  -lshell32  -Wl,--undefined=WinMain  vcpkg_installed/x86-mingw-dynamic/debug/lib/libSDL2_imaged.dll.a  vcpkg_installed/x86-mingw-dynamic/debug/lib/libimguid.a  vcpkg_installed/x86-mingw-dynamic/debug/lib/libSDL2d.dll.a  vcpkg_installed/x86-mingw-dynamic/debug/lib/libjsoncpp.dll.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = Game\CMakeFiles\Game.dir

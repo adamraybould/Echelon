@@ -1,0 +1,49 @@
+{
+  "TextureAtlas": {
+    "Texture": "Gunbot.png",
+    "RegionWidth": 32,
+    "RegionHeight": 32
+  },
+  "Cycles": {
+    "Idle_Up": {
+      "Frames": [37],
+      "IsLooping": false,
+      "FrameDuration": 0.1
+    },
+    "Idle_Down": {
+      "Frames": [36],
+      "IsLooping": false,
+      "FrameDuration": 0.1
+    },
+    "Idle_left": {
+      "Frames": [39],
+      "IsLooping": false,
+      "FrameDuration": 0.1
+    },
+    "Idle_Right": {
+      "Frames": [38],
+      "IsLooping": false,
+      "FrameDuration": 0.1
+    },
+    "Move_Up": {
+      "Frames": [41,45,49],
+      "IsLooping": true,
+      "FrameDuration": 0.1
+    },
+    "Move_Down": {
+      "Frames": [40,44,48],
+      "IsLooping": true,
+      "FrameDuration": 0.1
+    },
+    "Move_Left": {
+      "Frames": [43,47,51],
+      "IsLooping": true,
+      "FrameDuration": 0.1
+    },
+    "Move_Right": {
+      "Frames": [42,46,50],
+      "IsLooping": true,
+      "FrameDuration": 0.1
+    }
+  }
+}

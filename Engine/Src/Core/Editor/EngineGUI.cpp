@@ -130,7 +130,8 @@ namespace Core::Editor
         }
         else
         {
-            //m_windows[0]->CloseWindow();
+            m_windows[0]->CloseWindow();
+            m_pEntity = nullptr;
         }
     }
 }

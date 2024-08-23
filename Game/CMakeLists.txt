@@ -13,6 +13,11 @@ add_executable(Game
         Src/Entities/BlankCharacter.cpp
         Include/Echelon/Entities/Components/CameraFollow.h
         Src/Entities/Components/CameraFollow.cpp
+        Include/Echelon/Entities/Mobs/Gunbot.h
+        Src/Entities/Mobs/Gunbot.cpp
+        Include/Echelon/Entities/Mobs/Gunbot.h
+        Include/Echelon/Entities/Mobs/DrillBot.h
+        Src/Entities/Mobs/Drillbot.cpp
 )
 
 target_include_directories(Game PRIVATE

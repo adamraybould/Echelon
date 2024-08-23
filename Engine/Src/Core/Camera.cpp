@@ -6,8 +6,12 @@
 using namespace Core::Systems;
 namespace Core
 {
+    Camera* Camera::Main;
+
     Camera::Camera(const char* name) : Entity(name)
     {
+        Main = this;
+
         m_cameraOrigin = Vector2::Zero();
         m_viewport = CalculateViewport();
 
@@ -39,8 +43,8 @@ namespace Core
 
     Vector2 Camera::CalculateScreenPosition(const Vector2& worldPosition) const
     {
-        Vector2 screenPosition = worldPosition - GetTransform().Position;
-        return Vector2(screenPosition.X + (SCREEN_WIDTH * 0.5f), screenPosition.Y + (SCREEN_HEIGHT * 0.5f));
+        Vector2 screenPosition = worldPosition - m_cameraOrigin;
+        return Vector2(screenPosition.X, screenPosition.Y);
     }
 
     Vector2 Camera::CalculateWorldPosition(const Vector2 screenPosition) const

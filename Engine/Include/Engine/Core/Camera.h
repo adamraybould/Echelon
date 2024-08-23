@@ -7,6 +7,9 @@ namespace Core
 {
     class Camera : public Entity
     {
+    public:
+        static Camera* Main;
+
     private:
         Vector2 m_cameraOrigin;
         Vector2 m_cameraPosition;

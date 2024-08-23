@@ -11,13 +11,12 @@ namespace Core
     {
         class GUIWindow_EntityInfo : public GUIWindow
         {
+            const int WINDOW_WIDTH = 180;
+            const int WINDOW_HEIGHT = 250;
+
         private:
             Entity* m_pEntity = nullptr;
             Graphics::Sprite* m_pEntitySprite = nullptr;
-
-            const int WINDOW_WIDTH = 180;
-            const int WINDOW_HEIGHT = 250;
-            Vector2 m_position;
 
         public:
             GUIWindow_EntityInfo(EngineGUI& engineGUI);

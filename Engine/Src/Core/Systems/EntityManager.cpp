@@ -62,6 +62,17 @@ namespace Core::Systems
         }
     }
 
+    Entity* EntityManager::GetEntity(const char* name)
+    {
+        for (auto i = m_entities.begin(); i != m_entities.end(); ++i)
+        {
+            if (i->second->GetName() == name)
+                return i->second.get();
+        }
+
+        return nullptr;
+    }
+
     Entity* EntityManager::GetEntityAtPoint(const Vector2& point)
     {
         for (auto i = m_entities.begin(); i != m_entities.end(); ++i)
