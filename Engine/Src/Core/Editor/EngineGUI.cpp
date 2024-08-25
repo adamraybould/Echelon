@@ -125,7 +125,6 @@ namespace Core::Editor
                 m_pEntity = highlightedEntity;
 
                 m_windows[0]->OpenWindow();
-                std::cout << "Entity Clicked: " << highlightedEntity->GetID() << std::endl;
             }
         }
         else

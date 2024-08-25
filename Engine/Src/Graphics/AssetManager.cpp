@@ -6,6 +6,7 @@
 #include "Engine/Graphics/Sprite.h"
 #include "Engine/Core/Application.h"
 #include <json/json.h>
+#include "config.h"
 
 namespace Core::Graphics
 {
@@ -30,13 +31,14 @@ namespace Core::Graphics
 
     SDL_Texture& AssetManager::LoadRawTexture(const char* filePath)
     {
-        std::string texturePath = "Assets/" + std::string(filePath);
+        std::string texturePath = ASSETS_PATH + std::string(filePath);
 
         SDL_Texture* texture = IMG_LoadTexture(*m_renderer, texturePath.c_str());
         if (texture == nullptr)
         {
             printf("Failed to load texture: %s\n", SDL_GetError());
-            texture = IMG_LoadTexture(*m_renderer, ERROR_TEXTURE);
+            texturePath = ASSETS_PATH + std::string(ERROR_TEXTURE);
+            texture = IMG_LoadTexture(*m_renderer, texturePath.c_str());
         }
 
         return *texture;
@@ -44,7 +46,7 @@ namespace Core::Graphics
 
     Texture2D& AssetManager::LoadTexture2D(const char* filePath)
     {
-        std::string texturePath = "Assets/" + std::string(filePath);
+        std::string texturePath = ASSETS_PATH + std::string(filePath);
 
         SDL_Texture* texture = IMG_LoadTexture(*m_renderer, texturePath.c_str());
         if (texture == nullptr)
@@ -62,7 +64,7 @@ namespace Core::Graphics
 
     Sprite& AssetManager::LoadSprite(const char* filePath)
     {
-        std::string texturePath = "Assets/" + std::string(filePath);
+        std::string texturePath = ASSETS_PATH + std::string(filePath);
 
         SDL_Texture* texture = IMG_LoadTexture(*m_renderer, texturePath.c_str());
         if (texture == nullptr)
@@ -81,7 +83,7 @@ namespace Core::Graphics
 
     SpriteSheet& AssetManager::LoadSpriteSheet(const char* filePath)
     {
-        std::string assetPath = "Assets/" + std::string(filePath) + ".sf";
+        std::string assetPath = ASSETS_PATH + std::string(filePath) + ".sf";
 
         std::ifstream file(assetPath);
         Json::Reader reader;

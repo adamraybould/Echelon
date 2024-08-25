@@ -1,6 +1,8 @@
 # Engine/CMakeLists.txt
 cmake_minimum_required(VERSION 3.8)
 
+include(FindLua)
+
 add_library(Engine STATIC
         Include/Engine/Core/IProgram.h
         Src/Core/Application.cpp
@@ -28,7 +30,6 @@ add_library(Engine STATIC
         Src/Core/ECS/Components/SpriteRenderer.cpp
         Include/Engine/Graphics/Sprite.h
         Src/Graphics/Sprite.cpp
-        Src/Utility/Utility.cpp
         Include/Engine/States/Level.h
         Src/States/Level.cpp
         Include/Engine/Core/Systems/LevelManager.h
@@ -54,16 +55,36 @@ add_library(Engine STATIC
         Include/Engine/Core/Editor/GUIWindow.h
         Include/Engine/Core/Editor/Windows/GUIWindow_EntityInfo.h
         Src/Core/Editor/Windows/GUIWindow_EntityInfo.cpp
-        Include/Engine/Core/Singleton.h
+        Src/Core/Scripting/ScriptCore.cpp
+        Include/Engine/Core/Scripting/ScriptCore.h
+        Include/Engine/Core/Scripting/IBinder.h
+        Src/Core/Scripting/IBinder.cpp
+        Include/Engine/Core/World.h
+        Src/Core/World.cpp
+        Include/Engine/Core/Scripting/ScriptUtils.h
+        Include/Engine/Core/Scripting/EntityInterface.h
+        Include/Engine/Core/Scripting/ScriptComponent.h
+        Src/Core/Scripting/ScriptComponent.cpp
+        Include/Engine/Core/Scripting/Prefab.h
+        Src/Core/Scripting/Prefab.cpp
+        Include/Engine/Core/God.h
+        Src/Core/God.cpp
 )
 
 target_include_directories(Engine PUBLIC
         ${CMAKE_SOURCE_DIR}/Engine/Include
         ${CMAKE_SOURCE_DIR}/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include
+        ${LUABRIDGE3_INCLUDE_DIRS}
 )
+
+target_include_directories(Engine PRIVATE ${CMAKE_BINARY_DIR})
+
+target_link_libraries(Engine PRIVATE ${LUA_LIBRARIES})
 
 target_link_libraries(Engine PRIVATE ZLIB::ZLIB)
 target_link_libraries(Engine PRIVATE $<TARGET_NAME_IF_EXISTS:SDL2::SDL2main> $<IF:$<TARGET_EXISTS:SDL2::SDL2>,SDL2::SDL2,SDL2::SDL2-static>)
 target_link_libraries(Engine PRIVATE $<IF:$<TARGET_EXISTS:SDL2_image::SDL2_image>,SDL2_image::SDL2_image,SDL2_image::SDL2_image-static>)
 target_link_libraries(Engine PRIVATE imgui::imgui)
 target_link_libraries(Engine PRIVATE JsonCpp::JsonCpp)
+target_link_libraries(Engine PRIVATE ${LUA_LIBRARIES})
+target_link_libraries(Engine PRIVATE crossguid)

@@ -6,7 +6,6 @@ namespace Core::States
 {
     Level::Level(EntityManager& entityManager) : m_entityManager(entityManager)
     {
-        m_ID = Utility::GenerateUniqueID();
     }
 
     Level::~Level()

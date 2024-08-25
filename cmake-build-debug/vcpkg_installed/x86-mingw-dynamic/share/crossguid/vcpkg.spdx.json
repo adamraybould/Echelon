@@ -1,0 +1,153 @@
+{
+  "$schema": "https://raw.githubusercontent.com/spdx/spdx-spec/v2.2.1/schemas/spdx-schema.json",
+  "spdxVersion": "SPDX-2.2",
+  "dataLicense": "CC0-1.0",
+  "SPDXID": "SPDXRef-DOCUMENT",
+  "documentNamespace": "https://spdx.org/spdxdocs/crossguid-x86-mingw-dynamic-2021-10-22#3-2e32d8b2-5a42-4241-abc5-02a2b947940d",
+  "name": "crossguid:x86-mingw-dynamic@2021-10-22#3 c96179a85f0548776d33921094369f7da19c78089788b34ccff535318c26bab3",
+  "creationInfo": {
+    "creators": [
+      "Tool: vcpkg-2024-08-01-fd884a0d390d12783076341bd43d77c3a6a15658"
+    ],
+    "created": "2024-08-23T21:36:43Z"
+  },
+  "relationships": [
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "GENERATES",
+      "relatedSpdxElement": "SPDXRef-binary"
+    },
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-file-0"
+    },
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-file-1"
+    },
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-file-2"
+    },
+    {
+      "spdxElementId": "SPDXRef-port",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-file-3"
+    },
+    {
+      "spdxElementId": "SPDXRef-binary",
+      "relationshipType": "GENERATED_FROM",
+      "relatedSpdxElement": "SPDXRef-port"
+    },
+    {
+      "spdxElementId": "SPDXRef-file-0",
+      "relationshipType": "CONTAINED_BY",
+      "relatedSpdxElement": "SPDXRef-port"
+    },
+    {
+      "spdxElementId": "SPDXRef-file-1",
+      "relationshipType": "CONTAINED_BY",
+      "relatedSpdxElement": "SPDXRef-port"
+    },
+    {
+      "spdxElementId": "SPDXRef-file-2",
+      "relationshipType": "CONTAINED_BY",
+      "relatedSpdxElement": "SPDXRef-port"
+    },
+    {
+      "spdxElementId": "SPDXRef-file-3",
+      "relationshipType": "CONTAINED_BY",
+      "relatedSpdxElement": "SPDXRef-port"
+    }
+  ],
+  "packages": [
+    {
+      "name": "crossguid",
+      "SPDXID": "SPDXRef-port",
+      "versionInfo": "2021-10-22#3",
+      "downloadLocation": "git+https://github.com/Microsoft/vcpkg@39a8ec44dcb709796a0ecdc4c170f67ad5ad1175",
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "description": "CrossGuid is a minimal, cross platform, C++ GUID library.",
+      "comment": "This is the port (recipe) consumed by vcpkg."
+    },
+    {
+      "name": "crossguid:x86-mingw-dynamic",
+      "SPDXID": "SPDXRef-binary",
+      "versionInfo": "c96179a85f0548776d33921094369f7da19c78089788b34ccff535318c26bab3",
+      "downloadLocation": "NONE",
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "comment": "This is a binary package built by vcpkg."
+    },
+    {
+      "SPDXID": "SPDXRef-resource-1",
+      "name": "graeme-hill/crossguid",
+      "downloadLocation": "git+https://github.com/graeme-hill/crossguid@ca1bf4b810e2d188d04cb6286f957008ee1b7681",
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "f0a80d8e99b10473bcfdfde3d1c5fd7b766959819f0d1c0595ac84ce46db9007a5fbfde9a55aca60530c46cb7f8ef4c7e472c6191559ded92f868589c141ccaf"
+        }
+      ]
+    }
+  ],
+  "files": [
+    {
+      "fileName": "./C:/Users/codel/.vcpkg-clion/vcpkg/buildtrees/versioning_/versions/crossguid/39a8ec44dcb709796a0ecdc4c170f67ad5ad1175/missing-include-cstdint.patch",
+      "SPDXID": "SPDXRef-file-0",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "17f3cb3951be4e04e53d3a1005339663b98053928715bf216512a01c2fa7e9e9"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": "./C:/Users/codel/.vcpkg-clion/vcpkg/buildtrees/versioning_/versions/crossguid/39a8ec44dcb709796a0ecdc4c170f67ad5ad1175/portfile.cmake",
+      "SPDXID": "SPDXRef-file-1",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "0cf32556a4b61d237431820719d2701b23b91e071a290d17480e2b0b524e1d7e"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": "./C:/Users/codel/.vcpkg-clion/vcpkg/buildtrees/versioning_/versions/crossguid/39a8ec44dcb709796a0ecdc4c170f67ad5ad1175/vcpkg.json",
+      "SPDXID": "SPDXRef-file-2",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "c49b46c483e332b5d4f3f8864f2453b5ae87cb6fb2a5dfb099a9c5da0920b233"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": "./C:/Users/codel/.vcpkg-clion/vcpkg/buildtrees/versioning_/versions/crossguid/39a8ec44dcb709796a0ecdc4c170f67ad5ad1175/warnings.patch",
+      "SPDXID": "SPDXRef-file-3",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "9953cb5ef68bdffa7cc9cb138a2119dd3460f3055db14a13aecc4dd256104c09"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "copyrightText": "NOASSERTION"
+    }
+  ]
+}

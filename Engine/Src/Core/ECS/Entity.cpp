@@ -5,16 +5,20 @@ namespace Core
 {
     Entity::Entity(const char* name)
     {
-        m_ID = Utility::GenerateUniqueID();
+        m_guid = Utility::GenerateGUID();
         m_name = name;
 
         m_bounds = Rectangle();
-        m_transform = &AddComponent<Transform>();
+        AddTransform();
     }
 
     Entity::~Entity()
     {
         RemoveAllComponents();
+    }
+
+    void Entity::Initialize()
+    {
     }
 
     void Entity::Update(float delta)
@@ -68,5 +72,21 @@ namespace Core
         }
 
         m_components.clear();
+    }
+
+    Component& Entity::AddTransform()
+    {
+        m_transform = &AddComponent<Transform>();
+        return *m_transform;
+    }
+
+    void Entity::SetupEmbedding(lua_State* L)
+    {
+        using namespace luabridge;
+
+        BindClass<Entity>(L);
+        BindProperty<Entity>(L, "name", &Entity::GetName, &Entity::SetName);
+        BindProperty<Entity>(L, "GUID", &Entity::GetGUID);
+        BindFunction<Entity>(L, "AddTransform", &Entity::AddTransform);
     }
 }

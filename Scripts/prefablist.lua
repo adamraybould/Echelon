@@ -1,0 +1,4 @@
+PREFABFILES = {
+"drillbot",
+"gunbot",
+}

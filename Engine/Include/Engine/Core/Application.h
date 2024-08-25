@@ -2,6 +2,7 @@
 #define APPLICATION_H
 
 #include "IProgram.h"
+#include "Scripting/ScriptCore.h"
 #include "Engine/Graphics/AssetManager.h"
 #include "Engine/Core/Systems/StateSystem.h"
 #include "Engine/Core/Systems/InputManager.h"
@@ -20,8 +21,9 @@ namespace Core
         UniquePtr<Window> m_pWindow;
         bool m_isRunning;
 
-        UniquePtr<Editor::EngineGUI> m_pEngineGUI;
+        UniquePtr<ScriptCore> m_pScriptCore;
 
+        UniquePtr<Editor::EngineGUI> m_pEngineGUI;
         UniquePtr<Graphics::AssetManager> m_pAssetManager;
         UniquePtr<Systems::InputManager> m_pInputManager;
         UniquePtr<Systems::StateSystem> m_pStateSystem;

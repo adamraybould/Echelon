@@ -14,7 +14,6 @@ namespace Core
         {
         private:
             EntityManager& m_entityManager;
-            UInt64 m_ID;
 
         public:
             Level(EntityManager& entityManager);
@@ -23,8 +22,6 @@ namespace Core
             virtual void Initialize() = 0;
             virtual void Update(float delta) = 0;
             virtual void Render(Renderer& renderer) = 0;
-
-            UInt64 GetID() const { return m_ID; }
 
             template<typename T, typename... Args>
             inline T& Instantiate(const char* name, Transform& parent, Args... args)

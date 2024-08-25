@@ -8,7 +8,7 @@ namespace Core::Systems
     class EntityManager
     {
     private:
-        Map<UInt64, UniquePtr<Entity>> m_entities;
+        Map<GUID, UniquePtr<Entity>> m_entities;
 
     public:
         EntityManager();
@@ -19,10 +19,10 @@ namespace Core::Systems
         void Render(Renderer& renderer);
 
         /* Returns an Entity with the Specified ID */
-        Entity* GetEntity(UInt64 ID);
+        Entity* GetEntityByGUID(GUID guid);
 
         /* Returns an Entity with the Specified Name */
-        Entity* GetEntity(const char* name);
+        Entity* GetEntityByName(const char* name);
 
         /* Returns an Entity at a Point in the World */
         Entity* GetEntityAtPoint(const Vector2& point);
@@ -36,7 +36,7 @@ namespace Core::Systems
             auto entity = std::make_unique<T>(std::forward<Args>(args)...);
             T& entityRef = *entity;
 
-            m_entities.insert(std::make_pair(entity->GetID(), std::move(entity)));
+            m_entities.insert(std::make_pair(entity->GetGUID(), std::move(entity)));
 
             return entityRef;
         }

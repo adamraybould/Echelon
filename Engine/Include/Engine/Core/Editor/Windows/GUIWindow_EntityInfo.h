@@ -11,7 +11,7 @@ namespace Core
     {
         class GUIWindow_EntityInfo : public GUIWindow
         {
-            const int WINDOW_WIDTH = 180;
+            const int WINDOW_WIDTH = 320;
             const int WINDOW_HEIGHT = 250;
 
         private:

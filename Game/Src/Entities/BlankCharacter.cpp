@@ -1,7 +1,5 @@
 #include "Echelon/Entities/BlankCharacter.h"
 
-#include <iostream>
-
 #include <Engine/Graphics/AssetManager.h>
 #include <Engine/Core/ECS/Components/SpriteRenderer.h>
 #include <Engine/Utility/Utility.h>

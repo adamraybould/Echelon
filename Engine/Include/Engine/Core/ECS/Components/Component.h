@@ -1,5 +1,6 @@
 #ifndef COMPONENT_H
 #define COMPONENT_H
+#include "Engine/Core/Scripting/IBinder.h"
 #include "Engine/Utility/Commons.h"
 
 namespace Core
@@ -10,13 +11,13 @@ namespace Core
     namespace Components
     {
         using namespace Core;
-        class Component
+        class Component : public IBinder
         {
         private:
             Entity& m_rOwner;
-            UInt64 m_ID;
+            GUID m_guid;
 
-            bool m_isActive{};
+            bool m_isActive;
 
         public:
             explicit Component(Entity& owner);
@@ -30,11 +31,13 @@ namespace Core
             /* Returns the Owner of this Component */
             Entity& GetOwner() const { return m_rOwner; }
 
-            /* Returns the Unique ID of this Component */
-            UInt64 GetID() const { return m_ID; }
+            /* Returns the Unique GUID of this Component */
+            GUID GetGUID() const { return m_guid; }
 
             void SetActive(bool active) { m_isActive = active; }
             bool IsActive() const { return m_isActive; }
+
+            void SetupEmbedding(lua_State* L) override;
         };
     }
 }

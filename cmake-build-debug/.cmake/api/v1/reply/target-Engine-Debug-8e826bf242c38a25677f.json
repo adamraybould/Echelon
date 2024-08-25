@@ -1,0 +1,612 @@
+{
+	"archive" : {},
+	"artifacts" : 
+	[
+		{
+			"path" : "Engine/libEngine.a"
+		}
+	],
+	"backtrace" : 2,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"_add_library",
+			"add_library",
+			"target_include_directories",
+			"target_link_libraries"
+		],
+		"files" : 
+		[
+			"C:/Users/codel/.vcpkg-clion/vcpkg/scripts/buildsystems/vcpkg.cmake",
+			"Engine/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 1
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 6,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 639,
+				"parent" : 1
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 74,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 80,
+				"parent" : 0
+			},
+			{
+				"command" : 3,
+				"file" : 1,
+				"line" : 85,
+				"parent" : 0
+			},
+			{
+				"command" : 3,
+				"file" : 1,
+				"line" : 87,
+				"parent" : 0
+			},
+			{
+				"command" : 3,
+				"file" : 1,
+				"line" : 88,
+				"parent" : 0
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "-g -std=gnu++20 -fdiagnostics-color=always"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 3,
+					"path" : "D:/Game Projects/C++/Echelon/Engine/Include"
+				},
+				{
+					"backtrace" : 4,
+					"path" : "D:/Game Projects/C++/Echelon/cmake-build-debug"
+				},
+				{
+					"backtrace" : 3,
+					"isSystem" : true,
+					"path" : "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include"
+				},
+				{
+					"backtrace" : 5,
+					"isSystem" : true,
+					"path" : "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include/SDL2"
+				}
+			],
+			"language" : "CXX",
+			"languageStandard" : 
+			{
+				"backtraces" : 
+				[
+					6,
+					7,
+					7,
+					7,
+					7,
+					7,
+					7,
+					7,
+					7,
+					7,
+					7,
+					7,
+					7,
+					7,
+					7,
+					7,
+					7,
+					7,
+					7,
+					7,
+					7,
+					7,
+					7,
+					7,
+					7
+				],
+				"standard" : "20"
+			},
+			"sourceIndexes" : 
+			[
+				1,
+				3,
+				7,
+				10,
+				12,
+				14,
+				16,
+				19,
+				21,
+				23,
+				25,
+				27,
+				29,
+				31,
+				33,
+				35,
+				37,
+				40,
+				42,
+				47,
+				50,
+				51,
+				54,
+				56,
+				60,
+				62,
+				64
+			]
+		}
+	],
+	"id" : "Engine::@8f69bdd092c897d92c1e",
+	"name" : "Engine",
+	"nameOnDisk" : "libEngine.a",
+	"paths" : 
+	{
+		"build" : "Engine",
+		"source" : "Engine"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Header Files",
+			"sourceIndexes" : 
+			[
+				0,
+				2,
+				4,
+				5,
+				6,
+				8,
+				9,
+				11,
+				13,
+				15,
+				17,
+				18,
+				20,
+				22,
+				24,
+				26,
+				28,
+				30,
+				32,
+				34,
+				36,
+				38,
+				39,
+				41,
+				43,
+				44,
+				45,
+				46,
+				48,
+				49,
+				52,
+				53,
+				55,
+				57,
+				58,
+				59,
+				61,
+				63
+			]
+		},
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				1,
+				3,
+				7,
+				10,
+				12,
+				14,
+				16,
+				19,
+				21,
+				23,
+				25,
+				27,
+				29,
+				31,
+				33,
+				35,
+				37,
+				40,
+				42,
+				47,
+				50,
+				51,
+				54,
+				56,
+				60,
+				62,
+				64
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 2,
+			"path" : "Engine/Include/Engine/Core/IProgram.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "Engine/Src/Core/Application.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"path" : "Engine/Include/Engine/Core/Application.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "Engine/Src/Core/Window.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"path" : "Engine/Include/Engine/Core/Window.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"path" : "Engine/Include/Engine/Utility/Commons.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"path" : "Engine/Include/Engine/Utility/Delegates.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "Engine/Src/Core/IProgram.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"path" : "Engine/Include/Engine/Utility/MathF.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"path" : "Engine/Include/Engine/Core/Systems/StateSystem.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "Engine/Src/Core/Systems/StateSystem.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"path" : "Engine/Include/Engine/States/GameState.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "Engine/Src/States/GameState.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"path" : "Engine/Include/Engine/Core/ECS/Entity.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "Engine/Src/Core/ECS/Entity.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"path" : "Engine/Include/Engine/Core/ECS/Components/Component.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "Engine/Src/Core/ECS/Components/Component.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"path" : "Engine/Include/Engine/Utility/Utility.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"path" : "Engine/Include/Engine/Graphics/Texture2D.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "Engine/Src/Graphics/Texture2D.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"path" : "Engine/Include/Engine/Graphics/AssetManager.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "Engine/Src/Graphics/AssetManager.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"path" : "Engine/Include/Engine/Core/ECS/Components/SpriteRenderer.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "Engine/Src/Core/ECS/Components/SpriteRenderer.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"path" : "Engine/Include/Engine/Graphics/Sprite.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "Engine/Src/Graphics/Sprite.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"path" : "Engine/Include/Engine/States/Level.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "Engine/Src/States/Level.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"path" : "Engine/Include/Engine/Core/Systems/LevelManager.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "Engine/Src/Core/Systems/LevelManager.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"path" : "Engine/Include/Engine/Core/Systems/EntityManager.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "Engine/Src/Core/Systems/EntityManager.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"path" : "Engine/Include/Engine/Graphics/SpriteSheet.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "Engine/Src/Graphics/SpriteSheet.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"path" : "Engine/Include/Engine/Core/Systems/InputManager.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "Engine/Src/Core/Systems/InputManager.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"path" : "Engine/Include/Engine/Core/Camera.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "Engine/Src/Core/Camera.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"path" : "Engine/Include/Engine/Utility/Constants.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"path" : "Engine/Include/Engine/Core/Renderer.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "Engine/Src/Core/Renderer.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"path" : "Engine/Include/Engine/Core/ECS/Components/Transform.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "Engine/Src/Core/ECS/Components/Transform.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"path" : "Engine/Include/Engine/Core/Maths/Vector2.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"path" : "Engine/Include/Engine/Core/Maths/Quaternion.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"path" : "Engine/Include/Engine/Core/Maths/Rectangle.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"path" : "Engine/Include/Engine/Core/Editor/EngineGUI.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "Engine/Src/Core/Editor/EngineGUI.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"path" : "Engine/Include/Engine/Core/Editor/GUIWindow.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"path" : "Engine/Include/Engine/Core/Editor/Windows/GUIWindow_EntityInfo.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "Engine/Src/Core/Editor/Windows/GUIWindow_EntityInfo.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "Engine/Src/Core/Scripting/ScriptCore.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"path" : "Engine/Include/Engine/Core/Scripting/ScriptCore.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"path" : "Engine/Include/Engine/Core/Scripting/IBinder.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "Engine/Src/Core/Scripting/IBinder.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"path" : "Engine/Include/Engine/Core/World.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "Engine/Src/Core/World.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"path" : "Engine/Include/Engine/Core/Scripting/ScriptUtils.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"path" : "Engine/Include/Engine/Core/Scripting/EntityInterface.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"path" : "Engine/Include/Engine/Core/Scripting/ScriptComponent.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "Engine/Src/Core/Scripting/ScriptComponent.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"path" : "Engine/Include/Engine/Core/Scripting/Prefab.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "Engine/Src/Core/Scripting/Prefab.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"path" : "Engine/Include/Engine/Core/God.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "Engine/Src/Core/God.cpp",
+			"sourceGroupIndex" : 1
+		}
+	],
+	"type" : "STATIC_LIBRARY"
+}

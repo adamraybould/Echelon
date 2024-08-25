@@ -49,9 +49,9 @@ namespace Core::Systems
         }
     }
 
-    Entity* EntityManager::GetEntity(const UInt64 ID)
+    Entity* EntityManager::GetEntityByGUID(GUID guid)
     {
-        Map<UInt64, UniquePtr<Entity>>::iterator i = m_entities.find(ID);
+        Map<GUID, UniquePtr<Entity>>::iterator i = m_entities.find(guid);
         if (i != m_entities.end())
         {
             return i->second.get();
@@ -62,7 +62,7 @@ namespace Core::Systems
         }
     }
 
-    Entity* EntityManager::GetEntity(const char* name)
+    Entity* EntityManager::GetEntityByName(const char* name)
     {
         for (auto i = m_entities.begin(); i != m_entities.end(); ++i)
         {

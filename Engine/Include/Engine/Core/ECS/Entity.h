@@ -1,16 +1,16 @@
 #ifndef ENTITY_H
 #define ENTITY_H
+#include "Engine/Core/Scripting/IBinder.h"
 #include "Components/Component.h"
 #include "Components/Transform.h"
-#include "Engine/Utility/Commons.h"
 
 using namespace Core::Components;
 namespace Core
 {
-    class Entity
+    class Entity : public IBinder
     {
     private:
-        UInt64 m_ID;
+        GUID m_guid;
         const char* m_name;
 
         Rectangle m_bounds;
@@ -22,7 +22,7 @@ namespace Core
         Entity(const char* name);
         virtual ~Entity();
 
-        virtual void Initialize() = 0;
+        virtual void Initialize();
         virtual void Update(float delta);
         virtual void Render(Renderer& renderer);
 
@@ -31,10 +31,17 @@ namespace Core
         void SetBounds(const Rectangle rect) { m_bounds = rect; }
         Rectangle GetBounds() const { return m_bounds; }
 
-        UInt32 GetID() const { return m_ID; }
+        Component& AddTransform();
+
+        /* Returns the Entity GUID */
+        GUID GetGUID() const { return m_guid; }
+
+        void SetName(const char* name) { m_name = name; }
         const char* GetName() const { return m_name; }
 
         Transform& GetTransform() const { return *m_transform; }
+
+        void SetupEmbedding(lua_State* L) override;
 
         template<typename T, typename... Args>
         T& AddComponent(Args&&... args)

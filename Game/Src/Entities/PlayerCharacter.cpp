@@ -2,7 +2,7 @@
 #include "Engine/Core/ECS/Components/SpriteRenderer.h"
 #include "Engine/Graphics/AssetManager.h"
 #include "Echelon/Entities/Components/PlayerController.h"
-#include "../../../Engine/Include/Engine/Core/Camera.h"
+#include "Engine/Core/Camera.h"
 
 namespace Echelon::Entities
 {
@@ -12,7 +12,6 @@ namespace Echelon::Entities
         m_renderer = &AddComponent<SpriteRenderer>(spriteSheet);
 
         m_playerController = &AddComponent<PlayerController>();
-
     }
 
     void PlayerCharacter::Initialize()

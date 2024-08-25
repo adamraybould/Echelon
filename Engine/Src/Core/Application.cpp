@@ -31,6 +31,8 @@ namespace Core
         m_isRunning = true;
         m_prevTime = SDL_GetTicks();
 
+        m_pScriptCore->SetupBindings();
+
         // Initialize Systems
         m_pStateSystem->Initialize();
 
@@ -48,8 +50,9 @@ namespace Core
 
     void Application::Clean()
     {
-        m_pEngineGUI.reset();
+        m_pScriptCore.reset();
 
+        m_pEngineGUI.reset();
         m_pAssetManager.reset();
         m_pStateSystem.reset();
         m_pInputManager.reset();
@@ -128,6 +131,9 @@ namespace Core
 
     void Application::Initialize()
     {
+        // Initialise Lua Embedding
+        m_pScriptCore = std::make_unique<ScriptCore>();
+
         if (SDL_Init(SDL_INIT_VIDEO) < 0)
         {
             DisplayError("SDL could not Initialize! SDL_ERROR:", "SDL Error", true);
@@ -149,7 +155,7 @@ namespace Core
             exit(1);
         }
 
-        // Initialize Systems
+        // Initialise Systems
         m_pStateSystem = std::make_unique<StateSystem>();
         m_pStateSystem->AddState<States::GameState>(true);
 

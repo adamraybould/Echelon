@@ -73,9 +73,9 @@ namespace Core::Editor
 
         if (ImGui::Begin("Entity Info", &m_isActive, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoCollapse))
         {
-            ImGui::Text("ID: %u", m_pEntity->GetID());
+            ImGui::Text("GUID: %s", m_pEntity->GetGUID().c_str());
             ImGui::Text("Name: %s", m_pEntity->GetName());
-            ImGui::Text("Position: (%.1f, %1.f)", entityWorldPosition.X, entityWorldPosition.Y);
+            ImGui::Text("Position: (%.1f, %.1f)", entityWorldPosition.X, entityWorldPosition.Y);
 
             ImGui::Spacing();
             ImGui::Separator();

@@ -100,3 +100,30 @@ Multi-Arch: same
 Description: Make available SDL2 Renderer binding
 Status: install ok installed
 
+Package: lua
+Version: 5.4.6
+Depends: vcpkg-cmake:x64-windows, vcpkg-cmake-config:x64-windows
+Architecture: x86-mingw-dynamic
+Multi-Arch: same
+Abi: f00ac5f9dc2f61a1beaa927423f8be11926ce6b9e5509723febd4e560eacc2f8
+Description: A powerful, fast, lightweight, embeddable scripting language
+Status: install ok installed
+
+Package: luabridge3
+Version: 3.0-rc3
+Architecture: x86-mingw-dynamic
+Multi-Arch: same
+Abi: c3229607b817d16f8183bfe48751b9d67a802f28fc7493500f545053820e51fb
+Description: A lightweight, dependency-free, suitable for game development library for binding Lua to C++17
+Status: install ok installed
+
+Package: crossguid
+Version: 2021-10-22
+Port-Version: 3
+Depends: vcpkg-cmake:x64-windows, vcpkg-cmake-config:x64-windows
+Architecture: x86-mingw-dynamic
+Multi-Arch: same
+Abi: c96179a85f0548776d33921094369f7da19c78089788b34ccff535318c26bab3
+Description: CrossGuid is a minimal, cross platform, C++ GUID library.
+Status: install ok installed
+

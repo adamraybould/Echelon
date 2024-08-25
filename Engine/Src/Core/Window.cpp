@@ -2,8 +2,8 @@
 #include "Engine/Utility/Constants.h"
 #include <SDL.h>
 #include <SDL_image.h>
-
 #include "Engine/Core/Renderer.h"
+#include "config.h"
 
 namespace Core
 {
@@ -41,7 +41,8 @@ namespace Core
 
     bool Window::SetIcon()
     {
-        SDL_Surface* icon = IMG_Load("Icon.png");
+        std::string path = std::string(ASSETS_PATH) + "Icon.png";
+        SDL_Surface* icon = IMG_Load(path.c_str());
         if (icon == nullptr)
             return false;
 

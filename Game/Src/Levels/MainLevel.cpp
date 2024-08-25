@@ -8,6 +8,7 @@
 
 #include "Echelon/Entities/Mobs/Drillbot.h"
 #include "Echelon/Entities/Mobs/Gunbot.h"
+#include "Engine/Core/God.h"
 
 using namespace Core;
 using namespace Mobs;
@@ -25,9 +26,16 @@ namespace Echelon::Levels
         Gunbot& gunbot = Instantiate<Gunbot>("Gunbot 1.0", GetRandomPositionOnScreen());
         Drillbot& drillbot = Instantiate<Drillbot>("Drillbot 0.5", GetRandomPositionOnScreen());
 
+        m_pGod = std::make_unique<God>();
+
         Entity* camera = Camera::Main;
         if (camera != nullptr)
             camera->AddComponent<CameraFollow>(*m_pPlayer);
+    }
+
+    MainLevel::~MainLevel()
+    {
+        m_pGod.reset();
     }
 
     void MainLevel::Initialize()

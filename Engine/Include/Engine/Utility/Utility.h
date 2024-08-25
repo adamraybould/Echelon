@@ -2,24 +2,17 @@
 #define UTILITY_H
 #include <chrono>
 #include <random>
-#include "Commons.h"
+#include <crossguid/guid.hpp>
 
 namespace Core
 {
     class Utility
     {
-    private:
-        static UInt64 IDCounter;
-
     public:
-        static UInt64 GenerateUniqueID()
+        static GUID GenerateGUID()
         {
-            auto now = std::chrono::high_resolution_clock::now();
-            auto timestamp = std::chrono::duration_cast<std::chrono::microseconds>(now.time_since_epoch()).count();
-
-            IDCounter++;
-            Uint64 ID = (timestamp << 32) | IDCounter;
-            return ID;
+            xg::Guid guid = xg::newGuid();
+            return guid.str();
         }
     };
 

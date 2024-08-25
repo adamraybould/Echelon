@@ -20,12 +20,18 @@
   }, {
     "name" : "imgui",
     "version>=" : "1.91.0",
-    "features": [
-      "sdl2-binding",
-      "sdl2-renderer-binding"
-    ]
+    "features" : [ "sdl2-binding", "sdl2-renderer-binding" ]
   }, {
     "name" : "jsoncpp",
     "version>=" : "1.9.5#4"
+  }, {
+    "name" : "lua",
+    "version>=" : "5.4.6"
+  }, {
+    "name" : "luabridge3",
+    "version>=" : "3.0-rc3"
+  }, {
+    "name" : "crossguid",
+    "version>=" : "2021-10-22#3"
   } ]
 }
