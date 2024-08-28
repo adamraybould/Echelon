@@ -3,14 +3,14 @@
 #include "Engine/Core/Window.h"
 #include "Engine/Core/Editor/Windows/GUIWindow_EntityInfo.h"
 #include "Engine/Core/Systems/EntityManager.h"
-#include "Engine/Core/Systems/InputManager.h"
+#include "Engine/Core/Systems/Input.h"
 #include "Engine/Core/Systems/StateSystem.h"
 #include "Engine/Core/Renderer.h"
 #include "Engine/States/GameState.h"
 
 namespace Core::Editor
 {
-    EngineGUI::EngineGUI(Window& window, StateSystem& stateSystem, InputManager& inputManager) : m_window(window), m_stateSystem(stateSystem), m_inputManager(inputManager)
+    EngineGUI::EngineGUI(Window& window, StateSystem& stateSystem, Input& inputManager) : m_window(window), m_stateSystem(stateSystem), m_inputManager(inputManager)
     {
         IMGUI_CHECKVERSION();
         ImGui::CreateContext();
@@ -29,7 +29,7 @@ namespace Core::Editor
         m_windows.push_back(std::make_unique<GUIWindow_EntityInfo>(*this));
 
         // Setup Callbacks
-        InputManager::OnMouseLeftClick.AddListener(std::bind(&EngineGUI::DisplayEntityInfo, this));
+        Input::OnMouseLeftClick.AddListener(std::bind(&EngineGUI::DisplayEntityInfo, this));
     }
 
     EngineGUI::~EngineGUI()

@@ -28,6 +28,8 @@ namespace Core
 
         m_pRenderer = std::make_unique<Renderer>(*renderer);
 
+        SDL_RenderSetIntegerScale(*m_pRenderer, SDL_TRUE);
+
         if (!SetIcon())
             return false;
 

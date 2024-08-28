@@ -30,15 +30,19 @@ namespace Core::Components
         Array<Transform*>& GetChildren() { return m_children; }
 
         void SetWorldPosition(const Vector2& position);
+        void SetWorldPositionL(LRef position);
         void AddWorldPosition(const Vector2& position);
+        void AddWorldPositionL(LRef position);
         Vector2 GetWorldPosition() const;
 
         void SetWorldRotation(float rotation);
         float GetWorldRotation() const;
 
         void SetWorldScale(const Vector2& scale);
+        void SetWorldScaleRaw(float x, float y);
         Vector2 GetWorldScale() const;
 
+        void SetupEmbedding(lua_State* L) override;
     private:
         Vector2 Rotate(const Vector2& point, float angle) const;
     };

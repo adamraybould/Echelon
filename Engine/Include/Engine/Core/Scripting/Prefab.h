@@ -6,23 +6,60 @@ namespace Core
 {
     namespace Scripting
     {
+        enum AssetType
+        {
+            NIL,
+            SPRITE,
+            SOUND
+        };
+
+        struct PrefabAsset
+        {
+        private:
+            AssetType m_type;
+            String m_path;
+            int m_param;
+
+        public:
+            PrefabAsset(const AssetType type, const String& path, const int param)
+            {
+                m_type = type;
+                m_path = path;
+                m_param = param;
+            }
+
+            AssetType GetType() const { return m_type; }
+            String GetPath() { return m_path; }
+
+            bool HasParams() const { return m_param != -1; }
+            int GetParam() const { return m_param; }
+        };
+
         using namespace luabridge;
         class Prefab : public IBinder
         {
         private:
-            lua_State* m_self;
-            const char* m_name = "";
-            UniquePtr<LuaRef> m_fn;
+            LState* m_pSelf;
+
+            String m_name;
+            UniquePtr<LRef> m_pPrefab = nullptr;
+            Array<UniquePtr<PrefabAsset>> m_assets;
 
         public:
-            Prefab(lua_State* self, const char* name, LuaRef fn);
-            ~Prefab();
-            void SetupEmbedding(lua_State* L) override;
+            Prefab(LState* self, const String& name, const LRef& prefab);
+            ~Prefab() override;
 
+            void SetupEmbedding(LState* L) override;
             GUID CallFn();
 
-            void SetName(const char* name) { m_name = name; }
-            const char* GetName() const { return m_name; }
+            PrefabAsset* GetAsset(AssetType type) const;
+
+            LRef& GetPrefab() const { return *m_pPrefab;}
+            bool IsValid() const;
+
+        private:
+            void ProcessAssets(LState* L, const LRef& assets);
+            void RegisterAsset(LState* L, const LRef& asset);
         };
     }
 }

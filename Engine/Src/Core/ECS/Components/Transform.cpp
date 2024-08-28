@@ -62,10 +62,20 @@ namespace Core::Components
         }
     }
 
+    void Transform::SetWorldPositionL(LRef position)
+    {
+        SetWorldPosition(Vector2(position["x"], position["y"]));
+    }
+
     void Transform::AddWorldPosition(const Vector2& position)
     {
         Vector2 newPosition = GetWorldPosition() + position;
         SetWorldPosition(newPosition);
+    }
+
+    void Transform::AddWorldPositionL(LRef position)
+    {
+        AddWorldPosition(Vector2(position["x"], position["y"]));
     }
 
     Vector2 Transform::GetWorldPosition() const
@@ -121,6 +131,11 @@ namespace Core::Components
         }
     }
 
+    void Transform::SetWorldScaleRaw(float x, float y)
+    {
+        SetWorldScale(Vector2(x, y));
+    }
+
     Vector2 Transform::GetWorldScale() const
     {
         if (HasParent())
@@ -131,6 +146,21 @@ namespace Core::Components
         {
             return Scale;
         }
+    }
+
+    void Transform::SetupEmbedding(lua_State* L)
+    {
+        Component::SetupEmbedding(L);
+
+        BindFunction<Transform>(L, "SetPosition", &Transform::SetWorldPositionL);
+        BindFunction<Transform>(L, "AddPosition", &Transform::AddWorldPositionL);
+        BindFunction<Transform>(L, "GetWorldPosition", &Transform::GetWorldPosition);
+
+        BindFunction<Transform>(L, "SetRotation", &Transform::SetWorldRotation);
+        BindFunction<Transform>(L, "GetRotation", &Transform::GetWorldRotation);
+
+        BindFunction<Transform>(L, "SetScale", &Transform::SetWorldScaleRaw);
+        BindFunction<Transform>(L, "GetScale", &Transform::GetWorldScale);
     }
 
     Vector2 Transform::Rotate(const Vector2& point, float angle) const

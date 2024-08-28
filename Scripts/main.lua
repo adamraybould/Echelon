@@ -1,17 +1,19 @@
 ---@class Main
 
+require("constants")
+require("vector2")
+require("util")
 require("prefablist")
 require("class")
 require("prefab")
 require("entity")
-
-function ScriptPath()
-	local str = debug.getinfo(2, "S").source:sub(2)
-	return str:match("(.*/)")
-end
+require("update")
 
 Prefabs = {}
 Entities = {}
+UpdatingEntities = {}
+NewUpdatingEntities = {}
+StopUpdatingEntities = {}
 
 function CreateEntity(name)
 	local base = God:CreateEntity()
@@ -30,13 +32,20 @@ function SpawnPrefab(name)
 	name = string.sub(name, string.find(name, "[^/]*$"))
 
 	local guid = God:SpawnPrefab(name)
-	Entities[guid].name = name
+	Entities[guid]:SetName(name)
 	return Entities[guid]
 end
 
+function SpawnMultiplePrefabs(name, num)
+	for i = 1, num, 1 do
+		SpawnPrefab(name)
+	end
+end
+
 function RegisterPrefab(prefab)
+
 	Prefabs[prefab.name] = prefab
-	God:RegisterPrefab(prefab.name)
+	God:RegisterPrefab(prefab.name, prefab)
 end
 
 PREFABDEFINITIONS = {}
@@ -44,7 +53,6 @@ PREFABDEFINITIONS = {}
 function LoadPrefab(prefabFile)
 	local path = prefabFile .. ".lua"
 
-	print("Loading Prefab File: ".. prefabFile);
 	local prefab = loadfile(path)
 	assert(prefab, "Failed to load Prefab: '".. prefabFile.. "' at '"..path.."'")
 	if type(prefab) == "string" then
@@ -90,5 +98,8 @@ end
 
 -- Register Prefabs
 for i, file in ipairs(PREFABFILES) do
-	LoadPrefab(ScriptPath().. "Prefabs/".. file)
+	LoadPrefab(GetScriptPath().. "Prefabs/".. file)
 end
+
+-- Run Test Script
+require("testscript")

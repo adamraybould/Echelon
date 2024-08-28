@@ -38,8 +38,8 @@ add_library(Engine STATIC
         Src/Core/Systems/EntityManager.cpp
         Include/Engine/Graphics/SpriteSheet.h
         Src/Graphics/SpriteSheet.cpp
-        Include/Engine/Core/Systems/InputManager.h
-        Src/Core/Systems/InputManager.cpp
+        Include/Engine/Core/Systems/Input.h
+        Src/Core/Systems/Input.cpp
         Include/Engine/Core/Camera.h
         Src/Core/Camera.cpp
         Include/Engine/Utility/Constants.h
@@ -59,12 +59,7 @@ add_library(Engine STATIC
         Include/Engine/Core/Scripting/ScriptCore.h
         Include/Engine/Core/Scripting/IBinder.h
         Src/Core/Scripting/IBinder.cpp
-        Include/Engine/Core/World.h
-        Src/Core/World.cpp
-        Include/Engine/Core/Scripting/ScriptUtils.h
         Include/Engine/Core/Scripting/EntityInterface.h
-        Include/Engine/Core/Scripting/ScriptComponent.h
-        Src/Core/Scripting/ScriptComponent.cpp
         Include/Engine/Core/Scripting/Prefab.h
         Src/Core/Scripting/Prefab.cpp
         Include/Engine/Core/God.h
@@ -88,3 +83,4 @@ target_link_libraries(Engine PRIVATE imgui::imgui)
 target_link_libraries(Engine PRIVATE JsonCpp::JsonCpp)
 target_link_libraries(Engine PRIVATE ${LUA_LIBRARIES})
 target_link_libraries(Engine PRIVATE crossguid)
+target_link_libraries(Engine PRIVATE magic_enum::magic_enum)

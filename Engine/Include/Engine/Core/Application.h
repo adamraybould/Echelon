@@ -1,11 +1,12 @@
 #ifndef APPLICATION_H
 #define APPLICATION_H
 
+#include "God.h"
 #include "IProgram.h"
 #include "Scripting/ScriptCore.h"
 #include "Engine/Graphics/AssetManager.h"
 #include "Engine/Core/Systems/StateSystem.h"
-#include "Engine/Core/Systems/InputManager.h"
+#include "Engine/Core/Systems/Input.h"
 #include "Window.h"
 #include "Engine/Utility/Commons.h"
 
@@ -21,11 +22,12 @@ namespace Core
         UniquePtr<Window> m_pWindow;
         bool m_isRunning;
 
+        UniquePtr<God> m_pGod;
         UniquePtr<ScriptCore> m_pScriptCore;
 
         UniquePtr<Editor::EngineGUI> m_pEngineGUI;
         UniquePtr<Graphics::AssetManager> m_pAssetManager;
-        UniquePtr<Systems::InputManager> m_pInputManager;
+        UniquePtr<Systems::Input> m_pInputManager;
         UniquePtr<Systems::StateSystem> m_pStateSystem;
 
         UInt32 m_currentTime;

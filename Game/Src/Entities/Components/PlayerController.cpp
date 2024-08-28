@@ -3,7 +3,7 @@
 #include <iostream>
 
 #include <Engine/Core/ECS/Entity.h>
-#include <Engine/Core/Systems/InputManager.h>
+#include <Engine/Core/Systems/Input.h>
 
 using namespace Core::Systems;
 namespace Echelon::Entities::Components
@@ -37,30 +37,30 @@ namespace Echelon::Entities::Components
     {
         Vector2 movementDirection = Vector2::Zero();
 
-        if (InputManager::IsKeyDown(Keys::W))
+        if (Input::IsKeyDown(Keys::W))
         {
             movementDirection = Vector2(movementDirection.X, -1.0f);
             m_pSpriteRenderer->SetSpriteFrame(1);
         }
-        else if (InputManager::IsKeyDown(Keys::S))
+        else if (Input::IsKeyDown(Keys::S))
         {
             movementDirection = Vector2(movementDirection.X, 1.0f);
             m_pSpriteRenderer->SetSpriteFrame(0);
         }
 
-        if (InputManager::IsKeyDown(Keys::A))
+        if (Input::IsKeyDown(Keys::A))
         {
             movementDirection = Vector2(-1.0f ,movementDirection.Y);
             m_pSpriteRenderer->SetSpriteFrame(3);
         }
-        else if (InputManager::IsKeyDown(Keys::D))
+        else if (Input::IsKeyDown(Keys::D))
         {
             movementDirection = Vector2(1.0f ,movementDirection.Y);
             m_pSpriteRenderer->SetSpriteFrame(2);
         }
 
         // Sprint
-        if (InputManager::IsKeyDown(Keys::SHIFT))
+        if (Input::IsKeyDown(Keys::SHIFT))
         {
             m_isSprinting = true;
         }

@@ -12,11 +12,14 @@ namespace Core
         class SpriteRenderer : public Component
         {
         private:
-            Sprite& m_sprite;
+            Sprite* m_pSprite;
             UInt m_flipped;
 
+            Vector2 m_spriteScale;
+
         public:
-            SpriteRenderer(Entity& owner, Sprite& sprite);
+            SpriteRenderer(Entity& owner);
+            void SetupEmbedding(lua_State* L) override;
 
             void Initialize() override;
             void Update(float delta) override;
@@ -24,7 +27,7 @@ namespace Core
             void Destroy() override;
 
             /* Sets the Sprite source rect to a new Frame. Only works with Sprite Sheets */
-            void SetSpriteFrame(UInt frameIndex) const;
+            void SetSpriteFrame(int frameIndex) const;
 
             Sprite& GetSprite() const;
         };

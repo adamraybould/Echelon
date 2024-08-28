@@ -2,12 +2,14 @@
 
 #include <imgui.h>
 #include <iostream>
+#include <cctype>
 
 #include "Engine/Core/Window.h"
 #include "Engine/Core/ECS/Entity.h"
 #include "Engine/Core/ECS/Components/SpriteRenderer.h"
 #include "../../../../Include/Engine/Core/Renderer.h"
 #include "../../../../Include/Engine/Core/Camera.h"
+#include "Engine/Core/Scripting/Prefab.h"
 #include "Engine/Utility/Constants.h"
 #include "Engine/Utility/MathF.h"
 
@@ -73,9 +75,22 @@ namespace Core::Editor
 
         if (ImGui::Begin("Entity Info", &m_isActive, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoCollapse))
         {
+            String prefabName = m_pEntity->GetName();
+            prefabName[0] = std::toupper(prefabName[0]);
+
             ImGui::Text("GUID: %s", m_pEntity->GetGUID().c_str());
-            ImGui::Text("Name: %s", m_pEntity->GetName());
+            ImGui::Text("Prefab: %s", prefabName.c_str());
             ImGui::Text("Position: (%.1f, %.1f)", entityWorldPosition.X, entityWorldPosition.Y);
+
+            if (m_pEntity->HasPrefab())
+            {
+                LRef entityRef = luabridge::getGlobal(ScriptCore::Instance()->GetLuaState(), "Entities")[m_pEntity->GetGUID()];
+                LRef healthRef = entityRef["components"]["health"];
+                if (!healthRef.isNil())
+                {
+                    ImGui::Text("Health: %s", healthRef["health"].tostring().c_str());
+                }
+            }
 
             ImGui::Spacing();
             ImGui::Separator();

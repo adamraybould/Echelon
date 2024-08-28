@@ -7,19 +7,25 @@
 using namespace Core::Components;
 namespace Core
 {
+    namespace Scripting { class Prefab; }
+
+    using namespace Scripting;
     class Entity : public IBinder
     {
     private:
+        Prefab* m_prefab = nullptr;
+
         GUID m_guid;
-        const char* m_name;
+        String m_name;
 
         Rectangle m_bounds;
         Transform* m_transform;
 
         Array<UniquePtr<Component>> m_components;
+        Array<String> m_tags;
 
     public:
-        Entity(const char* name);
+        Entity(String name);
         virtual ~Entity();
 
         virtual void Initialize();
@@ -31,15 +37,24 @@ namespace Core
         void SetBounds(const Rectangle rect) { m_bounds = rect; }
         Rectangle GetBounds() const { return m_bounds; }
 
-        Component& AddTransform();
+        Prefab& GetPrefab() const { return *m_prefab; }
+        bool HasPrefab() const { return m_prefab != nullptr; }
 
         /* Returns the Entity GUID */
         GUID GetGUID() const { return m_guid; }
 
-        void SetName(const char* name) { m_name = name; }
-        const char* GetName() const { return m_name; }
+        void SetName(const String& name);
+        String GetName() const { return m_name; }
+
+        Component& AddTransform();
+        void AddTransformL(LState* L);
+        void AddRenderer(LState* L);
 
         Transform& GetTransform() const { return *m_transform; }
+
+        void AddTag(const String& tag);
+        void RemoveTag(const String& tag);
+        bool HasTag(const String& tag) const;
 
         void SetupEmbedding(lua_State* L) override;
 

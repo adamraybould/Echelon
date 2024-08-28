@@ -1,6 +1,9 @@
 #ifndef VECTOR2_H
 #define VECTOR2_H
 #include <cmath>
+#include <string>
+
+using String = std::string;
 
 struct SDL_Point;
 namespace Core::Maths
@@ -58,6 +61,8 @@ namespace Core::Maths
         Vector2& operator/=(const float scale) { X /= scale; Y /= scale; return *this; }
         bool operator==(const Vector2& rhs) const { return (X == rhs.X) && (Y == rhs.Y); }
         bool operator!=(const Vector2& rhs) const { return (X != rhs.X) && (Y != rhs.Y); }
+
+        String ToString() const { return "Vector2(" + std::to_string(X) + ", " + std::to_string(Y) + ")"; }
 
         static Vector2 One() { return Vector2(1.0f, 1.0f); }
         static Vector2 Zero() { return Vector2(0.0f, 0.0f); }

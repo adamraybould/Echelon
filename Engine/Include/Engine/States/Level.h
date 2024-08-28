@@ -19,7 +19,7 @@ namespace Core
             Level(EntityManager& entityManager);
             virtual ~Level();
 
-            virtual void Initialize() = 0;
+            virtual void Initialize();
             virtual void Update(float delta) = 0;
             virtual void Render(Renderer& renderer) = 0;
 

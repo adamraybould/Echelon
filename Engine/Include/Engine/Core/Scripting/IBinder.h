@@ -5,6 +5,9 @@
 #include "ScriptCore.h"
 #include <luabridge3/LuaBridge/LuaBridge.h>
 
+using LState = lua_State;
+using LRef = luabridge::LuaRef;
+
 namespace Core
 {
     class IBinder
@@ -49,6 +52,13 @@ namespace Core
         {
             using namespace luabridge;
             getGlobalNamespace(L).beginNamespace(nsName).beginClass<T>(typeid(T).name()).addProperty(propertyName, get, set).endClass().endNamespace();
+        }
+
+        template <typename T, typename Getter>
+        void BindProperty(lua_State* L, const char* nsName, const char* propertyName, Getter get)
+        {
+            using namespace luabridge;
+            getGlobalNamespace(L).beginNamespace(nsName).addProperty(propertyName, get).endNamespace();
         }
 
         template <typename Func>

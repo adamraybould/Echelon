@@ -19,6 +19,7 @@ find_package(imgui CONFIG REQUIRED)
 find_package(jsoncpp CONFIG REQUIRED)
 find_package(Lua REQUIRED)
 find_package(crossguid CONFIG REQUIRED)
+find_package(magic_enum CONFIG REQUIRED)
 
 add_subdirectory(Engine)
 add_subdirectory(Game)

@@ -8,15 +8,17 @@ namespace Echelon::Entities
 {
     PlayerCharacter::PlayerCharacter(const char* name) : Entity(name)
     {
+        AddTransform();
+
         SpriteSheet& spriteSheet = AssetManager::LoadSpriteSheet("Characters/SS_HumanBase");
-        m_renderer = &AddComponent<SpriteRenderer>(spriteSheet);
+        m_renderer = &AddComponent<SpriteRenderer>();
 
         m_playerController = &AddComponent<PlayerController>();
     }
 
     void PlayerCharacter::Initialize()
     {
-        GetTransform().Scale = Vector2(3.0f, 3.0f);
+        Entity::Initialize();
 
         //GetTransform().AddChild(Camera::Main()->GetTransform());
         //Camera::Main()->GetTransform().SetParent(GetTransform());

@@ -18,7 +18,8 @@ using UInt = unsigned int;
 using UInt32 = Uint32;
 using UInt64 = int64_t;
 
-using GUID = std::string;
+using String = std::string;
+using GUID = String;
 
 template <typename T> using Array = std::vector<T>;
 template <typename Key, typename Value> using Map = std::map<Key, Value>;

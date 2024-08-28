@@ -31,7 +31,7 @@ namespace Core
         m_isRunning = true;
         m_prevTime = SDL_GetTicks();
 
-        m_pScriptCore->SetupBindings();
+        //m_pScriptCore->SetupBindings();
 
         // Initialize Systems
         m_pStateSystem->Initialize();
@@ -51,6 +51,7 @@ namespace Core
     void Application::Clean()
     {
         m_pScriptCore.reset();
+        m_pGod.reset();
 
         m_pEngineGUI.reset();
         m_pAssetManager.reset();
@@ -110,6 +111,7 @@ namespace Core
         m_pWindow->GetRenderer().Update(deltaTime);
         m_pEngineGUI->Update(deltaTime);
         m_pStateSystem->Update(deltaTime);
+        m_pScriptCore->Update(deltaTime);
     }
 
     void Application::Render() const
@@ -118,6 +120,7 @@ namespace Core
         m_pWindow->GetRenderer().RenderScreen();
 
         m_pStateSystem->Render(GetRenderer());
+        m_pScriptCore->Render(GetRenderer());
 
         m_pEngineGUI->RenderImGui(GetRenderer());
         GetRenderer().PresentScreen();
@@ -133,6 +136,7 @@ namespace Core
     {
         // Initialise Lua Embedding
         m_pScriptCore = std::make_unique<ScriptCore>();
+        m_pGod = std::make_unique<God>();
 
         if (SDL_Init(SDL_INIT_VIDEO) < 0)
         {
@@ -156,13 +160,14 @@ namespace Core
         }
 
         // Initialise Systems
+        m_pAssetManager = std::make_unique<Graphics::AssetManager>(m_pWindow->GetRenderer());
+
+        m_pInputManager = std::make_unique<Input>(GetRenderer().GetCamera());
+        m_pScriptCore->SetupBindings();
+
         m_pStateSystem = std::make_unique<StateSystem>();
         m_pStateSystem->AddState<States::GameState>(true);
 
-        m_pInputManager = std::make_unique<InputManager>(GetRenderer().GetCamera());
-
         m_pEngineGUI = std::make_unique<Editor::EngineGUI>(*m_pWindow, *m_pStateSystem, *m_pInputManager);
-
-        m_pAssetManager = std::make_unique<Graphics::AssetManager>(m_pWindow->GetRenderer());
     }
 }

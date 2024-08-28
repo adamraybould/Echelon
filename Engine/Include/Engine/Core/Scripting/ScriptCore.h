@@ -23,6 +23,7 @@ namespace luabridge
 namespace Core
 {
     class IBinder;
+    class Renderer;
 
     class ScriptCore
     {
@@ -37,10 +38,13 @@ namespace Core
         ScriptCore();
         ~ScriptCore();
 
+        void Update(float delta);
+        void Render(Renderer& renderer);
+
         void AddBinder(IBinder* binder);
         void SetupBindings();
 
-        bool LoadScript(const char* fileName);
+        bool LoadScript(const char* fileName) const;
 
         lua_State* GetLuaState() const { return L; }
 
@@ -48,6 +52,8 @@ namespace Core
 
     private:
         void SetupScriptPath() const;
+
+        void SetupEmbedding();
 
         static void GeneratePrefabsList();
         static Array<std::string> GetLuaFiles(const std::string directory);

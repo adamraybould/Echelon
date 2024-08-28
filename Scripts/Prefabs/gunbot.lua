@@ -1,9 +1,25 @@
 
-local function fn()
-	local inst = CreateEntity() -- Called from main.lua
+local assets =
+{
+	Asset("SPRITE", "Mobs/Robots/gunbot", 36)
+}
 
-	print("Gunbot Online")
+local function fn()
+	local inst = CreateEntity()
+
+	inst.entity:AddTransform()
+	inst.entity:AddRenderer()
+
+	inst.Transform:SetPosition(Vector2(GetRandomRange(-500, 500), GetRandomRange(-500, 500)))
+
+	inst:AddComponent("health")
+	inst.components.health:SetMaxHealth(100)
+
+	--inst:AddComponent("movement")
+
+	inst:AddTag("robot")
+
 	return inst
 end
 
-return Prefab("gunbot", fn)
+return Prefab("gunbot", fn, assets)

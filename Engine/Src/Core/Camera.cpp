@@ -1,5 +1,5 @@
 #include "Engine/Core/Camera.h"
-#include "Engine/Core/Systems/InputManager.h"
+#include "Engine/Core/Systems/Input.h"
 #include "Engine/Utility/Constants.h"
 #include "Engine/Utility/MathF.h"
 
@@ -11,6 +11,7 @@ namespace Core
     Camera::Camera(const char* name) : Entity(name)
     {
         Main = this;
+        AddTransform();
 
         m_cameraOrigin = Vector2::Zero();
         m_viewport = CalculateViewport();
@@ -49,7 +50,7 @@ namespace Core
 
     Vector2 Camera::CalculateWorldPosition(const Vector2 screenPosition) const
     {
-        Vector2 worldPosition = (screenPosition / m_zoom) + m_cameraOrigin;
+        Vector2 worldPosition = (screenPosition / GetZoom()) + m_cameraOrigin;
         return Vector2(worldPosition.X - (SCREEN_WIDTH * 0.5f), worldPosition.Y - (SCREEN_HEIGHT * 0.5f));
     }
 
@@ -57,20 +58,20 @@ namespace Core
     {
         Vector2 movementDirection = Vector2::Zero();
 
-        if (InputManager::IsKeyDown(Keys::UP))
+        if (Input::IsKeyDown(Keys::UP))
         {
             movementDirection = Vector2(movementDirection.X, -1.0f);
         }
-        else if (InputManager::IsKeyDown(Keys::DOWN))
+        else if (Input::IsKeyDown(Keys::DOWN))
         {
             movementDirection = Vector2(movementDirection.X, 1.0f);
         }
 
-        if (InputManager::IsKeyDown(Keys::LEFT))
+        if (Input::IsKeyDown(Keys::LEFT))
         {
             movementDirection = Vector2(-1.0f, movementDirection.Y);
         }
-        else if (InputManager::IsKeyDown(Keys::RIGHT))
+        else if (Input::IsKeyDown(Keys::RIGHT))
         {
             movementDirection = Vector2(1.0f, movementDirection.Y);
         }
@@ -80,11 +81,11 @@ namespace Core
 
     void Camera::ProcessZoom(float delta)
     {
-        m_zoom += InputManager::GetMouseWheel() * (m_zoomSpeed * delta);
-        m_zoom = MathF::Clamp(m_zoom, m_zoomRange.Min, m_zoomRange.Max);
+        m_zoom += Input::GetMouseWheel() * (m_zoomSpeed * delta);
+        m_zoom = MathF::Clamp(GetZoom(), m_zoomRange.Min, m_zoomRange.Max);
 
-        float zoomX = SCREEN_WIDTH / m_zoom;
-        float zoomY = SCREEN_HEIGHT / m_zoom;
+        float zoomX = SCREEN_WIDTH / GetZoom();
+        float zoomY = SCREEN_HEIGHT / GetZoom();
         m_cameraOrigin = GetTransform().GetWorldPosition() + Vector2((SCREEN_WIDTH - zoomX) * 0.5f, (SCREEN_HEIGHT  - zoomY) * 0.5f);
     }
 

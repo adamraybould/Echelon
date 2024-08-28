@@ -1,9 +1,7 @@
 #ifndef MAINLEVEL_H
 #define MAINLEVEL_H
 #include "Echelon/Entities/PlayerCharacter.h"
-#include "Engine/Core/World.h"
 #include "Engine/States/Level.h"
-
 
 namespace Core
 {
@@ -18,7 +16,6 @@ namespace Echelon::Levels
     {
     private:
         PlayerCharacter* m_pPlayer;
-        UniquePtr<God> m_pGod;
 
     public:
         MainLevel(EntityManager& entityManager);

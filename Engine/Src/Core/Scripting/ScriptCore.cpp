@@ -1,7 +1,7 @@
 #include "Engine/Core/Scripting/ScriptCore.h"
 #include "Engine/Core/Scripting/IBinder.h"
 #include "Engine/Core/ECS/Components/Component.h"
-#include "Engine/Core/ECS/Entity.h"
+#include "Engine/Core/Renderer.h"
 #include <iostream>
 #include <filesystem>
 #include <fstream>
@@ -10,6 +10,7 @@
 
 namespace fs = std::filesystem;
 
+using namespace luabridge;
 namespace Core
 {
     ScriptCore* ScriptCore::m_pInstance;
@@ -32,6 +33,19 @@ namespace Core
         }
     }
 
+    void ScriptCore::Update(float delta)
+    {
+        LRef update = getGlobal(L, "Update");
+        if (!update.isNil() && update.isFunction())
+        {
+            update(delta);
+        }
+    }
+
+    void ScriptCore::Render(Renderer& renderer)
+    {
+    }
+
     void ScriptCore::AddBinder(IBinder* binder)
     {
         m_binders.push_back(binder);
@@ -44,14 +58,16 @@ namespace Core
             m_binder->SetupEmbedding(L);
         }
 
+        SetupEmbedding();
         GeneratePrefabsList();
 
         LoadScript("main.lua");
-        LoadScript("TestScript.lua");
+        LoadScript("update.lua");
     }
 
-    bool ScriptCore::LoadScript(const char* fileName)
+    bool ScriptCore::LoadScript(const char* fileName) const
     {
+        // Loads and runs the .lua file
         std::string filePath = SCRIPTS_PATH + std::string(fileName);
         if (luaL_dofile(L, filePath.c_str()) != LUA_OK)
         {
@@ -61,7 +77,6 @@ namespace Core
 
         return true;
     }
-
 
     void ScriptCore::SetupScriptPath() const
     {
@@ -76,6 +91,17 @@ namespace Core
         lua_pushstring(L, luaPath.c_str());
         lua_setfield(L, -2, "path");
         lua_pop(L, 1);
+    }
+
+    void ScriptCore::SetupEmbedding()
+    {
+        getGlobalNamespace(L)
+        .beginClass<Vector2>("Vector2")
+        .addConstructor<void(*)(float, float)>()
+        .addProperty("x", &Vector2::X)
+        .addProperty("y", &Vector2::Y)
+        .addFunction("__tostring", &Vector2::ToString)
+        .endClass();
     }
 
     void ScriptCore::GeneratePrefabsList()
@@ -137,7 +163,7 @@ namespace Core
     {
         if (status != LUA_OK)
         {
-            std::cerr << "-- " << lua_tostring(L, -1) << std::endl;
+            std::cerr << "-- " << lua_tostring(L, status) << std::endl;
             lua_pop(L, 1);
         }
     }

@@ -13,10 +13,7 @@ namespace Core::Components
     void Component::SetupEmbedding(lua_State* L)
     {
         using namespace luabridge;
-        getGlobalNamespace(L).beginClass<Component>("Component")
-        .addConstructor<void (*)(Entity&)>()
-        .addFunction("Update", &Component::Update)
-        .addFunction("Render", &Component::Render)
-        .endClass();
+        BindClass<Component>(L);
+        getGlobalNamespace(L).beginClass<Component>("Component").addConstructor<void (*)(Entity&)>().endClass();
     }
 }

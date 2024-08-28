@@ -5,14 +5,14 @@
 
 namespace Core
 {
-    Array<const char*> God::m_registeredPrefabs;
+    UnorderedMap<String, UniquePtr<Prefab>> God::m_prefabs;
     UnorderedMap<GUID, UniquePtr<Entity>> God::m_entities;
 
     God::God()
     {
     }
 
-    void God::SetupEmbedding(lua_State* L)
+    void God::SetupEmbedding(LState* L)
     {
         BindStaticFunction(L, "God", "RegisterPrefab", &God::RegisterPrefab);
         BindStaticFunction(L, "God", "SpawnPrefab", &God::SpawnPrefab);
@@ -28,22 +28,39 @@ namespace Core
         return *m_entities[guid];
     }
 
-    void God::RegisterPrefab(lua_State* self, const char* name)
+    void God::RegisterPrefab(LState* self, const String& name, LRef prefab)
     {
-        m_registeredPrefabs.push_back(name);
+        UniquePtr<Prefab> prefabPtr = std::make_unique<Prefab>(self, name, prefab);
+        m_prefabs.insert(std::make_pair(name, std::move(prefabPtr)));
     }
 
-    GUID God::SpawnPrefab(lua_State* self, const char* name)
+    GUID God::SpawnPrefab(LState* self, const String& name)
     {
         using namespace luabridge;
-        LuaRef prefabRef = getGlobal(self, "Prefabs")[name];
-        if (!prefabRef["fn"].isFunction())
-        {
-            std::cerr << "Error: No fn() function found for Prefab '" << name << "'" << std::endl;
-            return "ERR";
-        }
 
-        SharedPtr<Prefab> prefab = std::make_shared<Prefab>(self, name, prefabRef["fn"]);
-        return prefab.get()->CallFn();
+        Prefab& prefab = *m_prefabs[name];
+        if (prefab.IsValid())
+        {
+            return prefab.CallFn();
+        }
+    }
+
+    Prefab& God::GetPrefab(const String& name)
+    {
+        return *m_prefabs[name];
+    }
+
+    bool God::HasPrefab(const String& name)
+    {
+        return m_prefabs[name] != nullptr;
+    }
+
+    void God::ProcessAsset(LState* self, LRef asset)
+    {
+        String assetType = asset["type"].tostring();
+        String assetPath = asset["file"].tostring();
+
+        std::cout << "Asset Type: " << asset["type"].tostring() << std::endl;
+        std::cout << "Asset Path: " << asset["file"].tostring() << std::endl;
     }
 }

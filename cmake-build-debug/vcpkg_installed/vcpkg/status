@@ -127,3 +127,13 @@ Abi: c96179a85f0548776d33921094369f7da19c78089788b34ccff535318c26bab3
 Description: CrossGuid is a minimal, cross platform, C++ GUID library.
 Status: install ok installed
 
+Package: magic-enum
+Version: 0.9.6
+Port-Version: 1
+Depends: vcpkg-cmake:x64-windows, vcpkg-cmake-config:x64-windows
+Architecture: x86-mingw-dynamic
+Multi-Arch: same
+Abi: a0e13f9ef20a2a47025e21d41e0bc51b6c5fc1df2ba20a7f20943beb44dda425
+Description: Header-only C++17 library provides static reflection for enums, work with any enum type without any macro or boilerplate code.
+Status: install ok installed
+
