@@ -1,4 +1,4 @@
-#include "Engine/Core/Systems/Input.h"
+#include "Engine/Core/Systems/InputManager.h"
 
 #include <iostream>
 #include <SDL.h>
@@ -7,14 +7,14 @@
 
 namespace Core::Systems
 {
-    MultiCastEvent<void, void> Input::OnMouseLeftClick;
-    MultiCastEvent<void, void> Input::OnMouseRightClick;
+    MultiCastEvent<void, void> InputManager::OnMouseLeftClick;
+    MultiCastEvent<void, void> InputManager::OnMouseRightClick;
 
-    Map<Keys, KeyState> Input::m_keyStates;
-    Map<int, KeyState> Input::m_mouseStates;
+    Map<Keys, KeyState> InputManager::m_keyStates;
+    Map<int, KeyState> InputManager::m_mouseStates;
 
-    float Input::m_mouseWheel;
-    Vector2 Input::m_currentMousePosition;
+    float InputManager::m_mouseWheel;
+    Vector2 InputManager::m_currentMousePosition;
 
     Map<SDL_Keycode, Keys> keyMap =
     {
@@ -81,7 +81,7 @@ namespace Core::Systems
         { SDLK_RIGHT, Keys::RIGHT },
     };
 
-    Input::Input(Camera& camera) : m_camera(camera)
+    InputManager::InputManager(Camera& camera) : m_camera(camera)
     {
         for (auto i = keyMap.begin(); i != keyMap.end(); i++)
         {
@@ -92,19 +92,13 @@ namespace Core::Systems
         m_currentMousePosition = Vector2::Zero();
     }
 
-    Input::~Input()
+    InputManager::~InputManager()
     {
         m_keyStates.clear();
         m_mouseStates.clear();
     }
 
-    void Input::SetupEmbedding(lua_State* L)
-    {
-        BindClass<Input>(L);
-        BindStaticFunction(L, "Input", "IsKeyDown", &Input::IsKeyDownL);
-    }
-
-    void Input::HandleInput(const SDL_Event& event)
+    void InputManager::HandleInput(const SDL_Event& event)
     {
         Keys key = keyMap[event.key.keysym.sym];
 
@@ -117,7 +111,7 @@ namespace Core::Systems
         HandleMouse(event);
     }
 
-    void Input::HandleMouse(const SDL_Event& event)
+    void InputManager::HandleMouse(const SDL_Event& event)
     {
         CalculateMousePosition();
 
@@ -140,27 +134,27 @@ namespace Core::Systems
         }
     }
 
-    void Input::Reset()
+    void InputManager::Reset()
     {
         m_mouseWheel = 0.0f;
     }
 
-    bool Input::IsKeyDown(Keys key)
+    bool InputManager::IsKeyDown(Keys key)
     {
         return m_keyStates[key] == KeyState::KEY_DOWN;
     }
 
-    bool Input::IsKeyDownL(LState* L, int key)
+    bool InputManager::IsKeyDownL(LState* L, int key)
     {
         return IsKeyDown(static_cast<Keys>(key));
     }
 
-    Vector2 Input::GetMousePosition() const
+    Vector2 InputManager::GetMousePosition() const
     {
         return m_camera.CalculateWorldPosition(m_currentMousePosition);
     }
 
-    void Input::CalculateMousePosition()
+    void InputManager::CalculateMousePosition()
     {
         int mouseX = 0;
         int mouseY = 0;

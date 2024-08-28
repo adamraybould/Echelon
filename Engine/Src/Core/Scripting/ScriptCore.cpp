@@ -18,6 +18,7 @@ namespace Core
     ScriptCore::ScriptCore() : L(nullptr)
     {
         m_pInstance = this;
+        m_isInitialised = false;
 
         L = luaL_newstate();
         luaL_openlibs(L);
@@ -46,17 +47,14 @@ namespace Core
     {
     }
 
-    void ScriptCore::AddBinder(IBinder* binder)
+    void ScriptCore::RegisterBinder(IBinder* binder)
     {
         m_binders.push_back(binder);
     }
 
-    void ScriptCore::SetupBindings()
+    void ScriptCore::InitialiseBinders()
     {
-        for (const auto& m_binder : m_binders)
-        {
-            m_binder->SetupEmbedding(L);
-        }
+        IBinder::InitialiseBinders();
 
         SetupEmbedding();
         GeneratePrefabsList();

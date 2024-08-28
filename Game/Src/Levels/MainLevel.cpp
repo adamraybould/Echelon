@@ -1,11 +1,10 @@
 #include "Echelon/Levels/MainLevel.h"
 
-#include "Echelon/Entities/PlayerCharacter.h"
 #include "Echelon/Entities/Components/CameraFollow.h"
 #include <Engine/Core/Camera.h>
 #include <Engine/Utility/Utility.h>
 
-#include "Engine/Core/God.h"
+#include "Engine/Core/Engine.h"
 
 using namespace Core;
 namespace Echelon::Levels
@@ -28,7 +27,6 @@ namespace Echelon::Levels
 
     void MainLevel::Initialize()
     {
-        //Level::Initialize();
     }
 
     void MainLevel::Update(float delta)

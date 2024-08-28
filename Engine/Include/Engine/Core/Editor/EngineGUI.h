@@ -9,7 +9,7 @@
 
 namespace Core
 {
-    namespace Systems { class StateSystem; class Input; }
+    namespace Systems { class StateSystem; class InputManager; }
 
     class Window;
     class Renderer;
@@ -25,14 +25,14 @@ namespace Core
         private:
             Window& m_window;
             StateSystem& m_stateSystem;
-            Input& m_inputManager;
+            InputManager& m_inputManager;
 
             Array<UniquePtr<GUIWindow>> m_windows;
 
             Entity* m_pEntity;
 
         public:
-            EngineGUI(Window& window, StateSystem& stateSystem, Input& inputManager);
+            EngineGUI(Window& window, StateSystem& stateSystem, InputManager& inputManager);
             ~EngineGUI();
 
             void Update(float delta) const;

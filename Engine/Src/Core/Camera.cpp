@@ -1,5 +1,5 @@
 #include "Engine/Core/Camera.h"
-#include "Engine/Core/Systems/Input.h"
+#include "Engine/Core/Systems/InputManager.h"
 #include "Engine/Utility/Constants.h"
 #include "Engine/Utility/MathF.h"
 
@@ -11,16 +11,25 @@ namespace Core
     Camera::Camera(const char* name) : Entity(name)
     {
         Main = this;
-        AddTransform();
+
+        m_transform = &AddComponent<Transform>();
 
         m_cameraOrigin = Vector2::Zero();
         m_viewport = CalculateViewport();
 
         m_movementSpeed = 100.0f;
 
-        m_zoom = 1.0f;
+        m_currentZoom = 1.0f;
         m_zoomSpeed = 4.0f;
         m_zoomRange = MinMaxRange(0.5f, 1.5f);
+    }
+
+    void Camera::SetupEmbedding(lua_State* L)
+    {
+        Entity::SetupEmbedding(L);
+
+        BindClass<Camera>(L);
+        BindFunction<Camera>(L, "Zoom", &Camera::Zoom);
     }
 
     void Camera::Initialize()
@@ -42,6 +51,11 @@ namespace Core
         Entity::Render(renderer);
     }
 
+    void Camera::Zoom(const float amount)
+    {
+        m_currentZoom += amount;
+    }
+
     Vector2 Camera::CalculateScreenPosition(const Vector2& worldPosition) const
     {
         Vector2 screenPosition = worldPosition - m_cameraOrigin;
@@ -58,20 +72,20 @@ namespace Core
     {
         Vector2 movementDirection = Vector2::Zero();
 
-        if (Input::IsKeyDown(Keys::UP))
+        if (InputManager::IsKeyDown(Keys::UP))
         {
             movementDirection = Vector2(movementDirection.X, -1.0f);
         }
-        else if (Input::IsKeyDown(Keys::DOWN))
+        else if (InputManager::IsKeyDown(Keys::DOWN))
         {
             movementDirection = Vector2(movementDirection.X, 1.0f);
         }
 
-        if (Input::IsKeyDown(Keys::LEFT))
+        if (InputManager::IsKeyDown(Keys::LEFT))
         {
             movementDirection = Vector2(-1.0f, movementDirection.Y);
         }
-        else if (Input::IsKeyDown(Keys::RIGHT))
+        else if (InputManager::IsKeyDown(Keys::RIGHT))
         {
             movementDirection = Vector2(1.0f, movementDirection.Y);
         }
@@ -81,8 +95,8 @@ namespace Core
 
     void Camera::ProcessZoom(float delta)
     {
-        m_zoom += Input::GetMouseWheel() * (m_zoomSpeed * delta);
-        m_zoom = MathF::Clamp(GetZoom(), m_zoomRange.Min, m_zoomRange.Max);
+        m_currentZoom += InputManager::GetMouseWheel() * (m_zoomSpeed * delta);
+        m_currentZoom = MathF::Clamp(GetZoom(), m_zoomRange.Min, m_zoomRange.Max);
 
         float zoomX = SCREEN_WIDTH / GetZoom();
         float zoomY = SCREEN_HEIGHT / GetZoom();

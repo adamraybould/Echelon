@@ -38,8 +38,8 @@ add_library(Engine STATIC
         Src/Core/Systems/EntityManager.cpp
         Include/Engine/Graphics/SpriteSheet.h
         Src/Graphics/SpriteSheet.cpp
-        Include/Engine/Core/Systems/Input.h
-        Src/Core/Systems/Input.cpp
+        Include/Engine/Core/Systems/InputManager.h
+        Src/Core/Systems/InputManager.cpp
         Include/Engine/Core/Camera.h
         Src/Core/Camera.cpp
         Include/Engine/Utility/Constants.h
@@ -62,8 +62,10 @@ add_library(Engine STATIC
         Include/Engine/Core/Scripting/EntityInterface.h
         Include/Engine/Core/Scripting/Prefab.h
         Src/Core/Scripting/Prefab.cpp
-        Include/Engine/Core/God.h
-        Src/Core/God.cpp
+        Include/Engine/Core/Engine.h
+        Src/Core/Engine.cpp
+        Include/Engine/Core/Input.h
+        Src/Core/Input.cpp
 )
 
 target_include_directories(Engine PUBLIC

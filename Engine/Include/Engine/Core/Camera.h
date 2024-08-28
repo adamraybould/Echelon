@@ -19,23 +19,28 @@ namespace Core
 
         float m_movementSpeed;
 
-        float m_zoom = 1.0f;
+        float m_currentZoom = 1.0f;
         float m_zoomSpeed;
         MinMaxRange m_zoomRange;
 
+        bool m_canControl = false;
+
     public:
         Camera(const char* name);
+        void SetupEmbedding(lua_State* L) override;
 
         void Initialize() override;
         void Update(float delta) override;
         void Render(Renderer& renderer) override;
+
+        void Zoom(float amount);
 
         Vector2 CalculateScreenPosition(const Vector2& worldPosition) const;
         Vector2 CalculateWorldPosition(Vector2 screenPosition) const;
 
         Vector2& GetPosition() { return m_cameraOrigin; }
         Rectangle& GetViewport() { return m_viewport; }
-        float GetZoom() const { return m_zoom; }
+        float GetZoom() const { return m_currentZoom; }
 
     private:
         void ProcessMovement(float delta) const;

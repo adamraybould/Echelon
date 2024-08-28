@@ -32,6 +32,7 @@ namespace Core
         lua_State* L;
 
         Array<IBinder*> m_binders;
+        bool m_isInitialised = false;
         //UnorderedMap<std::string, luabridge::LuaRef> m_componentBinders;
 
     public:
@@ -41,8 +42,8 @@ namespace Core
         void Update(float delta);
         void Render(Renderer& renderer);
 
-        void AddBinder(IBinder* binder);
-        void SetupBindings();
+        void RegisterBinder(IBinder* binder);
+        void InitialiseBinders();
 
         bool LoadScript(const char* fileName) const;
 

@@ -1,14 +1,14 @@
 #include "Engine/Core/Systems/EntityManager.h"
 
-#include "Engine/Core/God.h"
+#include "Engine/Core/Engine.h"
 #include "Engine/Core/Renderer.h"
 
 namespace Core::Systems
 {
     EntityManager::EntityManager()
     {
-        UnorderedMap<GUID, UniquePtr<Entity>>& scriptEntities = God::GetEntities();
-        for (auto it = God::GetEntities().begin(); it != God::GetEntities().end(); ++it)
+        UnorderedMap<GUID, UniquePtr<Entity>>& scriptEntities = Engine::GetEntities();
+        for (auto it = Engine::GetEntities().begin(); it != Engine::GetEntities().end(); ++it)
         {
             m_entities.insert(std::make_pair(it->first, std::move(it->second)));
         }

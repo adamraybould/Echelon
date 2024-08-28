@@ -1,5 +1,10 @@
 
+local entityindex = 1
+
 function Update(delta)
+	-- Update Camera
+	Camera:Update(delta)
+
 	-- Update Entity Components
 	for k, v in pairs(UpdatingEntities) do
 		if v.updatecomponents ~= nil then

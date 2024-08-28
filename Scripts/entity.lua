@@ -145,6 +145,7 @@ function Entity:GetComponentName(component)
 		end
 	end
 
+	error("No Component Found")
 	return "Component"
 end
 

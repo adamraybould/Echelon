@@ -3,12 +3,8 @@ cmake_minimum_required(VERSION 3.8)
 
 add_executable(Game
         Src/Main.cpp
-        Include/Echelon/Entities/PlayerCharacter.h
-        Src/Entities/PlayerCharacter.cpp
         Include/Echelon/Levels/MainLevel.h
         Src/Levels/MainLevel.cpp
-        Include/Echelon/Entities/Components/PlayerController.h
-        Src/Entities/Components/PlayerController.cpp
         Include/Echelon/Entities/Components/CameraFollow.h
         Src/Entities/Components/CameraFollow.cpp
 )

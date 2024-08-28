@@ -1,7 +1,7 @@
 ---@class Main
 
 require("constants")
-require("vector2")
+require("maths")
 require("util")
 require("prefablist")
 require("class")
@@ -15,8 +15,11 @@ UpdatingEntities = {}
 NewUpdatingEntities = {}
 StopUpdatingEntities = {}
 
+local MainCamera = require("camera")
+Camera = MainCamera()
+
 function CreateEntity(name)
-	local base = God:CreateEntity()
+	local base = Engine:CreateEntity()
 	local guid = base.GUID
 	local entity = Entity(base)
 
@@ -31,7 +34,7 @@ end
 function SpawnPrefab(name)
 	name = string.sub(name, string.find(name, "[^/]*$"))
 
-	local guid = God:SpawnPrefab(name)
+	local guid = Engine:SpawnPrefab(name)
 	Entities[guid]:SetName(name)
 	return Entities[guid]
 end
@@ -45,7 +48,7 @@ end
 function RegisterPrefab(prefab)
 
 	Prefabs[prefab.name] = prefab
-	God:RegisterPrefab(prefab.name, prefab)
+	Engine:RegisterPrefab(prefab.name, prefab)
 end
 
 PREFABDEFINITIONS = {}

@@ -10,6 +10,7 @@ local function fn()
 	inst.entity:AddTransform()
 	inst.entity:AddRenderer()
 
+	inst:AddComponent("movement")
 	inst:AddComponent("playercontroller")
 
 	inst:AddTag("player")

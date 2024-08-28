@@ -12,11 +12,15 @@ namespace Core
 {
     class IBinder
     {
+    private:
+        static std::vector<std::function<void()>> static_registry;
+
     public:
         IBinder();
         virtual ~IBinder() = default;
 
         virtual void SetupEmbedding(lua_State* L) = 0;
+        static void InitialiseBinders();
 
     protected:
         template <typename T>

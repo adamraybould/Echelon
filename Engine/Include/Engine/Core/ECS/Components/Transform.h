@@ -20,7 +20,7 @@ namespace Core::Components
 
         void Update(float delta) override;
 
-        void SetParent(Transform& parent);
+        void SetParent(Transform* parent);
         void RemoveParent();
 
         void AddChild(Transform& child);

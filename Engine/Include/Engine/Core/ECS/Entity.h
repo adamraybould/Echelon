@@ -19,10 +19,12 @@ namespace Core
         String m_name;
 
         Rectangle m_bounds;
-        Transform* m_transform;
 
         Array<UniquePtr<Component>> m_components;
         Array<String> m_tags;
+
+    protected:
+        Transform* m_transform;
 
     public:
         Entity(String name);
@@ -46,8 +48,7 @@ namespace Core
         void SetName(const String& name);
         String GetName() const { return m_name; }
 
-        Component& AddTransform();
-        void AddTransformL(LState* L);
+        void AddTransform(LState* L);
         void AddRenderer(LState* L);
 
         Transform& GetTransform() const { return *m_transform; }

@@ -1,6 +1,6 @@
 #include "Engine/Core/ECS/Entity.h"
 
-#include "Engine/Core/God.h"
+#include "Engine/Core/Engine.h"
 #include "Engine/Core/ECS/Components/SpriteRenderer.h"
 #include "Engine/Core/Scripting/Prefab.h"
 #include "Engine/Utility/Utility.h"
@@ -84,16 +84,10 @@ namespace Core
     void Entity::SetName(const String& name)
     {
         m_name = name;
-        m_prefab = &God::GetPrefab(name);
+        m_prefab = &Engine::GetPrefab(name);
     }
 
-    Component& Entity::AddTransform()
-    {
-        m_transform = &AddComponent<Transform>();
-        return *m_transform;
-    }
-
-    void Entity::AddTransformL(LState* L)
+    void Entity::AddTransform(LState* L)
     {
         m_transform = &AddComponent<Transform>();
 
@@ -150,7 +144,7 @@ namespace Core
         BindProperty<Entity>(L, "GUID", &Entity::GetGUID);
 
         BindFunction<Entity>(L, "SetName", &Entity::SetName);
-        BindFunction<Entity>(L, "AddTransform", &Entity::AddTransformL);
+        BindFunction<Entity>(L, "AddTransform", &Entity::AddTransform);
         BindFunction<Entity>(L, "AddRenderer", &Entity::AddRenderer);
         BindFunction<Entity>(L, "AddTag", &Entity::AddTag);
         BindFunction<Entity>(L, "RemoveTag", &Entity::RemoveTag);

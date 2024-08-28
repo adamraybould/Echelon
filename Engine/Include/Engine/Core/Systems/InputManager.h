@@ -28,7 +28,7 @@ namespace Core
             UP, DOWN, LEFT, RIGHT,
         };
 
-        class Input : public IBinder
+        class InputManager
         {
         public:
             static MultiCastEvent<void, void> OnMouseLeftClick;
@@ -44,10 +44,8 @@ namespace Core
             static Vector2 m_currentMousePosition;
 
         public:
-            explicit Input(Camera& camera);
-            ~Input() override;
-
-            void SetupEmbedding(lua_State* L) override;
+            explicit InputManager(Camera& camera);
+            ~InputManager();
 
             void HandleInput(const SDL_Event& event);
             void HandleMouse(const SDL_Event& event);

@@ -15,10 +15,10 @@ namespace Core::Components
     {
     }
 
-    void Transform::SetParent(Transform& parent)
+    void Transform::SetParent(Transform* parent)
     {
         RemoveParent();
-        m_parent = &parent;
+        m_parent = parent;
     }
 
     void Transform::RemoveParent()
@@ -33,7 +33,7 @@ namespace Core::Components
     void Transform::AddChild(Transform& child)
     {
         m_children.push_back(&child);
-        child.SetParent(*this);
+        child.SetParent(this);
     }
 
     void Transform::RemoveChild(Transform& child)
@@ -152,6 +152,7 @@ namespace Core::Components
     {
         Component::SetupEmbedding(L);
 
+        BindClass<Transform>(L);
         BindFunction<Transform>(L, "SetPosition", &Transform::SetWorldPositionL);
         BindFunction<Transform>(L, "AddPosition", &Transform::AddWorldPositionL);
         BindFunction<Transform>(L, "GetWorldPosition", &Transform::GetWorldPosition);
@@ -161,6 +162,8 @@ namespace Core::Components
 
         BindFunction<Transform>(L, "SetScale", &Transform::SetWorldScaleRaw);
         BindFunction<Transform>(L, "GetScale", &Transform::GetWorldScale);
+
+        BindFunction<Transform>(L, "SetParent", &Transform::SetParent);
     }
 
     Vector2 Transform::Rotate(const Vector2& point, float angle) const

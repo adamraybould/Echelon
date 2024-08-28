@@ -3,9 +3,19 @@
 
 namespace Core
 {
+    std::vector<std::function<void()>> IBinder::static_registry;
+
     IBinder::IBinder()
     {
-        ScriptCore* scriptCore = ScriptCore::Instance();
-        scriptCore->AddBinder(this);
+        static_registry.push_back([this]() { SetupEmbedding(ScriptCore::Instance()->GetLuaState()); });
+        //ScriptCore::Instance()->RegisterBinder(this);
+    }
+
+    void IBinder::InitialiseBinders()
+    {
+        for (const auto & binder : static_registry)
+        {
+            binder();
+        }
     }
 }

@@ -1,11 +1,10 @@
 
 local function IsMovementButtonDown()
-	return Input:IsKeyDown(KEY_MOVE_UP) or Input:IsKeyDown(KEY_MOVE_DOWN) or Input:IsKeyDown(KEY_MOVE_LEFT) or Input:IsKeyDown(KEY_MOVE_RIGHT)
+	return Input:IsKeyDown(KEY_W) or Input:IsKeyDown(KEY_S) or Input:IsKeyDown(KEY_A) or Input:IsKeyDown(KEY_D)
 end
 
 local PlayerController = Class(function(self, inst)
 	self.inst = inst
-
 	self.inst:StartUpdatingComponent(self)
 end)
 
@@ -15,24 +14,28 @@ function PlayerController:Update(delta)
 	end
 
 	local movement = Vector2(0, 0)
-	if Input:IsKeyDown(KEY_MOVE_UP) then
+	if Input:IsKeyDown(KEY_W) then
 		movement = Vector2(movement.x, -1.0)
 		self.inst.Renderer:SetFrame(1)
-	elseif Input:IsKeyDown(KEY_MOVE_DOWN) then
+	elseif Input:IsKeyDown(KEY_S) then
 		movement = Vector2(movement.x, 1.0)
 		self.inst.Renderer:SetFrame(0)
 	end
 
-	if Input:IsKeyDown(KEY_MOVE_LEFT) then
+	if Input:IsKeyDown(KEY_A) then
 		movement = Vector2(-1.0, movement.y)
 		self.inst.Renderer:SetFrame(3)
-	elseif Input:IsKeyDown(KEY_MOVE_RIGHT) then
+	elseif Input:IsKeyDown(KEY_D) then
 		movement = Vector2(1.0, movement.y)
 		self.inst.Renderer:SetFrame(2)
 	end
 
-	newpos = self.inst:GetPosition() + movement:Normalise() * (250 * delta)
-	self.inst.Transform:SetPosition(newpos)
+	-- Sprinting
+	if Input:IsKeyDown(KEY_SHIFT) then
+		self.inst.components.movement:RunInDirection(movement:Normalise(), delta)
+	else
+		self.inst.components.movement:WalkInDirection(movement:Normalise(), delta)
+	end
 end
 
 return PlayerController

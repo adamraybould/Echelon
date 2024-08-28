@@ -2,7 +2,7 @@
 local Movement = Class(function(self, inst)
 	self.inst = inst
 
-	self.walkspeed = TUNING.BASE_RUN_SPEED
+	self.walkspeed = TUNING.BASE_WALK_SPEED
 	self.runspeed = TUNING.BASE_RUN_SPEED
 	self.isrunning = false
 
@@ -10,11 +10,16 @@ local Movement = Class(function(self, inst)
 end)
 
 function Movement:Update(delta)
-	self:MoveInDirection(Vector2(1, 1))
 end
 
-function Movement:MoveInDirection(direction)
-	self.inst.Transform:AddPosition(direction)
+function Movement:WalkInDirection(direction, delta) -- TODO: remove delta eventually
+	local newPos = self.inst:GetPosition() + direction * (self:GetWalkSpeed() * delta)
+	self.inst.Transform:SetPosition(newPos)
+end
+
+function Movement:RunInDirection(direction, delta) -- TODO: remove delta eventually
+	local newPos = self.inst:GetPosition() + direction * (self:GetRunSpeed() * delta)
+	self.inst.Transform:SetPosition(newPos)
 end
 
 function Movement:GetWalkSpeed()

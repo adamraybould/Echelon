@@ -14,6 +14,5 @@ namespace Core::States
 
     void Level::Initialize()
     {
-        m_entityManager.Initialise();
     }
 }
