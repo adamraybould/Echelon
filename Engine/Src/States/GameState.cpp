@@ -40,6 +40,7 @@ namespace Core::States
 
     void GameState::Render(Renderer& renderer)
     {
+        /*
         if (m_pEntityManager != nullptr)
             m_pEntityManager->Render(renderer);
 
@@ -48,5 +49,6 @@ namespace Core::States
 
         if (m_pTileMap != nullptr)
             m_pTileMap->RenderMap(renderer);
+        */
     }
 }

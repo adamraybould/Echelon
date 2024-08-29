@@ -46,6 +46,7 @@ namespace Core::Systems
 
     void EntityManager::Render(Renderer& renderer)
     {
+        /*
         for (auto i = m_entities.begin(); i != m_entities.end(); ++i)
         {
             Entity& entity = *i->second;
@@ -54,6 +55,7 @@ namespace Core::Systems
                 entity.Render(renderer);
             }
         }
+        */
     }
 
     Entity* EntityManager::GetEntityByGUID(GUID guid)

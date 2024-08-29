@@ -5,6 +5,7 @@
 #include <tmxlite/Map.hpp>
 #include <tmxlite/TileLayer.hpp>
 
+#include "Engine/Core/Renderer.h"
 #include "Engine/Graphics/AssetManager.h"
 #include "Engine/Utility/Utility.h"
 
@@ -15,6 +16,7 @@ namespace Core
     {
         TileMap::TileMap()
         {
+
         }
 
         TileMap::~TileMap()
@@ -25,7 +27,7 @@ namespace Core
             }
         }
 
-        void TileMap::RenderMap(Renderer& renderer) const
+        void TileMap::Render(Renderer& renderer)
         {
             for (UInt i = 0; i < m_layers.size(); i++)
             {
@@ -49,6 +51,9 @@ namespace Core
             {
                 LoadLayers(map, m_tilesets);
             }
+
+            SetRenderLayer(RenderLayer::TileMap);
+            Renderer::AddToRenderQueue(this, GetRenderLayer());
         }
 
         void TileMap::LoadTilesets(const tmx::Map& map)
@@ -70,10 +75,10 @@ namespace Core
 
         void TileMap::LoadLayers(tmx::Map& map, const Array<TilesetTexture>& tilesets)
         {
-            const Array<UniquePtr<Layer>>& layers = map.getLayers();
+            const Array<UniquePtr<tmx::Layer>>& layers = map.getLayers();
             for (UInt i = 0; i < layers.size(); ++i)
             {
-                if (layers[i]->getType() == Layer::Type::Tile)
+                if (layers[i]->getType() == tmx::Layer::Type::Tile)
                 {
                     m_layers.emplace_back(std::make_unique<MapLayer>(map, tilesets, *layers[i]));
                 }

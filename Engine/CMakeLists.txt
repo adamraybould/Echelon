@@ -70,6 +70,7 @@ add_library(Engine STATIC
         Src/Graphics/TileMap.cpp
         Include/Engine/Graphics/MapLayer.h
         Src/Graphics/MapLayer.cpp
+        Include/Engine/Core/IRenderable.h
 )
 
 target_include_directories(Engine PUBLIC

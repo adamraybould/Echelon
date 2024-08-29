@@ -1,6 +1,7 @@
 #include "Engine/Core/ECS/Entity.h"
 
 #include "Engine/Core/Engine.h"
+#include "Engine/Core/Renderer.h"
 #include "Engine/Core/ECS/Components/SpriteRenderer.h"
 #include "Engine/Core/Scripting/Prefab.h"
 #include "Engine/Utility/Utility.h"
@@ -13,6 +14,9 @@ namespace Core
         m_name = name;
 
         m_bounds = Rectangle();
+
+        SetRenderLayer(RenderLayer::Entities);
+        Renderer::AddToRenderQueue(this, GetRenderLayer());
     }
 
     Entity::~Entity()
@@ -61,13 +65,6 @@ namespace Core
             {
                 component.Render(renderer);
             }
-        }
-
-        // Render Children
-        Array<Transform*> children = m_transform->GetChildren();
-        for (UInt i = 0; i < children.size(); i++)
-        {
-            children[i]->GetOwner().Render(renderer);
         }
     }
 
@@ -146,6 +143,7 @@ namespace Core
         BindFunction<Entity>(L, "SetName", &Entity::SetName);
         BindFunction<Entity>(L, "AddTransform", &Entity::AddTransform);
         BindFunction<Entity>(L, "AddRenderer", &Entity::AddRenderer);
+        BindFunction<Entity>(L, "SetRenderLayer", &IRenderable::SetRenderLayer);
         BindFunction<Entity>(L, "AddTag", &Entity::AddTag);
         BindFunction<Entity>(L, "RemoveTag", &Entity::RemoveTag);
         BindFunction<Entity>(L, "HasTag", &Entity::HasTag);

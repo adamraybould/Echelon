@@ -2,6 +2,8 @@
 
 namespace Core
 {
+    Map<RenderLayer, Array<IRenderable*>> Renderer::m_renderQueue;
+
     Renderer::Renderer(SDL_Renderer& renderer) : m_renderer(renderer)
     {
         m_pCamera = std::make_unique<Camera>("Camera");
@@ -33,6 +35,22 @@ namespace Core
     {
         SDL_RenderSetScale(&m_renderer, 1.0f, 1.0f);
         SDL_RenderSetLogicalSize(&m_renderer, 0, 0);
+    }
+
+    void Renderer::AddToRenderQueue(IRenderable* renderable, const RenderLayer layer)
+    {
+        m_renderQueue[layer].push_back(renderable);
+    }
+
+    void Renderer::ProcessRenderQueue()
+    {
+        for (const auto& layer : m_renderQueue)
+        {
+            for(IRenderable* renderable : layer.second)
+            {
+                renderable->Render(*this);
+            }
+        }
     }
 
     void Renderer::SetViewport() const

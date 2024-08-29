@@ -1,6 +1,7 @@
 #ifndef TILEMAP_H
 #define TILEMAP_H
 #include "MapLayer.h"
+#include "Engine/Core/IRenderable.h"
 #include "Engine/Utility/Commons.h"
 
 namespace tmx
@@ -28,7 +29,7 @@ namespace Core
             }
         };
 
-        class TileMap
+        class TileMap : IRenderable
         {
         private:
             Array<TilesetTexture> m_tilesets;
@@ -38,7 +39,7 @@ namespace Core
             TileMap();
             ~TileMap();
 
-            void RenderMap(Renderer& renderer) const;
+            void Render(Renderer& renderer) override;
 
             void LoadTileMap(const String& filePath);
 

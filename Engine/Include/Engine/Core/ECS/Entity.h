@@ -3,6 +3,7 @@
 #include "Engine/Core/Scripting/IBinder.h"
 #include "Components/Component.h"
 #include "Components/Transform.h"
+#include "Engine/Core/IRenderable.h"
 
 using namespace Core::Components;
 namespace Core
@@ -10,7 +11,7 @@ namespace Core
     namespace Scripting { class Prefab; }
 
     using namespace Scripting;
-    class Entity : public IBinder
+    class Entity : public IBinder, public IRenderable
     {
     private:
         Prefab* m_prefab = nullptr;
@@ -32,7 +33,7 @@ namespace Core
 
         virtual void Initialize();
         virtual void Update(float delta);
-        virtual void Render(Renderer& renderer);
+        void Render(Renderer& renderer) override;
 
         void RemoveAllComponents();
 

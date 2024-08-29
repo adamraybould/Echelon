@@ -120,12 +120,14 @@ namespace Core
     void Application::Render() const
     {
         m_pEngineGUI->Render(GetRenderer());
-        m_pWindow->GetRenderer().RenderScreen();
+        GetRenderer().RenderScreen();
 
-        m_pStateSystem->Render(GetRenderer());
-        m_pScriptCore->Render(GetRenderer());
+        GetRenderer().ProcessRenderQueue();
+        //m_pStateSystem->Render(GetRenderer());
+        //m_pScriptCore->Render(GetRenderer());
 
         m_pEngineGUI->RenderImGui(GetRenderer());
+
         GetRenderer().PresentScreen();
     }
 
