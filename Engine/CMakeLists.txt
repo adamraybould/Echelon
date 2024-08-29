@@ -66,6 +66,10 @@ add_library(Engine STATIC
         Src/Core/Engine.cpp
         Include/Engine/Core/Input.h
         Src/Core/Input.cpp
+        Include/Engine/Graphics/TileMap.h
+        Src/Graphics/TileMap.cpp
+        Include/Engine/Graphics/MapLayer.h
+        Src/Graphics/MapLayer.cpp
 )
 
 target_include_directories(Engine PUBLIC
@@ -74,10 +78,12 @@ target_include_directories(Engine PUBLIC
         ${LUABRIDGE3_INCLUDE_DIRS}
 )
 
-target_include_directories(Engine PRIVATE ${CMAKE_BINARY_DIR})
+target_include_directories(Engine PRIVATE
+        ${CMAKE_BINARY_DIR}
+        ${TMXLITE_INCLUDE_DIR}
+)
 
 target_link_libraries(Engine PRIVATE ${LUA_LIBRARIES})
-
 target_link_libraries(Engine PRIVATE ZLIB::ZLIB)
 target_link_libraries(Engine PRIVATE $<TARGET_NAME_IF_EXISTS:SDL2::SDL2main> $<IF:$<TARGET_EXISTS:SDL2::SDL2>,SDL2::SDL2,SDL2::SDL2-static>)
 target_link_libraries(Engine PRIVATE $<IF:$<TARGET_EXISTS:SDL2_image::SDL2_image>,SDL2_image::SDL2_image,SDL2_image::SDL2_image-static>)
@@ -86,3 +92,4 @@ target_link_libraries(Engine PRIVATE JsonCpp::JsonCpp)
 target_link_libraries(Engine PRIVATE ${LUA_LIBRARIES})
 target_link_libraries(Engine PRIVATE crossguid)
 target_link_libraries(Engine PRIVATE magic_enum::magic_enum)
+target_link_libraries(Engine PRIVATE ${TMXLITE_LIBRARY})

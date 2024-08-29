@@ -137,3 +137,65 @@ Abi: a0e13f9ef20a2a47025e21d41e0bc51b6c5fc1df2ba20a7f20943beb44dda425
 Description: Header-only C++17 library provides static reflection for enums, work with any enum type without any macro or boilerplate code.
 Status: install ok installed
 
+Package: tinyxml2
+Version: 10.0.0
+Depends: vcpkg-cmake:x64-windows, vcpkg-cmake-config:x64-windows
+Architecture: x86-mingw-dynamic
+Multi-Arch: same
+Abi: 3487685fcb263059c7907f61dbe2c38dec54b419d6486d45269c85c34ff5a243
+Description: A simple, small, efficient, C++ XML parser
+Status: purge ok not-installed
+
+Package: zstd
+Version: 1.5.6
+Depends: vcpkg-cmake:x64-windows, vcpkg-cmake-config:x64-windows
+Architecture: x86-mingw-dynamic
+Multi-Arch: same
+Abi: 74be7e4ac30f1b4e11dc6ce753b813c2f02856daeca9890f87c37fc8117f6a4a
+Description: Zstandard - Fast real-time compression algorithm
+Status: install ok installed
+
+Package: pugixml
+Version: 1.14
+Depends: vcpkg-cmake:x64-windows, vcpkg-cmake-config:x64-windows
+Architecture: x86-mingw-dynamic
+Multi-Arch: same
+Abi: e79e1fc40d1f7e99615b24d2e654ac5d70a39b9167701be5aeb796c806420602
+Description: Light-weight, simple and fast XML parser for C++ with XPath support
+Status: install ok installed
+
+Package: tmxlite
+Version: 1.4.4
+Depends: pugixml, vcpkg-cmake:x64-windows, vcpkg-cmake-config:x64-windows, zlib, zstd
+Architecture: x86-mingw-dynamic
+Multi-Arch: same
+Abi: 1f5c41850860ea8d1b7e9976d4bcee6067dce8449b8f5faaa8c60beb265e91eb
+Description: A lightweight C++14 parsing library for tmx map files created with the Tiled map editor.
+Status: install ok installed
+
+Package: vcpkg-cmake-get-vars
+Version: 2023-12-31
+Depends: vcpkg-cmake
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 16772ec2a9fc44d6b7ed1a4183e422034e0d2cb740a6b421f22a6d90967951ee
+Status: purge ok not-installed
+
+Package: vcpkg-tool-meson
+Version: 1.5.1
+Depends: vcpkg-cmake-get-vars
+Architecture: x64-windows
+Multi-Arch: same
+Abi: e82dc5eabe0f057725b8df4dfc5ea7ae7d5d4ff7b373664cd3e44e245df5e6d7
+Description: Meson build system
+Status: purge ok not-installed
+
+Package: pkgconf
+Version: 2.3.0
+Depends: vcpkg-tool-meson:x64-windows
+Architecture: x86-mingw-dynamic
+Multi-Arch: same
+Abi: 9e9834d8584ed72207737a73e1769ea8e7b00921ccb5fa6ce65b4ec8a0208295
+Description: pkgconf is a program which helps to configure compiler and linker flags for development libraries. It is similar to pkg-config from freedesktop.org.
+Status: purge ok not-installed
+

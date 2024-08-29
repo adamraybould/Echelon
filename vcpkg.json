@@ -36,5 +36,8 @@
   }, {
     "name" : "magic-enum",
     "version>=" : "0.9.6#1"
+  }, {
+    "name" : "tmxlite",
+    "version>=" : "1.4.4"
   } ]
 }

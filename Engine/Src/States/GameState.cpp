@@ -1,5 +1,6 @@
 #include "Engine/States/GameState.h"
 #include "Engine/Core/Systems/LevelManager.h"
+#include "Engine/Graphics/TileMap.h"
 
 namespace Core::States
 {
@@ -7,6 +8,8 @@ namespace Core::States
     {
         m_pEntityManager = std::make_unique<EntityManager>();
         m_pLevelManager = std::make_unique<LevelManager>(*m_pEntityManager);
+
+        m_pTileMap = std::make_unique<TileMap>();
     }
 
     GameState::~GameState()
@@ -22,6 +25,8 @@ namespace Core::States
 
         if (m_pLevelManager != nullptr)
             m_pLevelManager->Initialise();
+
+        m_pTileMap->LoadTileMap("TestMap");
     }
 
     void GameState::Update(float delta)
@@ -40,5 +45,8 @@ namespace Core::States
 
         if (m_pLevelManager != nullptr)
             m_pLevelManager->Render(renderer);
+
+        if (m_pTileMap != nullptr)
+            m_pTileMap->RenderMap(renderer);
     }
 }

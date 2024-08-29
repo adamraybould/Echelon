@@ -14,6 +14,17 @@ namespace Core
             xg::Guid guid = xg::newGuid();
             return guid.str();
         }
+
+        static String RemovePrefix(const String& string, const String& prefix)
+        {
+            size_t pos = string.find(prefix);
+            if (pos != std::string::npos)
+            {
+                return string.substr(pos + prefix.length());
+            }
+
+            return string;
+        }
     };
 
     class Random

@@ -29,37 +29,13 @@ namespace Core::Graphics
         m_loadedTextures.clear();
     }
 
-    SDL_Texture& AssetManager::LoadRawTexture(const char* filePath)
+    Texture2D& AssetManager::LoadTexture2D(const String& filePath)
     {
-        std::string texturePath = ASSETS_PATH + std::string(filePath);
+        SDL_Texture& texture = LoadRawTexture(filePath);
+        m_loadedTextures.push_back(std::make_unique<Texture2D>(&texture));
 
-        SDL_Texture* texture = IMG_LoadTexture(*m_renderer, texturePath.c_str());
-        if (texture == nullptr)
-        {
-            printf("Failed to load texture: %s\n", SDL_GetError());
-            texturePath = ASSETS_PATH + std::string(ERROR_TEXTURE);
-            texture = IMG_LoadTexture(*m_renderer, texturePath.c_str());
-        }
-
-        return *texture;
-    }
-
-    Texture2D& AssetManager::LoadTexture2D(const char* filePath)
-    {
-        std::string texturePath = ASSETS_PATH + std::string(filePath);
-
-        SDL_Texture* texture = IMG_LoadTexture(*m_renderer, texturePath.c_str());
-        if (texture == nullptr)
-        {
-            printf("Failed to load texture: %s\n", SDL_GetError());
-            texture = IMG_LoadTexture(*m_renderer, ERROR_TEXTURE);
-        }
-
-        m_loadedTextures.push_back(std::make_unique<Texture2D>(texture));
-        printf("Loaded texture: %s\n", texturePath.c_str());
-
-        Texture2D* loadedTexture = m_loadedTextures.back().get();
-        return *loadedTexture;
+        Texture2D& loadedTexture = *m_loadedTextures.back();
+        return loadedTexture;
     }
 
     Sprite& AssetManager::LoadSprite(const char* filePath)
@@ -106,5 +82,21 @@ namespace Core::Graphics
         Texture2D* texture = m_loadedTextures.back().get();
         SpriteSheet* spriteSheet = static_cast<SpriteSheet*>(texture);
         return *spriteSheet;
+    }
+
+    SDL_Texture& AssetManager::LoadRawTexture(const String& filePath)
+    {
+        std::string texturePath = ASSETS_PATH + filePath;
+
+        SDL_Texture* texture = IMG_LoadTexture(*m_renderer, texturePath.c_str());
+        if (texture == nullptr)
+        {
+            std::cerr << "Failed to Load Texture: " << SDL_GetError() << std::endl;
+
+            texturePath = ASSETS_PATH + std::string(ERROR_TEXTURE);
+            texture = IMG_LoadTexture(*m_renderer, texturePath.c_str());
+        }
+
+        return *texture;
     }
 }

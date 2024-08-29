@@ -21,14 +21,16 @@ namespace Core
             AssetManager(Renderer& renderer);
             ~AssetManager();
 
-            /* Loads a Raw SDL Texture */
-            static SDL_Texture& LoadRawTexture(const char* filePath);
 
-            static Texture2D& LoadTexture2D(const char* filePath);
+            static Texture2D& LoadTexture2D(const String& filePath);
             static Sprite& LoadSprite(const char* filePath);
 
             /* Loads a Sprite Sheet through a .SF file */
             static SpriteSheet& LoadSpriteSheet(const char* filePath);
+
+        private:
+            /* Loads a Raw SDL Texture */
+            static SDL_Texture& LoadRawTexture(const String& filePath);
         };
     }
 }

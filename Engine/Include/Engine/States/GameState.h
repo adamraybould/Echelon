@@ -10,7 +10,10 @@ namespace Core
         class LevelManager;
     }
 
+    namespace Graphics { class TileMap; }
+
     using namespace Systems;
+    using namespace Graphics;
     namespace States
     {
         class GameState final : public State
@@ -18,6 +21,8 @@ namespace Core
         private:
             UniquePtr<EntityManager> m_pEntityManager;
             UniquePtr<LevelManager> m_pLevelManager;
+
+            UniquePtr<TileMap> m_pTileMap;
 
         public:
             GameState();

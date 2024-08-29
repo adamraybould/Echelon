@@ -3,6 +3,7 @@
 #include "Engine/Core/Camera.h"
 #include "Engine/Core/ECS/Entity.h"
 #include "Engine/Core/Scripting/Prefab.h"
+#include <tmxlite/Map.hpp>
 
 namespace Core
 {
