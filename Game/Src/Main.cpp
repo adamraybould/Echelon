@@ -2,7 +2,7 @@
 
 #include <SDL2/SDL.h>
 #include "Echelon/Levels/MainLevel.h"
-#include <Engine/Core/IProgram.h>
+#include <Engine/Core/Interfaces/IProgram.h>
 #include "Engine/Core/Application.h"
 #include "Engine/Core/Systems/LevelManager.h"
 #include "Engine/States/GameState.h"

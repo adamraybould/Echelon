@@ -3,7 +3,8 @@
 
 #include "Engine.h"
 #include "Input.h"
-#include "IProgram.h"
+#include "Physics.h"
+#include "Interfaces/IProgram.h"
 #include "Scripting/ScriptCore.h"
 #include "Engine/Graphics/AssetManager.h"
 #include "Engine/Core/Systems/StateSystem.h"
@@ -25,6 +26,7 @@ namespace Core
 
         UniquePtr<Engine> m_pEngine;
         UniquePtr<ScriptCore> m_pScriptCore;
+        UniquePtr<Physics> m_pPhysics;
 
         UniquePtr<Editor::EngineGUI> m_pEngineGUI;
         UniquePtr<Graphics::AssetManager> m_pAssetManager;

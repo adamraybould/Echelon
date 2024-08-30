@@ -12,6 +12,8 @@ local function fn()
 
 	inst.Transform:SetPosition(Vector2(GetRandomRange(-500, 500), GetRandomRange(-500, 500)))
 
+	inst.entity:AddRigidbody()
+
 	inst:AddTag("human")
 	inst:AddTag("carbon")
 	inst:AddTag("blank")

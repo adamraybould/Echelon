@@ -1331,7 +1331,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "general;D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/debug/lib/liblua.dll.a;general;ZLIB::ZLIB;general;imgui::imgui;general;D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/debug/lib/liblua.dll.a;general;crossguid;optimized;D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/lib/libtmxlite.dll.a;debug;D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/debug/lib/libtmxlite-d.dll.a;"
+			"value" : "general;D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/debug/lib/liblua.dll.a;general;ZLIB::ZLIB;general;imgui::imgui;general;D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/debug/lib/liblua.dll.a;general;crossguid;optimized;D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/lib/libtmxlite.dll.a;debug;D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/debug/lib/libtmxlite-d.dll.a;general;box2d::box2d;"
 		},
 		{
 			"name" : "FIND_PACKAGE_MESSAGE_DETAILS_Lua",
@@ -2356,6 +2356,18 @@
 			],
 			"type" : "INTERNAL",
 			"value" : "1"
+		},
+		{
+			"name" : "box2d_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "The directory containing a CMake configuration file for box2d."
+				}
+			],
+			"type" : "PATH",
+			"value" : "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/share/box2d"
 		},
 		{
 			"name" : "crossguid_DIR",

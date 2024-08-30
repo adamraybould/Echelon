@@ -3,7 +3,7 @@
 #include "Engine/Core/Scripting/IBinder.h"
 #include "Components/Component.h"
 #include "Components/Transform.h"
-#include "Engine/Core/IRenderable.h"
+#include "Engine/Core/Interfaces/IRenderable.h"
 
 using namespace Core::Components;
 namespace Core
@@ -51,6 +51,7 @@ namespace Core
 
         void AddTransform(LState* L);
         void AddRenderer(LState* L);
+        void AddRigidbody(LState* L);
 
         Transform& GetTransform() const { return *m_transform; }
 

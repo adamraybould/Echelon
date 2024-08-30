@@ -52,6 +52,7 @@ namespace Core
     {
         m_pScriptCore.reset();
         m_pEngine.reset();
+        m_pPhysics.reset();
 
         m_pEngineGUI.reset();
         m_pAssetManager.reset();
@@ -111,7 +112,9 @@ namespace Core
             m_lastTitleUpdateTicks = currentTitleUpdateTicks;
         }
 
-        m_pWindow->GetRenderer().Update(deltaTime);
+        m_pPhysics->Update();
+
+        GetRenderer().Update(deltaTime);
         m_pEngineGUI->Update(deltaTime);
         m_pStateSystem->Update(deltaTime);
         m_pScriptCore->Update(deltaTime);
@@ -123,6 +126,7 @@ namespace Core
         GetRenderer().RenderScreen();
 
         GetRenderer().ProcessRenderQueue();
+        m_pPhysics->Render(GetRenderer());
         //m_pStateSystem->Render(GetRenderer());
         //m_pScriptCore->Render(GetRenderer());
 
@@ -165,6 +169,8 @@ namespace Core
         }
 
         // Initialise Systems
+        m_pPhysics = std::make_unique<Physics>(GetRenderer());
+
         m_pAssetManager = std::make_unique<Graphics::AssetManager>(m_pWindow->GetRenderer());
 
         m_pInput = std::make_unique<Input>();

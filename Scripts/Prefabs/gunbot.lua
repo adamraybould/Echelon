@@ -12,6 +12,8 @@ local function fn()
 
 	inst.Transform:SetPosition(Vector2(GetRandomRange(-500, 500), GetRandomRange(-500, 500)))
 
+	inst.entity:AddRigidbody()
+
 	inst:AddComponent("health")
 	inst.components.health:SetMaxHealth(100)
 

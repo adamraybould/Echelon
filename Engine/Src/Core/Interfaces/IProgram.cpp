@@ -1,4 +1,4 @@
-#include "Engine/Core/IProgram.h"
+#include "Engine/Core/Interfaces/IProgram.h"
 #include "Engine/Core/Application.h"
 
 namespace Core

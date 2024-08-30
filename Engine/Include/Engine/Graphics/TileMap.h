@@ -1,13 +1,12 @@
 #ifndef TILEMAP_H
 #define TILEMAP_H
-#include "MapLayer.h"
-#include "Engine/Core/IRenderable.h"
+#include "MapCollisionLayer.h"
+#include "Engine/Core/Interfaces/IRenderable.h"
 #include "Engine/Utility/Commons.h"
 
 namespace tmx
 {
     class Tileset;
-    class Map;
 }
 
 namespace Core
@@ -16,6 +15,7 @@ namespace Core
 
     namespace Graphics
     {
+        class MapLayer;
         class Texture2D;
 
         struct TilesetTexture
@@ -34,6 +34,10 @@ namespace Core
         private:
             Array<TilesetTexture> m_tilesets;
             Array<UniquePtr<MapLayer>> m_layers;
+            Array<UniquePtr<MapCollisionLayer>> m_collisionLayers;
+
+            Vector2 m_mapSize;
+            Texture2D* m_pSpaceTexture;
 
         public:
             TileMap();
@@ -46,6 +50,8 @@ namespace Core
         private:
             void LoadTilesets(const tmx::Map& map);
             void LoadLayers(tmx::Map& map, const Array<TilesetTexture>& tilesets);
+
+            void RenderBackground(Renderer& renderer);
         };
     }
 }

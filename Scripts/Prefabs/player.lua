@@ -10,6 +10,11 @@ local function fn()
 	inst.entity:AddTransform()
 	inst.entity:AddRenderer()
 
+	inst.Transform:SetPosition(Vector2(488, 128))
+
+	inst.entity:AddRigidbody()
+	--inst.Rigidbody:SetLinearDamping(30.0)
+
 	inst:AddComponent("movement")
 	inst:AddComponent("playercontroller")
 

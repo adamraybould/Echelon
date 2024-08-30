@@ -199,3 +199,13 @@ Abi: 9e9834d8584ed72207737a73e1769ea8e7b00921ccb5fa6ce65b4ec8a0208295
 Description: pkgconf is a program which helps to configure compiler and linker flags for development libraries. It is similar to pkg-config from freedesktop.org.
 Status: purge ok not-installed
 
+Package: box2d
+Version: 2.4.1
+Port-Version: 3
+Depends: vcpkg-cmake:x64-windows, vcpkg-cmake-config:x64-windows
+Architecture: x86-mingw-dynamic
+Multi-Arch: same
+Abi: 476f83b2dc426d3bacdfa0a5f92937a8bf300198550a755de3c215ca4149ffed
+Description: An open source C++ engine for simulating rigid bodies in 2D
+Status: install ok installed
+

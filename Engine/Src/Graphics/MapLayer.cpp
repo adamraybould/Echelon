@@ -8,8 +8,6 @@
 #include "Engine/Core/Renderer.h"
 #include "Engine/Graphics/TileMap.h"
 
-constexpr int TILE_SCALE = 2;
-
 namespace Core
 {
     namespace Graphics
@@ -48,11 +46,6 @@ namespace Core
                         // Tile is using this Tileset
                         if (m_mapTiles.contains(firstGID))
                         {
-                            float col = i % static_cast<int>(m_mapSize.X);
-                            float row = i / static_cast<int>(m_mapSize.X);
-                            int destX = static_cast<int>(col * m_tileSize.X);
-                            int destY = static_cast<int>(row * m_tileSize.Y);
-
                             m_mapTiles.at(firstGID).Tiles.push_back(MapTile::Tile(tiles[i], GetTilePosition(i)));
                         }
                         else
@@ -63,12 +56,6 @@ namespace Core
                         }
                     }
                 }
-            }
-
-            for (const auto& map : m_mapTiles)
-            {
-                std::cout << "-- Map Tile --" << std::endl;
-                std::cout << "Tile Count: " << map.second.Tiles.size() << std::endl;
             }
         }
 
@@ -91,9 +78,8 @@ namespace Core
 
                     Vector2 tileScale = m_tileSize * TILE_SCALE;
 
-                    Vector2 position = tile.Position;
-                    Vector2 screenPos = Camera::Main->CalculateScreenPosition(position);
-                    screenPos = Vector2(screenPos.X + (SCREEN_WIDTH * 0.5f), screenPos.Y + (SCREEN_HEIGHT * 0.5f));
+                    Vector2 screenPos = Camera::Main->CalculateScreenPosition(tile.Position);
+                    screenPos = Vector2(screenPos.X, screenPos.Y);
 
                     SDL_Rect destRect = { screenPos.X - (tileScale.X * 0.5f), screenPos.Y - (tileScale.Y * 0.5f), tileScale.X , tileScale.Y };
 

@@ -2,6 +2,7 @@
 
 #include "Engine/Core/Engine.h"
 #include "Engine/Core/Renderer.h"
+#include "Engine/Core/ECS/Components/Rigidbody.h"
 #include "Engine/Core/ECS/Components/SpriteRenderer.h"
 #include "Engine/Core/Scripting/Prefab.h"
 #include "Engine/Utility/Utility.h"
@@ -95,9 +96,19 @@ namespace Core
     void Entity::AddRenderer(LState* L)
     {
         SpriteRenderer* renderer = &AddComponent<SpriteRenderer>();
+        renderer->SetupEmbedding(L);
 
         LRef ent = getGlobal(L, "Entities");
         ent[m_guid]["Renderer"] = renderer;
+    }
+
+    void Entity::AddRigidbody(LState* L)
+    {
+        Rigidbody* rigidbody = &AddComponent<Rigidbody>();
+        rigidbody->SetupEmbedding(L);
+
+        LRef ent = getGlobal(L, "Entities");
+        ent[m_guid]["Rigidbody"] = rigidbody;
     }
 
     void Entity::AddTag(const String& tag)
@@ -139,16 +150,21 @@ namespace Core
         BindClass<Entity>(L);
         BindProperty<Entity>(L, "name", &Entity::GetName);
         BindProperty<Entity>(L, "GUID", &Entity::GetGUID);
+        BindFunction<Entity>(L, "SetRenderLayer", &IRenderable::SetRenderLayer);
 
-        BindFunction<Entity>(L, "SetName", &Entity::SetName);
         BindFunction<Entity>(L, "AddTransform", &Entity::AddTransform);
         BindFunction<Entity>(L, "AddRenderer", &Entity::AddRenderer);
-        BindFunction<Entity>(L, "SetRenderLayer", &IRenderable::SetRenderLayer);
+        BindFunction<Entity>(L, "AddRigidbody", &Entity::AddRigidbody);
+
+        BindFunction<Entity>(L, "SetName", &Entity::SetName);
         BindFunction<Entity>(L, "AddTag", &Entity::AddTag);
         BindFunction<Entity>(L, "RemoveTag", &Entity::RemoveTag);
         BindFunction<Entity>(L, "HasTag", &Entity::HasTag);
 
         BindClass<SpriteRenderer>(L);
         BindFunction<SpriteRenderer>(L, "SetFrame", &SpriteRenderer::SetSpriteFrame);
+
+        BindClass<Rigidbody>(L);
+        BindFunction<Rigidbody>(L, "ApplyForce", &Rigidbody::ApplyForce);
     }
 }

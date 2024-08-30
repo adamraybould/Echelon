@@ -421,6 +421,22 @@
 			"path" : "cmake_modules/FindPackageMessage.cmake"
 		},
 		{
+			"isGenerated" : true,
+			"path" : "cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/share/box2d/box2dConfigVersion.cmake"
+		},
+		{
+			"isGenerated" : true,
+			"path" : "cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/share/box2d/box2dConfig.cmake"
+		},
+		{
+			"isGenerated" : true,
+			"path" : "cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/share/box2d/box2dConfig-debug.cmake"
+		},
+		{
+			"isGenerated" : true,
+			"path" : "cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/share/box2d/box2dConfig-release.cmake"
+		},
+		{
 			"path" : "vcpkg.json"
 		},
 		{

@@ -3,13 +3,11 @@
 #include <config.h>
 #include <iostream>
 #include <tmxlite/Map.hpp>
-#include <tmxlite/TileLayer.hpp>
-
 #include "Engine/Core/Renderer.h"
 #include "Engine/Graphics/AssetManager.h"
+#include "Engine/Graphics/MapLayer.h"
 #include "Engine/Utility/Utility.h"
 
-using namespace tmx;
 namespace Core
 {
     namespace Graphics
@@ -29,6 +27,11 @@ namespace Core
 
         void TileMap::Render(Renderer& renderer)
         {
+            if (m_pSpaceTexture != nullptr)
+            {
+                RenderBackground(renderer);
+            }
+
             for (UInt i = 0; i < m_layers.size(); i++)
             {
                 m_layers[i]->Render(renderer);
@@ -46,11 +49,16 @@ namespace Core
                 return;
             }
 
+            m_mapSize = Vector2(map.getTileCount().x * map.getTileSize().x, map.getTileCount().y * map.getTileSize().y);;
+
             LoadTilesets(map);
             if (!m_tilesets.empty())
             {
                 LoadLayers(map, m_tilesets);
             }
+
+            // Load Space Background
+            m_pSpaceTexture = &AssetManager::LoadTexture2D("Tilesets/space.png");
 
             SetRenderLayer(RenderLayer::TileMap);
             Renderer::AddToRenderQueue(this, GetRenderLayer());
@@ -82,7 +90,19 @@ namespace Core
                 {
                     m_layers.emplace_back(std::make_unique<MapLayer>(map, tilesets, *layers[i]));
                 }
+                else if (layers[i]->getType() == tmx::Layer::Type::Object)
+                {
+                    m_collisionLayers.emplace_back(std::make_unique<MapCollisionLayer>(map, *layers[i]));
+                }
             }
+        }
+
+        void TileMap::RenderBackground(Renderer& renderer)
+        {
+
+            SDL_Rect src = { 0, 0, m_pSpaceTexture->GetWidth(), m_pSpaceTexture->GetHeight() };
+            SDL_Rect dst = { 0, 0, SCREEN_WIDTH / Camera::Main->GetZoom(), SCREEN_HEIGHT / Camera::Main->GetZoom() };
+            SDL_RenderCopy(renderer, &m_pSpaceTexture->GetRawTexture(), &src, &dst);
         }
     }
 }

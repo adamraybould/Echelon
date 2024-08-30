@@ -4,14 +4,14 @@ cmake_minimum_required(VERSION 3.8)
 include(FindLua)
 
 add_library(Engine STATIC
-        Include/Engine/Core/IProgram.h
+        Include/Engine/Core/Interfaces/IProgram.h
         Src/Core/Application.cpp
         Include/Engine/Core/Application.h
         Src/Core/Window.cpp
         Include/Engine/Core/Window.h
         Include/Engine/Utility/Commons.h
         Include/Engine/Utility/Delegates.h
-        Src/Core/IProgram.cpp
+        Src/Core/Interfaces/IProgram.cpp
         Include/Engine/Utility/MathF.h
         Include/Engine/Core/Systems/StateSystem.h
         Src/Core/Systems/StateSystem.cpp
@@ -70,7 +70,15 @@ add_library(Engine STATIC
         Src/Graphics/TileMap.cpp
         Include/Engine/Graphics/MapLayer.h
         Src/Graphics/MapLayer.cpp
-        Include/Engine/Core/IRenderable.h
+        Include/Engine/Core/Interfaces/IRenderable.h
+        Include/Engine/Core/ECS/Components/Rigidbody.h
+        Src/Core/ECS/Components/Rigidbody.cpp
+        Include/Engine/Core/Physics.h
+        Src/Core/Physics.cpp
+        Include/Engine/Graphics/MapCollisionLayer.h
+        Src/Graphics/MapCollisionLayer.cpp
+        Include/Engine/Utility/DebugDraw.h
+        Src/Utility/DebugDraw.cpp
 )
 
 target_include_directories(Engine PUBLIC
@@ -94,3 +102,4 @@ target_link_libraries(Engine PRIVATE ${LUA_LIBRARIES})
 target_link_libraries(Engine PRIVATE crossguid)
 target_link_libraries(Engine PRIVATE magic_enum::magic_enum)
 target_link_libraries(Engine PRIVATE ${TMXLITE_LIBRARY})
+target_link_libraries(Engine PRIVATE box2d::box2d)

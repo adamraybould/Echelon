@@ -68,7 +68,7 @@ namespace Core::Components
 
         Camera& camera = renderer.GetCamera();
         Vector2 screenPosition = camera.CalculateScreenPosition(position);
-        screenPosition = Vector2(screenPosition.X + (SCREEN_WIDTH * 0.5f), screenPosition.Y + (SCREEN_HEIGHT * 0.5f));
+        screenPosition = Vector2(screenPosition.X, screenPosition.Y);
 
         SDL_Rect dest =
             {

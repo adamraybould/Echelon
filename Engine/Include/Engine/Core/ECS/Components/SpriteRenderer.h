@@ -1,7 +1,6 @@
 #ifndef SPRITERENDERER_H
 #define SPRITERENDERER_H
 #include "Component.h"
-#include "Engine/Core/IRenderable.h"
 
 namespace Core
 {

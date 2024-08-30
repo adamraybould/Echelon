@@ -46,4 +46,9 @@ function MainCamera:SetTarget(inst)
 	end
 end
 
+function MainCamera:SnapToPosition(pos)
+	self.currentpos.x = pos.x
+	self.currentpos.y = pos.y
+end
+
 return MainCamera

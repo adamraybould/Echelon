@@ -13,13 +13,11 @@ function Movement:Update(delta)
 end
 
 function Movement:WalkInDirection(direction, delta) -- TODO: remove delta eventually
-	local newPos = self.inst:GetPosition() + direction * (self:GetWalkSpeed() * delta)
-	self.inst.Transform:SetPosition(newPos)
+	self.inst.Rigidbody:ApplyImpulse(direction * self:GetWalkSpeed())
 end
 
 function Movement:RunInDirection(direction, delta) -- TODO: remove delta eventually
-	local newPos = self.inst:GetPosition() + direction * (self:GetRunSpeed() * delta)
-	self.inst.Transform:SetPosition(newPos)
+	self.inst.Rigidbody:ApplyImpulse(direction * self:GetRunSpeed())
 end
 
 function Movement:GetWalkSpeed()
