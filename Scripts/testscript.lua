@@ -12,4 +12,4 @@ local drillbot = SpawnPrefab("drillbot")
 gunbot.Rigidbody:SetPosition(Vector2(GetRandomRange(-500, 500), GetRandomRange(-500, 500)))
 drillbot.Rigidbody:SetPosition(Vector2(GetRandomRange(-500, 500), GetRandomRange(-500, 500)))
 
---SpawnMultiplePrefabs("blank", 5)
+SpawnMultiplePrefabs("blank", 5)

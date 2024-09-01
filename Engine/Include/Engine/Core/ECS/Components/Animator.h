@@ -43,7 +43,7 @@ namespace Core
             void Initialize() override;
             void Update(float delta) override;
 
-            void Play(const String& animName, bool restart = false);
+            void PlayAnimation(const String& animName, bool restart = false);
             void Stop();
 
             void Pause();

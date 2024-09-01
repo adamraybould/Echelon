@@ -14,8 +14,6 @@ local function fn()
 
 	inst.Transform:SetPosition(Vector2(488, 128))
 
-	--inst.Rigidbody:SetLinearDamping(30.0)
-
 	inst:AddComponent("movement")
 	inst:AddComponent("playercontroller")
 

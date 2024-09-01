@@ -28,8 +28,7 @@ namespace Core
             void Render(Renderer& renderer) override;
             void Destroy() override;
 
-            /* Sets the Sprite source rect to a new Frame. Only works with Sprite Sheets */
-            void SetSpriteFrame(int frameIndex);
+            void SetSourceFromFrame(UInt frameIndex);
 
             void SetDisplaySource(UInt x, UInt y, UInt width, UInt height);
             Rectangle GetDisplaySource() const { return m_source; }

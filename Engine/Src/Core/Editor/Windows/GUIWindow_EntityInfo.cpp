@@ -130,7 +130,7 @@ namespace Core::Editor
         }
     }
 
-    Vector2 GUIWindow_EntityInfo::GetEntityScreenPosition(const Entity& entity)
+    Vector2 GUIWindow_EntityInfo::GetEntityScreenPosition(const Entity& entity) const
     {
         Camera& camera = m_engineGUI.GetEngineWindow().GetRenderer().GetCamera();
         return camera.CalculateScreenPosition(entity.GetTransform().GetWorldPosition());

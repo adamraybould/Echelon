@@ -31,7 +31,7 @@ namespace Core
             void Render() override;
 
         private:
-            Vector2 GetEntityScreenPosition(const Entity& entity);
+            Vector2 GetEntityScreenPosition(const Entity& entity) const;
             ImTextureID GetTextureID(const Graphics::Texture2D& texture) { return (ImTextureID)(intptr_t)&texture.GetRawTexture(); }
         };
     }

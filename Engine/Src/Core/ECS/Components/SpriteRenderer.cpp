@@ -20,7 +20,7 @@ namespace Core::Components
         Component::SetupEmbedding(L);
 
         BindClass<SpriteRenderer>(L);
-        BindFunction<SpriteRenderer>(L, "SetFrame", &SpriteRenderer::SetSpriteFrame);
+        BindFunction<SpriteRenderer>(L, "SetFrame", &SpriteRenderer::SetSourceFromFrame);
     }
 
     void SpriteRenderer::Initialize()
@@ -36,9 +36,10 @@ namespace Core::Components
 
                 m_pSprite = AssetManager::LoadSpriteSheet(path.c_str());
                 m_source = { 0, 0, m_pSprite->GetWidth(), m_pSprite->GetHeight() };
+
                 if (spriteAsset->HasParams())
                 {
-                    SetSpriteFrame(param);
+                    SetSourceFromFrame(param);
                 }
             }
         }
@@ -87,7 +88,7 @@ namespace Core::Components
         m_pSprite = nullptr;
     }
 
-    void SpriteRenderer::SetSpriteFrame(int frameIndex)
+    void SpriteRenderer::SetSourceFromFrame(UInt frameIndex)
     {
         SpriteSheet* spriteSheet = static_cast<SpriteSheet*>(m_pSprite);
         if (spriteSheet != nullptr)

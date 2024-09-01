@@ -24,7 +24,7 @@ namespace Core
             Component::SetupEmbedding(L);
 
             BindClass<Animator>(L);
-            BindFunction<Animator>(L, "Play", &Animator::Play);
+            BindFunction<Animator>(L, "PlayAnimation", &Animator::PlayAnimation);
             BindFunction<Animator>(L, "Stop", &Animator::Stop);
 
             BindFunction<Animator>(L, "Pause", &Animator::Pause);
@@ -40,7 +40,7 @@ namespace Core
             m_pRenderer = GetOwner().GetComponent<SpriteRenderer>();
             m_pSpriteSheet = static_cast<SpriteSheet*>(&m_pRenderer->GetSprite());
 
-            Play("Idle_D");
+            PlayAnimation("Idle_D");
         }
 
         void Animator::Update(const float delta)
@@ -66,7 +66,7 @@ namespace Core
             }
         }
 
-        void Animator::Play(const String& animName, const bool restart)
+        void Animator::PlayAnimation(const String& animName, const bool restart)
         {
             if (!restart)
             {

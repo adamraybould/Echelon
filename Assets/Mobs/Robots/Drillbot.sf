@@ -1,8 +1,0 @@
-{
-  "TextureAtlas": {
-    "Texture": "Drillbot.png",
-    "RegionWidth": 32,
-    "RegionHeight": 32
-  },
-  "Cycles": {}
-}
