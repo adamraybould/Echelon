@@ -1,27 +1,36 @@
 #ifndef SPRITESHEET_H
 #define SPRITESHEET_H
 #include "Sprite.h"
+#include "Animation.h"
 
-namespace Core::Graphics
+namespace Core
 {
-    class SpriteSheet : public Sprite
+    namespace Graphics
     {
-    private:
-        UInt m_frameWidth;
-        UInt m_frameHeight;
-        UInt m_frameCount;
+        class SpriteSheet : public Sprite
+        {
+        private:
+            UnorderedMap<String, Animation> m_animations;
 
-    public:
-        SpriteSheet(SDL_Texture* texture, UInt frameWidth, UInt frameHeight);
-        ~SpriteSheet();
+            UInt m_frameWidth;
+            UInt m_frameHeight;
+            UInt m_frameCount;
 
-        /* Returns the Source Rect of a Sprite within the Sprite Sheet */
-        Rectangle GetSpriteSource(UInt frameIndex) const;
+        public:
+            SpriteSheet(SDL_Texture* texture, UInt frameWidth, UInt frameHeight, UnorderedMap<String, Animation> animations);
+            ~SpriteSheet();
 
-        UInt GetFrameWidth() const { return m_frameWidth; }
-        UInt GetFrameHeight() const { return m_frameHeight; }
-        UInt GetFrameCount() const { return m_frameCount; }
-    };
+            /* Returns the Source Rect of a Sprite within the Sprite Sheet */
+            Rectangle GetSpriteSource(UInt frameIndex) const;
+
+            bool IsAnimationValid(const String& animName) const;
+            Animation* GetAnimation(const String& animName);
+
+            UInt GetFrameWidth() const { return m_frameWidth; }
+            UInt GetFrameHeight() const { return m_frameHeight; }
+            UInt GetFrameCount() const { return m_frameCount; }
+        };
+    }
 }
 
 #endif //SPRITESHEET_H

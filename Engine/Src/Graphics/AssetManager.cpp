@@ -2,11 +2,17 @@
 
 #include <fstream>
 #include <SDL_image.h>
-#include "../../Include/Engine/Core/Renderer.h"
+#include "config.h"
+#include <json/json.h>
+#include <filesystem>
+
+#include "Engine/Core/Renderer.h"
 #include "Engine/Graphics/Sprite.h"
 #include "Engine/Core/Application.h"
-#include <json/json.h>
-#include "config.h"
+#include "Engine/Graphics/Animation.h"
+#include "Engine/Utility/Utility.h"
+
+namespace fs = std::filesystem;
 
 namespace Core::Graphics
 {
@@ -31,7 +37,7 @@ namespace Core::Graphics
 
     Texture2D& AssetManager::LoadTexture2D(const String& filePath)
     {
-        SDL_Texture& texture = LoadRawTexture(filePath);
+        SDL_Texture& texture = LoadRawTexture(ASSETS_PATH + filePath);
         m_loadedTextures.push_back(std::make_unique<Texture2D>(&texture));
 
         Texture2D& loadedTexture = *m_loadedTextures.back();
@@ -57,46 +63,76 @@ namespace Core::Graphics
         return *loadedSprite;
     }
 
-    SpriteSheet& AssetManager::LoadSpriteSheet(const char* filePath)
+    SpriteSheet* AssetManager::LoadSpriteSheet(const String& path)
     {
-        std::string assetPath = ASSETS_PATH + std::string(filePath) + ".sf";
+        fs::path filePath(ASSETS_PATH + path);
+        fs::path fileDirectory = filePath.parent_path();
+        String directoryPath = fileDirectory.string();
 
-        std::ifstream file(assetPath);
+        std::ifstream file(filePath.string() + ".json");
         Json::Reader reader;
         Json::Value data;
-        reader.parse(file, data);
 
-        // Read the Sprite Sheet Data
-        Json::Value atlasData = data["TextureAtlas"];
-        std::string atlasTexture = atlasData["Texture"].asString();
-        int frameWidth = atlasData["RegionWidth"].asInt();
-        int frameHeight = atlasData["RegionHeight"].asInt();
+        if (!reader.parse(file, data))
+        {
+            std::cerr << "Failed to parse Sprite Sheet: '" << path << "'" << std::endl;
+            return nullptr;
+        }
 
-        // Retrieves Texture from File Path
-        std::string path = filePath;
-        std::string texturePath = path.substr(0, path.find_last_of('/') + 1) + atlasTexture;
+        // Load meta data
+        String imagePath = data["meta"]["image"].asString();
+        int imageWidth = data["meta"]["size"]["w"].asInt();
+        int imageHeight = data["meta"]["size"]["h"].asInt();
 
-        SDL_Texture& rawTexture = LoadRawTexture(texturePath.c_str());
-        m_loadedTextures.push_back(std::make_unique<SpriteSheet>(&rawTexture, frameWidth, frameHeight));
+        String pngPath = directoryPath + "/" + imagePath;
+        SDL_Texture& rawTexture = LoadRawTexture(pngPath);
+
+        const UnorderedMap<String, Animation> animations = GetAnimations(data); // Load Animations
+        m_loadedTextures.push_back(std::make_unique<SpriteSheet>(&rawTexture, 32, 32, animations));
 
         Texture2D* texture = m_loadedTextures.back().get();
         SpriteSheet* spriteSheet = static_cast<SpriteSheet*>(texture);
-        return *spriteSheet;
+
+        return spriteSheet;
     }
 
     SDL_Texture& AssetManager::LoadRawTexture(const String& filePath)
     {
-        std::string texturePath = ASSETS_PATH + filePath;
-
-        SDL_Texture* texture = IMG_LoadTexture(*m_renderer, texturePath.c_str());
+        SDL_Texture* texture = IMG_LoadTexture(*m_renderer, filePath.c_str());
         if (texture == nullptr)
         {
             std::cerr << "Failed to Load Texture: " << SDL_GetError() << std::endl;
 
-            texturePath = ASSETS_PATH + std::string(ERROR_TEXTURE);
-            texture = IMG_LoadTexture(*m_renderer, texturePath.c_str());
+            String errorPath = ASSETS_PATH + std::string(ERROR_TEXTURE);
+            texture = IMG_LoadTexture(*m_renderer, errorPath.c_str());
         }
 
         return *texture;
+    }
+
+    UnorderedMap<String, Animation> AssetManager::GetAnimations(Json::Value& data)
+    {
+        UnorderedMap<String, Animation> animations;
+        if (data.isMember("frames"))
+        {
+            for (const Json::Value& frame : data["frames"])
+            {
+                String filename = frame["filename"].asString();
+                int x = frame["frame"]["x"].asInt();
+                int y = frame["frame"]["y"].asInt();
+                int w = frame["frame"]["w"].asInt();
+                int h = frame["frame"]["h"].asInt();
+                int duration = frame["duration"].asInt();
+
+                String animationName = Utility::SplitString(filename, '#', true);
+                if (!animationName.empty())
+                {
+                    animations[animationName].SetName(animationName);
+                    animations[animationName].AddFrame(Frame(x, y, w, h, duration));
+                }
+            }
+        }
+
+        return animations;
     }
 }

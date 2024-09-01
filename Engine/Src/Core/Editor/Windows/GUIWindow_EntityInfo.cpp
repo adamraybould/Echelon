@@ -9,6 +9,7 @@
 #include "Engine/Core/ECS/Components/SpriteRenderer.h"
 #include "../../../../Include/Engine/Core/Renderer.h"
 #include "../../../../Include/Engine/Core/Camera.h"
+#include "Engine/Core/ECS/Components/Animator.h"
 #include "Engine/Core/Scripting/Prefab.h"
 #include "Engine/Utility/Constants.h"
 #include "Engine/Utility/MathF.h"
@@ -28,6 +29,7 @@ namespace Core::Editor
         SpriteRenderer* spriteRenderer = m_pEntity->GetComponent<SpriteRenderer>();
         if (spriteRenderer != nullptr)
         {
+            m_pEntityRenderer = spriteRenderer;
             m_pEntitySprite = &spriteRenderer->GetSprite();
         }
     }
@@ -101,9 +103,9 @@ namespace Core::Editor
                 int textureHeight = m_pEntitySprite->GetHeight();
 
                 float desiredWidth = 100.0f;
-                float desiredHeight = (desiredWidth / m_pEntitySprite->GetSource().Width) * m_pEntitySprite->GetSource().Height;
+                float desiredHeight = (desiredWidth / m_pEntityRenderer->GetDisplaySource().Width) * m_pEntityRenderer->GetDisplaySource().Height;
 
-                Rectangle spriteSource = m_pEntitySprite->GetSource();
+                Rectangle spriteSource = m_pEntityRenderer->GetDisplaySource();
                 ImVec2 uv0 = ImVec2(spriteSource.X / textureWidth, spriteSource.Y / textureHeight);
                 ImVec2 uv1 = ImVec2((spriteSource.X + spriteSource.Width) / textureWidth, (spriteSource.Y + spriteSource.Height) / textureHeight);
 
@@ -114,6 +116,14 @@ namespace Core::Editor
                 ImGui::SetCursorPos(ImVec2(posX, posY));
 
                 ImGui::Image(GetTextureID(*m_pEntitySprite), ImVec2(desiredWidth, desiredHeight), uv0, uv1);
+
+                if (m_pEntity->HasComponent<Animator>())
+                {
+                    Animator& animator = *m_pEntity->GetComponent<Animator>();
+                    String currentAnimName = animator.GetCurrentAnimation().Name;
+
+                    PrintText(currentAnimName.c_str(), true);
+                }
             }
 
             ImGui::End();

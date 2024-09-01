@@ -8,6 +8,7 @@ using String = std::string;
 struct SDL_Point;
 namespace Core::Maths
 {
+    //TODO: Use a Template
     struct Vector2
     {
         float X;

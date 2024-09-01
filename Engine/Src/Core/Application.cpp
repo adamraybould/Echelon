@@ -1,4 +1,7 @@
 #include "Engine/Core/Application.h"
+
+#include <config.h>
+
 #include "../../Include/Engine/Core/Renderer.h"
 #include "Engine/States/GameState.h"
 #include "Engine/Core/Editor/EngineGUI.h"
@@ -162,7 +165,7 @@ namespace Core
             }
         }
 
-        if (IMG_Init(IMG_INIT_PNG | IMG_INIT_PNG) < 0)
+        if (IMG_Init(IMG_INIT_PNG) < 0)
         {
             DisplayError("SDL Image could not Initialize! SDL_ERROR:", "SDL Error", true);
             exit(1);

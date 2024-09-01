@@ -1,11 +1,11 @@
 #ifndef ENGINEGUI_H
 #define ENGINEGUI_H
 
-#include "Engine/Utility/Commons.h"
-
 #include <imgui.h>
 #include <imgui_impl_sdl2.h>
 #include <imgui_impl_sdlrenderer2.h>
+#include <memory>
+#include <vector>
 
 namespace Core
 {
@@ -27,7 +27,7 @@ namespace Core
             StateSystem& m_stateSystem;
             InputManager& m_inputManager;
 
-            Array<UniquePtr<GUIWindow>> m_windows;
+            std::vector<std::unique_ptr<GUIWindow>> m_windows;
 
             Entity* m_pEntity;
 

@@ -6,6 +6,7 @@
 #include "Engine/Core/Systems/InputManager.h"
 #include "Engine/Core/Systems/StateSystem.h"
 #include "Engine/Core/Renderer.h"
+#include "Engine/Core/Editor/Windows/GUIWIndow_SprGenerator.h"
 #include "Engine/States/GameState.h"
 
 namespace Core::Editor
@@ -25,8 +26,11 @@ namespace Core::Editor
         ImGui_ImplSDL2_InitForSDLRenderer(&window.GetWindow(), window.GetRenderer());
         ImGui_ImplSDLRenderer2_Init(window.GetRenderer());
 
+        io.IniFilename = nullptr;
+
         // Create GUI Windows
         m_windows.push_back(std::make_unique<GUIWindow_EntityInfo>(*this));
+        //m_windows.push_back(std::make_unique<GUIWindow_SprGenerator>(*this));
 
         // Setup Callbacks
         InputManager::OnMouseLeftClick.AddListener(std::bind(&EngineGUI::DisplayEntityInfo, this));
@@ -102,6 +106,13 @@ namespace Core::Editor
 
             if (ImGui::BeginMenu("Resources"))
             {
+                /*
+                if (ImGui::MenuItem("Spr Generator"))
+                {
+                    m_windows[1]->OpenWindow();
+                }
+                */
+
                 ImGui::EndMenu();
             }
 

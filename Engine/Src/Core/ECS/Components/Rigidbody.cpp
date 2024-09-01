@@ -33,6 +33,8 @@ namespace Core
 
             BindFunction<Rigidbody>(L, "ApplyForce", &Rigidbody::ApplyForce);
             BindFunction<Rigidbody>(L, "ApplyImpulse", &Rigidbody::ApplyImpulse);
+
+            BindFunction<Rigidbody>(L, "SetPosition", &Rigidbody::SetPosition);
         }
 
         void Rigidbody::Initialize()
@@ -64,16 +66,25 @@ namespace Core
             Component::Destroy();
         }
 
-        void Rigidbody::ApplyForce(LRef force)
+        void Rigidbody::ApplyForce(const LRef& force) const
         {
             b2Vec2 vecForce = b2Vec2(force["x"], force["y"]);
             m_pBody->ApplyForceToCenter(vecForce, true);
         }
 
-        void Rigidbody::ApplyImpulse(LRef force)
+        void Rigidbody::ApplyImpulse(const LRef& force) const
         {
             b2Vec2 vecForce = b2Vec2(force["x"], force["y"]);
             m_pBody->ApplyLinearImpulseToCenter(vecForce, true);
+        }
+
+        void Rigidbody::SetPosition(const LRef& position) const
+        {
+            int x = position["x"];
+            int y = position["y"];
+
+            b2Vec2 pos = b2Vec2(x / PPM, y / PPM);
+            m_pBody->SetTransform(pos, m_pBody->GetAngle());
         }
     }
 }

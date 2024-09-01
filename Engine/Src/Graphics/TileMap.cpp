@@ -97,7 +97,7 @@ namespace Core
             }
         }
 
-        void TileMap::RenderBackground(Renderer& renderer)
+        void TileMap::RenderBackground(const Renderer& renderer) const
         {
 
             SDL_Rect src = { 0, 0, m_pSpaceTexture->GetWidth(), m_pSpaceTexture->GetHeight() };

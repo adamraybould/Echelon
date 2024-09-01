@@ -1,6 +1,7 @@
 #ifndef SPRITERENDERER_H
 #define SPRITERENDERER_H
 #include "Component.h"
+#include "Engine/Graphics/SpriteSheet.h"
 
 namespace Core
 {
@@ -15,6 +16,7 @@ namespace Core
             Sprite* m_pSprite;
             UInt m_flipped;
 
+            Rectangle m_source;
             Vector2 m_spriteScale;
 
         public:
@@ -27,7 +29,10 @@ namespace Core
             void Destroy() override;
 
             /* Sets the Sprite source rect to a new Frame. Only works with Sprite Sheets */
-            void SetSpriteFrame(int frameIndex) const;
+            void SetSpriteFrame(int frameIndex);
+
+            void SetDisplaySource(UInt x, UInt y, UInt width, UInt height);
+            Rectangle GetDisplaySource() const { return m_source; }
 
             Sprite& GetSprite() const;
         };

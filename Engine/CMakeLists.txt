@@ -79,6 +79,13 @@ add_library(Engine STATIC
         Src/Graphics/MapCollisionLayer.cpp
         Include/Engine/Utility/DebugDraw.h
         Src/Utility/DebugDraw.cpp
+        Include/Engine/Core/ECS/Components/Animator.h
+        Src/Core/ECS/Components/Animator.cpp
+        Include/Engine/Utility/SprHandler.h
+        Include/Engine/Core/Editor/Windows/GUIWIndow_SprGenerator.h
+        Src/Core/Editor/Windows/GUIWindow_SprGenerator.cpp
+        Include/Engine/Graphics/Animation.h
+        Src/Core/Editor/GUIWindow.cpp
 )
 
 target_include_directories(Engine PUBLIC

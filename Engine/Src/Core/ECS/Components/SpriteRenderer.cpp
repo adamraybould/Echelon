@@ -34,9 +34,8 @@ namespace Core::Components
                 String path = spriteAsset->GetPath();
                 int param = spriteAsset->GetParam();
 
-                SpriteSheet& spriteSheet = AssetManager::LoadSpriteSheet(path.c_str());
-                m_pSprite = &spriteSheet;
-
+                m_pSprite = AssetManager::LoadSpriteSheet(path.c_str());
+                m_source = { 0, 0, m_pSprite->GetWidth(), m_pSprite->GetHeight() };
                 if (spriteAsset->HasParams())
                 {
                     SetSpriteFrame(param);
@@ -52,7 +51,7 @@ namespace Core::Components
 
         if (m_pSprite != nullptr)
         {
-            m_spriteScale = Vector2((m_pSprite->GetSource().Width * scale.X) * SPRITE_SCALE, (m_pSprite->GetSource().Height * scale.Y) * SPRITE_SCALE);
+            m_spriteScale = Vector2((m_source.Width * scale.X) * SPRITE_SCALE, (m_source.Height * scale.Y) * SPRITE_SCALE);
             GetOwner().SetBounds(Rectangle(bounds.X, bounds.Y, m_spriteScale.X * 0.5f, m_spriteScale.Y));
         }
     }
@@ -78,7 +77,7 @@ namespace Core::Components
             m_spriteScale.Y,
             };
 
-        SDL_Rect src = { m_pSprite->GetSource().X, m_pSprite->GetSource().Y, m_pSprite->GetSource().Width, m_pSprite->GetSource().Height };
+        SDL_Rect src = { m_source.X, m_source.Y, m_source.Width, m_source.Height };
 
         SDL_RenderCopyEx(renderer, &m_pSprite->GetRawTexture(), &src, &dest, rotation, NULL, static_cast<SDL_RendererFlip>(m_flipped));
     }
@@ -88,14 +87,19 @@ namespace Core::Components
         m_pSprite = nullptr;
     }
 
-    void SpriteRenderer::SetSpriteFrame(int frameIndex) const
+    void SpriteRenderer::SetSpriteFrame(int frameIndex)
     {
         SpriteSheet* spriteSheet = static_cast<SpriteSheet*>(m_pSprite);
         if (spriteSheet != nullptr)
         {
             Rectangle sourceRect = spriteSheet->GetSpriteSource(frameIndex);
-            m_pSprite->SetSource(sourceRect);
+            m_source = sourceRect;
         }
+    }
+
+    void SpriteRenderer::SetDisplaySource(const UInt x, const UInt y, const UInt width, const UInt height)
+    {
+        m_source = Rectangle(x, y, width, height);
     }
 
     Sprite& SpriteRenderer::GetSprite() const

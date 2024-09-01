@@ -16,18 +16,18 @@ function PlayerController:Update(delta)
 	local movement = Vector2(0, 0)
 	if Input:IsKeyDown(KEY_W) then
 		movement = Vector2(movement.x, -1.0)
-		self.inst.Renderer:SetFrame(1)
+		self.inst.Animator:Play("Move_U")
 	elseif Input:IsKeyDown(KEY_S) then
 		movement = Vector2(movement.x, 1.0)
-		self.inst.Renderer:SetFrame(0)
+		self.inst.Animator:Play("Move_D")
 	end
 
 	if Input:IsKeyDown(KEY_A) then
 		movement = Vector2(-1.0, movement.y)
-		self.inst.Renderer:SetFrame(3)
+		self.inst.Animator:Play("Move_L")
 	elseif Input:IsKeyDown(KEY_D) then
 		movement = Vector2(1.0, movement.y)
-		self.inst.Renderer:SetFrame(2)
+		self.inst.Animator:Play("Move_R")
 	end
 
 	-- Sprinting

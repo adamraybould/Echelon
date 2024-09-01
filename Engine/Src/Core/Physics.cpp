@@ -6,13 +6,13 @@
 namespace Core
 {
     UniquePtr<b2World> Physics::m_pWorld;
-    UniquePtr<Utility::DebugDraw> Physics::m_pDebugDraw;
+    UniquePtr<DebugDraw> Physics::m_pDebugDraw;
 
     Physics::Physics(Renderer& renderer)
     {
         m_pWorld = std::make_unique<b2World>(b2Vec2(0.0f, 0.0f));
 
-        m_pDebugDraw = std::make_unique<Utility::DebugDraw>(renderer);
+        m_pDebugDraw = std::make_unique<DebugDraw>(renderer);
         m_pWorld->SetDebugDraw(m_pDebugDraw.get());
 
         uint32_t flags = b2Draw::e_shapeBit;

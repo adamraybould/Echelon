@@ -5,15 +5,14 @@
 
 namespace Core
 {
-    namespace Utility { class DebugDraw; }
-
+    class DebugDraw;
     class Renderer;
 
     class Physics
     {
     private:
         static UniquePtr<b2World> m_pWorld;
-        static UniquePtr<Utility::DebugDraw> m_pDebugDraw;
+        static UniquePtr<DebugDraw> m_pDebugDraw;
 
     public:
         Physics(Renderer& renderer);
@@ -26,7 +25,7 @@ namespace Core
         static b2Body* CreateStaticBody(Vector2 position, const UInt width, const UInt height);
         static void DestroyBody(b2Body* body);
 
-        static Utility::DebugDraw& GetDebugDraw() { return *m_pDebugDraw; }
+        static DebugDraw& GetDebugDraw() { return *m_pDebugDraw; }
     };
 }
 

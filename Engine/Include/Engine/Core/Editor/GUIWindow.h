@@ -1,6 +1,5 @@
 #ifndef GUIWINDOW_H
 #define GUIWINDOW_H
-
 #include "Engine/Core/Editor/EngineGUI.h"
 
 namespace Core::Editor
@@ -23,6 +22,9 @@ namespace Core::Editor
 
         void SetActive(const bool value) { m_isActive = value; }
         bool IsWindowActive() const { return m_isActive; }
+
+    protected:
+        void PrintText(const char* str, bool center = false);
     };
 }
 

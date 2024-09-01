@@ -1,14 +1,16 @@
 #include "Engine/Graphics/SpriteSheet.h"
 
+#include <iostream>
+
 namespace Core::Graphics
 {
-    SpriteSheet::SpriteSheet(SDL_Texture* texture, UInt frameWidth, UInt frameHeight): Sprite(texture)
+    SpriteSheet::SpriteSheet(SDL_Texture* texture, UInt frameWidth, UInt frameHeight, UnorderedMap<String, Animation> animations) : Sprite(texture)
     {
         m_frameWidth = frameWidth;
         m_frameHeight = frameHeight;
-        m_frameCount = m_frameWidth * m_frameHeight;
+        m_animations = animations;
 
-        SetSource(GetSpriteSource(0));
+        m_frameCount = m_frameWidth * m_frameHeight;
     }
 
     SpriteSheet::~SpriteSheet()
@@ -24,5 +26,19 @@ namespace Core::Graphics
         int yFramePos = yFrameIndex * m_frameHeight;
 
         return Rectangle(xFramePos, yFramePos, m_frameWidth, m_frameHeight);
+    }
+
+    bool SpriteSheet::IsAnimationValid(const String& animName) const
+    {
+        return m_animations.contains(animName);
+    }
+
+    Animation* SpriteSheet::GetAnimation(const String& animName)
+    {
+        if (IsAnimationValid(animName))
+            return &m_animations[animName];
+
+        std::cerr << "Attempting to access Invalid Animation '" << animName << "'" << std::endl;
+        return nullptr;
     }
 }

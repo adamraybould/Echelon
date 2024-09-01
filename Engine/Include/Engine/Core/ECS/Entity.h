@@ -28,7 +28,7 @@ namespace Core
         Transform* m_transform;
 
     public:
-        Entity(String name);
+        Entity(const String& name);
         virtual ~Entity();
 
         virtual void Initialize();
@@ -52,6 +52,7 @@ namespace Core
         void AddTransform(LState* L);
         void AddRenderer(LState* L);
         void AddRigidbody(LState* L);
+        void AddAnimator(LState* L);
 
         Transform& GetTransform() const { return *m_transform; }
 
@@ -86,6 +87,12 @@ namespace Core
                     return;
                 }
             }
+        }
+
+        template<typename T>
+        bool HasComponent()
+        {
+            return GetComponent<T>() != nullptr;
         }
 
         template<typename T>

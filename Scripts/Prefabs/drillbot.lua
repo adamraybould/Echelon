@@ -1,18 +1,16 @@
 
 local assets =
 {
-	Asset("SPRITE", "Mobs/Robots/drillbot")
+	Asset("SPRITE", "Mobs/Robots/Drillbot")
 }
 
 local function fn()
 	local inst = CreateEntity()
 
 	inst.entity:AddTransform()
-	inst.entity:AddRenderer()
-
-	inst.Transform:SetPosition(Vector2(GetRandomRange(-500, 500), GetRandomRange(-500, 500)))
-
 	inst.entity:AddRigidbody()
+	inst.entity:AddRenderer()
+	inst.entity:AddAnimator()
 
 	inst:AddTag("robot")
 

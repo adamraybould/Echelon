@@ -2,6 +2,7 @@
 
 #include "Engine/Core/Engine.h"
 #include "Engine/Core/Renderer.h"
+#include "Engine/Core/ECS/Components/Animator.h"
 #include "Engine/Core/ECS/Components/Rigidbody.h"
 #include "Engine/Core/ECS/Components/SpriteRenderer.h"
 #include "Engine/Core/Scripting/Prefab.h"
@@ -9,7 +10,7 @@
 
 namespace Core
 {
-    Entity::Entity(String name)
+    Entity::Entity(const String& name)
     {
         m_guid = Utility::GenerateGUID();
         m_name = name;
@@ -88,6 +89,7 @@ namespace Core
     void Entity::AddTransform(LState* L)
     {
         m_transform = &AddComponent<Transform>();
+        m_transform->SetupEmbedding(L);
 
         LRef ent = getGlobal(L, "Entities");
         ent[m_guid]["Transform"] = m_transform;
@@ -109,6 +111,15 @@ namespace Core
 
         LRef ent = getGlobal(L, "Entities");
         ent[m_guid]["Rigidbody"] = rigidbody;
+    }
+
+    void Entity::AddAnimator(LState* L)
+    {
+        Animator* animator = &AddComponent<Animator>();
+        animator->SetupEmbedding(L);
+
+        LRef ent = getGlobal(L, "Entities");
+        ent[m_guid]["Animator"] = animator;
     }
 
     void Entity::AddTag(const String& tag)
@@ -155,6 +166,7 @@ namespace Core
         BindFunction<Entity>(L, "AddTransform", &Entity::AddTransform);
         BindFunction<Entity>(L, "AddRenderer", &Entity::AddRenderer);
         BindFunction<Entity>(L, "AddRigidbody", &Entity::AddRigidbody);
+        BindFunction<Entity>(L, "AddAnimator", &Entity::AddAnimator);
 
         BindFunction<Entity>(L, "SetName", &Entity::SetName);
         BindFunction<Entity>(L, "AddTag", &Entity::AddTag);
@@ -162,9 +174,11 @@ namespace Core
         BindFunction<Entity>(L, "HasTag", &Entity::HasTag);
 
         BindClass<SpriteRenderer>(L);
-        BindFunction<SpriteRenderer>(L, "SetFrame", &SpriteRenderer::SetSpriteFrame);
+        //BindFunction<SpriteRenderer>(L, "SetFrame", &SpriteRenderer::SetSpriteFrame);
 
         BindClass<Rigidbody>(L);
-        BindFunction<Rigidbody>(L, "ApplyForce", &Rigidbody::ApplyForce);
+        //BindFunction<Rigidbody>(L, "ApplyForce", &Rigidbody::ApplyForce);
+
+        BindClass<Animator>(L);
     }
 }

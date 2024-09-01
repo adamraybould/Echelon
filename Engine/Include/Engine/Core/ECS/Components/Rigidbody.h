@@ -30,8 +30,10 @@ namespace Core
             void SetLinearDamping(float value) { m_linearDamping = value; }
             void SetAngularDamping(float value) { m_angularDamping = value; }
 
-            void ApplyForce(LRef force);
-            void ApplyImpulse(LRef force);
+            void ApplyForce(const LRef& force) const;
+            void ApplyImpulse(const LRef& force) const;
+
+            void SetPosition(const LRef& position) const;
         };
     }
 }

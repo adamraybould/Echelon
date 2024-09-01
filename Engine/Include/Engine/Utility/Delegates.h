@@ -4,10 +4,10 @@
 #include <functional>
 #include <vector>
 
-template <typename T, typename R> using Delegate = std::function<T(R)>;
+template <typename T = void, typename R = void> using Delegate = std::function<T(R)>;
 using DelegateVoid = std::function<void()>;
 
-template <typename T, typename R>
+template <typename T = void, typename R = void>
 class MultiCastEvent
 {
 private:

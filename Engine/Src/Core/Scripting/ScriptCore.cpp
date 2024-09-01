@@ -7,6 +7,9 @@
 #include <fstream>
 
 #include "config.h"
+#include "Engine/Core/ECS/Components/Animator.h"
+#include "Engine/Core/ECS/Components/Rigidbody.h"
+#include "Engine/Core/ECS/Components/SpriteRenderer.h"
 
 namespace fs = std::filesystem;
 

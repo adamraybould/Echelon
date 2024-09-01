@@ -5,6 +5,8 @@
 
 namespace Core
 {
+    namespace Components { class SpriteRenderer; }
+
     class Entity;
 
     namespace Editor
@@ -16,6 +18,7 @@ namespace Core
 
         private:
             Entity* m_pEntity = nullptr;
+            Components::SpriteRenderer* m_pEntityRenderer;
             Graphics::Sprite* m_pEntitySprite = nullptr;
 
         public:

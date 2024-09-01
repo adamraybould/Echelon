@@ -51,7 +51,7 @@ namespace Core
             void LoadTilesets(const tmx::Map& map);
             void LoadLayers(tmx::Map& map, const Array<TilesetTexture>& tilesets);
 
-            void RenderBackground(Renderer& renderer);
+            void RenderBackground(const Renderer& renderer) const;
         };
     }
 }

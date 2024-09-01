@@ -4,6 +4,11 @@
 #include "SpriteSheet.h"
 #include "Texture2D.h"
 
+namespace Json
+{
+    class Value;
+}
+
 namespace Core
 {
     class Application;
@@ -11,8 +16,26 @@ namespace Core
 
     namespace Graphics
     {
+        struct MetaData
+        {
+            String ImagePath;
+            int ImageWidth;
+            int ImageHeight;
+
+            MetaData(String imagePath, const int imageWidth, const int imageHeight): ImagePath(imagePath), ImageWidth(imageWidth), ImageHeight(imageHeight) {}
+        };
+
         class AssetManager
         {
+        private:
+            struct FrameData
+            {
+                String Name;
+                int Frame;
+
+                bool IsEmpty() const { return Name == ""; }
+            };
+
         private:
             static Renderer* m_renderer;
             static Array<UniquePtr<Texture2D>> m_loadedTextures; // An Array of Loaded Textures
@@ -21,16 +44,16 @@ namespace Core
             AssetManager(Renderer& renderer);
             ~AssetManager();
 
-
             static Texture2D& LoadTexture2D(const String& filePath);
             static Sprite& LoadSprite(const char* filePath);
 
-            /* Loads a Sprite Sheet through a .SF file */
-            static SpriteSheet& LoadSpriteSheet(const char* filePath);
+            static SpriteSheet* LoadSpriteSheet(const String& path);
 
         private:
             /* Loads a Raw SDL Texture */
             static SDL_Texture& LoadRawTexture(const String& filePath);
+
+            static UnorderedMap<String, Animation> GetAnimations(Json::Value& data);
         };
     }
 }

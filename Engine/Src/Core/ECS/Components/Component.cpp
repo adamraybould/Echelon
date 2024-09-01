@@ -5,7 +5,7 @@
 
 namespace Core::Components
 {
-    Component::Component(Entity& owner) : m_rOwner(owner), m_isActive(true)
+    Component::Component(Entity& owner) : m_owner(owner), m_isActive(true)
     {
         m_guid = Utility::GenerateGUID();
     }

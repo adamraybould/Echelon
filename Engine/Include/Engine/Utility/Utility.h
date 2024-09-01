@@ -15,6 +15,36 @@ namespace Core
             return guid.str();
         }
 
+        /* Returns the String split between a specific symbol (Such as '#').
+        You can choose to retrieve the String before or after the Symbol
+        */
+        static String SplitString(const String& str, const char symbol, const bool getBefore = true)
+        {
+            String splitStr = "";
+            if (!str.empty())
+            {
+                UInt hashPos = str.find(symbol);
+                if (hashPos != String::npos)
+                {
+                    if (getBefore)
+                    {
+                        splitStr = str.substr(0, hashPos);
+                        splitStr.erase(splitStr.find_last_not_of(" \n\r\t") + 1);
+                    }
+                    else
+                    {
+                        splitStr = str.substr(hashPos + 1);
+                        splitStr.erase(0, splitStr.find_first_not_of(" \n\r\t"));
+                    }
+
+                    return splitStr;
+                }
+            }
+
+            // If failed, SplitStr will be empty.
+            return splitStr;
+        }
+
         static String RemovePrefix(const String& string, const String& prefix)
         {
             size_t pos = string.find(prefix);
