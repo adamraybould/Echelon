@@ -3,13 +3,13 @@
   "spdxVersion": "SPDX-2.2",
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
-  "documentNamespace": "https://spdx.org/spdxdocs/libpng-x86-mingw-dynamic-1.6.43#3-49bae996-b318-41c6-8782-527210723846",
-  "name": "libpng:x86-mingw-dynamic@1.6.43#3 bf2abceea48d98d67b74349e51f21d56198926d72701d3cc5d68fea6371484c2",
+  "documentNamespace": "https://spdx.org/spdxdocs/libpng-x86-mingw-dynamic-1.6.43#3-cae568ea-bc90-43f7-a1dc-619a4dd249dc",
+  "name": "libpng:x86-mingw-dynamic@1.6.43#3 425f07d8adbfa97f6c13ed84d39c627a27b79e038d6972d233e0e643ec052e86",
   "creationInfo": {
     "creators": [
       "Tool: vcpkg-2024-08-01-fd884a0d390d12783076341bd43d77c3a6a15658"
     ],
-    "created": "2024-08-21T20:44:26Z"
+    "created": "2024-09-03T16:24:03Z"
   },
   "relationships": [
     {
@@ -129,7 +129,7 @@
     {
       "name": "libpng:x86-mingw-dynamic",
       "SPDXID": "SPDXRef-binary",
-      "versionInfo": "bf2abceea48d98d67b74349e51f21d56198926d72701d3cc5d68fea6371484c2",
+      "versionInfo": "425f07d8adbfa97f6c13ed84d39c627a27b79e038d6972d233e0e643ec052e86",
       "downloadLocation": "NONE",
       "licenseConcluded": "libpng-2.0",
       "licenseDeclared": "NOASSERTION",

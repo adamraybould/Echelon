@@ -3,13 +3,13 @@
   "spdxVersion": "SPDX-2.2",
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
-  "documentNamespace": "https://spdx.org/spdxdocs/lua-x86-mingw-dynamic-5.4.6-7f649e3a-ef18-4df2-bb24-536707d4b716",
-  "name": "lua:x86-mingw-dynamic@5.4.6 f00ac5f9dc2f61a1beaa927423f8be11926ce6b9e5509723febd4e560eacc2f8",
+  "documentNamespace": "https://spdx.org/spdxdocs/lua-x86-mingw-dynamic-5.4.6-6d47a974-a59e-4312-aef8-01cd175586f4",
+  "name": "lua:x86-mingw-dynamic@5.4.6 799e53773be0c55132f6a87b09b1eda794fa2c6136bca38175dfaf3c08f0f79a",
   "creationInfo": {
     "creators": [
       "Tool: vcpkg-2024-08-01-fd884a0d390d12783076341bd43d77c3a6a15658"
     ],
-    "created": "2024-08-23T00:36:20Z"
+    "created": "2024-09-03T16:23:32Z"
   },
   "relationships": [
     {
@@ -129,7 +129,7 @@
     {
       "name": "lua:x86-mingw-dynamic",
       "SPDXID": "SPDXRef-binary",
-      "versionInfo": "f00ac5f9dc2f61a1beaa927423f8be11926ce6b9e5509723febd4e560eacc2f8",
+      "versionInfo": "799e53773be0c55132f6a87b09b1eda794fa2c6136bca38175dfaf3c08f0f79a",
       "downloadLocation": "NONE",
       "licenseConcluded": "NOASSERTION",
       "licenseDeclared": "NOASSERTION",

@@ -3,13 +3,13 @@
   "spdxVersion": "SPDX-2.2",
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
-  "documentNamespace": "https://spdx.org/spdxdocs/luabridge3-x86-mingw-dynamic-3.0-rc3-9b8ce54c-0479-4469-9603-92a47bce28b8",
-  "name": "luabridge3:x86-mingw-dynamic@3.0-rc3 c3229607b817d16f8183bfe48751b9d67a802f28fc7493500f545053820e51fb",
+  "documentNamespace": "https://spdx.org/spdxdocs/luabridge3-x86-mingw-dynamic-3.0-rc3-bb2f381f-01de-471f-9580-b96f00b12156",
+  "name": "luabridge3:x86-mingw-dynamic@3.0-rc3 ed7172c64a549f97d3ce3b6381852a9bd70f0d0a478b6dc55684c8876bf631e2",
   "creationInfo": {
     "creators": [
       "Tool: vcpkg-2024-08-01-fd884a0d390d12783076341bd43d77c3a6a15658"
     ],
-    "created": "2024-08-23T01:05:21Z"
+    "created": "2024-09-03T16:23:35Z"
   },
   "relationships": [
     {
@@ -59,7 +59,7 @@
     {
       "name": "luabridge3:x86-mingw-dynamic",
       "SPDXID": "SPDXRef-binary",
-      "versionInfo": "c3229607b817d16f8183bfe48751b9d67a802f28fc7493500f545053820e51fb",
+      "versionInfo": "ed7172c64a549f97d3ce3b6381852a9bd70f0d0a478b6dc55684c8876bf631e2",
       "downloadLocation": "NONE",
       "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",

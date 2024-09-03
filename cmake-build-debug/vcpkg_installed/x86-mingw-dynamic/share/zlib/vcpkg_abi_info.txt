@@ -1,7 +1,7 @@
 0001-Prevent-invalid-inclusions-when-HAVE_-is-set-to-0.patch 750b9542cb55e6328cca01d3ca997f1373b9530afa95e04213168676936e7bfa
 0002-build-static-or-shared-not-both.patch dd4945e8af55d9feb65af706cb0254a6925dc4ac12789586c0d28acf323ad075
 0003-android-and-mingw-fixes.patch 63e62c9bae3952b8cca832e01aa96ef3b2696b21976c5031d6d6d79937d8d54c
-ENV:PATH 535f99cf5c692a5355fae9aa36468395d46ab5ea82033ffe8c2bea2225b6ac63
+ENV:PATH 3e5ec76027c86743b9844e5c355f4f80a5635f8c3fb63f2783f290eeecc8b3a5
 cmake 3.30.2
 features core
 portfile.cmake b14cee469c2da06e036e63293c0b6e6509924462e9b341b317986df46b281695

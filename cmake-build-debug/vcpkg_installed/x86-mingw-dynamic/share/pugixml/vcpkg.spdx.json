@@ -3,13 +3,13 @@
   "spdxVersion": "SPDX-2.2",
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
-  "documentNamespace": "https://spdx.org/spdxdocs/pugixml-x86-mingw-dynamic-1.14-94cc7a74-380c-409a-be5b-ae90d0eca33b",
-  "name": "pugixml:x86-mingw-dynamic@1.14 e79e1fc40d1f7e99615b24d2e654ac5d70a39b9167701be5aeb796c806420602",
+  "documentNamespace": "https://spdx.org/spdxdocs/pugixml-x86-mingw-dynamic-1.14-23818f47-ef4f-421f-a7c4-6316e7f2aa79",
+  "name": "pugixml:x86-mingw-dynamic@1.14 207b3cc4bfbc2a5b4951d72871be76c72cfd4a02ca007abcc35e806b5c9d2fba",
   "creationInfo": {
     "creators": [
       "Tool: vcpkg-2024-08-01-fd884a0d390d12783076341bd43d77c3a6a15658"
     ],
-    "created": "2024-08-28T22:17:10Z"
+    "created": "2024-09-03T16:24:57Z"
   },
   "relationships": [
     {
@@ -59,7 +59,7 @@
     {
       "name": "pugixml:x86-mingw-dynamic",
       "SPDXID": "SPDXRef-binary",
-      "versionInfo": "e79e1fc40d1f7e99615b24d2e654ac5d70a39b9167701be5aeb796c806420602",
+      "versionInfo": "207b3cc4bfbc2a5b4951d72871be76c72cfd4a02ca007abcc35e806b5c9d2fba",
       "downloadLocation": "NONE",
       "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",

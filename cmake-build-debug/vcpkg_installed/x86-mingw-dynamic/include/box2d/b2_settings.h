@@ -52,7 +52,6 @@
 /// this too much because b2BlockAllocator has a maximum object size.
 #define b2_maxPolygonVertices	8
 
-
 // User data
 
 /// You can define this to inject whatever data you want in b2Body
