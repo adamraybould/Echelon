@@ -13,12 +13,16 @@
 #include "Engine/Core/Scripting/Prefab.h"
 #include "Engine/Utility/Constants.h"
 #include "Engine/Utility/MathF.h"
+#include "Engine/Utility/Utility.h"
 
 namespace Core::Editor
 {
     GUIWindow_EntityInfo::GUIWindow_EntityInfo(EngineGUI& engineGUI) : GUIWindow(engineGUI)
     {
         m_isActive = false;
+
+        m_offsetX = WINDOW_WIDTH * 0.1f;
+        m_offsetY = WINDOW_HEIGHT * 1.2f;
     }
 
     void GUIWindow_EntityInfo::OpenWindow()
@@ -52,54 +56,25 @@ namespace Core::Editor
         float zoom = camera.GetZoom();
         zoom = MathF::Clamp(zoom, 0.5f, 1.0f);
 
-        float offsetX = WINDOW_WIDTH * 0.2f;
-        float offsetY = WINDOW_HEIGHT * 1.2f;
-
-        Vector2 entityScreenPosition = GetEntityScreenPosition(*m_pEntity);
-        //entityScreenPosition *= zoom;
-
-        Vector2 offsetFromCamera((m_pEntity->GetTransform().Position.X - camera.GetPosition().X),(m_pEntity->GetTransform().Position.Y - camera.GetPosition().Y));
+        Vector2 offsetFromCamera = Vector2(m_pEntity->GetTransform().Position.X - camera.GetPosition().X, m_pEntity->GetTransform().Position.Y - camera.GetPosition().Y);
 
         // Adjust window position based on zoom
-        Vector2 windowOffset = Vector2((offsetFromCamera.X) + (SCREEN_WIDTH * 0.5f) + offsetX, (offsetFromCamera.Y) + (SCREEN_HEIGHT * 0.5f) - offsetY);
-
-        //Vector2 windowOffset = Vector2((entityScreenPosition.X / zoom) + (SCREEN_WIDTH * 0.5f) + offsetX, (entityScreenPosition.Y / zoom) + (SCREEN_HEIGHT * 0.5f) - offsetY);
-
-        //std::cout << zoom << std::endl;
+        Vector2 windowOffset = Vector2(offsetFromCamera.X + (SCREEN_WIDTH * 0.5f) + m_offsetX, offsetFromCamera.Y + (SCREEN_HEIGHT * 0.5f) - m_offsetY);
 
         m_windowPos = ImVec2(windowOffset.X * zoom, windowOffset.Y * zoom);
         ImGui::SetNextWindowPos(m_windowPos, ImGuiCond_Always);
 
-        ImGui::SetNextWindowSize(ImVec2(WINDOW_WIDTH, WINDOW_HEIGHT), ImGuiCond_Always);
-
-        Vector2 entityWorldPosition = m_pEntity->GetTransform().GetWorldPosition();
-        std::string positionText = "(" + std::to_string(entityWorldPosition.X) + ", " + std::to_string(entityWorldPosition.Y) + ")";
+        ImGui::SetNextWindowSize(ImVec2(WINDOW_WIDTH + m_windowExpansionWidth, WINDOW_HEIGHT + m_windowExpansionHeight), ImGuiCond_Always);
 
         if (ImGui::Begin("Entity Info", &m_isActive, ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoCollapse))
         {
-            String prefabName = m_pEntity->GetName();
-            prefabName[0] = std::toupper(prefabName[0]);
-
-            ImGui::Text("GUID: %s", m_pEntity->GetGUID().c_str());
-            ImGui::Text("Prefab: %s", prefabName.c_str());
-            ImGui::Text("Position: (%.1f, %.1f)", entityWorldPosition.X, entityWorldPosition.Y);
-
-            DisplayTags();
-
-            if (m_pEntity->HasPrefab())
-            {
-                LRef entityRef = luabridge::getGlobal(ScriptCore::Instance()->GetLuaState(), "Entities")[m_pEntity->GetGUID()];
-                LRef healthRef = entityRef["components"]["health"];
-                if (!healthRef.isNil())
-                {
-                    ImGui::Text("Health: %s", healthRef["health"].tostring().c_str());
-                }
-            }
+            DisplayInfo(*m_pEntity);
 
             ImGui::Spacing();
             ImGui::Separator();
+            ImGui::Spacing();
 
-            DisplayEntitySprite();
+            DisplayComponentInfo();
 
             ImGui::End();
         }
@@ -121,7 +96,38 @@ namespace Core::Editor
         return camera.CalculateScreenPosition(entity.GetTransform().GetWorldPosition());
     }
 
-    void GUIWindow_EntityInfo::DisplayEntitySprite()
+    void GUIWindow_EntityInfo::DisplayInfo(const Entity& entity)
+    {
+        String prefabName = Utility::Capitalize(entity.GetName());
+        String guid = entity.GetGUID();
+
+        Vector2 entityWorldPosition = entity.GetTransform().GetWorldPosition();
+
+        float childWidth = WINDOW_WIDTH;
+        float childHeight = 100 + (m_pEntityRenderer->GetDisplaySource().Height * 0.2f);
+
+        if (ImGui::BeginChild("Info", ImVec2(childWidth, childHeight), false))
+        {
+            ImGui::Columns(2, nullptr, true);  // 2 columns without borders
+            ImGui::SetColumnWidth(0, WINDOW_WIDTH * 0.6f);
+
+            PrintHoverText("Guid: ", guid);
+            //ImGui::Text("GUID: %s", entity.GetGUID().c_str());
+
+            ImGui::Text("Prefab: %s", prefabName.c_str());
+            ImGui::Text("Position: (%.1f, %.1f)", entityWorldPosition.X, entityWorldPosition.Y);
+
+            DisplayTags();
+
+            ImGui::NextColumn();
+
+            DisplaySprite();
+
+            ImGui::EndChild();
+        }
+    }
+
+    void GUIWindow_EntityInfo::DisplaySprite()
     {
         if (m_pEntitySprite == nullptr)
             return;
@@ -129,17 +135,14 @@ namespace Core::Editor
         UInt textureWidth = m_pEntitySprite->GetWidth();
         UInt textureHeight = m_pEntitySprite->GetHeight();
 
-        float desiredWidth = 50.0f;
+        float desiredWidth = 80.0f;
         float desiredHeight = (desiredWidth / m_pEntityRenderer->GetDisplaySource().Width) * m_pEntityRenderer->GetDisplaySource().Height;
 
         Rectangle spriteSource = m_pEntityRenderer->GetDisplaySource();
         ImVec2 uv0 = ImVec2(spriteSource.X / textureWidth, spriteSource.Y / textureHeight);
         ImVec2 uv1 = ImVec2((spriteSource.X + spriteSource.Width) / textureWidth, (spriteSource.Y + spriteSource.Height) / textureHeight);
 
-        float posX = (WINDOW_WIDTH - desiredWidth) * 0.5f;
-        float posY = (WINDOW_HEIGHT - desiredHeight) * 0.7f;
-
-        ImGui::SetCursorPos(ImVec2(posX, posY));
+        ImGui::SetCursorPosX(ImGui::GetCursorPosX() + 10.0f);
         ImGui::Image(GetTextureID(*m_pEntitySprite), ImVec2(desiredWidth, desiredHeight), uv0, uv1);
 
         // Display current animation if playing
@@ -148,27 +151,80 @@ namespace Core::Editor
             Animator& animator = *m_pEntity->GetComponent<Animator>();
             String currentAnimName = animator.GetCurrentAnimation().Name;
 
-            PrintText(currentAnimName.c_str(), true);
+            float width = ImGui::GetColumnWidth();
+            float textWidth = ImGui::CalcTextSize(currentAnimName.c_str()).x;
+
+            float centerX = (width - textWidth) * 0.35f;
+            ImGui::SetCursorPosX(ImGui::GetCursorPosX() + centerX);
+            ImGui::SetCursorPosY(ImGui::GetCursorPosY() - 15.0f);
+
+            ImGui::TextUnformatted(currentAnimName.c_str());
         }
     }
 
-    void GUIWindow_EntityInfo::DisplayTags() const
+    void GUIWindow_EntityInfo::DisplayComponentInfo() const
+    {
+        if (m_pEntity->HasPrefab())
+        {
+            // Race Component
+            LRef entityRef = luabridge::getGlobal(ScriptCore::Instance()->GetLuaState(), "Entities")[m_pEntity->GetGUID()];
+            LRef raceRef = entityRef["components"]["race"];
+            if (!raceRef.isNil())
+            {
+                ImGui::Text("Race: %s", raceRef["race"].tostring().c_str());
+            }
+
+            // Health Component
+            LRef healthRef = entityRef["components"]["health"];
+            if (!healthRef.isNil())
+            {
+                ImGui::Text("Health: %s", healthRef["currenthealth"].tostring().c_str());
+            }
+        }
+    }
+
+    void GUIWindow_EntityInfo::DisplayTags()
     {
         if (m_pEntity == nullptr)
             return;
 
-        if (ImGui::CollapsingHeader("Tags"))
+        int initialHeight = ImGui::GetCursorPosY();
+
+        if (ImGui::TreeNode("Tags"))
         {
             Array<String>& tags = m_pEntity->GetTags();
-            for (int i = 0; i < tags.size(); i++)
-            {
-                ImGui::BulletText("%s", tags[i].c_str());
+            int columnWidth = 2;
+            int rowCount = (tags.size() + columnWidth - 1) / columnWidth;
 
-                if (i + 1 % 4 != 0)
+            if (ImGui::BeginTable("tags", columnWidth))
+            {
+                for (int row = 0; row < rowCount; ++row)
                 {
-                    ImGui::SameLine();
+                    ImGui::TableNextRow();
+
+                    for (int column = 0; column < columnWidth; column++)
+                    {
+                        int index = row * columnWidth + column;
+
+                        if (index < tags.size())
+                        {
+                            ImGui::TableSetColumnIndex(column);
+                            ImGui::BulletText("%s", tags[index].c_str());
+                        }
+                        else
+                        {
+                            ImGui::TableSetColumnIndex(column);
+                        }
+                    }
                 }
+
+                ImGui::EndTable();
             }
+
+            //float newHeight = ImGui::GetCursorPosY() - initialHeight;
+            //m_windowExpansionHeight = newHeight;
+
+            ImGui::TreePop();
         }
     }
 }

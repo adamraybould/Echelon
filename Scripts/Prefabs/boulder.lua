@@ -13,6 +13,8 @@ local function fn()
 
 	inst.Rigidbody:CreateStaticBody()
 
+	inst:AddComponent("inspectable")
+
 	inst:AddTag("Boulder")
 
 	return inst

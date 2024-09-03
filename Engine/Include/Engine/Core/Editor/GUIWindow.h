@@ -1,6 +1,7 @@
 #ifndef GUIWINDOW_H
 #define GUIWINDOW_H
 #include "Engine/Core/Editor/EngineGUI.h"
+#include "Engine/Utility/Commons.h"
 
 namespace Core::Editor
 {
@@ -27,7 +28,8 @@ namespace Core::Editor
         virtual ImVec2 GetWindowSize() = 0;
 
     protected:
-        void PrintText(const char* str, bool center = false);
+        void PrintText(const char* str, bool center = false, bool partOfColumn = false);
+        void PrintHoverText(const String& title, const String& str);
     };
 }
 

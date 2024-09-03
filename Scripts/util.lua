@@ -34,6 +34,18 @@ function GetRandomItem(choices)
 	return picked
 end
 
+function TableContains(table, value)
+	if table ~= nil then
+		for k, v in pairs(table) do
+			if v == value then
+				return true
+			end
+		end
+	end
+
+	return false
+end
+
 function IsTableEmpty(table)
 	local next = next
 	return next(table) == nil
@@ -41,8 +53,8 @@ end
 
 function RemoveByValue(table, value)
 	if table ~= nil then
-		for i = #t, 1, -1 do
-			if t[i] == value then
+		for i = #table, 1, -1 do
+			if table[i] == value then
 				table.remove(t, i)
 			end
 		end

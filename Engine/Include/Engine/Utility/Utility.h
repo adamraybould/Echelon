@@ -45,6 +45,13 @@ namespace Core
             return splitStr;
         }
 
+        static String Capitalize(const String& str)
+        {
+            String cStr = str;
+            cStr[0] = std::toupper(cStr[0]);
+            return cStr;
+        }
+
         static String RemovePrefix(const String& string, const String& prefix)
         {
             size_t pos = string.find(prefix);

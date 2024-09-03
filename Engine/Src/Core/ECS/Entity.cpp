@@ -80,7 +80,7 @@ namespace Core
         m_components.clear();
     }
 
-    void Entity::SetName(String name)
+    void Entity::SetName(const String& name)
     {
         m_name = name;
         m_prefab = &Engine::GetPrefab(name);

@@ -79,4 +79,13 @@ TUNING =
 {
 	BASE_WALK_SPEED = 3,
 	BASE_RUN_SPEED = 8,
+
+	BASE_PLAYER_HEALTH = 120
+}
+
+RACES =
+{
+	HUMAN = "Human",
+	GOBLIN = "Goblin",
+	DEMON = "Demon"
 }

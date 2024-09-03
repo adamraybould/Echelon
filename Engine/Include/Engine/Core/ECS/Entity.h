@@ -46,7 +46,7 @@ namespace Core
         /* Returns the Entity GUID */
         GUID GetGUID() const { return m_guid; }
 
-        void SetName(String name);
+        void SetName(const String& name);
         String GetName() const { return m_name; }
 
         void AddTransform(LState* L);

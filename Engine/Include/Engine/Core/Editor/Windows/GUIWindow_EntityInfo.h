@@ -13,7 +13,7 @@ namespace Core
     {
         class GUIWindow_EntityInfo : public GUIWindow
         {
-            const int WINDOW_WIDTH = 320;
+            const int WINDOW_WIDTH = 350;
             const int WINDOW_HEIGHT = 250;
 
         private:
@@ -22,6 +22,12 @@ namespace Core
             Graphics::Sprite* m_pEntitySprite = nullptr;
 
             ImVec2 m_windowPos;
+
+            float m_offsetX;
+            float m_offsetY;
+
+            float m_windowExpansionWidth = 0.0f;
+            float m_windowExpansionHeight = 0.0f;
 
         public:
             GUIWindow_EntityInfo(EngineGUI& engineGUI);
@@ -39,8 +45,11 @@ namespace Core
             Vector2 GetEntityScreenPosition(const Entity& entity) const;
             ImTextureID GetTextureID(const Graphics::Texture2D& texture) { return (ImTextureID)(intptr_t)&texture.GetRawTexture(); }
 
-            void DisplayEntitySprite();
-            void DisplayTags() const;
+            void DisplayInfo(const Entity& entity);
+
+            void DisplaySprite();
+            void DisplayComponentInfo() const;
+            void DisplayTags();
         };
     }
 }

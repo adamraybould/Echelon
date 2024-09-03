@@ -17,11 +17,16 @@ local function fn()
 	inst.Transform:SetPosition(Vector2(488, 128))
 	inst.Animator:PlayAnimation("Idle(D)")
 
+	inst:AddComponent("health")
+	inst.components.health:SetMaxHealth(TUNING.BASE_PLAYER_HEALTH)
+
+	inst:AddComponent("race")
+	inst.components.race:SetRace(RACES.HUMAN)
+
 	inst:AddComponent("locomotor")
 	inst:AddComponent("playercontroller")
 
 	inst:AddTag("Player")
-	inst:AddTag("Human")
 
 	return inst
 end
