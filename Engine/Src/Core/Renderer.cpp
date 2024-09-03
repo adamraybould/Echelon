@@ -44,8 +44,13 @@ namespace Core
 
     void Renderer::ProcessRenderQueue()
     {
-        for (const auto& layer : m_renderQueue)
+        for (auto& layer : m_renderQueue)
         {
+            std::sort(layer.second.begin(), layer.second.end(), [] (IRenderable* a, IRenderable* b)
+            {
+                return a->GetDepth() < b->GetDepth();
+            });
+
             for(IRenderable* renderable : layer.second)
             {
                 renderable->Render(*this);

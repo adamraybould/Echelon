@@ -35,13 +35,13 @@ function SpawnPrefab(name)
 	name = string.sub(name, string.find(name, "[^/]*$"))
 
 	local guid = Engine:SpawnPrefab(name)
-	Entities[guid]:SetName(name)
 	return Entities[guid]
 end
 
 function SpawnMultiplePrefabs(name, num)
 	for i = 1, num, 1 do
-		SpawnPrefab(name)
+		local prefab = SpawnPrefab(name)
+		prefab.Rigidbody:SetPosition(Vector2(GetRandomRange(-500, 500), GetRandomRange(-500, 500)))
 	end
 end
 

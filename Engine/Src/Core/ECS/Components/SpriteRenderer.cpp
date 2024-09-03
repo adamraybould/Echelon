@@ -25,6 +25,7 @@ namespace Core::Components
 
     void SpriteRenderer::Initialize()
     {
+        Entity& owner = GetOwner();
         if (GetOwner().HasPrefab())
         {
             Prefab& prefab = GetOwner().GetPrefab();

@@ -12,8 +12,8 @@ namespace Core
         private:
             UnorderedMap<String, Animation> m_animations;
 
-            UInt m_frameWidth;
-            UInt m_frameHeight;
+            UInt m_spriteWidth;
+            UInt m_spriteHeight;
             UInt m_frameCount;
 
         public:
@@ -26,8 +26,8 @@ namespace Core
             bool IsAnimationValid(const String& animName) const;
             Animation* GetAnimation(const String& animName);
 
-            UInt GetFrameWidth() const { return m_frameWidth; }
-            UInt GetFrameHeight() const { return m_frameHeight; }
+            UInt GetFrameWidth() const { return m_spriteWidth; }
+            UInt GetFrameHeight() const { return m_spriteHeight; }
             UInt GetFrameCount() const { return m_frameCount; }
         };
     }

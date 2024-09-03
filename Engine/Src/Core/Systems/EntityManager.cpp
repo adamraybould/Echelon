@@ -5,13 +5,18 @@
 
 namespace Core::Systems
 {
+    UnorderedMap<GUID, UniquePtr<Entity>> EntityManager::m_entities;
+    bool EntityManager::m_isInitialised = false;
+
     EntityManager::EntityManager()
     {
+        /*
         UnorderedMap<GUID, UniquePtr<Entity>>& scriptEntities = Engine::GetEntities();
         for (auto it = Engine::GetEntities().begin(); it != Engine::GetEntities().end(); ++it)
         {
             m_entities.insert(std::make_pair(it->first, std::move(it->second)));
         }
+        */
     }
 
     EntityManager::~EntityManager()
@@ -30,45 +35,33 @@ namespace Core::Systems
         {
             i->second->Initialize();
         }
+
+        m_isInitialised = true;
     }
 
     void EntityManager::Update(const float delta)
     {
-        for (auto i = m_entities.begin(); i != m_entities.end(); ++i)
+        for (auto& entity : m_entities)
         {
-            Entity& entity = *i->second;
-            if (!entity.GetTransform().HasParent())
-            {
-                entity.Update(delta);
-            }
+            entity.second->Update(delta);
         }
     }
 
-    void EntityManager::Render(Renderer& renderer)
+    Entity& EntityManager::CreateEntity()
     {
-        /*
-        for (auto i = m_entities.begin(); i != m_entities.end(); ++i)
-        {
-            Entity& entity = *i->second;
-            if (!entity.GetTransform().HasParent())
-            {
-                entity.Render(renderer);
-            }
-        }
-        */
+        UniquePtr<Entity> entity = std::make_unique<Entity>("");
+        GUID guid = entity->GetGUID();
+
+        m_entities.insert(std::make_pair(guid, std::move(entity)));
+        return *m_entities[guid];
     }
 
     Entity* EntityManager::GetEntityByGUID(GUID guid)
     {
-        Map<GUID, UniquePtr<Entity>>::iterator i = m_entities.find(guid);
-        if (i != m_entities.end())
-        {
-            return i->second.get();
-        }
-        else
-        {
-            return nullptr;
-        }
+        if (m_entities.contains(guid))
+            return m_entities[guid].get();
+
+        return nullptr;
     }
 
     Entity* EntityManager::GetEntityByName(const char* name)

@@ -15,7 +15,6 @@ namespace Core
             int Y;
             int Width;
             int Height;
-
             int Duration;
 
             Frame(const int x, const int y, const int width, const int height, const int duration)

@@ -33,7 +33,7 @@ namespace Core
                 String Name;
                 int Frame;
 
-                bool IsEmpty() const { return Name == ""; }
+                bool IsEmpty() const { return Name.empty(); }
             };
 
         private:
@@ -50,7 +50,7 @@ namespace Core
             static SpriteSheet* LoadSpriteSheet(const String& path);
 
         private:
-            /* Loads a Raw SDL Texture */
+            /* Loads a Raw SDL texture */
             static SDL_Texture& LoadRawTexture(const String& filePath);
 
             static UnorderedMap<String, Animation> GetAnimations(Json::Value& data);

@@ -28,6 +28,7 @@ namespace Core
 
             Animation* m_pCurrentAnimation;
             Frame* m_pCurrentFrame;
+            String m_initialAnimName;
 
             float m_speed = 1.0f;
             bool m_isPlaying = false;
@@ -49,6 +50,7 @@ namespace Core
             void Pause();
             void Resume();
 
+            bool IsCurrentAnimation(const String& animName) const;
             Animation& GetCurrentAnimation() const { return *m_pCurrentAnimation; }
 
             void SetPlaybackSpeed(const float value) { m_speed = value; }

@@ -1,7 +1,7 @@
 
 local assets =
 {
-	Asset("SPRITE", "Mobs/Carbon/Human", 0)
+	Asset("SPRITE", "Mobs/Human", 0)
 }
 
 local function fn()
@@ -10,8 +10,9 @@ local function fn()
 	inst.entity:AddTransform()
 	inst.entity:AddRenderer()
 	inst.entity:AddRigidbody()
+	inst.entity:AddAnimator()
 
-	inst.Rigidbody:SetPosition(Vector2(GetRandomRange(-500, 500), GetRandomRange(-500, 500)))
+	inst.Animator:PlayAnimation("Idle(D)")
 
 	inst:AddTag("human")
 	inst:AddTag("carbon")

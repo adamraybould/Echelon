@@ -10,6 +10,8 @@ namespace Core
     {
         Animator::Animator(Entity& owner) : Component(owner)
         {
+            m_pRenderer = nullptr;
+            m_pSpriteSheet = nullptr;
             m_pCurrentAnimation = nullptr;
             m_pCurrentFrame = nullptr;
 
@@ -30,6 +32,8 @@ namespace Core
             BindFunction<Animator>(L, "Pause", &Animator::Pause);
             BindFunction<Animator>(L, "Resume", &Animator::Resume);
 
+            BindFunction<Animator>(L, "IsCurrentAnimation", &Animator::IsCurrentAnimation);
+
             BindFunction<Animator>(L, "SetPlaybackSpeed", &Animator::SetPlaybackSpeed);
             BindFunction<Animator>(L, "IsPlaying", &Animator::IsPlaying);
             BindFunction<Animator>(L, "IsPaused", &Animator::IsPaused);
@@ -40,7 +44,10 @@ namespace Core
             m_pRenderer = GetOwner().GetComponent<SpriteRenderer>();
             m_pSpriteSheet = static_cast<SpriteSheet*>(&m_pRenderer->GetSprite());
 
-            PlayAnimation("Idle_D");
+            if (!m_initialAnimName.empty())
+            {
+                PlayAnimation(m_initialAnimName);
+            }
         }
 
         void Animator::Update(const float delta)
@@ -68,6 +75,13 @@ namespace Core
 
         void Animator::PlayAnimation(const String& animName, const bool restart)
         {
+            // Encase called before Sprite Sheet is set, store the animation to play when Initialised
+            if (m_pSpriteSheet == nullptr)
+            {
+                m_initialAnimName = animName;
+                return;
+            }
+
             if (!restart)
             {
                 if (m_pCurrentAnimation != nullptr && animName == m_pCurrentAnimation->Name)
@@ -107,6 +121,17 @@ namespace Core
         {
             m_isPaused = false;
             OnAnimationResume.Broadcast();
+        }
+
+        bool Animator::IsCurrentAnimation(const String& animName) const
+        {
+            if (m_pCurrentAnimation != nullptr)
+            {
+                if (m_pCurrentAnimation->Name == animName)
+                    return true;
+            }
+
+            return false;
         }
 
         void Animator::SetFrame(const UInt index)

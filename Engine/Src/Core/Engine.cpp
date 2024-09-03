@@ -5,6 +5,8 @@
 #include "Engine/Core/Scripting/Prefab.h"
 #include <tmxlite/Map.hpp>
 
+#include "Engine/Core/Systems/EntityManager.h"
+
 namespace Core
 {
     UnorderedMap<String, UniquePtr<Prefab>> Engine::m_prefabs;
@@ -25,11 +27,15 @@ namespace Core
 
     Entity& Engine::CreateEntity()
     {
+        return EntityManager::CreateEntity();
+
+        /*
         UniquePtr<Entity> entity = std::make_unique<Entity>("");
         GUID guid = entity->GetGUID();
 
         m_entities.insert(std::make_pair(guid, std::move(entity)));
         return *m_entities[guid];
+        */
     }
 
     void Engine::RegisterPrefab(LState* self, const String& name, LRef prefab)
@@ -38,14 +44,17 @@ namespace Core
         m_prefabs.insert(std::make_pair(name, std::move(prefabPtr)));
     }
 
-    GUID Engine::SpawnPrefab(LState* self, const String& name)
+    GUID Engine::SpawnPrefab(LState* self, String name)
     {
         using namespace luabridge;
 
         Prefab& prefab = *m_prefabs[name];
         if (prefab.IsValid())
         {
-            return prefab.CallFn();
+            GUID entity = prefab.CallFn();
+            EntityManager::GetEntityByGUID(entity)->SetName(name);
+
+            return entity;
         }
 
         return "GUID ERROR";
@@ -61,7 +70,7 @@ namespace Core
         return m_prefabs[name] != nullptr;
     }
 
-    void Engine::SetCameraPosition(LState* L, LRef position)
+    void Engine::SetCameraPosition(LState* L, const LRef& position)
     {
         Camera::Main->GetTransform().SetWorldPosition(Vector2(position["x"], position["y"]));
     }

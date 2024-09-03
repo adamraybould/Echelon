@@ -9,9 +9,8 @@ namespace Core
 {
     enum class RenderLayer
     {
+        Map,
         Default,
-        TileMap,
-        Entities,
         Player,
         UI,
     };

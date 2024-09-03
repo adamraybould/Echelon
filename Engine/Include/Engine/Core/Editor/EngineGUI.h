@@ -47,8 +47,9 @@ namespace Core
 
         private:
             void RenderMenuBar() const;
-
             void DisplayEntityInfo();
+
+            bool HasClickedWithinWindow() const;
         };
     }
 }

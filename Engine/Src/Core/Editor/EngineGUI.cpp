@@ -128,6 +128,9 @@ namespace Core::Editor
         Entity* highlightedEntity = entityManager.GetEntityAtPoint(mousePosition);
         if (highlightedEntity != nullptr)
         {
+            if (HasClickedWithinWindow())
+                return;
+
             if (m_pEntity == nullptr || m_pEntity != highlightedEntity)
             {
                 if (m_windows[0]->IsWindowActive())
@@ -140,8 +143,23 @@ namespace Core::Editor
         }
         else
         {
-            m_windows[0]->CloseWindow();
-            m_pEntity = nullptr;
+            if (!HasClickedWithinWindow())
+            {
+                m_windows[0]->CloseWindow();
+                m_pEntity = nullptr;
+            }
         }
+    }
+
+    bool EngineGUI::HasClickedWithinWindow() const
+    {
+        ImVec2 mousePos = ImGui::GetMousePos();
+
+        ImVec2 windowPos = m_windows[0]->GetWindowPosition();
+        ImVec2 windowSize = m_windows[0]->GetWindowSize();
+        ImVec2 windowMin = windowPos;
+        ImVec2 windowMax = ImVec2(windowPos.x + windowSize.x, windowPos.y + windowSize.y);
+
+        return (mousePos.x >= windowMin.x && mousePos.x <= windowMax.x && mousePos.y >= windowMin.y && mousePos.y <= windowMax.y);
     }
 }

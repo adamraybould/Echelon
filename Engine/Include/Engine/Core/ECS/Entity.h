@@ -46,7 +46,7 @@ namespace Core
         /* Returns the Entity GUID */
         GUID GetGUID() const { return m_guid; }
 
-        void SetName(const String& name);
+        void SetName(String name);
         String GetName() const { return m_name; }
 
         void AddTransform(LState* L);
@@ -59,6 +59,7 @@ namespace Core
         void AddTag(const String& tag);
         void RemoveTag(const String& tag);
         bool HasTag(const String& tag) const;
+        Array<String>& GetTags() { return m_tags; }
 
         void SetupEmbedding(lua_State* L) override;
 
@@ -111,6 +112,16 @@ namespace Core
 
             //printf("Unable to find Component: " + typeid(T).name());
             return nullptr;
+        }
+
+        float GetDepth() override
+        {
+            if (m_transform != nullptr)
+            {
+                return m_transform->Position.Y;
+            }
+
+            return 0.0f;
         }
     };
 }

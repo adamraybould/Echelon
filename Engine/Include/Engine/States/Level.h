@@ -23,6 +23,7 @@ namespace Core
             virtual void Update(float delta) = 0;
             virtual void Render(Renderer& renderer) = 0;
 
+            /*
             template<typename T, typename... Args>
             inline T& Instantiate(const char* name, Transform& parent, Args... args)
             {
@@ -58,6 +59,7 @@ namespace Core
                 parent.AddChild(baseEntity.GetTransform());
                 return entity;
             }
+            */
         };
     }
 }

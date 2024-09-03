@@ -1,6 +1,6 @@
 #include "Engine/States/GameState.h"
 #include "Engine/Core/Systems/LevelManager.h"
-#include "Engine/Graphics/TileMap.h"
+#include "Engine/Graphics/TileMap/TileMap.h"
 
 namespace Core::States
 {
@@ -20,13 +20,13 @@ namespace Core::States
 
     void GameState::Initialize()
     {
-        if (m_pEntityManager != nullptr)
-            m_pEntityManager->Initialise();
+        m_pTileMap->LoadTileMap("Fantasy_TestMap");
 
         if (m_pLevelManager != nullptr)
             m_pLevelManager->Initialise();
 
-        m_pTileMap->LoadTileMap("TestMap");
+        if (m_pEntityManager != nullptr)
+            m_pEntityManager->Initialise();
     }
 
     void GameState::Update(float delta)

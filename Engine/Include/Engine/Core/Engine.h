@@ -2,6 +2,7 @@
 #define GOD_H
 #include "Scripting/IBinder.h"
 #include "Engine/Utility/Commons.h"
+#include "Systems/StateSystem.h"
 
 namespace Core
 {
@@ -9,6 +10,7 @@ namespace Core
     class Entity;
 
     using namespace Scripting;
+    using namespace Systems;
     class Engine : IBinder
     {
     private:
@@ -23,14 +25,12 @@ namespace Core
 
         // -- Prefabs
         static void RegisterPrefab(LState* self, const String& name, LRef prefab);
-        static GUID SpawnPrefab(LState* self, const String& name);
+        static GUID SpawnPrefab(LState* self, String name);
         static bool HasPrefab(const String& name);
         static Prefab& GetPrefab(const String& name);
 
         // -- Camera
-        static void SetCameraPosition(LState* L, LRef position);
-
-        static UnorderedMap<GUID, UniquePtr<Entity>>& GetEntities() { return m_entities; }
+        static void SetCameraPosition(LState* L, const LRef& position);
     };
 }
 

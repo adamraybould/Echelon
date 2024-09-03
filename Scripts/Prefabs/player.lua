@@ -1,25 +1,27 @@
 
 local assets =
 {
-	Asset("SPRITE", "Mobs/Carbon/Human")
+	Asset("SPRITE", "Mobs/Human")
 }
 
 local function fn()
 	local inst = CreateEntity()
 
 	inst.entity:AddTransform()
-	inst.entity:AddRigidbody()
 	inst.entity:AddRenderer()
+	inst.entity:AddRigidbody()
 	inst.entity:AddAnimator()
 
-	inst.Transform:SetPosition(Vector2(488, 128))
+	inst.Rigidbody:CreateDynamicBody()
 
-	inst:AddComponent("movement")
+	inst.Transform:SetPosition(Vector2(488, 128))
+	inst.Animator:PlayAnimation("Idle(D)")
+
+	inst:AddComponent("locomotor")
 	inst:AddComponent("playercontroller")
 
-	inst:AddTag("player")
-	inst:AddTag("human")
-	inst:AddTag("carbon")
+	inst:AddTag("Player")
+	inst:AddTag("Human")
 
 	return inst
 end

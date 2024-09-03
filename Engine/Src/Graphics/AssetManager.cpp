@@ -72,7 +72,6 @@ namespace Core::Graphics
         std::ifstream file(filePath.string() + ".json");
         Json::Reader reader;
         Json::Value data;
-
         if (!reader.parse(file, data))
         {
             std::cerr << "Failed to parse Sprite Sheet: '" << path << "'" << std::endl;
@@ -81,14 +80,16 @@ namespace Core::Graphics
 
         // Load meta data
         String imagePath = data["meta"]["image"].asString();
-        int imageWidth = data["meta"]["size"]["w"].asInt();
-        int imageHeight = data["meta"]["size"]["h"].asInt();
+
+        Json::Value& frameData = data["frames"][0];
+        UInt spriteWidth = frameData["sourceSize"]["w"].asInt();
+        UInt spriteHeight = frameData["sourceSize"]["h"].asInt();
 
         String pngPath = directoryPath + "/" + imagePath;
         SDL_Texture& rawTexture = LoadRawTexture(pngPath);
 
         const UnorderedMap<String, Animation> animations = GetAnimations(data); // Load Animations
-        m_loadedTextures.push_back(std::make_unique<SpriteSheet>(&rawTexture, 32, 32, animations));
+        m_loadedTextures.push_back(std::make_unique<SpriteSheet>(&rawTexture, spriteWidth, spriteHeight, animations));
 
         Texture2D* texture = m_loadedTextures.back().get();
         SpriteSheet* spriteSheet = static_cast<SpriteSheet*>(texture);
@@ -118,11 +119,11 @@ namespace Core::Graphics
             for (const Json::Value& frame : data["frames"])
             {
                 String filename = frame["filename"].asString();
-                int x = frame["frame"]["x"].asInt();
-                int y = frame["frame"]["y"].asInt();
-                int w = frame["frame"]["w"].asInt();
-                int h = frame["frame"]["h"].asInt();
-                int duration = frame["duration"].asInt();
+                const int x = frame["frame"]["x"].asInt();
+                const int y = frame["frame"]["y"].asInt();
+                const int w = frame["frame"]["w"].asInt();
+                const int h = frame["frame"]["h"].asInt();
+                const int duration = frame["duration"].asInt();
 
                 String animationName = Utility::SplitString(filename, '#', true);
                 if (!animationName.empty())

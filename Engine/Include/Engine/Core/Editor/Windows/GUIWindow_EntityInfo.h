@@ -21,6 +21,8 @@ namespace Core
             Components::SpriteRenderer* m_pEntityRenderer;
             Graphics::Sprite* m_pEntitySprite = nullptr;
 
+            ImVec2 m_windowPos;
+
         public:
             GUIWindow_EntityInfo(EngineGUI& engineGUI);
 
@@ -30,9 +32,15 @@ namespace Core
             void Update(float delta) override;
             void Render() override;
 
+            ImVec2 GetWindowPosition() override;
+            ImVec2 GetWindowSize() override;
+
         private:
             Vector2 GetEntityScreenPosition(const Entity& entity) const;
             ImTextureID GetTextureID(const Graphics::Texture2D& texture) { return (ImTextureID)(intptr_t)&texture.GetRawTexture(); }
+
+            void DisplayEntitySprite();
+            void DisplayTags() const;
         };
     }
 }

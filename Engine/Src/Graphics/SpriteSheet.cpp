@@ -4,13 +4,13 @@
 
 namespace Core::Graphics
 {
-    SpriteSheet::SpriteSheet(SDL_Texture* texture, UInt frameWidth, UInt frameHeight, UnorderedMap<String, Animation> animations) : Sprite(texture)
+    SpriteSheet::SpriteSheet(SDL_Texture* texture, const UInt frameWidth, const UInt frameHeight, UnorderedMap<String, Animation> animations) : Sprite(texture)
     {
-        m_frameWidth = frameWidth;
-        m_frameHeight = frameHeight;
+        m_spriteWidth = frameWidth;
+        m_spriteHeight = frameHeight;
         m_animations = animations;
 
-        m_frameCount = m_frameWidth * m_frameHeight;
+        m_frameCount = m_spriteWidth * m_spriteHeight;
     }
 
     SpriteSheet::~SpriteSheet()
@@ -18,14 +18,14 @@ namespace Core::Graphics
         Sprite::~Sprite();
     }
 
-    Rectangle SpriteSheet::GetSpriteSource(UInt frameIndex) const
+    Rectangle SpriteSheet::GetSpriteSource(const UInt frameIndex) const
     {
-        int maxXIndex = GetWidth() / m_frameWidth;
-        int xFramePos = (frameIndex % maxXIndex) * m_frameWidth;
+        int maxXIndex = GetWidth() / m_spriteWidth;
+        int xFramePos = (frameIndex % maxXIndex) * m_spriteWidth;
         int yFrameIndex = (int)(frameIndex / maxXIndex);
-        int yFramePos = yFrameIndex * m_frameHeight;
+        int yFramePos = yFrameIndex * m_spriteHeight;
 
-        return Rectangle(xFramePos, yFramePos, m_frameWidth, m_frameHeight);
+        return Rectangle(xFramePos, yFramePos, m_spriteWidth, m_spriteHeight);
     }
 
     bool SpriteSheet::IsAnimationValid(const String& animName) const

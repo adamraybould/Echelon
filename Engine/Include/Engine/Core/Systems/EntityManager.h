@@ -8,7 +8,8 @@ namespace Core::Systems
     class EntityManager
     {
     private:
-        Map<GUID, UniquePtr<Entity>> m_entities;
+        static UnorderedMap<GUID, UniquePtr<Entity>> m_entities;
+        static bool m_isInitialised;
 
     public:
         EntityManager();
@@ -16,30 +17,17 @@ namespace Core::Systems
 
         void Initialise();
         void Update(float delta);
-        void Render(Renderer& renderer);
+
+        static Entity& CreateEntity();
 
         /* Returns an Entity with the Specified ID */
-        Entity* GetEntityByGUID(GUID guid);
+        static Entity* GetEntityByGUID(GUID guid);
 
         /* Returns an Entity with the Specified Name */
-        Entity* GetEntityByName(const char* name);
+        static Entity* GetEntityByName(const char* name);
 
         /* Returns an Entity at a Point in the World */
-        Entity* GetEntityAtPoint(const Vector2& point);
-
-        template<typename T, typename... Args>
-        inline T& CreateEntity(Args&&... args)
-        {
-            // Ensures T is of type Entity
-            static_assert(std::is_base_of_v<Entity, T>, "T must be a subclass of Entity");
-
-            auto entity = std::make_unique<T>(std::forward<Args>(args)...);
-            T& entityRef = *entity;
-
-            m_entities.insert(std::make_pair(entity->GetGUID(), std::move(entity)));
-
-            return entityRef;
-        }
+        static Entity* GetEntityAtPoint(const Vector2& point);
     };
 }
 

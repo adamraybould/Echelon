@@ -10,8 +10,15 @@ namespace Core
     {
         class Rigidbody : public Component
         {
+            enum class BodyType
+            {
+                STATIC,
+                DYNAMIC
+            };
+
         private:
             b2Body* m_pBody = nullptr;
+            BodyType m_bodyType = BodyType::STATIC;
 
             float m_linearDamping = 40.0f;
             float m_angularDamping = 0.5f;
@@ -27,13 +34,21 @@ namespace Core
             void Render(Renderer& renderer) override;
             void Destroy() override;
 
+            void CreateStaticBody();
+            void CreateDynamicBody();
+
             void SetLinearDamping(float value) { m_linearDamping = value; }
             void SetAngularDamping(float value) { m_angularDamping = value; }
 
             void ApplyForce(const LRef& force) const;
             void ApplyImpulse(const LRef& force) const;
 
-            void SetPosition(const LRef& position) const;
+            void SetPosition(const Vector2& position) const;
+            void SetPositionL(const LRef& position) const;
+
+        private:
+            void CreateBody();
+            Vector2 GetSpriteSize() const;
         };
     }
 }

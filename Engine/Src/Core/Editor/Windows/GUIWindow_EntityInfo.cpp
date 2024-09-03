@@ -67,15 +67,15 @@ namespace Core::Editor
 
         //std::cout << zoom << std::endl;
 
-        ImVec2 windowPos = ImVec2(windowOffset.X * zoom, windowOffset.Y * zoom);
-        ImGui::SetNextWindowPos(windowPos, ImGuiCond_Always);
+        m_windowPos = ImVec2(windowOffset.X * zoom, windowOffset.Y * zoom);
+        ImGui::SetNextWindowPos(m_windowPos, ImGuiCond_Always);
 
         ImGui::SetNextWindowSize(ImVec2(WINDOW_WIDTH, WINDOW_HEIGHT), ImGuiCond_Always);
 
         Vector2 entityWorldPosition = m_pEntity->GetTransform().GetWorldPosition();
         std::string positionText = "(" + std::to_string(entityWorldPosition.X) + ", " + std::to_string(entityWorldPosition.Y) + ")";
 
-        if (ImGui::Begin("Entity Info", &m_isActive, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoCollapse))
+        if (ImGui::Begin("Entity Info", &m_isActive, ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoCollapse))
         {
             String prefabName = m_pEntity->GetName();
             prefabName[0] = std::toupper(prefabName[0]);
@@ -83,6 +83,8 @@ namespace Core::Editor
             ImGui::Text("GUID: %s", m_pEntity->GetGUID().c_str());
             ImGui::Text("Prefab: %s", prefabName.c_str());
             ImGui::Text("Position: (%.1f, %.1f)", entityWorldPosition.X, entityWorldPosition.Y);
+
+            DisplayTags();
 
             if (m_pEntity->HasPrefab())
             {
@@ -97,42 +99,76 @@ namespace Core::Editor
             ImGui::Spacing();
             ImGui::Separator();
 
-            if (m_pEntitySprite != nullptr)
-            {
-                int textureWidth = m_pEntitySprite->GetWidth();
-                int textureHeight = m_pEntitySprite->GetHeight();
-
-                float desiredWidth = 100.0f;
-                float desiredHeight = (desiredWidth / m_pEntityRenderer->GetDisplaySource().Width) * m_pEntityRenderer->GetDisplaySource().Height;
-
-                Rectangle spriteSource = m_pEntityRenderer->GetDisplaySource();
-                ImVec2 uv0 = ImVec2(spriteSource.X / textureWidth, spriteSource.Y / textureHeight);
-                ImVec2 uv1 = ImVec2((spriteSource.X + spriteSource.Width) / textureWidth, (spriteSource.Y + spriteSource.Height) / textureHeight);
-
-                float posX = (WINDOW_WIDTH - desiredWidth) * 0.5f;
-                float posY = (WINDOW_HEIGHT - desiredHeight) * 0.7f;
-
-                // Set the cursor position to the calculated position
-                ImGui::SetCursorPos(ImVec2(posX, posY));
-
-                ImGui::Image(GetTextureID(*m_pEntitySprite), ImVec2(desiredWidth, desiredHeight), uv0, uv1);
-
-                if (m_pEntity->HasComponent<Animator>())
-                {
-                    Animator& animator = *m_pEntity->GetComponent<Animator>();
-                    String currentAnimName = animator.GetCurrentAnimation().Name;
-
-                    PrintText(currentAnimName.c_str(), true);
-                }
-            }
+            DisplayEntitySprite();
 
             ImGui::End();
         }
+    }
+
+    ImVec2 GUIWindow_EntityInfo::GetWindowPosition()
+    {
+        return m_windowPos;
+    }
+
+    ImVec2 GUIWindow_EntityInfo::GetWindowSize()
+    {
+        return ImVec2(WINDOW_WIDTH, WINDOW_HEIGHT);
     }
 
     Vector2 GUIWindow_EntityInfo::GetEntityScreenPosition(const Entity& entity) const
     {
         Camera& camera = m_engineGUI.GetEngineWindow().GetRenderer().GetCamera();
         return camera.CalculateScreenPosition(entity.GetTransform().GetWorldPosition());
+    }
+
+    void GUIWindow_EntityInfo::DisplayEntitySprite()
+    {
+        if (m_pEntitySprite == nullptr)
+            return;
+
+        UInt textureWidth = m_pEntitySprite->GetWidth();
+        UInt textureHeight = m_pEntitySprite->GetHeight();
+
+        float desiredWidth = 50.0f;
+        float desiredHeight = (desiredWidth / m_pEntityRenderer->GetDisplaySource().Width) * m_pEntityRenderer->GetDisplaySource().Height;
+
+        Rectangle spriteSource = m_pEntityRenderer->GetDisplaySource();
+        ImVec2 uv0 = ImVec2(spriteSource.X / textureWidth, spriteSource.Y / textureHeight);
+        ImVec2 uv1 = ImVec2((spriteSource.X + spriteSource.Width) / textureWidth, (spriteSource.Y + spriteSource.Height) / textureHeight);
+
+        float posX = (WINDOW_WIDTH - desiredWidth) * 0.5f;
+        float posY = (WINDOW_HEIGHT - desiredHeight) * 0.7f;
+
+        ImGui::SetCursorPos(ImVec2(posX, posY));
+        ImGui::Image(GetTextureID(*m_pEntitySprite), ImVec2(desiredWidth, desiredHeight), uv0, uv1);
+
+        // Display current animation if playing
+        if (m_pEntity->HasComponent<Animator>())
+        {
+            Animator& animator = *m_pEntity->GetComponent<Animator>();
+            String currentAnimName = animator.GetCurrentAnimation().Name;
+
+            PrintText(currentAnimName.c_str(), true);
+        }
+    }
+
+    void GUIWindow_EntityInfo::DisplayTags() const
+    {
+        if (m_pEntity == nullptr)
+            return;
+
+        if (ImGui::CollapsingHeader("Tags"))
+        {
+            Array<String>& tags = m_pEntity->GetTags();
+            for (int i = 0; i < tags.size(); i++)
+            {
+                ImGui::BulletText("%s", tags[i].c_str());
+
+                if (i + 1 % 4 != 0)
+                {
+                    ImGui::SameLine();
+                }
+            }
+        }
     }
 }

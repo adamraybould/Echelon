@@ -23,6 +23,9 @@ namespace Core::Editor
         void SetActive(const bool value) { m_isActive = value; }
         bool IsWindowActive() const { return m_isActive; }
 
+        virtual ImVec2 GetWindowPosition() = 0;
+        virtual ImVec2 GetWindowSize() = 0;
+
     protected:
         void PrintText(const char* str, bool center = false);
     };

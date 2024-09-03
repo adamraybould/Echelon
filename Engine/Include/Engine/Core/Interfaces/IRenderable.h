@@ -15,8 +15,10 @@ namespace Core
         virtual ~IRenderable() = default;
         virtual void Render(Renderer& renderer) = 0;
 
-        void SetRenderLayer(RenderLayer layer) { m_renderLayer = layer; }
+        void SetRenderLayer(const RenderLayer layer) { m_renderLayer = layer; }
         RenderLayer GetRenderLayer() const { return m_renderLayer; }
+
+        virtual float GetDepth() { return 0.0f; }
     };
 }
 

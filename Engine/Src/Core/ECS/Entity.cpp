@@ -17,7 +17,7 @@ namespace Core
 
         m_bounds = Rectangle();
 
-        SetRenderLayer(RenderLayer::Entities);
+        SetRenderLayer(RenderLayer::Default);
         Renderer::AddToRenderQueue(this, GetRenderLayer());
     }
 
@@ -80,7 +80,7 @@ namespace Core
         m_components.clear();
     }
 
-    void Entity::SetName(const String& name)
+    void Entity::SetName(String name)
     {
         m_name = name;
         m_prefab = &Engine::GetPrefab(name);

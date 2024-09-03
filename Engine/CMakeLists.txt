@@ -66,17 +66,17 @@ add_library(Engine STATIC
         Src/Core/Engine.cpp
         Include/Engine/Core/Input.h
         Src/Core/Input.cpp
-        Include/Engine/Graphics/TileMap.h
-        Src/Graphics/TileMap.cpp
-        Include/Engine/Graphics/MapLayer.h
-        Src/Graphics/MapLayer.cpp
+        Include/Engine/Graphics/TileMap/TileMap.h
+        Src/Graphics/TileMap/TileMap.cpp
+        Include/Engine/Graphics/TileMap/MapLayer.h
+        Src/Graphics/TileMap/MapLayer.cpp
         Include/Engine/Core/Interfaces/IRenderable.h
         Include/Engine/Core/ECS/Components/Rigidbody.h
         Src/Core/ECS/Components/Rigidbody.cpp
         Include/Engine/Core/Physics.h
         Src/Core/Physics.cpp
-        Include/Engine/Graphics/MapCollisionLayer.h
-        Src/Graphics/MapCollisionLayer.cpp
+        Include/Engine/Graphics/TileMap/ObjectLayer.h
+        Src/Graphics/TileMap/ObjectLayer.cpp
         Include/Engine/Utility/DebugDraw.h
         Src/Utility/DebugDraw.cpp
         Include/Engine/Core/ECS/Components/Animator.h
@@ -86,6 +86,8 @@ add_library(Engine STATIC
         Src/Core/Editor/Windows/GUIWindow_SprGenerator.cpp
         Include/Engine/Graphics/Animation.h
         Src/Core/Editor/GUIWindow.cpp
+        Include/Engine/Graphics/TileMap/Tile.h
+        Src/Graphics/TileMap/Tile.cpp
 )
 
 target_include_directories(Engine PUBLIC

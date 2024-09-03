@@ -1,0 +1,43 @@
+{ "frames": [
+   {
+    "filename": "boulder_1",
+    "frame": { "x": 0, "y": 0, "w": 32, "h": 32 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+    "sourceSize": { "w": 32, "h": 32 },
+    "duration": 100
+   },
+   {
+    "filename": "boulder_2",
+    "frame": { "x": 0, "y": 32, "w": 32, "h": 32 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+    "sourceSize": { "w": 32, "h": 32 },
+    "duration": 100
+   },
+   {
+    "filename": "boulder_3",
+    "frame": { "x": 0, "y": 64, "w": 32, "h": 32 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+    "sourceSize": { "w": 32, "h": 32 },
+    "duration": 100
+   }
+ ],
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.3.8.1-x64",
+  "image": "Rocks.png",
+  "format": "RGBA8888",
+  "size": { "w": 32, "h": 96 },
+  "scale": "1",
+  "layers": [
+   { "name": "boulder_1", "opacity": 255, "blendMode": "normal" },
+   { "name": "boulder_2", "opacity": 255, "blendMode": "normal" },
+   { "name": "boulder_3", "opacity": 255, "blendMode": "normal" }
+  ]
+ }
+}
