@@ -8,9 +8,9 @@
 #include "Scripting/ScriptCore.h"
 #include "Engine/Graphics/AssetManager.h"
 #include "Engine/Core/Systems/StateSystem.h"
-#include "Engine/Core/Systems/InputManager.h"
 #include "Window.h"
 #include "Engine/Utility/Commons.h"
+#include "Systems/AudioSystem.h"
 
 namespace Core
 {
@@ -24,15 +24,16 @@ namespace Core
         UniquePtr<Window> m_pWindow;
         bool m_isRunning;
 
+        // Systems
         UniquePtr<Engine> m_pEngine;
         UniquePtr<ScriptCore> m_pScriptCore;
-        UniquePtr<Physics> m_pPhysics;
-
         UniquePtr<Editor::EngineGUI> m_pEngineGUI;
         UniquePtr<Graphics::AssetManager> m_pAssetManager;
+
         UniquePtr<Input> m_pInput;
-        UniquePtr<Systems::InputManager> m_pInputManager;
-        UniquePtr<Systems::StateSystem> m_pStateSystem;
+        UniquePtr<Physics> m_pPhysics;
+        UniquePtr<StateSystem> m_pStateSystem;
+        UniquePtr<AudioSystem> m_pAudioSystem;
 
         UInt32 m_currentTime;
         UInt32 m_prevTime;

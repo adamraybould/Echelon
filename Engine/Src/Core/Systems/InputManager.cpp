@@ -1,7 +1,7 @@
 #include "Engine/Core/Systems/InputManager.h"
 
 #include <iostream>
-#include <SDL.h>
+#include <SDL2/SDL.h>
 #include "../../../Include/Engine/Core/Camera.h"
 #include "Engine/Utility/MathF.h"
 

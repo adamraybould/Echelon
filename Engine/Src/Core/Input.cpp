@@ -1,12 +1,14 @@
 #include "Engine/Core/Input.h"
-#include <SDL.h>
+#include <SDL2/SDL.h>
+
+#include "Engine/Core/Camera.h"
 
 namespace Core
 {
-    UnorderedMap<int, bool> Input::m_keys;
+    MultiCastEvent<> Input::OnMouseLeftClick;
+    MultiCastEvent<> Input::OnMouseRightClick;
 
-    Input::Input()
-    = default;
+    UnorderedMap<int, bool> Input::m_keys;
 
     Input::~Input()
     {
@@ -33,14 +35,39 @@ namespace Core
         }
     }
 
+    void Input::ProcessMouseInput(const SDL_Event& event)
+    {
+        if (event.type == SDL_MOUSEBUTTONDOWN)
+        {
+            if (event.button.button == SDL_BUTTON_LEFT)
+            {
+                OnMouseLeftClick.Broadcast();
+            }
+
+            if (event.button.button == SDL_BUTTON_RIGHT)
+            {
+                OnMouseRightClick.Broadcast();
+            }
+        }
+    }
+
     bool Input::IsKeyDown(LState* L, const int key)
     {
         return m_keys[key] || m_keys[SDL_SCANCODE_TO_KEYCODE(key)];
     }
 
-    bool Input::IsKeyPressed(LState* L, int key)
+    bool Input::IsKeyPressed(LState* L, const int key)
     {
         bool isKeyDown = IsKeyDown(L, key);
         return isKeyDown == true && m_keys[key] == false;
+    }
+
+    Vector2 Input::GetMousePosition()
+    {
+        int x = 0;
+        int y = 0;
+        SDL_GetMouseState(&x, &y);
+
+        return Camera::Main->CalculateWorldPosition(Vector2(x, y));
     }
 }

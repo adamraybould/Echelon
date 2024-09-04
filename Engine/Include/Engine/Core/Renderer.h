@@ -1,9 +1,10 @@
 #ifndef RENDERER_H
 #define RENDERER_H
-#include <SDL.h>
+
+#include <SDL2/SDL.h>
+
 #include "Camera.h"
 #include "Interfaces/IRenderable.h"
-#include "Engine/Utility/Commons.h"
 
 namespace Core
 {

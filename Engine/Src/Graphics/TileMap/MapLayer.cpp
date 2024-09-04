@@ -8,6 +8,7 @@
 #include "Engine/Core/Renderer.h"
 #include "Engine/Graphics/TileMap/Tile.h"
 #include "Engine/Graphics/TileMap/TileMap.h"
+#include "Engine/Utility/Constants.h"
 
 namespace Core
 {

@@ -1,6 +1,7 @@
 #ifndef PREFAB_H
 #define PREFAB_H
 #include "IBinder.h"
+#include "Engine/Utility/Commons.h"
 
 namespace Core
 {

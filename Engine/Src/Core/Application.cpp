@@ -1,13 +1,13 @@
 #include "Engine/Core/Application.h"
 
-#include <config.h>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
+#include <SDL2/SDL_timer.h>
+//#include <windows.h>
 
-#include "../../Include/Engine/Core/Renderer.h"
+#include "Engine/Core/Renderer.h"
 #include "Engine/States/GameState.h"
 #include "Engine/Core/Editor/EngineGUI.h"
-#include <SDL.h>
-#include <SDL_image.h>
-#include <SDL_timer.h>
 
 namespace Core
 {
@@ -61,7 +61,7 @@ namespace Core
         m_pAssetManager.reset();
         m_pStateSystem.reset();
         m_pInput.reset();
-        m_pInputManager.reset();
+        m_pAudioSystem.reset();
 
         m_pWindow.reset();
 
@@ -72,7 +72,6 @@ namespace Core
     void Application::HandleInput()
     {
         m_pInput.reset();
-        m_pInputManager->Reset();
 
         SDL_Event event;
         while (SDL_PollEvent(&event))
@@ -92,7 +91,7 @@ namespace Core
             }
 
             m_pInput->ProcessInput(event);
-            m_pInputManager->HandleInput(event);
+            m_pInput->ProcessMouseInput(event);
         }
     }
 
@@ -116,6 +115,7 @@ namespace Core
         }
 
         m_pPhysics->Update();
+        m_pAudioSystem->Update();
 
         GetRenderer().Update(deltaTime);
         m_pEngineGUI->Update(deltaTime);
@@ -165,25 +165,31 @@ namespace Core
             }
         }
 
+        if (SDL_Init(SDL_INIT_AUDIO) < 0)
+        {
+
+        }
+
         if (IMG_Init(IMG_INIT_PNG) < 0)
         {
             DisplayError("SDL Image could not Initialize! SDL_ERROR:", "SDL Error", true);
             exit(1);
         }
 
+
         // Initialise Systems
         m_pPhysics = std::make_unique<Physics>(GetRenderer());
 
         m_pAssetManager = std::make_unique<Graphics::AssetManager>(m_pWindow->GetRenderer());
+        m_pAudioSystem = std::make_unique<AudioSystem>();
 
         m_pInput = std::make_unique<Input>();
-        m_pInputManager = std::make_unique<InputManager>(GetRenderer().GetCamera());
 
         m_pScriptCore->InitialiseBinders();
 
         m_pStateSystem = std::make_unique<StateSystem>();
         m_pStateSystem->AddState<States::GameState>(true);
 
-        m_pEngineGUI = std::make_unique<Editor::EngineGUI>(*m_pWindow, *m_pStateSystem, *m_pInputManager);
+        m_pEngineGUI = std::make_unique<Editor::EngineGUI>(*m_pWindow, *m_pStateSystem, *m_pInput);
     }
 }

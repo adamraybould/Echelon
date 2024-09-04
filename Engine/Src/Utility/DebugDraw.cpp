@@ -2,6 +2,7 @@
 
 #include <box2d/box2d.h>
 #include "Engine/Core/Renderer.h"
+#include "Engine/Utility/Constants.h"
 
 namespace Core
 {

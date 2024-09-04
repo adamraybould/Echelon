@@ -6,6 +6,7 @@
 #include "Engine/Core/Renderer.h"
 #include "Engine/Graphics/AssetManager.h"
 #include "Engine/Graphics/TileMap/MapLayer.h"
+#include "Engine/Utility/Constants.h"
 #include "Engine/Utility/Utility.h"
 
 namespace Core

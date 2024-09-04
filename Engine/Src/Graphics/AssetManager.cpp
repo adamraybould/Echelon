@@ -1,7 +1,7 @@
 #include "Engine/Graphics/AssetManager.h"
 
 #include <fstream>
-#include <SDL_image.h>
+#include <SDL2/SDL_image.h>
 #include "config.h"
 #include <json/json.h>
 #include <filesystem>

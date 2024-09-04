@@ -9,10 +9,11 @@
 
 namespace Core
 {
-    namespace Systems { class StateSystem; class InputManager; }
+    namespace Systems { class StateSystem; }
 
     class Window;
     class Renderer;
+    class Input;
     class Entity;
 
     using namespace Systems;
@@ -25,14 +26,14 @@ namespace Core
         private:
             Window& m_window;
             StateSystem& m_stateSystem;
-            InputManager& m_inputManager;
+            Input& m_input;
 
             std::vector<std::unique_ptr<GUIWindow>> m_windows;
 
             Entity* m_pEntity;
 
         public:
-            EngineGUI(Window& window, StateSystem& stateSystem, InputManager& inputManager);
+            EngineGUI(Window& window, StateSystem& stateSystem, Input& input);
             ~EngineGUI();
 
             void Update(float delta) const;

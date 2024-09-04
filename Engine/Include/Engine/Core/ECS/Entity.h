@@ -1,9 +1,9 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 #include "Engine/Core/Scripting/IBinder.h"
+#include "Engine/Core/Interfaces/IRenderable.h"
 #include "Components/Component.h"
 #include "Components/Transform.h"
-#include "Engine/Core/Interfaces/IRenderable.h"
 
 using namespace Core::Components;
 namespace Core

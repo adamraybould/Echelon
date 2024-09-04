@@ -81,19 +81,19 @@ add_library(Engine STATIC
         Src/Utility/DebugDraw.cpp
         Include/Engine/Core/ECS/Components/Animator.h
         Src/Core/ECS/Components/Animator.cpp
-        Include/Engine/Utility/SprHandler.h
-        Include/Engine/Core/Editor/Windows/GUIWIndow_SprGenerator.h
-        Src/Core/Editor/Windows/GUIWindow_SprGenerator.cpp
         Include/Engine/Graphics/Animation.h
         Src/Core/Editor/GUIWindow.cpp
         Include/Engine/Graphics/TileMap/Tile.h
         Src/Graphics/TileMap/Tile.cpp
+        Include/Engine/Core/Systems/AudioSystem.h
+        Src/Core/Systems/AudioSystem.cpp
 )
 
 target_include_directories(Engine PUBLIC
         ${CMAKE_SOURCE_DIR}/Engine/Include
         ${CMAKE_SOURCE_DIR}/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include
         ${LUABRIDGE3_INCLUDE_DIRS}
+        ${FMOD_INCLUDE_DIR}
 )
 
 target_include_directories(Engine PRIVATE
@@ -112,3 +112,4 @@ target_link_libraries(Engine PRIVATE crossguid)
 target_link_libraries(Engine PRIVATE magic_enum::magic_enum)
 target_link_libraries(Engine PRIVATE ${TMXLITE_LIBRARY})
 target_link_libraries(Engine PRIVATE box2d::box2d)
+target_link_libraries(Engine PRIVATE ${FMOD_LIBRARIES})

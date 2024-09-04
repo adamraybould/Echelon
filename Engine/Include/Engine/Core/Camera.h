@@ -1,8 +1,6 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 #include "ECS/Entity.h"
-#include "Engine/Utility/Commons.h"
-#include "Engine/Utility/Constants.h"
 
 namespace Core
 {

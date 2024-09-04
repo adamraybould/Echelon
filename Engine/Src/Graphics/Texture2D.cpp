@@ -1,6 +1,6 @@
 #include "Engine/Graphics/Texture2D.h"
 
-#include <SDL_render.h>
+#include <SDL2/SDL_render.h>
 
 namespace Core::Graphics
 {

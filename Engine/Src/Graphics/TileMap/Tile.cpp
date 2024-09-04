@@ -4,6 +4,7 @@
 #include <SDL_render.h>
 #include "Engine/Core/Camera.h"
 #include "Engine/Core/Renderer.h"
+#include "Engine/Utility/Constants.h"
 
 namespace Core
 {
