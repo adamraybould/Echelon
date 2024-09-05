@@ -62,19 +62,19 @@
 			{
 				"command" : 2,
 				"file" : 2,
-				"line" : 104,
+				"line" : 112,
 				"parent" : 4
 			},
 			{
 				"command" : 2,
 				"file" : 2,
-				"line" : 105,
+				"line" : 113,
 				"parent" : 4
 			},
 			{
 				"command" : 2,
 				"file" : 2,
-				"line" : 106,
+				"line" : 114,
 				"parent" : 4
 			},
 			{
@@ -115,13 +115,13 @@
 			{
 				"command" : 2,
 				"file" : 2,
-				"line" : 107,
+				"line" : 115,
 				"parent" : 4
 			},
 			{
 				"command" : 2,
 				"file" : 2,
-				"line" : 108,
+				"line" : 116,
 				"parent" : 4
 			},
 			{
@@ -159,25 +159,31 @@
 			{
 				"command" : 2,
 				"file" : 2,
-				"line" : 111,
+				"line" : 119,
 				"parent" : 4
 			},
 			{
 				"command" : 2,
 				"file" : 2,
-				"line" : 113,
+				"line" : 121,
 				"parent" : 4
 			},
 			{
 				"command" : 2,
 				"file" : 2,
-				"line" : 114,
+				"line" : 122,
 				"parent" : 4
 			},
 			{
 				"command" : 2,
 				"file" : 2,
-				"line" : 115,
+				"line" : 123,
+				"parent" : 4
+			},
+			{
+				"command" : 2,
+				"file" : 2,
+				"line" : 124,
 				"parent" : 4
 			},
 			{
@@ -200,7 +206,7 @@
 			"includes" : 
 			[
 				{
-					"backtrace" : 27,
+					"backtrace" : 28,
 					"path" : "D:/Game Projects/C++/Echelon/Game/Include"
 				},
 				{
@@ -214,6 +220,10 @@
 				{
 					"backtrace" : 3,
 					"path" : "D:/Game Projects/C++/Echelon/FMOD/core/inc"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "D:/Game Projects/C++/Echelon/FMOD/studio/inc"
 				}
 			],
 			"language" : "CXX",
@@ -320,7 +330,12 @@
 			},
 			{
 				"backtrace" : 26,
-				"fragment" : "\"D:\\Game Projects\\C++\\Echelon\\FMOD\\core\\lib\\x64\\fmod.dll\"",
+				"fragment" : "\"D:\\Game Projects\\C++\\Echelon\\FMOD\\core\\lib\\x64\\fmod_vc.lib\"",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 27,
+				"fragment" : "\"D:\\Game Projects\\C++\\Echelon\\FMOD\\studio\\lib\\x64\\fmodstudio_vc.lib\"",
 				"role" : "libraries"
 			},
 			{

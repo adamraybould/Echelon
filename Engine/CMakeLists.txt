@@ -85,8 +85,15 @@ add_library(Engine STATIC
         Src/Core/Editor/GUIWindow.cpp
         Include/Engine/Graphics/TileMap/Tile.h
         Src/Graphics/TileMap/Tile.cpp
-        Include/Engine/Core/Systems/AudioSystem.h
-        Src/Core/Systems/AudioSystem.cpp
+        Include/Engine/Audio/AudioSystem.h
+        Src/Audio/AudioSystem.cpp
+        Include/Engine/Core/ECS/Components/SoundEmitter.h
+        Src/Core/ECS/Components/SoundEmitter.cpp
+        Include/Engine/Core/TypeDefs.h
+        Include/Engine/Audio/AudioBank.h
+        Src/Audio/AudioBank.cpp
+        Src/Audio/AudioEvent.cpp
+        Include/Engine/Audio/AudioEvent.h
 )
 
 target_include_directories(Engine PUBLIC
@@ -94,6 +101,7 @@ target_include_directories(Engine PUBLIC
         ${CMAKE_SOURCE_DIR}/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include
         ${LUABRIDGE3_INCLUDE_DIRS}
         ${FMOD_INCLUDE_DIR}
+        ${FMOD_STUDIO_INCLUDE_DIR}
 )
 
 target_include_directories(Engine PRIVATE
@@ -113,3 +121,4 @@ target_link_libraries(Engine PRIVATE magic_enum::magic_enum)
 target_link_libraries(Engine PRIVATE ${TMXLITE_LIBRARY})
 target_link_libraries(Engine PRIVATE box2d::box2d)
 target_link_libraries(Engine PRIVATE ${FMOD_LIBRARIES})
+target_link_libraries(Engine PRIVATE ${FMOD_STUDIO_LIBRARIES})

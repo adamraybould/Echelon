@@ -1331,7 +1331,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "general;D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/debug/lib/liblua.dll.a;general;ZLIB::ZLIB;general;imgui::imgui;general;D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/debug/lib/liblua.dll.a;general;crossguid;optimized;D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/lib/libtmxlite.dll.a;debug;D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/debug/lib/libtmxlite-d.dll.a;general;box2d::box2d;general;D:/Game Projects/C++/Echelon/FMOD/core/lib/x64/fmod.dll;"
+			"value" : "general;D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/debug/lib/liblua.dll.a;general;ZLIB::ZLIB;general;imgui::imgui;general;D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/debug/lib/liblua.dll.a;general;crossguid;optimized;D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/lib/libtmxlite.dll.a;debug;D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/debug/lib/libtmxlite-d.dll.a;general;box2d::box2d;general;D:/Game Projects/C++/Echelon/FMOD/core/lib/x64/fmod_vc.lib;general;D:/Game Projects/C++/Echelon/FMOD/studio/lib/x64/fmodstudio_vc.lib;"
 		},
 		{
 			"name" : "FIND_PACKAGE_MESSAGE_DETAILS_FMOD",
@@ -1343,7 +1343,19 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "[D:/Game Projects/C++/Echelon/FMOD/core/lib/x64/fmod.dll][D:/Game Projects/C++/Echelon/FMOD/core/inc][v()]"
+			"value" : "[D:/Game Projects/C++/Echelon/FMOD/core/lib/x64/fmod_vc.lib][D:/Game Projects/C++/Echelon/FMOD/core/inc][v()]"
+		},
+		{
+			"name" : "FIND_PACKAGE_MESSAGE_DETAILS_FMOD_STUDIO",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Details about finding FMOD_STUDIO"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "[D:/Game Projects/C++/Echelon/FMOD/studio/lib/x64/fmodstudio_vc.lib][D:/Game Projects/C++/Echelon/FMOD/studio/inc][v()]"
 		},
 		{
 			"name" : "FIND_PACKAGE_MESSAGE_DETAILS_Lua",
@@ -1415,7 +1427,31 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "D:/Game Projects/C++/Echelon/FMOD/core/lib/x64/fmod.dll"
+			"value" : "D:/Game Projects/C++/Echelon/FMOD/core/lib/x64/fmod_vc.lib"
+		},
+		{
+			"name" : "FMOD_STUDIO_INCLUDE_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a file."
+				}
+			],
+			"type" : "PATH",
+			"value" : "D:/Game Projects/C++/Echelon/FMOD/studio/inc"
+		},
+		{
+			"name" : "FMOD_STUDIO_LIBRARY",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a library."
+				}
+			],
+			"type" : "FILEPATH",
+			"value" : "D:/Game Projects/C++/Echelon/FMOD/studio/lib/x64/fmodstudio_vc.lib"
 		},
 		{
 			"name" : "LUABRIDGE3_INCLUDE_DIRS",

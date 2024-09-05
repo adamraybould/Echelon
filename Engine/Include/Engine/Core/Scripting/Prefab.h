@@ -7,11 +7,11 @@ namespace Core
 {
     namespace Scripting
     {
-        enum AssetType
+        enum class AssetType
         {
             NIL,
             SPRITE,
-            SOUND
+            AUDIO
         };
 
         struct PrefabAsset

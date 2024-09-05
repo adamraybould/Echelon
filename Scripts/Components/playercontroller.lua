@@ -41,18 +41,24 @@ function PlayerController:Update(delta)
 	end
 
 	-- Sprinting
-	if Input:IsKeyDown(KEY_SHIFT) then
-		self.locomotor:RunInDirection(movement:Normalise(), delta)
-		self:PlayAnimation(self.animation.run)
-	else
-		self.locomotor:WalkInDirection(movement:Normalise(), delta)
-		self:PlayAnimation(self.animation.walk)
-	end
+	if IsMovementButtonDown() then
+		if Input:IsKeyDown(KEY_SHIFT) then
+			self.locomotor:RunInDirection(movement:Normalise(), delta)
 
+			self:PlayAnimation(self.animation.run)
+			self.inst.SoundEmitter:PlayFootsteps(true)
+		else
+			self.locomotor:WalkInDirection(movement:Normalise(), delta)
+
+			self:PlayAnimation(self.animation.walk)
+			self.inst.SoundEmitter:PlayFootsteps(false)
+		end
+	end
 
 	if not IsMovementButtonDown() then
 		if self.animation then
 			self:PlayAnimation(self.animation.idle)
+			self.inst.SoundEmitter:StopFootsteps()
 		end
 	end
 end

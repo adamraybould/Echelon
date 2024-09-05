@@ -56,12 +56,12 @@ namespace Core
         m_pScriptCore.reset();
         m_pEngine.reset();
         m_pPhysics.reset();
+        m_pAudioSystem.reset();
 
         m_pEngineGUI.reset();
         m_pAssetManager.reset();
         m_pStateSystem.reset();
         m_pInput.reset();
-        m_pAudioSystem.reset();
 
         m_pWindow.reset();
 
@@ -130,8 +130,6 @@ namespace Core
 
         GetRenderer().ProcessRenderQueue();
         m_pPhysics->Render(GetRenderer());
-        //m_pStateSystem->Render(GetRenderer());
-        //m_pScriptCore->Render(GetRenderer());
 
         m_pEngineGUI->RenderImGui(GetRenderer());
 
@@ -165,11 +163,6 @@ namespace Core
             }
         }
 
-        if (SDL_Init(SDL_INIT_AUDIO) < 0)
-        {
-
-        }
-
         if (IMG_Init(IMG_INIT_PNG) < 0)
         {
             DisplayError("SDL Image could not Initialize! SDL_ERROR:", "SDL Error", true);
@@ -181,7 +174,7 @@ namespace Core
         m_pPhysics = std::make_unique<Physics>(GetRenderer());
 
         m_pAssetManager = std::make_unique<Graphics::AssetManager>(m_pWindow->GetRenderer());
-        m_pAudioSystem = std::make_unique<AudioSystem>();
+        m_pAudioSystem = std::make_unique<Audio::AudioSystem>();
 
         m_pInput = std::make_unique<Input>();
 

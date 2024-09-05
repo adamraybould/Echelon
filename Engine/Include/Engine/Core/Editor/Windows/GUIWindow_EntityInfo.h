@@ -49,7 +49,7 @@ namespace Core
 
             void DisplaySprite();
             void DisplayComponentInfo() const;
-            void DisplayTags();
+            void DisplayTags() const;
         };
     }
 }

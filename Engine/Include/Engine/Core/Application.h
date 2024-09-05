@@ -10,7 +10,7 @@
 #include "Engine/Core/Systems/StateSystem.h"
 #include "Window.h"
 #include "Engine/Utility/Commons.h"
-#include "Systems/AudioSystem.h"
+#include "Engine/Audio/AudioSystem.h"
 
 namespace Core
 {
@@ -33,7 +33,7 @@ namespace Core
         UniquePtr<Input> m_pInput;
         UniquePtr<Physics> m_pPhysics;
         UniquePtr<StateSystem> m_pStateSystem;
-        UniquePtr<AudioSystem> m_pAudioSystem;
+        UniquePtr<Audio::AudioSystem> m_pAudioSystem;
 
         UInt32 m_currentTime;
         UInt32 m_prevTime;

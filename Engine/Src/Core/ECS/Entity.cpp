@@ -4,6 +4,7 @@
 #include "Engine/Core/Renderer.h"
 #include "Engine/Core/ECS/Components/Animator.h"
 #include "Engine/Core/ECS/Components/Rigidbody.h"
+#include "Engine/Core/ECS/Components/SoundEmitter.h"
 #include "Engine/Core/ECS/Components/SpriteRenderer.h"
 #include "Engine/Core/Scripting/Prefab.h"
 #include "Engine/Utility/Utility.h"
@@ -24,6 +25,32 @@ namespace Core
     Entity::~Entity()
     {
         RemoveAllComponents();
+    }
+
+    void Entity::SetupEmbedding(lua_State* L)
+    {
+        using namespace luabridge;
+
+        BindClass<Entity>(L);
+        BindProperty<Entity>(L, "name", &Entity::GetName);
+        BindProperty<Entity>(L, "GUID", &Entity::GetGUID);
+        BindFunction<Entity>(L, "SetRenderLayer", &IRenderable::SetRenderLayer);
+
+        BindFunction<Entity>(L, "AddTransform", &Entity::AddTransform);
+        BindFunction<Entity>(L, "AddRenderer", &Entity::AddRenderer);
+        BindFunction<Entity>(L, "AddRigidbody", &Entity::AddRigidbody);
+        BindFunction<Entity>(L, "AddAnimator", &Entity::AddAnimator);
+        BindFunction<Entity>(L, "AddSoundEmitter", &Entity::AddSoundEmitter);
+
+        BindFunction<Entity>(L, "SetName", &Entity::SetName);
+        BindFunction<Entity>(L, "AddTag", &Entity::AddTag);
+        BindFunction<Entity>(L, "RemoveTag", &Entity::RemoveTag);
+        BindFunction<Entity>(L, "HasTag", &Entity::HasTag);
+
+        BindClass<SpriteRenderer>(L);
+        BindClass<Rigidbody>(L);
+        BindClass<Animator>(L);
+        BindClass<SoundEmitter>(L);
     }
 
     void Entity::Initialize()
@@ -91,8 +118,7 @@ namespace Core
         m_transform = &AddComponent<Transform>();
         m_transform->SetupEmbedding(L);
 
-        LRef ent = getGlobal(L, "Entities");
-        ent[m_guid]["Transform"] = m_transform;
+        RegisterComponent<Transform>(L, m_transform, "Transform");
     }
 
     void Entity::AddRenderer(LState* L)
@@ -100,8 +126,7 @@ namespace Core
         SpriteRenderer* renderer = &AddComponent<SpriteRenderer>();
         renderer->SetupEmbedding(L);
 
-        LRef ent = getGlobal(L, "Entities");
-        ent[m_guid]["Renderer"] = renderer;
+        RegisterComponent<SpriteRenderer>(L, renderer, "Renderer");
     }
 
     void Entity::AddRigidbody(LState* L)
@@ -109,8 +134,7 @@ namespace Core
         Rigidbody* rigidbody = &AddComponent<Rigidbody>();
         rigidbody->SetupEmbedding(L);
 
-        LRef ent = getGlobal(L, "Entities");
-        ent[m_guid]["Rigidbody"] = rigidbody;
+        RegisterComponent<Rigidbody>(L, rigidbody, "Rigidbody");
     }
 
     void Entity::AddAnimator(LState* L)
@@ -118,8 +142,15 @@ namespace Core
         Animator* animator = &AddComponent<Animator>();
         animator->SetupEmbedding(L);
 
-        LRef ent = getGlobal(L, "Entities");
-        ent[m_guid]["Animator"] = animator;
+        RegisterComponent<Animator>(L, animator, "Animator");
+    }
+
+    void Entity::AddSoundEmitter(LState* L)
+    {
+        SoundEmitter* soundEmitter = &AddComponent<SoundEmitter>();
+        soundEmitter->SetupEmbedding(L);
+
+        RegisterComponent<SoundEmitter>(L, soundEmitter, "SoundEmitter");
     }
 
     void Entity::AddTag(const String& tag)
@@ -154,31 +185,13 @@ namespace Core
         return false;
     }
 
-    void Entity::SetupEmbedding(lua_State* L)
+    float Entity::GetDepth()
     {
-        using namespace luabridge;
+        if (m_transform != nullptr)
+        {
+            return m_transform->Position.Y;
+        }
 
-        BindClass<Entity>(L);
-        BindProperty<Entity>(L, "name", &Entity::GetName);
-        BindProperty<Entity>(L, "GUID", &Entity::GetGUID);
-        BindFunction<Entity>(L, "SetRenderLayer", &IRenderable::SetRenderLayer);
-
-        BindFunction<Entity>(L, "AddTransform", &Entity::AddTransform);
-        BindFunction<Entity>(L, "AddRenderer", &Entity::AddRenderer);
-        BindFunction<Entity>(L, "AddRigidbody", &Entity::AddRigidbody);
-        BindFunction<Entity>(L, "AddAnimator", &Entity::AddAnimator);
-
-        BindFunction<Entity>(L, "SetName", &Entity::SetName);
-        BindFunction<Entity>(L, "AddTag", &Entity::AddTag);
-        BindFunction<Entity>(L, "RemoveTag", &Entity::RemoveTag);
-        BindFunction<Entity>(L, "HasTag", &Entity::HasTag);
-
-        BindClass<SpriteRenderer>(L);
-        //BindFunction<SpriteRenderer>(L, "SetFrame", &SpriteRenderer::SetSpriteFrame);
-
-        BindClass<Rigidbody>(L);
-        //BindFunction<Rigidbody>(L, "ApplyForce", &Rigidbody::ApplyForce);
-
-        BindClass<Animator>(L);
+        return 0.0f;
     }
 }

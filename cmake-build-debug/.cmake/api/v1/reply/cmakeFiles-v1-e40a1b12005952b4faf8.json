@@ -446,6 +446,15 @@
 			"path" : "cmake_modules/FindPackageMessage.cmake"
 		},
 		{
+			"path" : "cmake_modules/FindFMOD_Studio.cmake"
+		},
+		{
+			"path" : "cmake_modules/FindPackageHandleStandardArgs.cmake"
+		},
+		{
+			"path" : "cmake_modules/FindPackageMessage.cmake"
+		},
+		{
 			"path" : "vcpkg.json"
 		},
 		{

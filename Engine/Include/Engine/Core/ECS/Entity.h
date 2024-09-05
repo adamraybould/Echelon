@@ -31,6 +31,8 @@ namespace Core
         Entity(const String& name);
         virtual ~Entity();
 
+        void SetupEmbedding(lua_State* L) override;
+
         virtual void Initialize();
         virtual void Update(float delta);
         void Render(Renderer& renderer) override;
@@ -53,6 +55,7 @@ namespace Core
         void AddRenderer(LState* L);
         void AddRigidbody(LState* L);
         void AddAnimator(LState* L);
+        void AddSoundEmitter(LState* L);
 
         Transform& GetTransform() const { return *m_transform; }
 
@@ -61,7 +64,7 @@ namespace Core
         bool HasTag(const String& tag) const;
         Array<String>& GetTags() { return m_tags; }
 
-        void SetupEmbedding(lua_State* L) override;
+        float GetDepth() override;
 
         template<typename T, typename... Args>
         T& AddComponent(Args&&... args)
@@ -114,14 +117,14 @@ namespace Core
             return nullptr;
         }
 
-        float GetDepth() override
+    private:
+        template<typename T>
+        void RegisterComponent(LState* L, T* component, const String& name)
         {
-            if (m_transform != nullptr)
-            {
-                return m_transform->Position.Y;
-            }
+            static_assert(std::is_base_of_v<Component, T>, "T must be a subclass of Component");
 
-            return 0.0f;
+            LRef ent = luabridge::getGlobal(L, "Entities");
+            ent[m_guid][name] = component;
         }
     };
 }

@@ -25,23 +25,18 @@ namespace Core::Components
 
     void SpriteRenderer::Initialize()
     {
-        Entity& owner = GetOwner();
-        if (GetOwner().HasPrefab())
+        PrefabAsset* spriteAsset = GetPrefabAsset(AssetType::SPRITE);
+        if (spriteAsset != nullptr)
         {
-            Prefab& prefab = GetOwner().GetPrefab();
-            PrefabAsset* spriteAsset = prefab.GetAsset(SPRITE);
-            if (spriteAsset != nullptr)
+            String path = spriteAsset->GetPath();
+            int param = spriteAsset->GetParam();
+
+            m_pSprite = AssetManager::LoadSpriteSheet(path.c_str());
+            m_source = { 0, 0, m_pSprite->GetWidth(), m_pSprite->GetHeight() };
+
+            if (spriteAsset->HasParams())
             {
-                String path = spriteAsset->GetPath();
-                int param = spriteAsset->GetParam();
-
-                m_pSprite = AssetManager::LoadSpriteSheet(path.c_str());
-                m_source = { 0, 0, m_pSprite->GetWidth(), m_pSprite->GetHeight() };
-
-                if (spriteAsset->HasParams())
-                {
-                    SetSourceFromFrame(param);
-                }
+                SetSourceFromFrame(param);
             }
         }
     }

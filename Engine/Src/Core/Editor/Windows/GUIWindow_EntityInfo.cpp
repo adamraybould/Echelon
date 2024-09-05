@@ -183,7 +183,7 @@ namespace Core::Editor
         }
     }
 
-    void GUIWindow_EntityInfo::DisplayTags()
+    void GUIWindow_EntityInfo::DisplayTags() const
     {
         if (m_pEntity == nullptr)
             return;

@@ -5,9 +5,12 @@
 
 namespace Core
 {
+    namespace Scripting { struct PrefabAsset; enum class AssetType; }
+
     class Entity;
     class Renderer;
 
+    using namespace Scripting;
     namespace Components
     {
         using namespace Core;
@@ -39,6 +42,8 @@ namespace Core
             void SetActive(bool active) { m_isActive = active; }
             bool IsActive() const { return m_isActive; }
 
+        protected:
+            PrefabAsset* GetPrefabAsset(AssetType type) const;
         };
     }
 }
