@@ -1,15 +1,17 @@
 #ifndef TRANSFORM_H
 #define TRANSFORM_H
+
 #include "Component.h"
+#include "Engine/Core/Maths/Vector2.h"
 
 namespace Core::Components
 {
     class Transform : public Component
     {
     public:
-        Vector2 Position;   // Local Position
+        Vector2F Position;   // Local Position
         float Rotation;     // Local Rotation
-        Vector2 Scale;      // Local Scale
+        Vector2F Scale;      // Local Scale
 
     private:
         Transform* m_parent;
@@ -29,22 +31,23 @@ namespace Core::Components
         bool HasParent() const { return m_parent != nullptr; }
         Array<Transform*>& GetChildren() { return m_children; }
 
-        void SetWorldPosition(const Vector2& position);
+        void SetWorldPosition(const Vector2F& position);
         void SetWorldPositionL(LRef position);
-        void AddWorldPosition(const Vector2& position);
+        void AddWorldPosition(const Vector2F& position);
         void AddWorldPositionL(LRef position);
-        Vector2 GetWorldPosition() const;
+        Vector2F GetWorldPosition() const;
+
 
         void SetWorldRotation(float rotation);
         float GetWorldRotation() const;
 
-        void SetWorldScale(const Vector2& scale);
+        void SetWorldScale(const Vector2F& scale);
         void SetWorldScaleRaw(float x, float y);
-        Vector2 GetWorldScale() const;
+        Vector2F GetWorldScale() const;
 
         void SetupEmbedding(lua_State* L) override;
     private:
-        Vector2 Rotate(const Vector2& point, float angle) const;
+        Vector2F Rotate(const Vector2F& point, float angle) const;
     };
 }
 

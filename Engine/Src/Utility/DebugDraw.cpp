@@ -14,7 +14,7 @@ namespace Core
     {
     }
 
-    void DebugDraw::DrawPolygon(const b2Vec2* vertices, int32 vertexCount, const b2Color& color)
+    void DebugDraw::DrawPolygon(const b2Vec2* vertices, const int32 vertexCount, const b2Color& color)
     {
         SDL_SetRenderDrawColor(m_renderer, static_cast<Uint8>(color.r * 255), static_cast<Uint8>(color.g * 255),
                                static_cast<Uint8>(color.b * 255), 255);
@@ -75,8 +75,7 @@ namespace Core
                             b2Vec2 worldVertex = body->GetWorldPoint(poly->m_vertices[i]);
 
                             // Convert world space to screen space
-                            Vector2 screenPoint = Camera::Main->CalculateScreenPosition(
-                                Vector2(worldVertex.x * PPM, worldVertex.y * PPM));
+                            Vector2F screenPoint = Camera::Main->CalculateScreenPosition(Vector2F(worldVertex.x * PPM, worldVertex.y * PPM));
 
                             // Store the converted screen coordinates
                             sdlPoints[i].x = static_cast<int>(screenPoint.X);

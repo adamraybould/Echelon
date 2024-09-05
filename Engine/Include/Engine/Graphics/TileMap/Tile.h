@@ -6,7 +6,6 @@
 
 namespace Core
 {
-    using namespace Maths;
     namespace Graphics
     {
         class Tile
@@ -14,12 +13,12 @@ namespace Core
         private:
             UInt m_ID;
 
-            Vector2 m_position;
-            Vector2 m_size;
+            Vector2U m_position;
+            Vector2U m_size;
             const Texture2D& m_texture;
 
         public:
-            Tile(UInt id, Vector2 position, Vector2 size, const Texture2D& texture);
+            Tile(UInt id, Vector2U position, Vector2U size, const Texture2D& texture);
             void Render(const Renderer& renderer);
         };
     }

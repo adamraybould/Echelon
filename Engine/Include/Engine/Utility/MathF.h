@@ -20,14 +20,6 @@ namespace Core
         {
             return start + (end - start) * factor;
         }
-
-        static Vector2 Lerp(const Vector2& start, const Vector2& end, const float factor)
-        {
-            float x = start.X + (end.X - start.X) * factor;
-            float y = start.Y + (end.Y - start.Y) * factor;
-
-            return Vector2(x, y);
-        }
     };
 }
 

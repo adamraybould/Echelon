@@ -27,9 +27,9 @@ namespace Core
             struct Tile
             {
                 tmx::TileLayer::Tile TTile;
-                Vector2 Position;
+                Vector2U Position;
 
-                Tile(tmx::TileLayer::Tile Tile, Vector2 Position)
+                Tile(const tmx::TileLayer::Tile Tile, const Vector2U Position)
                 {
                     this->TTile = Tile;
                     this->Position = Position;
@@ -55,8 +55,8 @@ namespace Core
             UnorderedMap<UInt, Array<UniquePtr<Tile>>> m_tiles;
             UnorderedMap<UInt, MapTile> m_mapTiles;
 
-            Vector2 m_mapSize;
-            Vector2 m_tileSize;
+            Vector2U m_mapSize;
+            Vector2U m_tileSize;
 
         public:
             explicit MapLayer(const tmx::Map& map, const Array<TilesetTexture>& tilesets, tmx::Layer& layer);
@@ -67,7 +67,7 @@ namespace Core
             void Create();
 
         private:
-            Vector2 GetTilePosition(UInt index) const;
+            Vector2U GetTilePosition(UInt index) const;
         };
     }
 }

@@ -1,7 +1,6 @@
 #ifndef ENTITYMANAGER_H
 #define ENTITYMANAGER_H
 #include "Engine/Core/ECS/Entity.h"
-#include "Engine/Utility/Commons.h"
 
 namespace Core::Systems
 {
@@ -21,13 +20,13 @@ namespace Core::Systems
         static Entity& CreateEntity();
 
         /* Returns an Entity with the Specified ID */
-        static Entity* GetEntityByGUID(GUID guid);
+        static Entity* GetEntityByGUID(const GUID& guid);
 
         /* Returns an Entity with the Specified Name */
-        static Entity* GetEntityByName(const char* name);
+        static Entity* GetEntityByName(const String& name);
 
         /* Returns an Entity at a Point in the World */
-        static Entity* GetEntityAtPoint(const Vector2& point);
+        static Entity* GetEntityAtPoint(const Vector2F& point);
     };
 }
 

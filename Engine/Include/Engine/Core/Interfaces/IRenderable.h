@@ -12,6 +12,7 @@ namespace Core
         RenderLayer m_renderLayer;
 
     public:
+        IRenderable() = default;
         virtual ~IRenderable() = default;
         virtual void Render(Renderer& renderer) = 0;
 

@@ -1,6 +1,7 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 #include "ECS/Entity.h"
+#include "Engine/Utility/Commons.h"
 
 namespace Core
 {
@@ -10,10 +11,10 @@ namespace Core
         static Camera* Main;
 
     private:
-        Vector2 m_cameraOrigin;
-        Vector2 m_cameraPosition;
+        Vector2F m_cameraOrigin;
+        Vector2F m_cameraPosition;
 
-        Rectangle m_viewport;
+        RectI m_viewport;
 
         float m_movementSpeed;
 
@@ -33,18 +34,16 @@ namespace Core
 
         void Zoom(float amount);
 
-        Vector2 CalculateScreenPosition(const Vector2& worldPosition) const;
-        Vector2 CalculateWorldPosition(Vector2 screenPosition) const;
+        Vector2F CalculateScreenPosition(const Vector2F& worldPosition) const;
+        Vector2F CalculateWorldPosition(Vector2F screenPosition) const;
 
-        Vector2& GetPosition() { return m_cameraOrigin; }
-        Rectangle& GetViewport() { return m_viewport; }
+        Vector2F& GetCameraOrigin() { return m_cameraOrigin; }
+        RectI& GetViewport() { return m_viewport; }
         float GetZoom() const { return m_currentZoom; }
 
     private:
-        void ProcessMovement(float delta) const;
         void ProcessZoom(float delta);
-
-        Rectangle CalculateViewport() const;
+        RectI CalculateViewport() const;
     };
 }
 

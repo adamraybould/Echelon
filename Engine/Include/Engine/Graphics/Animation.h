@@ -1,9 +1,7 @@
 #ifndef ANIMATION_H
 #define ANIMATION_H
-#include <string>
-#include <vector>
 
-using String = std::string;
+#include "Engine/Core/TypeDefs.h"
 
 namespace Core
 {

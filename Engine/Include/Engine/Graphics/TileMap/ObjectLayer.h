@@ -1,10 +1,7 @@
 #ifndef MAPCOLLISIONLAYER_H
 #define MAPCOLLISIONLAYER_H
-#include <string>
-
+#include "Engine/Core/TypeDefs.h"
 #include "Engine/Core/Maths/Vector2.h"
-
-using String = std::string;
 
 namespace tmx
 {
@@ -15,7 +12,6 @@ namespace tmx
 
 namespace Core
 {
-    using namespace Maths;
     namespace Graphics
     {
         class ObjectLayer
@@ -30,8 +26,8 @@ namespace Core
             void Create();
 
         private:
-            void CreateEntity(const String& prefab, const Vector2& position);
-            Vector2 GetObjectPosition(const tmx::Object& obj) const;
+            void CreateEntity(const String& prefab, const Vector2F& position);
+            Vector2I GetObjectPosition(const tmx::Object& obj) const;
         };
 
     }

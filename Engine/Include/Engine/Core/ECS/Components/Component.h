@@ -1,7 +1,6 @@
 #ifndef COMPONENT_H
 #define COMPONENT_H
 #include "Engine/Core/Scripting/IBinder.h"
-#include "Engine/Utility/Commons.h"
 
 namespace Core
 {

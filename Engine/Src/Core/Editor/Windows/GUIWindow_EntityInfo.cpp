@@ -56,10 +56,10 @@ namespace Core::Editor
         float zoom = camera.GetZoom();
         zoom = MathF::Clamp(zoom, 0.5f, 1.0f);
 
-        Vector2 offsetFromCamera = Vector2(m_pEntity->GetTransform().Position.X - camera.GetPosition().X, m_pEntity->GetTransform().Position.Y - camera.GetPosition().Y);
+        Vector2I offsetFromCamera = Vector2I(m_pEntity->GetTransform().Position.X - camera.GetCameraOrigin().X, m_pEntity->GetTransform().Position.Y - camera.GetCameraOrigin().Y);
 
         // Adjust window position based on zoom
-        Vector2 windowOffset = Vector2(offsetFromCamera.X + (SCREEN_WIDTH * 0.5f) + m_offsetX, offsetFromCamera.Y + (SCREEN_HEIGHT * 0.5f) - m_offsetY);
+        Vector2I windowOffset = Vector2I(offsetFromCamera.X + (SCREEN_WIDTH * 0.5f) + m_offsetX, offsetFromCamera.Y + (SCREEN_HEIGHT * 0.5f) - m_offsetY);
 
         m_windowPos = ImVec2(windowOffset.X * zoom, windowOffset.Y * zoom);
         ImGui::SetNextWindowPos(m_windowPos, ImGuiCond_Always);
@@ -90,7 +90,7 @@ namespace Core::Editor
         return ImVec2(WINDOW_WIDTH, WINDOW_HEIGHT);
     }
 
-    Vector2 GUIWindow_EntityInfo::GetEntityScreenPosition(const Entity& entity) const
+    Vector2F GUIWindow_EntityInfo::GetEntityScreenPosition(const Entity& entity) const
     {
         Camera& camera = m_engineGUI.GetEngineWindow().GetRenderer().GetCamera();
         return camera.CalculateScreenPosition(entity.GetTransform().GetWorldPosition());
@@ -101,7 +101,7 @@ namespace Core::Editor
         String prefabName = Utility::Capitalize(entity.GetName());
         String guid = entity.GetGUID();
 
-        Vector2 entityWorldPosition = entity.GetTransform().GetWorldPosition();
+        Vector2F entityWorldPosition = entity.GetTransform().GetWorldPosition();
 
         float childWidth = WINDOW_WIDTH;
         float childHeight = 100 + (m_pEntityRenderer->GetDisplaySource().Height * 0.2f);
@@ -115,7 +115,7 @@ namespace Core::Editor
             //ImGui::Text("GUID: %s", entity.GetGUID().c_str());
 
             ImGui::Text("Prefab: %s", prefabName.c_str());
-            ImGui::Text("Position: (%.1f, %.1f)", entityWorldPosition.X, entityWorldPosition.Y);
+            ImGui::Text("Position: (%d, %d)", static_cast<int>(entityWorldPosition.X), static_cast<int>(entityWorldPosition.Y));
 
             DisplayTags();
 
@@ -136,11 +136,11 @@ namespace Core::Editor
         UInt textureHeight = m_pEntitySprite->GetHeight();
 
         float desiredWidth = 80.0f;
-        float desiredHeight = (desiredWidth / m_pEntityRenderer->GetDisplaySource().Width) * m_pEntityRenderer->GetDisplaySource().Height;
+        float desiredHeight = desiredWidth / m_pEntityRenderer->GetDisplaySource().Width * m_pEntityRenderer->GetDisplaySource().Height;
 
-        Rectangle spriteSource = m_pEntityRenderer->GetDisplaySource();
-        ImVec2 uv0 = ImVec2(spriteSource.X / textureWidth, spriteSource.Y / textureHeight);
-        ImVec2 uv1 = ImVec2((spriteSource.X + spriteSource.Width) / textureWidth, (spriteSource.Y + spriteSource.Height) / textureHeight);
+        RectI spriteSource = m_pEntityRenderer->GetDisplaySource();
+        ImVec2 uv0 = ImVec2(static_cast<float>(spriteSource.X) / textureWidth, static_cast<float>(spriteSource.Y) / textureHeight);
+        ImVec2 uv1 = ImVec2(static_cast<float>(spriteSource.X + spriteSource.Width) / textureWidth, static_cast<float>(spriteSource.Y + spriteSource.Height) / textureHeight);
 
         ImGui::SetCursorPosX(ImGui::GetCursorPosX() + 10.0f);
         ImGui::Image(GetTextureID(*m_pEntitySprite), ImVec2(desiredWidth, desiredHeight), uv0, uv1);

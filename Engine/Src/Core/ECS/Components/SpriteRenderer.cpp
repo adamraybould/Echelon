@@ -43,13 +43,13 @@ namespace Core::Components
 
     void SpriteRenderer::Update(float delta)
     {
-        Rectangle bounds = GetOwner().GetBounds();
-        Vector2 scale = GetOwner().GetTransform().Scale;
+        const Rectangle bounds = GetOwner().GetBounds();
+        const Vector2F scale = GetOwner().GetTransform().Scale;
 
         if (m_pSprite != nullptr)
         {
-            m_spriteScale = Vector2((m_source.Width * scale.X) * SPRITE_SCALE, (m_source.Height * scale.Y) * SPRITE_SCALE);
-            GetOwner().SetBounds(Rectangle(bounds.X, bounds.Y, m_spriteScale.X * 0.5f, m_spriteScale.Y));
+            m_spriteScale = Vector2F((m_source.Width * scale.X) * SPRITE_SCALE, (m_source.Height * scale.Y) * SPRITE_SCALE);
+            GetOwner().SetBounds(RectI(bounds.X, bounds.Y, m_spriteScale.X * 0.5f, m_spriteScale.Y));
         }
     }
 
@@ -58,23 +58,14 @@ namespace Core::Components
         if (m_pSprite == nullptr)
             return;
 
-        Vector2 position = GetOwner().GetTransform().GetWorldPosition();
+        Vector2F position = GetOwner().GetTransform().GetWorldPosition();
         float rotation = GetOwner().GetTransform().GetWorldRotation();
-        Vector2 scale = GetOwner().GetTransform().GetWorldScale();
 
         Camera& camera = renderer.GetCamera();
-        Vector2 screenPosition = camera.CalculateScreenPosition(position);
-        screenPosition = Vector2(screenPosition.X, screenPosition.Y);
+        Vector2F screenPosition = camera.CalculateScreenPosition(position);
 
-        SDL_Rect dest =
-            {
-            screenPosition.X - (m_spriteScale.X * 0.5f),
-            screenPosition.Y - (m_spriteScale.Y * 0.5f),
-            m_spriteScale.X,
-            m_spriteScale.Y,
-            };
-
-        SDL_Rect src = { m_source.X, m_source.Y, m_source.Width, m_source.Height };
+        SDL_Rect dest = { screenPosition.X - m_spriteScale.X * 0.5f, screenPosition.Y - m_spriteScale.Y * 0.5f, m_spriteScale.X, m_spriteScale.Y };
+        const SDL_Rect& src = m_source;
 
         SDL_RenderCopyEx(renderer, &m_pSprite->GetRawTexture(), &src, &dest, rotation, NULL, static_cast<SDL_RendererFlip>(m_flipped));
     }
@@ -84,19 +75,19 @@ namespace Core::Components
         m_pSprite = nullptr;
     }
 
-    void SpriteRenderer::SetSourceFromFrame(UInt frameIndex)
+    void SpriteRenderer::SetSourceFromFrame(const UInt frameIndex)
     {
         SpriteSheet* spriteSheet = static_cast<SpriteSheet*>(m_pSprite);
         if (spriteSheet != nullptr)
         {
-            Rectangle sourceRect = spriteSheet->GetSpriteSource(frameIndex);
+            RectI sourceRect = spriteSheet->GetSpriteSource(frameIndex);
             m_source = sourceRect;
         }
     }
 
-    void SpriteRenderer::SetDisplaySource(const UInt x, const UInt y, const UInt width, const UInt height)
+    void SpriteRenderer::SetDisplaySource(const int x, const int y, const int width, const int height)
     {
-        m_source = Rectangle(x, y, width, height);
+        m_source = RectI(x, y, width, height);
     }
 
     Sprite& SpriteRenderer::GetSprite() const

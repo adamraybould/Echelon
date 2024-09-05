@@ -2,7 +2,7 @@
 #define INPUT_H
 #include "Engine/Utility/Delegates.h"
 #include "Scripting/IBinder.h"
-#include "Engine/Utility/Commons.h"
+#include "Engine/Core/Maths/Vector2.h"
 
 union SDL_Event;
 
@@ -16,6 +16,7 @@ namespace Core
 
     private:
         static UnorderedMap<int, bool> m_keys;
+        static float m_mouseWheel;
 
     public:
         Input() = default;
@@ -29,7 +30,8 @@ namespace Core
         static bool IsKeyDown(LState* L, int key);
         static bool IsKeyPressed(LState* L, int key);
 
-        static Vector2 GetMousePosition();
+        static Vector2F GetMousePosition();
+        static float GetMouseWheel() { return m_mouseWheel; }
     };
 }
 

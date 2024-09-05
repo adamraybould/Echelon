@@ -16,7 +16,7 @@ namespace Core
         m_guid = Utility::GenerateGUID();
         m_name = name;
 
-        m_bounds = Rectangle();
+        m_bounds = RectI();
 
         SetRenderLayer(RenderLayer::Default);
         Renderer::AddToRenderQueue(this, GetRenderLayer());
@@ -116,9 +116,12 @@ namespace Core
     void Entity::AddTransform(LState* L)
     {
         m_transform = &AddComponent<Transform>();
-        m_transform->SetupEmbedding(L);
 
-        RegisterComponent<Transform>(L, m_transform, "Transform");
+        if (L != nullptr)
+        {
+            m_transform->SetupEmbedding(L);
+            RegisterComponent<Transform>(L, m_transform, "Transform");
+        }
     }
 
     void Entity::AddRenderer(LState* L)

@@ -1,7 +1,8 @@
 #ifndef PHYSICS_H
 #define PHYSICS_H
 #include <box2d/box2d.h>
-#include "Engine/Utility/Commons.h"
+#include "Engine/Core/TypeDefs.h"
+#include "Engine/Core/Maths/Vector2.h"
 
 namespace Core
 {
@@ -21,8 +22,8 @@ namespace Core
         void Update() const;
         void Render(Renderer& renderer);
 
-        static b2Body* CreateDynamicBody(Vector2 position, const UInt width, const UInt height);
-        static b2Body* CreateStaticBody(Vector2 position, const UInt width, const UInt height);
+        static b2Body* CreateDynamicBody(Vector2F position, UInt width, UInt height);
+        static b2Body* CreateStaticBody(Vector2F position, UInt width, UInt height);
         static void DestroyBody(b2Body* body);
 
         static DebugDraw& GetDebugDraw() { return *m_pDebugDraw; }

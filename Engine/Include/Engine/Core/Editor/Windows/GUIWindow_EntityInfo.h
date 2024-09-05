@@ -42,7 +42,7 @@ namespace Core
             ImVec2 GetWindowSize() override;
 
         private:
-            Vector2 GetEntityScreenPosition(const Entity& entity) const;
+            Vector2F GetEntityScreenPosition(const Entity& entity) const;
             ImTextureID GetTextureID(const Graphics::Texture2D& texture) { return (ImTextureID)(intptr_t)&texture.GetRawTexture(); }
 
             void DisplayInfo(const Entity& entity);

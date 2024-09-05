@@ -2,6 +2,7 @@
 #include <SDL2/SDL.h>
 
 #include "Engine/Core/Camera.h"
+#include "Engine/Utility/MathF.h"
 
 namespace Core
 {
@@ -9,6 +10,7 @@ namespace Core
     MultiCastEvent<> Input::OnMouseRightClick;
 
     UnorderedMap<int, bool> Input::m_keys;
+    float Input::m_mouseWheel;
 
     Input::~Input()
     {
@@ -49,9 +51,15 @@ namespace Core
                 OnMouseRightClick.Broadcast();
             }
         }
+
+        // Mouse Wheel
+        if (event.type == SDL_MOUSEWHEEL)
+        {
+            m_mouseWheel = MathF::Clamp(event.wheel.y, -1, 1);
+        }
     }
 
-    bool Input::IsKeyDown(LState* L, const int key)
+    bool Input::IsKeyDown(LState* L, int key)
     {
         return m_keys[key] || m_keys[SDL_SCANCODE_TO_KEYCODE(key)];
     }
@@ -62,12 +70,12 @@ namespace Core
         return isKeyDown == true && m_keys[key] == false;
     }
 
-    Vector2 Input::GetMousePosition()
+    Vector2F Input::GetMousePosition()
     {
         int x = 0;
         int y = 0;
         SDL_GetMouseState(&x, &y);
 
-        return Camera::Main->CalculateWorldPosition(Vector2(x, y));
+        return Camera::Main->CalculateWorldPosition(Vector2F(x, y));
     }
 }

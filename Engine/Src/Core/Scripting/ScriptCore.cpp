@@ -1,15 +1,11 @@
 #include "Engine/Core/Scripting/ScriptCore.h"
 #include "Engine/Core/Scripting/IBinder.h"
-#include "Engine/Core/ECS/Components/Component.h"
-#include "Engine/Core/Renderer.h"
+#include "Engine/Core/Maths/Vector2.h"
+#include "Engine/Core/Maths/Rectangle.h"
+#include "config.h"
 #include <iostream>
 #include <filesystem>
 #include <fstream>
-
-#include "config.h"
-#include "Engine/Core/ECS/Components/Animator.h"
-#include "Engine/Core/ECS/Components/Rigidbody.h"
-#include "Engine/Core/ECS/Components/SpriteRenderer.h"
 
 namespace fs = std::filesystem;
 
@@ -37,7 +33,7 @@ namespace Core
         }
     }
 
-    void ScriptCore::Update(float delta)
+    void ScriptCore::Update(float delta) const
     {
         LRef update = getGlobal(L, "Update");
         if (!update.isNil() && update.isFunction())
@@ -96,12 +92,24 @@ namespace Core
 
     void ScriptCore::SetupEmbedding()
     {
+        // -- Vector2i
         getGlobalNamespace(L)
-        .beginClass<Vector2>("Vector2")
+        .beginClass<Vector2F>("Vector2")
         .addConstructor<void(*)(float, float)>()
-        .addProperty("x", &Vector2::X)
-        .addProperty("y", &Vector2::Y)
-        .addFunction("__tostring", &Vector2::ToString)
+        .addProperty("x", &Vector2F::X)
+        .addProperty("y", &Vector2F::Y)
+        .addFunction("__tostring", &Vector2F::ToString)
+        .endClass();
+
+        // -- Rectangle
+        getGlobalNamespace(L)
+        .beginClass<RectF>("Rectangle")
+        .addConstructor<void(*)(float, float, float, float)>()
+        .addProperty("x", &RectF::X)
+        .addProperty("y", &RectF::Y)
+        .addProperty("w", &RectF::Width)
+        .addProperty("h", &RectF::Height)
+        //.addFunction("ContainsPoint", &RectF::ContainsPoint)
         .endClass();
     }
 

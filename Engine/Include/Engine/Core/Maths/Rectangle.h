@@ -1,48 +1,57 @@
 #ifndef RECTANGLE_H
 #define RECTANGLE_H
 
-struct SDL_Rect;
-namespace Core::Maths
+#include "Vector2.h"
+#include <SDL2/SDL_rect.h>
+
+namespace Core
 {
+    template <typename T>
     struct Rectangle
     {
-        float X;
-        float Y;
-        float Width;
-        float Height;
+        T X;
+        T Y;
+        T Width;
+        T Height;
 
-        Rectangle()
+        Rectangle() { X = 0; Y = 0; Width = 0; Height = 0; }
+        Rectangle(T x, T y, T w, T h) { X = x; Y = y; Width = w; Height = h; }
+
+        /* Returns if a Point is within the bounds of this Rectangle */
+        bool ContainsPoint(const Vector2F& point) const
         {
-            X = 0.0f;
-            Y = 0.0f;
-            Width = 0.0f;
-            Height = 0.0f;
+            return point.X >= Left() && point.X <= Right() &&
+                point.Y >= Top() && point.Y <= Bottom();
         }
 
-        Rectangle(float x, float y, float w, float h)
+        /* Returns if a Point is within the bounds of this Rectangle */
+        bool ContainsPoint(const Vector2I& point) const
         {
-            X = x;
-            Y = y;
-            Width = w;
-            Height = h;
+            return point.X >= Left() && point.X <= Right() &&
+                point.Y >= Top() && point.Y <= Bottom();
         }
 
-        /* Checks if a Point is contained within this Rect */
-        bool ContainsPoint(const Vector2& point) const
-        {
-            return (point.X >= Left() && point.X <= Right() &&
-                point.Y >= Top() && point.Y <= Bottom());
-        }
-
-        bool IsZero() const { return Width == 0.0f && Height == 0.0f; }
+        bool IsZero() const { return Width == 0 && Height == 0; }
 
         float Left() const { return X - Width * 0.5f; }
         float Right() const { return X + Width * 0.5f; }
         float Top() const { return Y - Height * 0.5f; }
         float Bottom() const { return Y + Height * 0.5f; }
 
-        explicit operator SDL_Rect* () const;
+        operator SDL_Rect() const
+        {
+            SDL_Rect rect;
+            rect.x = X;
+            rect.y = Y;
+            rect.w = Width;
+            rect.h = Height;
+            return rect;
+        }
     };
+
+    using RectI = Rectangle<int>;
+    using RectU = Rectangle<unsigned>;
+    using RectF = Rectangle<float>;
 }
 
 #endif //RECTANGLE_H

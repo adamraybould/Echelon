@@ -113,7 +113,7 @@ namespace Core::Editor
 
     void EngineGUI::DisplayEntityInfo()
     {
-        Vector2 mousePosition = Input::GetMousePosition();
+        Vector2F mousePosition = Input::GetMousePosition();
         EntityManager& entityManager = static_cast<States::GameState&>(m_stateSystem.GetCurrentState()).GetEntityManager();
 
         Entity* highlightedEntity = entityManager.GetEntityAtPoint(mousePosition);

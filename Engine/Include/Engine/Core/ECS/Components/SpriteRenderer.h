@@ -10,14 +10,14 @@ namespace Core
     using namespace Graphics;
     namespace Components
     {
-        class SpriteRenderer : public Component
+        class SpriteRenderer final : public Component
         {
         private:
             Sprite* m_pSprite;
             UInt m_flipped;
 
-            Rectangle m_source;
-            Vector2 m_spriteScale;
+            RectI m_source;
+            Vector2F m_spriteScale;
 
         public:
             SpriteRenderer(Entity& owner);
@@ -30,8 +30,8 @@ namespace Core
 
             void SetSourceFromFrame(UInt frameIndex);
 
-            void SetDisplaySource(UInt x, UInt y, UInt width, UInt height);
-            Rectangle GetDisplaySource() const { return m_source; }
+            void SetDisplaySource(int x, int y, int width, int height);
+            RectI GetDisplaySource() const { return m_source; }
 
             Sprite& GetSprite() const;
         };

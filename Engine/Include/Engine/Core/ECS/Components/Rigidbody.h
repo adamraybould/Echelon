@@ -1,6 +1,7 @@
 #ifndef RIGIDBODY_H
 #define RIGIDBODY_H
 #include "Component.h"
+#include "Engine/Core/Maths/Vector2.h"
 
 class b2Body;
 
@@ -37,18 +38,18 @@ namespace Core
             void CreateStaticBody();
             void CreateDynamicBody();
 
-            void SetLinearDamping(float value) { m_linearDamping = value; }
-            void SetAngularDamping(float value) { m_angularDamping = value; }
+            void SetLinearDamping(const float value) { m_linearDamping = value; }
+            void SetAngularDamping(const float value) { m_angularDamping = value; }
 
             void ApplyForce(const LRef& force) const;
-            void ApplyImpulse(const LRef& force) const;
+            void ApplyImpulse(LRef force) const;
 
-            void SetPosition(const Vector2& position) const;
+            void SetPosition(const Vector2F& position) const;
             void SetPositionL(const LRef& position) const;
 
         private:
             void CreateBody();
-            Vector2 GetSpriteSize() const;
+            Vector2F GetSpriteSize() const;
         };
     }
 }

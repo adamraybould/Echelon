@@ -72,6 +72,6 @@ namespace Core
 
     void Engine::SetCameraPosition(LState* L, const LRef& position)
     {
-        Camera::Main->GetTransform().SetWorldPosition(Vector2(position["x"], position["y"]));
+        Camera::Main->GetTransform().SetWorldPosition(Vector2F(position["x"], position["y"]));
     }
 }

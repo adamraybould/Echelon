@@ -10,8 +10,12 @@
 
 namespace Core
 {
-    using UInt = unsigned int;
+    using UInt = unsigned;
+    using UInt32 = uint32_t;
+    using UInt64 = int64_t;
+
     using String = std::string;
+    using GUID = String;
 
     template <typename T> using Array = std::vector<T>;
     template <typename Key, typename Value> using Map = std::map<Key, Value>;

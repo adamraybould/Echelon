@@ -1,21 +1,24 @@
 #ifndef SPRITE_H
 #define SPRITE_H
 #include "Texture2D.h"
+#include "Engine/Core/Maths/Vector2.h"
 
-namespace Core::Graphics
+namespace Core
 {
-    class Sprite : public Texture2D
+    namespace Graphics
     {
-    private:
-        Vector2 m_origin;
+        class Sprite : public Texture2D
+        {
+        private:
+            Vector2F m_origin;
 
-    public:
-        Sprite(SDL_Texture* texture);
+        public:
+            Sprite(SDL_Texture* texture);
 
-        void SetOrigin(Vector2 origin);
-
-        Vector2& GetOrigin() { return m_origin; }
-    };
+            void SetOrigin(const Vector2F& origin) { m_origin = origin; }
+            Vector2F& GetOrigin() { return m_origin; }
+        };
+    }
 }
 
 #endif //SPRITE_H

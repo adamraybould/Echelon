@@ -4,17 +4,17 @@ namespace Core
 {
     namespace Editor
     {
-        void GUIWindow::PrintText(const char* str, const bool center, const bool partOfColumn)
+        void GUIWindow::PrintText(const String& str, const bool center, const bool partOfColumn)
         {
             if (center)
             {
                 int width = partOfColumn == false ? ImGui::GetWindowWidth() : ImGui::GetColumnWidth();
-                int textWidth = ImGui::CalcTextSize(str).x;
+                int textWidth = ImGui::CalcTextSize(str.c_str()).x;
 
                 ImGui::SetCursorPosX((width - textWidth) * 0.5f);
             }
 
-            ImGui::TextUnformatted(str);
+            ImGui::TextUnformatted(str.c_str());
         }
 
         void GUIWindow::PrintHoverText(const String& title, const String& str)

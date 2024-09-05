@@ -38,8 +38,6 @@ add_library(Engine STATIC
         Src/Core/Systems/EntityManager.cpp
         Include/Engine/Graphics/SpriteSheet.h
         Src/Graphics/SpriteSheet.cpp
-        Include/Engine/Core/Systems/InputManager.h
-        Src/Core/Systems/InputManager.cpp
         Include/Engine/Core/Camera.h
         Src/Core/Camera.cpp
         Include/Engine/Utility/Constants.h

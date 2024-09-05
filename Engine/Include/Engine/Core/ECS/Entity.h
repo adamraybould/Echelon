@@ -2,30 +2,30 @@
 #define ENTITY_H
 #include "Engine/Core/Scripting/IBinder.h"
 #include "Engine/Core/Interfaces/IRenderable.h"
+
 #include "Components/Component.h"
 #include "Components/Transform.h"
+#include "Engine/Core/Maths/Rectangle.h"
 
-using namespace Core::Components;
 namespace Core
 {
     namespace Scripting { class Prefab; }
 
     using namespace Scripting;
+    using namespace Components;
     class Entity : public IBinder, public IRenderable
     {
     private:
         Prefab* m_prefab = nullptr;
+        Transform* m_transform;
 
         GUID m_guid;
         String m_name;
 
-        Rectangle m_bounds;
+        RectI m_bounds;
 
         Array<UniquePtr<Component>> m_components;
         Array<String> m_tags;
-
-    protected:
-        Transform* m_transform;
 
     public:
         Entity(const String& name);
@@ -39,8 +39,8 @@ namespace Core
 
         void RemoveAllComponents();
 
-        void SetBounds(const Rectangle rect) { m_bounds = rect; }
-        Rectangle GetBounds() const { return m_bounds; }
+        void SetBounds(const RectI rect) { m_bounds = rect; }
+        RectI GetBounds() const { return m_bounds; }
 
         Prefab& GetPrefab() const { return *m_prefab; }
         bool HasPrefab() const { return m_prefab != nullptr; }

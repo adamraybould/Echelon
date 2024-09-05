@@ -36,7 +36,7 @@ namespace Core
             Array<UniquePtr<MapLayer>> m_layers;
             Array<UniquePtr<ObjectLayer>> m_collisionLayers;
 
-            Vector2 m_mapSize;
+            Vector2U m_mapSize;
             Texture2D* m_pSpaceTexture;
 
         public:

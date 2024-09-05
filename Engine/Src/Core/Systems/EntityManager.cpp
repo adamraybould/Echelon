@@ -10,18 +10,11 @@ namespace Core::Systems
 
     EntityManager::EntityManager()
     {
-        /*
-        UnorderedMap<GUID, UniquePtr<Entity>>& scriptEntities = Engine::GetEntities();
-        for (auto it = Engine::GetEntities().begin(); it != Engine::GetEntities().end(); ++it)
-        {
-            m_entities.insert(std::make_pair(it->first, std::move(it->second)));
-        }
-        */
     }
 
     EntityManager::~EntityManager()
     {
-        for (auto i = m_entities.begin(); i != m_entities.end(); i++)
+        for (auto i = m_entities.begin(); i != m_entities.end(); ++i)
         {
             i->second.reset();
         }
@@ -49,14 +42,14 @@ namespace Core::Systems
 
     Entity& EntityManager::CreateEntity()
     {
-        UniquePtr<Entity> entity = std::make_unique<Entity>("");
+        auto entity = std::make_unique<Entity>("");
         GUID guid = entity->GetGUID();
 
         m_entities.insert(std::make_pair(guid, std::move(entity)));
         return *m_entities[guid];
     }
 
-    Entity* EntityManager::GetEntityByGUID(GUID guid)
+    Entity* EntityManager::GetEntityByGUID(const GUID& guid)
     {
         if (m_entities.contains(guid))
             return m_entities[guid].get();
@@ -64,7 +57,7 @@ namespace Core::Systems
         return nullptr;
     }
 
-    Entity* EntityManager::GetEntityByName(const char* name)
+    Entity* EntityManager::GetEntityByName(const String& name)
     {
         for (auto i = m_entities.begin(); i != m_entities.end(); ++i)
         {
@@ -75,7 +68,7 @@ namespace Core::Systems
         return nullptr;
     }
 
-    Entity* EntityManager::GetEntityAtPoint(const Vector2& point)
+    Entity* EntityManager::GetEntityAtPoint(const Vector2F& point)
     {
         for (auto i = m_entities.begin(); i != m_entities.end(); ++i)
         {

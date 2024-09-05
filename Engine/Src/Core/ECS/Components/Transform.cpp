@@ -6,9 +6,9 @@ namespace Core::Components
     {
         m_parent = nullptr;
 
-        Position = Vector2::Zero();
+        Position = Vector2F::Zero();
         Rotation = 0.0f;
-        Scale = Vector2::One();
+        Scale = Vector2F::One();
     }
 
     void Transform::Update(float delta)
@@ -48,11 +48,11 @@ namespace Core::Components
         }
     }
 
-    void Transform::SetWorldPosition(const Vector2& position)
+    void Transform::SetWorldPosition(const Vector2F& position)
     {
         if (HasParent())
         {
-            Vector2 worldPosition = position - m_parent->GetWorldPosition();
+            Vector2F worldPosition = position - m_parent->GetWorldPosition();
             worldPosition = Rotate(worldPosition, -m_parent->GetWorldRotation());
             Position = worldPosition / m_parent->GetWorldScale();
         }
@@ -64,25 +64,25 @@ namespace Core::Components
 
     void Transform::SetWorldPositionL(LRef position)
     {
-        SetWorldPosition(Vector2(position["x"], position["y"]));
+        SetWorldPosition(Vector2F(position["x"], position["y"]));
     }
 
-    void Transform::AddWorldPosition(const Vector2& position)
+    void Transform::AddWorldPosition(const Vector2F& position)
     {
-        Vector2 newPosition = GetWorldPosition() + position;
+        Vector2F newPosition = GetWorldPosition() + position;
         SetWorldPosition(newPosition);
     }
 
     void Transform::AddWorldPositionL(LRef position)
     {
-        AddWorldPosition(Vector2(position["x"], position["y"]));
+        AddWorldPosition(Vector2F(position["x"], position["y"]));
     }
 
-    Vector2 Transform::GetWorldPosition() const
+    Vector2F Transform::GetWorldPosition() const
     {
         if (HasParent())
         {
-            Vector2 worldPosition = Position;
+            Vector2F worldPosition = Position;
             worldPosition = worldPosition * m_parent->GetWorldScale();
             worldPosition = Rotate(worldPosition, m_parent->GetWorldRotation());
             worldPosition = worldPosition + m_parent->GetWorldPosition();
@@ -95,7 +95,7 @@ namespace Core::Components
         }
     }
 
-    void Transform::SetWorldRotation(float rotation)
+    void Transform::SetWorldRotation(const float rotation)
     {
         if (HasParent())
         {
@@ -119,7 +119,7 @@ namespace Core::Components
         }
     }
 
-    void Transform::SetWorldScale(const Vector2& scale)
+    void Transform::SetWorldScale(const Vector2F& scale)
     {
         if (HasParent())
         {
@@ -133,10 +133,10 @@ namespace Core::Components
 
     void Transform::SetWorldScaleRaw(float x, float y)
     {
-        SetWorldScale(Vector2(x, y));
+        SetWorldScale(Vector2F(x, y));
     }
 
-    Vector2 Transform::GetWorldScale() const
+    Vector2F Transform::GetWorldScale() const
     {
         if (HasParent())
         {
@@ -166,12 +166,12 @@ namespace Core::Components
         BindFunction<Transform>(L, "SetParent", &Transform::SetParent);
     }
 
-    Vector2 Transform::Rotate(const Vector2& point, float angle) const
+    Vector2F Transform::Rotate(const Vector2F& point, const float angle) const
     {
-        float rad = angle * (M_PI / 180.0f);
-        float cosTheta = cos(rad);
-        float sinTheta = sin(rad);
+        const float rad = angle * (M_PI / 180.0f);
+        const float cosTheta = cos(rad);
+        const float sinTheta = sin(rad);
 
-        return Vector2(point.X * cosTheta - point.Y * sinTheta, point.X * sinTheta + point.Y * cosTheta);
+        return Vector2F(point.X * cosTheta - point.Y * sinTheta, point.X * sinTheta + point.Y * cosTheta);
     }
 }

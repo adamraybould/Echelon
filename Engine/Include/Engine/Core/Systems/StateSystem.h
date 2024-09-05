@@ -1,7 +1,7 @@
 #ifndef STATEMANAGER_H
 #define STATEMANAGER_H
 #include "Engine/Core/Singleton.h"
-#include "Engine/Utility/Commons.h"
+#include "Engine/Core/TypeDefs.h"
 
 namespace Core
 {

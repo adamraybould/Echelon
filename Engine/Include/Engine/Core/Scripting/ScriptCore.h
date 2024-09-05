@@ -1,8 +1,6 @@
 #ifndef SCRIPTCORE_H
 #define SCRIPTCORE_H
-#include <string>
-#include <unordered_map>
-#include <vector>
+#include "Engine/Core/TypeDefs.h"
 
 extern "C"
 {
@@ -11,13 +9,7 @@ extern "C"
     #include <lauxlib.h>
 }
 
-template <typename T> using Array = std::vector<T>;
-template <typename Key, typename Value> using UnorderedMap = std::unordered_map<Key, Value>;
-
-namespace luabridge
-{
-    class LuaRef;
-}
+namespace luabridge { class LuaRef; }
 
 namespace Core
 {
@@ -32,13 +24,12 @@ namespace Core
 
         Array<IBinder*> m_binders;
         bool m_isInitialised = false;
-        //UnorderedMap<std::string, luabridge::LuaRef> m_componentBinders;
 
     public:
         ScriptCore();
         ~ScriptCore();
 
-        void Update(float delta);
+        void Update(float delta) const;
         void Render(Renderer& renderer);
 
         void RegisterBinder(IBinder* binder);

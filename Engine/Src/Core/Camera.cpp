@@ -1,9 +1,9 @@
 #include "Engine/Core/Camera.h"
-#include "Engine/Core/Systems/InputManager.h"
+
+#include "Engine/Core/Input.h"
 #include "Engine/Utility/Constants.h"
 #include "Engine/Utility/MathF.h"
 
-using namespace Core::Systems;
 namespace Core
 {
     Camera* Camera::Main;
@@ -12,9 +12,9 @@ namespace Core
     {
         Main = this;
 
-        m_transform = &AddComponent<Transform>();
+        AddTransform(nullptr);
 
-        m_cameraOrigin = Vector2::Zero();
+        m_cameraOrigin = Vector2F::Zero();
         m_viewport = CalculateViewport();
 
         m_movementSpeed = 100.0f;
@@ -36,13 +36,11 @@ namespace Core
     {
     }
 
-    void Camera::Update(float delta)
+    void Camera::Update(const float delta)
     {
         Entity::Update(delta);
 
-        ProcessMovement(delta);
         ProcessZoom(delta);
-
         m_viewport = CalculateViewport();
     }
 
@@ -56,46 +54,21 @@ namespace Core
         m_currentZoom += amount;
     }
 
-    Vector2 Camera::CalculateScreenPosition(const Vector2& worldPosition) const
+    Vector2F Camera::CalculateScreenPosition(const Vector2F& worldPosition) const
     {
-        Vector2 screenPosition = worldPosition - m_cameraOrigin;
-        return Vector2(screenPosition.X + (SCREEN_WIDTH * 0.5f), screenPosition.Y + (SCREEN_HEIGHT * 0.5f));
+        Vector2F screenPosition = worldPosition - m_cameraOrigin;
+        return { screenPosition.X + SCREEN_WIDTH * 0.5f, screenPosition.Y + SCREEN_HEIGHT * 0.5f };
     }
 
-    Vector2 Camera::CalculateWorldPosition(const Vector2 screenPosition) const
+    Vector2F Camera::CalculateWorldPosition(const Vector2F screenPosition) const
     {
-        Vector2 worldPosition = (screenPosition / GetZoom()) + m_cameraOrigin;
-        return Vector2(worldPosition.X - (SCREEN_WIDTH * 0.5f), worldPosition.Y - (SCREEN_HEIGHT * 0.5f));
+        Vector2F worldPosition = screenPosition / GetZoom() + m_cameraOrigin;
+        return { worldPosition.X - SCREEN_WIDTH * 0.5f, worldPosition.Y - SCREEN_HEIGHT * 0.5f };
     }
 
-    void Camera::ProcessMovement(float delta) const
+    void Camera::ProcessZoom(const float delta)
     {
-        Vector2 movementDirection = Vector2::Zero();
-
-        if (InputManager::IsKeyDown(Keys::UP))
-        {
-            movementDirection = Vector2(movementDirection.X, -1.0f);
-        }
-        else if (InputManager::IsKeyDown(Keys::DOWN))
-        {
-            movementDirection = Vector2(movementDirection.X, 1.0f);
-        }
-
-        if (InputManager::IsKeyDown(Keys::LEFT))
-        {
-            movementDirection = Vector2(-1.0f, movementDirection.Y);
-        }
-        else if (InputManager::IsKeyDown(Keys::RIGHT))
-        {
-            movementDirection = Vector2(1.0f, movementDirection.Y);
-        }
-
-        GetTransform().Position += movementDirection.Normalize() * (m_movementSpeed * delta);
-    }
-
-    void Camera::ProcessZoom(float delta)
-    {
-        m_currentZoom += InputManager::GetMouseWheel() * (m_zoomSpeed * delta);
+        m_currentZoom += Input::GetMouseWheel() * (m_zoomSpeed * delta);
         m_currentZoom = MathF::Clamp(GetZoom(), m_zoomRange.Min, m_zoomRange.Max);
 
         float zoomX = SCREEN_WIDTH / GetZoom();
@@ -103,8 +76,8 @@ namespace Core
         m_cameraOrigin = GetTransform().GetWorldPosition() + Vector2((SCREEN_WIDTH - zoomX) * 0.5f, (SCREEN_HEIGHT  - zoomY) * 0.5f);
     }
 
-    Rectangle Camera::CalculateViewport() const
+    RectI Camera::CalculateViewport() const
     {
-        return Rectangle(0.0f, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT);
+        return { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
     }
 }

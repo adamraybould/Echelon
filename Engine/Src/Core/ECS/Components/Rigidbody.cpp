@@ -44,14 +44,14 @@ namespace Core
             CreateBody();
         }
 
-        void Rigidbody::Update(float delta)
+        void Rigidbody::Update(const float delta)
         {
             Component::Update(delta);
 
             m_pBody->SetLinearDamping(m_linearDamping);
             m_pBody->SetAngularDamping(m_angularDamping);
 
-            Vector2 position = Vector2(m_pBody->GetPosition().x * PPM, m_pBody->GetPosition().y * PPM);
+            Vector2F position = Vector2F(m_pBody->GetPosition().x * PPM, m_pBody->GetPosition().y * PPM);
             float angle = m_pBody->GetAngle();
 
             GetOwner().GetTransform().SetWorldPosition(position);
@@ -84,13 +84,13 @@ namespace Core
             m_pBody->ApplyForceToCenter(vecForce, true);
         }
 
-        void Rigidbody::ApplyImpulse(const LRef& force) const
+        void Rigidbody::ApplyImpulse(LRef force) const
         {
-            b2Vec2 vecForce = b2Vec2(force["x"], force["y"]);
+            const b2Vec2 vecForce = b2Vec2(force["x"], force["y"]);
             m_pBody->ApplyLinearImpulseToCenter(vecForce, true);
         }
 
-        void Rigidbody::SetPosition(const Vector2& position) const
+        void Rigidbody::SetPosition(const Vector2F& position) const
         {
             b2Vec2 pos = b2Vec2(position.X / PPM, position.Y / PPM);
             m_pBody->SetTransform(pos, m_pBody->GetAngle());
@@ -98,8 +98,8 @@ namespace Core
 
         void Rigidbody::SetPositionL(const LRef& position) const
         {
-            int x = position["x"];
-            int y = position["y"];
+            const int x = position["x"];
+            const int y = position["y"];
 
             b2Vec2 pos = b2Vec2(x / PPM, y / PPM);
             m_pBody->SetTransform(pos, m_pBody->GetAngle());
@@ -121,7 +121,7 @@ namespace Core
             }
         }
 
-        Vector2 Rigidbody::GetSpriteSize() const
+        Vector2F Rigidbody::GetSpriteSize() const
         {
             SpriteRenderer* renderer = GetOwner().GetComponent<SpriteRenderer>();
             if (renderer != nullptr)
@@ -129,11 +129,11 @@ namespace Core
                 SpriteSheet* spriteSheet = static_cast<SpriteSheet*>(&renderer->GetSprite());
                 if (spriteSheet != nullptr)
                 {
-                    return Vector2(spriteSheet->GetFrameWidth() * 0.5f, spriteSheet->GetFrameHeight() * 0.5f);
+                    return Vector2F(spriteSheet->GetFrameWidth() * 0.5f, spriteSheet->GetFrameHeight() * 0.5f);
                 }
             }
 
-            return Vector2(16, 16);
+            return Vector2F(16, 16);
         }
     }
 }

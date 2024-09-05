@@ -39,7 +39,7 @@ namespace Core::Systems
             return true;
         }
 
-        bool LoadLevel(UInt levelIndex)
+        bool LoadLevel(const UInt levelIndex)
         {
             if (levelIndex >= m_levels.size() || levelIndex < 0)
                 return false;

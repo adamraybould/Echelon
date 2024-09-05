@@ -1,6 +1,6 @@
 #ifndef WINDOW_H
 #define WINDOW_H
-#include "Engine/Utility/Commons.h"
+#include "TypeDefs.h"
 
 struct SDL_Window;
 struct SDL_Renderer;
