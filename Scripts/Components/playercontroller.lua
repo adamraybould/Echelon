@@ -46,19 +46,24 @@ function PlayerController:Update(delta)
 			self.locomotor:RunInDirection(movement:Normalise())
 
 			self:PlayAnimation(self.animation.run)
-			self.inst.SoundEmitter:PlayFootsteps(true)
+
+			self.inst.SoundEmitter:StopSound("PlayerWalk")
+			self.inst.SoundEmitter:PlaySound("PlayerRun", 0.5, false)
 		else
 			self.locomotor:WalkInDirection(movement:Normalise())
-
 			self:PlayAnimation(self.animation.walk)
-			self.inst.SoundEmitter:PlayFootsteps(false)
+
+			self.inst.SoundEmitter:StopSound("PlayerRun")
+			self.inst.SoundEmitter:PlaySound("PlayerWalk", 0.6, false)
 		end
 	end
 
 	if not IsMovementButtonDown() then
 		if self.animation then
 			self:PlayAnimation(self.animation.idle)
-			self.inst.SoundEmitter:StopFootsteps()
+
+			self.inst.SoundEmitter:StopSound("PlayerWalk")
+			self.inst.SoundEmitter:StopSound("PlayerRun")
 		end
 	end
 end

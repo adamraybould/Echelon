@@ -25,10 +25,14 @@ namespace Core
             void Play();
             void Stop(FMOD_STUDIO_STOP_MODE mode = FMOD_STUDIO_STOP_ALLOWFADEOUT);
 
+            void SetVolume(float volume) const;
+            void SetPitch(float pitch) const;
+
             bool IsPlaying() const { return m_isPlaying; }
 
         private:
             void CreateInstance();
+            bool IsLoaded() const { return m_isLoaded && m_pInstance != nullptr; }
         };
     }
 }

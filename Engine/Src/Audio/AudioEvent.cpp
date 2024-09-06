@@ -20,7 +20,7 @@ namespace Core
 
         void AudioEvent::Play()
         {
-            if (m_isLoaded && m_pInstance != nullptr)
+            if (IsLoaded())
             {
                 FMOD_Studio_EventInstance_Start(m_pInstance);
                 m_isPlaying = true;
@@ -29,16 +29,32 @@ namespace Core
 
         void AudioEvent::Stop(const FMOD_STUDIO_STOP_MODE mode)
         {
-            if (m_isLoaded && m_pInstance != nullptr)
+            if (IsLoaded())
             {
                 FMOD_Studio_EventInstance_Stop(m_pInstance, mode);
                 m_isPlaying = false;
             }
         }
 
+        void AudioEvent::SetVolume(const float volume) const
+        {
+            if (IsLoaded())
+            {
+                FMOD_Studio_EventInstance_SetVolume(m_pInstance, volume);
+            }
+        }
+
+        void AudioEvent::SetPitch(const float pitch) const
+        {
+            if (IsLoaded())
+            {
+                FMOD_Studio_EventInstance_SetPitch(m_pInstance, pitch);
+            }
+        }
+
         void AudioEvent::CreateInstance()
         {
-            FMOD_RESULT result = FMOD_Studio_EventDescription_CreateInstance(&m_pDescription, &m_pInstance);
+            const FMOD_RESULT result = FMOD_Studio_EventDescription_CreateInstance(&m_pDescription, &m_pInstance);
             if (result != FMOD_OK)
             {
                 std::cerr << "FMOD Error: " << FMOD_ErrorString(result) << std::endl;

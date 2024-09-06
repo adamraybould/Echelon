@@ -92,6 +92,8 @@ add_library(Engine STATIC
         Src/Audio/AudioBank.cpp
         Src/Audio/AudioEvent.cpp
         Include/Engine/Audio/AudioEvent.h
+        Include/Engine/Core/System.h
+        Src/Core/System.cpp
 )
 
 target_include_directories(Engine PUBLIC

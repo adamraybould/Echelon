@@ -19,11 +19,11 @@ namespace Core
         {
             FMOD_RESULT result = FMOD_Studio_System_Create(&m_pSystem, FMOD_VERSION);
             if (result != FMOD_OK)
-                Terminate(result);
+                ReportError(result);
 
             result = FMOD_Studio_System_Initialize(m_pSystem, 512, FMOD_STUDIO_INIT_NORMAL, FMOD_INIT_NORMAL, nullptr);
             if (result != FMOD_OK)
-                Terminate(result);
+                ReportError(result);
 
             LoadBank("Audio/Master.bank");
             LoadBank("Audio/Master.strings.bank");
@@ -54,62 +54,64 @@ namespace Core
             }
         }
 
-        void AudioSystem::Update() const
+        void AudioSystem::Update()
         {
             FMOD_Studio_System_Update(m_pSystem);
         }
 
-        AudioBank* AudioSystem::LoadBank(const String& path)
+        bool AudioSystem::LoadBank(const String& path)
         {
-            if (!path.empty())
+            if (path.empty())
             {
-                String assetPath = ASSETS_PATH + path;
-
-                // Return Bank if already created
-                if (m_pBanks.contains(assetPath))
-                {
-                    return m_pBanks[assetPath].get();
-                }
-
-                UniquePtr<AudioBank> bank = std::make_unique<AudioBank>(*m_pSystem, assetPath);
-                if (bank->LoadBank())
-                {
-                    m_pBanks.emplace(assetPath, std::move(bank));
-                    return m_pBanks[assetPath].get();
-                }
+                PrintErrorMessage("Audio System Error: Audio Bank Path is Empty");
+                return false;
             }
 
-            std::cerr << "Failed to Load Audio Bank" << std::endl;
-            return nullptr;
-        }
-
-        AudioEvent* AudioSystem::LoadEvent(const String& eventPath)
-        {
-            if (!eventPath.empty())
+            String assetPath = ASSETS_PATH + path;
+            if (m_pBanks.contains(assetPath))
             {
-                if (m_pEvents.contains(eventPath))
-                {
-                    return m_pEvents[eventPath].get();
-                }
-
-                FMOD_STUDIO_EVENTDESCRIPTION* eventDescription = nullptr;
-                FMOD_RESULT result = FMOD_Studio_System_GetEvent(m_pSystem, eventPath.c_str(), &eventDescription);
-                if (result != FMOD_OK)
-                    Terminate(result);
-
-                m_pEventDescriptions.push_back(eventDescription);
-
-                m_pEvents[eventPath] = std::make_unique<AudioEvent>(*m_pEventDescriptions.back());
-                return m_pEvents[eventPath].get();
+                PrintErrorMessage("Trying to Load Bank that has already been loaded '" + assetPath + "'");
+                return false;
             }
 
-            return nullptr;
+            UniquePtr<AudioBank> bank = std::make_unique<AudioBank>(*m_pSystem, assetPath);
+            if (bank->LoadBank())
+            {
+                m_pBanks.emplace(assetPath, std::move(bank));
+                return true;
+            }
+
+            OutputError("Failed to Load Audio Bank '" + assetPath + "'", "Audio System Error", false);
+            return false;
         }
 
-        void AudioSystem::Terminate(const FMOD_RESULT& result)
+        UniquePtr<AudioEvent>& AudioSystem::LoadEvent(const String& eventPath)
         {
-            std::cerr << "FMOD Error: " << FMOD_ErrorString(result) << std::endl;
-            exit(-1);
+            if (eventPath.empty())
+            {
+                PrintErrorMessage("Audio System Error: Audio Event Path is Empty");
+                throw std::invalid_argument("Audio System Error: Audio Event Path is Empty");
+            }
+
+            if (m_pEvents.contains(eventPath))
+                return m_pEvents[eventPath];
+
+
+            const String path = "event:/" + eventPath;
+            FMOD_STUDIO_EVENTDESCRIPTION* eventDescription = nullptr;
+            const FMOD_RESULT result = FMOD_Studio_System_GetEvent(m_pSystem, path.c_str(), &eventDescription);
+            if (result != FMOD_OK)
+                ReportError(result);
+
+            m_pEventDescriptions.push_back(eventDescription);
+            m_pEvents[eventPath] = std::make_unique<AudioEvent>(*m_pEventDescriptions.back());
+
+            return m_pEvents[eventPath];
+        }
+
+        void AudioSystem::ReportError(const FMOD_RESULT& result)
+        {
+            OutputError(FMOD_ErrorString(result), "FMOD Error", true);
         }
     }
 }

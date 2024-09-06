@@ -3,8 +3,9 @@
 
 #include <fmod_studio.h>
 #include <fmod_errors.h>
+
+#include "Engine/Core/System.h"
 #include "Engine/Core/TypeDefs.h"
-#include "Engine/Core/Scripting/ScriptCore.h"
 
 namespace Core
 {
@@ -13,7 +14,7 @@ namespace Core
         class AudioBank;
         class AudioEvent;
 
-        class AudioSystem
+        class AudioSystem final : System
         {
         private:
             static FMOD_STUDIO_SYSTEM* m_pSystem;
@@ -27,13 +28,15 @@ namespace Core
             AudioSystem();
             ~AudioSystem();
 
-            void Update() const;
+            static void Update();
 
-            static AudioBank* LoadBank(const String& path);
-            static AudioEvent* LoadEvent(const String& eventPath);
+            static bool LoadBank(const String& path);
+            static UniquePtr<AudioEvent>& LoadEvent(const String& eventPath);
+
+            static bool IsInitialised() { return m_pSystem != nullptr; }
 
         private:
-            static void Terminate(const FMOD_RESULT& result);
+            static void ReportError(const FMOD_RESULT& result);
         };
     }
 }

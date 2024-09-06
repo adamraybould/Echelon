@@ -108,7 +108,7 @@ namespace Core::Editor
 
         if (ImGui::BeginChild("Info", ImVec2(childWidth, childHeight), false))
         {
-            ImGui::Columns(2, nullptr, true);  // 2 columns without borders
+            ImGui::Columns(2, nullptr, true);
             ImGui::SetColumnWidth(0, WINDOW_WIDTH * 0.6f);
 
             PrintHoverText("Guid: ", guid);

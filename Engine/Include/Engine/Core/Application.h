@@ -16,7 +16,7 @@ namespace Core
 {
     namespace Editor { class EngineGUI; }
 
-    class Application final : public IProgram
+    class Application final : public IProgram, System
     {
     private:
         static Application* m_pInstance;
@@ -51,12 +51,10 @@ namespace Core
         void Update();
         void Render() const;
 
-        static void DisplayError(const char* error, const char* errorTile, bool displaySDLError);
-
         Window& GetWindow() const { return *m_pWindow; }
         Renderer& GetRenderer() const { return m_pWindow->GetRenderer(); }
 
-        Systems::StateSystem& GetStateSystem() const { return *m_pStateSystem; }
+        StateSystem& GetStateSystem() const { return *m_pStateSystem; }
 
     private:
         void Initialize();

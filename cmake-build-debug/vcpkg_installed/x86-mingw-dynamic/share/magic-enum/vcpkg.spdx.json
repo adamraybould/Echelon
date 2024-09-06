@@ -3,13 +3,13 @@
   "spdxVersion": "SPDX-2.2",
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
-  "documentNamespace": "https://spdx.org/spdxdocs/magic-enum-x86-mingw-dynamic-0.9.6#1-eae5122b-fb40-498b-88b4-515d527da56f",
-  "name": "magic-enum:x86-mingw-dynamic@0.9.6#1 724738a6b686c270b4a77761a81e0021579f26ff2227f6ec25e65149b25cea91",
+  "documentNamespace": "https://spdx.org/spdxdocs/magic-enum-x86-mingw-dynamic-0.9.6#1-66c3c85c-7eb8-4561-9adb-27892cccfd87",
+  "name": "magic-enum:x86-mingw-dynamic@0.9.6#1 a3871b4294901cf65238d48be6518f16df607c6f8affb12ccac2f2822ebf5e95",
   "creationInfo": {
     "creators": [
       "Tool: vcpkg-2024-08-01-fd884a0d390d12783076341bd43d77c3a6a15658"
     ],
-    "created": "2024-09-03T16:46:53Z"
+    "created": "2024-09-06T12:53:04Z"
   },
   "relationships": [
     {
@@ -69,7 +69,7 @@
     {
       "name": "magic-enum:x86-mingw-dynamic",
       "SPDXID": "SPDXRef-binary",
-      "versionInfo": "724738a6b686c270b4a77761a81e0021579f26ff2227f6ec25e65149b25cea91",
+      "versionInfo": "a3871b4294901cf65238d48be6518f16df607c6f8affb12ccac2f2822ebf5e95",
       "downloadLocation": "NONE",
       "licenseConcluded": "MIT",
       "licenseDeclared": "NOASSERTION",

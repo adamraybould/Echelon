@@ -1,6 +1,8 @@
 #ifndef SOUNDEMITTER_H
 #define SOUNDEMITTER_H
+
 #include "Component.h"
+#include "Engine/Audio/AudioEvent.h"
 
 namespace Core
 {
@@ -9,10 +11,10 @@ namespace Core
     using namespace Audio;
     namespace Components
     {
-        class SoundEmitter : public Component
+        class SoundEmitter final : public Component
         {
         private:
-            AudioBank* m_pBank = nullptr;
+            UnorderedMap<String, UniquePtr<AudioEvent>> m_audioEvents;
 
             AudioEvent* m_pAudioEvent_Walk = nullptr;
             AudioEvent* m_pAudioEvent_Run = nullptr;
@@ -24,10 +26,15 @@ namespace Core
             void Initialize() override;
             void Destroy() override;
 
-            void PlaySound(const String& name);
+            void PlaySound(const String& soundName, float volume = 1.0f, bool restart = false);
+            void StopSound(const String& soundName);
+            void StopAllSounds() const;
 
-            void PlayFootsteps(bool run) const;
-            void StopFootsteps() const;
+            void SetVolume(const String& soundName, float volume);
+            void SetPitch(const String& soundName, float pitch);
+
+        private:
+            AudioEvent* GetSound(const String& soundName);
         };
     }
 }

@@ -19,7 +19,7 @@ Architecture: x86-mingw-dynamic
 Multi-Arch: same
 Abi: cf78bf2ba86ac5df1948e436cb912e87ba95a98fd375189a3ca1796b35d6b0e0
 Description: Bloat-free Immediate Mode Graphical User interface for C++ with minimal dependencies.
-Status: install ok installed
+Status: purge ok not-installed
 
 Package: jsoncpp
 Version: 1.9.5
@@ -29,7 +29,7 @@ Architecture: x86-mingw-dynamic
 Multi-Arch: same
 Abi: 746bad3804be2c6a627491e65f1c36616a2cfa8530faa6cc05411a32f44d8c78
 Description: JsonCpp is a C++ library that allows manipulating JSON values, including serialization and deserialization to and from strings. It can also preserve existing comment in unserialization/serialization steps, making it a convenient format to store user input files.
-Status: install ok installed
+Status: purge ok not-installed
 
 Package: sdl2
 Version: 2.30.6
@@ -37,7 +37,7 @@ Port-Version: 1
 Depends: vcpkg-cmake:x64-windows, vcpkg-cmake-config:x64-windows
 Architecture: x86-mingw-dynamic
 Multi-Arch: same
-Abi: 4049883577eba2845a9838c2985f56889763fbfe9679ef6438400cb4668660b9
+Abi: 055bb9180bd263355ab7633d5e7144fd9d78539f4e2b3d1bb925969cc95ef7dd
 Description: Simple DirectMedia Layer is a cross-platform development library designed to provide low level access to audio, keyboard, mouse, joystick, and graphics hardware via OpenGL and Direct3D.
 Status: install ok installed
 
@@ -48,7 +48,7 @@ Architecture: x86-mingw-dynamic
 Multi-Arch: same
 Abi: 09234e97c1ce59597c92b3d9fb6564b8730ca7f00a6a1e184116e5258072edde
 Description: A compression library
-Status: install ok installed
+Status: purge ok not-installed
 
 Package: libpng
 Version: 1.6.43
@@ -58,7 +58,7 @@ Architecture: x86-mingw-dynamic
 Multi-Arch: same
 Abi: 8b2bc96837dfcacd270e2122a82b7793f048ebfd48aa4a5a7f2558990e5cd132
 Description: libpng is a library implementing an interface for reading and writing PNG (Portable Network Graphics) format files
-Status: install ok installed
+Status: purge ok not-installed
 
 Package: sdl2-image
 Version: 2.8.2
@@ -68,21 +68,21 @@ Architecture: x86-mingw-dynamic
 Multi-Arch: same
 Abi: 7cf40ab743d04e8d7269f1a4b946d422c955d9fd52a4d63d93af0ca885cc7646
 Description: SDL_image is an image file loading library. It loads images as SDL surfaces and textures, and supports the following formats: BMP, GIF, JPEG, LBM, PCX, PNG, PNM, TGA, TIFF, WEBP, XCF, XPM, XV
-Status: install ok installed
+Status: purge ok not-installed
 
 Package: vcpkg-cmake
 Version: 2024-04-23
 Architecture: x86-mingw-dynamic
 Multi-Arch: same
 Abi: a33e8ac00ed90db9a180c0c14bcb34cf419361a5669e71956835521d62275b42
-Status: install ok installed
+Status: purge ok not-installed
 
 Package: vcpkg-cmake-config
 Version: 2024-05-23
 Architecture: x86-mingw-dynamic
 Multi-Arch: same
 Abi: c3282d9f1ba54e3c67e347180bec1e1ea8b29ad6e3ace4cee135ae610c103326
-Status: install ok installed
+Status: purge ok not-installed
 
 Package: imgui
 Feature: sdl2-binding
@@ -90,7 +90,7 @@ Depends: sdl2
 Architecture: x86-mingw-dynamic
 Multi-Arch: same
 Description: Make available SDL2 binding
-Status: install ok installed
+Status: purge ok not-installed
 
 Package: imgui
 Feature: sdl2-renderer-binding
@@ -98,7 +98,7 @@ Depends: sdl2
 Architecture: x86-mingw-dynamic
 Multi-Arch: same
 Description: Make available SDL2 Renderer binding
-Status: install ok installed
+Status: purge ok not-installed
 
 Package: lua
 Version: 5.4.6
@@ -107,7 +107,7 @@ Architecture: x86-mingw-dynamic
 Multi-Arch: same
 Abi: ebd6960ff55de4a4f36cb6ad3243c814adcff5c1a034f794a5260aa08d43ecae
 Description: A powerful, fast, lightweight, embeddable scripting language
-Status: install ok installed
+Status: purge ok not-installed
 
 Package: luabridge3
 Version: 3.0-rc3
@@ -115,7 +115,7 @@ Architecture: x86-mingw-dynamic
 Multi-Arch: same
 Abi: 4ba2d72cf25df43bda70adbd4512abf777dfc9563d43fb0215dc96c141ae2ee7
 Description: A lightweight, dependency-free, suitable for game development library for binding Lua to C++17
-Status: install ok installed
+Status: purge ok not-installed
 
 Package: crossguid
 Version: 2021-10-22
@@ -123,7 +123,7 @@ Port-Version: 3
 Depends: vcpkg-cmake:x64-windows, vcpkg-cmake-config:x64-windows
 Architecture: x86-mingw-dynamic
 Multi-Arch: same
-Abi: f21e5fd002e50343f704e6a8215239770cbabe946f5da4e93488d5dc759bbe0c
+Abi: 7d331fd741a4910e36dd507765239e99c1a8390460e79b89bb9b2edd504a697b
 Description: CrossGuid is a minimal, cross platform, C++ GUID library.
 Status: install ok installed
 
@@ -135,7 +135,7 @@ Architecture: x86-mingw-dynamic
 Multi-Arch: same
 Abi: 724738a6b686c270b4a77761a81e0021579f26ff2227f6ec25e65149b25cea91
 Description: Header-only C++17 library provides static reflection for enums, work with any enum type without any macro or boilerplate code.
-Status: install ok installed
+Status: purge ok not-installed
 
 Package: tinyxml2
 Version: 10.0.0
@@ -153,7 +153,7 @@ Architecture: x86-mingw-dynamic
 Multi-Arch: same
 Abi: 8b8c5dd15ea56fc08cda66362aec680aa68017607e78bfcb7fc80447c3ac9c6e
 Description: Zstandard - Fast real-time compression algorithm
-Status: install ok installed
+Status: purge ok not-installed
 
 Package: pugixml
 Version: 1.14
@@ -162,7 +162,7 @@ Architecture: x86-mingw-dynamic
 Multi-Arch: same
 Abi: 85085e8f03e07e464ab513ac9504fc6f8ef93ebdca1db315166fa5caacfb0897
 Description: Light-weight, simple and fast XML parser for C++ with XPath support
-Status: install ok installed
+Status: purge ok not-installed
 
 Package: tmxlite
 Version: 1.4.4
@@ -171,7 +171,7 @@ Architecture: x86-mingw-dynamic
 Multi-Arch: same
 Abi: 8d937dc2acba8adb81ef2a2167150c98693ce6fe097ef4b603eaef6c6e600ccd
 Description: A lightweight C++14 parsing library for tmx map files created with the Tiled map editor.
-Status: install ok installed
+Status: purge ok not-installed
 
 Package: vcpkg-cmake-get-vars
 Version: 2023-12-31
@@ -205,7 +205,7 @@ Port-Version: 3
 Depends: vcpkg-cmake:x64-windows, vcpkg-cmake-config:x64-windows
 Architecture: x86-mingw-dynamic
 Multi-Arch: same
-Abi: c10fc166d01c20bdce2e38712bb407cd6701c511150d46940a28fc4f7f84ea08
+Abi: 42d947721110f32d25d22599e2fead37c0e938a7fb8b1d124677aa58f9766df4
 Description: An open source C++ engine for simulating rigid bodies in 2D
 Status: install ok installed
 

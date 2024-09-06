@@ -3,7 +3,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_timer.h>
-//#include <windows.h>
+#include <windows.h>
 
 #include "Engine/Core/Renderer.h"
 #include "Engine/States/GameState.h"
@@ -11,6 +11,7 @@
 
 namespace Core
 {
+    using namespace Audio;
     Application* Application::m_pInstance;
 
     Application::Application()
@@ -100,10 +101,10 @@ namespace Core
         m_prevTime = m_currentTime;
         m_currentTime = SDL_GetPerformanceCounter();
 
-        float deltaTime = (m_currentTime - m_prevTime) / (float)SDL_GetPerformanceFrequency();
-        int FPS = static_cast<int>(1.0f / deltaTime);
+        const float deltaTime = (m_currentTime - m_prevTime) / static_cast<float>(SDL_GetPerformanceFrequency());
+        const int FPS = static_cast<int>((1.0f / deltaTime) + 0.5f);
 
-        const int titleUpdateIntervalMs = 1000;
+        const UInt titleUpdateIntervalMs = 1000;
         UInt32 currentTitleUpdateTicks = m_currentTime;
 
         if (currentTitleUpdateTicks - m_lastTitleUpdateTicks >= titleUpdateIntervalMs * SDL_GetPerformanceFrequency() / 1000)
@@ -115,7 +116,7 @@ namespace Core
         }
 
         m_pPhysics->Update();
-        m_pAudioSystem->Update();
+        AudioSystem::Update();
 
         GetRenderer().Update(deltaTime);
         m_pEngineGUI->Update(deltaTime);
@@ -136,12 +137,6 @@ namespace Core
         GetRenderer().PresentScreen();
     }
 
-    void Application::DisplayError(const char* error, const char* errorTile, bool displaySDLError)
-    {
-        std::string errorMessage = std::string(error) + (displaySDLError ? SDL_GetError() : "");
-        //MessageBoxA(NULL, errorMessage.c_str(), errorTile, MB_ICONERROR | MB_OK);
-    }
-
     void Application::Initialize()
     {
         // Initialise Lua Embedding
@@ -149,25 +144,15 @@ namespace Core
         m_pEngine = std::make_unique<Engine>();
 
         if (SDL_Init(SDL_INIT_VIDEO) < 0)
-        {
-            DisplayError("SDL could not Initialize! SDL_ERROR:", "SDL Error", true);
-            exit(1);
-        }
-        else
-        {
-            m_pWindow = std::make_unique<Window>();
-            if (!m_pWindow->Create("Echelon"))
-            {
-                DisplayError("Window could not be created! SDL_ERROR:", "SDL Error", true);
-                exit(1);
-            }
-        }
+            OutputError("SDL could not Initialize! SDL_ERROR:", "SDL Error", true, true);
+
+        // Only runs if SDL is initialised
+        m_pWindow = std::make_unique<Window>();
+        if (!m_pWindow->Create("Echelon"))
+            OutputError("Window could not be created! SDL_ERROR:", "SDL Error", true, true);
 
         if (IMG_Init(IMG_INIT_PNG) < 0)
-        {
-            DisplayError("SDL Image could not Initialize! SDL_ERROR:", "SDL Error", true);
-            exit(1);
-        }
+            OutputError("SDL Image could not Initialize! SDL_ERROR:", "SDL Error", true, true);
 
 
         // Initialise Systems
