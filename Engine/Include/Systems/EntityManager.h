@@ -2,6 +2,7 @@
 #define ENTITYMANAGER_H
 #include "Scene/Entities/Entity.h"
 
+using namespace Scene;
 namespace Core::Systems
 {
     class EntityManager

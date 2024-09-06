@@ -4,11 +4,11 @@
 #include "Component.h"
 #include "Core/Audio/AudioEvent.h"
 
-namespace Core
-{
-    namespace Audio { class AudioBank; class AudioEvent; }
+namespace Core::Audio { class AudioBank; class AudioEvent; }
+using namespace Core::Audio;
 
-    using namespace Audio;
+namespace Scene
+{
     namespace Components
     {
         class SoundEmitter final : public Component

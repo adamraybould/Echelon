@@ -1,20 +1,19 @@
 #ifndef APPLICATION_H
 #define APPLICATION_H
 
-#include "IProgram.h"
 #include "IO/Window.h"
+#include "Editor/EngineGUI.h"
 #include "IO/Input.h"
 #include "Physics.h"
 #include "AssetManager.h"
+#include "IProgram.h"
 #include "Scripting/ScriptCore.h"
 #include "Scripting/Engine.h"
-#include "../Systems/StateSystem.h"
+#include "Systems/StateSystem.h"
 #include "Audio/AudioSystem.h"
 
 namespace Core
 {
-    namespace Editor { class EngineGUI; }
-
     class Application final : public IProgram, System
     {
     private:
@@ -31,7 +30,7 @@ namespace Core
 
         UniquePtr<Input> m_pInput;
         UniquePtr<Physics> m_pPhysics;
-        UniquePtr<StateSystem> m_pStateSystem;
+        UniquePtr<Systems::StateSystem> m_pStateSystem;
         UniquePtr<Audio::AudioSystem> m_pAudioSystem;
 
         UInt32 m_currentTime;
@@ -53,7 +52,7 @@ namespace Core
         Window& GetWindow() const { return *m_pWindow; }
         Renderer& GetRenderer() const { return m_pWindow->GetRenderer(); }
 
-        StateSystem& GetStateSystem() const { return *m_pStateSystem; }
+        Systems::StateSystem& GetStateSystem() const { return *m_pStateSystem; }
 
     private:
         void Initialize();

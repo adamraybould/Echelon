@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="32" height="32" tilewidth="16" tileheight="16" infinite="0" nextlayerid="14" nextobjectid="162">
- <tileset firstgid="1" source="../../../../Tiled/Echelon/Fantasy_Summer.tsx"/>
+ <tileset firstgid="1" source="../../../../../Tiled/Echelon/Fantasy_Summer.tsx"/>
  <tileset firstgid="257" name="rocks" tilewidth="32" tileheight="32" tilecount="3" columns="1">
-  <image source="../Tilesets/rocks.png" width="32" height="96"/>
+  <image source="../Objects/Rocks.png" width="32" height="96"/>
  </tileset>
  <tileset firstgid="260" name="Tree" tilewidth="81" tileheight="112" tilecount="1" columns="1">
   <image source="../Objects/Tree.png" width="81" height="112"/>

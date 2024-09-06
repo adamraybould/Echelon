@@ -5,7 +5,7 @@
 
 class b2Body;
 
-namespace Core
+namespace Scene
 {
     namespace Components
     {

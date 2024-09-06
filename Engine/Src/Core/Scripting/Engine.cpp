@@ -6,8 +6,12 @@
 #include "Systems/EntityManager.h"
 #include "Core/Scripting/Prefab.h"
 
+using namespace Scene;
 namespace Core
 {
+    using namespace Scripting;
+    using namespace Systems;
+
     UnorderedMap<String, UniquePtr<Prefab>> Engine::m_prefabs;
     UnorderedMap<GUID, UniquePtr<Entity>> Engine::m_entities;
 

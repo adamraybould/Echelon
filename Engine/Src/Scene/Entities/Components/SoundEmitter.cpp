@@ -2,9 +2,11 @@
 #include "Core/Audio/AudioSystem.h"
 #include "Core/Scripting/Prefab.h"
 
-namespace Core
+using namespace Core::Audio;
+using namespace Core::Scripting;
+
+namespace Scene
 {
-    using namespace Audio;
     namespace Components
     {
         SoundEmitter::SoundEmitter(Entity& owner) : Component(owner)

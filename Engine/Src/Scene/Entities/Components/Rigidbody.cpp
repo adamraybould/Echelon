@@ -3,10 +3,12 @@
 
 #include "Core//Physics.h"
 #include "Scene/Entities/Components/SpriteRenderer.h"
+#include "Graphics/SpriteSheet.h"
 #include "Core/Constants.h"
 #include "Scene/Entities/Entity.h"
 
-namespace Core
+using namespace Core::Graphics;
+namespace Scene
 {
     namespace Components
     {

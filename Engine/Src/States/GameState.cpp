@@ -20,7 +20,7 @@ namespace Core::States
 
     void GameState::Initialize()
     {
-        m_pTileMap->LoadTileMap("Fantasy_TestMap");
+        m_pTileMap->LoadTileMap("TestMap");
 
         if (m_pLevelManager != nullptr)
             m_pLevelManager->Initialise();

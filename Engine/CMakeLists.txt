@@ -4,6 +4,7 @@ cmake_minimum_required(VERSION 3.8)
 include(FindLua)
 
 add_library(Engine STATIC
+        Src/Core/Main.cpp
         Include/Core/IProgram.h
         Src/Core/Application.cpp
         Include/Core/Application.h
@@ -93,6 +94,8 @@ add_library(Engine STATIC
         Include/Core/Audio/AudioEvent.h
         Include/Core/System.h
         Src/Core/System.cpp
+        Include/Scene/Scene.h
+        Src/Scene/Scene.cpp
 )
 
 target_include_directories(Engine PUBLIC
@@ -114,7 +117,6 @@ target_link_libraries(Engine PRIVATE $<TARGET_NAME_IF_EXISTS:SDL2::SDL2main> $<I
 target_link_libraries(Engine PRIVATE $<IF:$<TARGET_EXISTS:SDL2_image::SDL2_image>,SDL2_image::SDL2_image,SDL2_image::SDL2_image-static>)
 target_link_libraries(Engine PRIVATE imgui::imgui)
 target_link_libraries(Engine PRIVATE JsonCpp::JsonCpp)
-target_link_libraries(Engine PRIVATE ${LUA_LIBRARIES})
 target_link_libraries(Engine PRIVATE crossguid)
 target_link_libraries(Engine PRIVATE magic_enum::magic_enum)
 target_link_libraries(Engine PRIVATE ${TMXLITE_LIBRARY})

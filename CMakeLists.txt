@@ -4,8 +4,8 @@ project(Echelon)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake_modules)
 
-set(ASSETS_PATH "${CMAKE_SOURCE_DIR}/Assets/")
-set(SCRIPTS_PATH "${CMAKE_SOURCE_DIR}/Scripts/")
+set(ASSETS_PATH "${CMAKE_SOURCE_DIR}/Echelon/Assets/")
+set(SCRIPTS_PATH "${CMAKE_SOURCE_DIR}/Echelon/Scripts/")
 set(VERSION "1.0.0")
 
 configure_file(config.h.in ${CMAKE_BINARY_DIR}/config.h)
@@ -26,4 +26,4 @@ find_package(FMOD REQUIRED)
 find_package(FMOD_STUDIO REQUIRED)
 
 add_subdirectory(Engine)
-add_subdirectory(Game)
+add_subdirectory(Echelon)

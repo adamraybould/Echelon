@@ -3,12 +3,11 @@
 #include "Editor/GUIWindow.h"
 #include "Graphics/Sprite.h"
 
+namespace Scene { class Entity; }
+namespace Scene::Components { class SpriteRenderer; }
+
 namespace Core
 {
-    namespace Components { class SpriteRenderer; }
-
-    class Entity;
-
     namespace Editor
     {
         class GUIWindow_EntityInfo : public GUIWindow
@@ -17,8 +16,8 @@ namespace Core
             const int WINDOW_HEIGHT = 250;
 
         private:
-            Entity* m_pEntity = nullptr;
-            Components::SpriteRenderer* m_pEntityRenderer;
+            Scene::Entity* m_pEntity = nullptr;
+            Scene::Components::SpriteRenderer* m_pEntityRenderer;
             Graphics::Sprite* m_pEntitySprite = nullptr;
 
             ImVec2 m_windowPos;
@@ -42,10 +41,10 @@ namespace Core
             ImVec2 GetWindowSize() override;
 
         private:
-            Vector2F GetEntityScreenPosition(const Entity& entity) const;
+            Vector2F GetEntityScreenPosition(const Scene::Entity& entity) const;
             ImTextureID GetTextureID(const Graphics::Texture2D& texture) { return (ImTextureID)(intptr_t)&texture.GetRawTexture(); }
 
-            void DisplayInfo(const Entity& entity);
+            void DisplayInfo(const Scene::Entity& entity);
 
             void DisplaySprite();
             void DisplayComponentInfo() const;

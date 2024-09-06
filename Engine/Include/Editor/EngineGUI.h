@@ -7,6 +7,8 @@
 #include <memory>
 #include <vector>
 
+namespace Scene { class Entity; }
+
 namespace Core
 {
     namespace Systems { class StateSystem; }
@@ -14,7 +16,6 @@ namespace Core
     class Window;
     class Renderer;
     class Input;
-    class Entity;
 
     using namespace Systems;
     namespace Editor
@@ -30,7 +31,7 @@ namespace Core
 
             std::vector<std::unique_ptr<GUIWindow>> m_windows;
 
-            Entity* m_pEntity;
+            Scene::Entity* m_pEntity;
 
         public:
             EngineGUI(Window& window, StateSystem& stateSystem, Input& input);
@@ -42,7 +43,7 @@ namespace Core
             void RenderImGui(const Renderer& renderer);
             void HandleInput(const SDL_Event& event);
 
-            Entity& GetSelectedEntity() const;
+            Scene::Entity& GetSelectedEntity() const;
 
             Window& GetEngineWindow() const { return m_window; }
 

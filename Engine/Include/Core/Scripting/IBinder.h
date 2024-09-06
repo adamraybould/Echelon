@@ -1,6 +1,5 @@
 #ifndef IBINDER_H
 #define IBINDER_H
-
 #include "ScriptCore.h"
 #include <luabridge3/LuaBridge/LuaBridge.h>
 

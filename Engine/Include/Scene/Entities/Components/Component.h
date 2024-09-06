@@ -2,14 +2,14 @@
 #define COMPONENT_H
 #include "Core/Scripting/IBinder.h"
 
-namespace Core
+namespace Core { class Renderer; }
+namespace Core::Scripting { struct PrefabAsset; enum class AssetType; }
+
+namespace Scene
 {
-    namespace Scripting { struct PrefabAsset; enum class AssetType; }
-
+    using GUID = Core::GUID;
     class Entity;
-    class Renderer;
 
-    using namespace Scripting;
     namespace Components
     {
         using namespace Core;
@@ -42,10 +42,9 @@ namespace Core
             bool IsActive() const { return m_isActive; }
 
         protected:
-            PrefabAsset* GetPrefabAsset(AssetType type) const;
+            Scripting::PrefabAsset* GetPrefabAsset(Scripting::AssetType type) const;
         };
     }
 }
 
-using namespace Core::Components;
 #endif //COMPONENT_H

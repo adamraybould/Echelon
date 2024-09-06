@@ -8,7 +8,7 @@
 #include "Core/Scripting/Prefab.h"
 #include "Core/Utility.h"
 
-namespace Core
+namespace Scene
 {
     Entity::Entity(const String& name)
     {

@@ -3,16 +3,17 @@
 
 #include "Core/Scripting/IBinder.h"
 #include "Core/IO/IRenderable.h"
+
 #include "Components/Component.h"
 #include "Components/Transform.h"
 #include "Core/Maths/Rectangle.h"
 
-namespace Core
-{
-    namespace Scripting { class Prefab; }
+namespace Core::Scripting { class Prefab; }
+using namespace Core::Scripting;
 
-    using namespace Scripting;
-    using namespace Components;
+namespace Scene
+{
+    using namespace Scene::Components;
     class Entity : public IBinder, public IRenderable
     {
     private:

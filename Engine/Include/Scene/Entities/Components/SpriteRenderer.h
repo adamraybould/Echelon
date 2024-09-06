@@ -1,13 +1,14 @@
 #ifndef SPRITERENDERER_H
 #define SPRITERENDERER_H
 #include "Component.h"
-#include "Graphics/SpriteSheet.h"
+#include "Core/Maths/Vector2.h"
+#include "Core/Maths/Rectangle.h"
 
-namespace Core
+namespace Core::Graphics { class SpriteSheet; class Texture2D; class Sprite; }
+using namespace Core::Graphics;
+
+namespace Scene
 {
-    namespace Graphics { class Texture2D; class Sprite; }
-
-    using namespace Graphics;
     namespace Components
     {
         class SpriteRenderer final : public Component

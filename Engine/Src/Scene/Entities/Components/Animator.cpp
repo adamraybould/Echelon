@@ -4,7 +4,7 @@
 #include "Graphics/SpriteSheet.h"
 #include "Scene/Entities/Components/SpriteRenderer.h"
 
-namespace Core
+namespace Scene
 {
     namespace Components
     {

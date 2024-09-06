@@ -4,16 +4,16 @@
 #include "Graphics/Animation.h"
 #include "Core/Delegates.h"
 
-namespace Core
-{
-    namespace Graphics { class SpriteSheet; struct Animation; }
+namespace Core::Graphics { class SpriteSheet; struct Animation; }
+using namespace Core::Graphics;
 
-    using namespace Graphics;
+namespace Scene
+{
     namespace Components
     {
         class SpriteRenderer;
 
-        class Animator : public Component
+        class Animator final : public Component
         {
         public:
             MultiCastEvent<> OnAnimationPlay;

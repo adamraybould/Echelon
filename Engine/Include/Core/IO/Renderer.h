@@ -3,7 +3,7 @@
 
 #include <SDL2/SDL.h>
 
-#include "../Camera.h"
+#include "Core/Camera.h"
 #include "IRenderable.h"
 
 namespace Core

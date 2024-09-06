@@ -5,7 +5,7 @@
 
 namespace Core
 {
-    class Camera : public Entity
+    class Camera : public Scene::Entity
     {
     public:
         static Camera* Main;
