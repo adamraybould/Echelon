@@ -1,6 +1,0 @@
-Package: vcpkg-cmake
-Version: 2024-04-23
-Architecture: x86-mingw-dynamic
-Multi-Arch: same
-Abi: 1f35ef6e7156616e080f7c833e1471efa7870cee536f0b9de40a8e0f4a526841
-Status: purge ok not-installed

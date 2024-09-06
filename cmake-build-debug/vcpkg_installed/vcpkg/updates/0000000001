@@ -1,8 +1,0 @@
-Package: tmxlite
-Version: 1.4.4
-Depends: pugixml, vcpkg-cmake:x64-windows, vcpkg-cmake-config:x64-windows, zlib, zstd
-Architecture: x86-mingw-dynamic
-Multi-Arch: same
-Abi: 55e2bfc50879ce0fc8b71efdc2b076241a24197828e35cac06d608d167c1e40c
-Description: A lightweight C++14 parsing library for tmx map files created with the Tiled map editor.
-Status: purge ok not-installed
