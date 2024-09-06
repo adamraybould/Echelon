@@ -3,10 +3,6 @@ cmake_minimum_required(VERSION 3.8)
 
 add_executable(Game
         Src/Main.cpp
-        Include/Echelon/Levels/MainLevel.h
-        Src/Levels/MainLevel.cpp
-        Include/Echelon/Entities/Components/CameraFollow.h
-        Src/Entities/Components/CameraFollow.cpp
 )
 
 target_include_directories(Game PRIVATE

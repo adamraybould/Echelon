@@ -1,12 +1,13 @@
-#include "Engine/Graphics/TileMap/TileMap.h"
+#include "Graphics/TileMap/TileMap.h"
 
 #include <config.h>
 #include <iostream>
 #include <tmxlite/Map.hpp>
-#include "Engine/Core/Renderer.h"
-#include "Engine/Graphics/AssetManager.h"
-#include "Engine/Graphics/TileMap/MapLayer.h"
-#include "Engine/Utility/Utility.h"
+#include "Core/IO/Renderer.h"
+#include "Core/AssetManager.h"
+#include "Graphics/TileMap/MapLayer.h"
+#include "Core/Constants.h"
+#include "Core/Utility.h"
 
 namespace Core
 {
@@ -49,7 +50,7 @@ namespace Core
                 return;
             }
 
-            m_mapSize = Vector2(map.getTileCount().x * map.getTileSize().x, map.getTileCount().y * map.getTileSize().y);;
+            m_mapSize = Vector2U(map.getTileCount().x * map.getTileSize().x, map.getTileCount().y * map.getTileSize().y);;
 
             LoadTilesets(map);
             if (!m_tilesets.empty())
@@ -59,9 +60,6 @@ namespace Core
 
             // Load Space Background
             m_pSpaceTexture = &AssetManager::LoadTexture2D("Tilesets/space.png");
-
-            //SetRenderLayer(RenderLayer::TileMap);
-            //Renderer::AddToRenderQueue(this, GetRenderLayer());
         }
 
         void TileMap::LoadTilesets(const tmx::Map& map)
@@ -88,15 +86,6 @@ namespace Core
             {
                 if (layers[i]->getType() == tmx::Layer::Type::Tile)
                 {
-                    const auto& properties = layers[i]->getProperties();
-                    for (const auto& property : properties)
-                    {
-                        if (property.getName() == "Depth" && property.getBoolValue() == true)
-                        {
-                            //m_depthLayers.emplace_back(std::make_unique<MapDepthLayer>())
-                        }
-                    }
-
                     m_layers.emplace_back(std::make_unique<MapLayer>(map, tilesets, *layers[i]));
                 }
                 else if (layers[i]->getType() == tmx::Layer::Type::Object)
@@ -108,7 +97,6 @@ namespace Core
 
         void TileMap::RenderBackground(const Renderer& renderer) const
         {
-
             SDL_Rect src = { 0, 0, m_pSpaceTexture->GetWidth(), m_pSpaceTexture->GetHeight() };
             SDL_Rect dst = { 0, 0, SCREEN_WIDTH / Camera::Main->GetZoom(), SCREEN_HEIGHT / Camera::Main->GetZoom() };
             SDL_RenderCopy(renderer, &m_pSpaceTexture->GetRawTexture(), &src, &dst);

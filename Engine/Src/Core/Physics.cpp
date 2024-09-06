@@ -1,7 +1,7 @@
-#include "Engine/Core/Physics.h"
+#include "Core/Physics.h"
 
-#include "Engine/Utility/Constants.h"
-#include "Engine/Utility/DebugDraw.h"
+#include "Core/Constants.h"
+#include "Debugging/DebugDraw.h"
 
 namespace Core
 {
@@ -36,7 +36,7 @@ namespace Core
         //m_pWorld->DebugDraw();
     }
 
-    b2Body* Physics::CreateDynamicBody(const Vector2 position, const UInt width, const UInt height)
+    b2Body* Physics::CreateDynamicBody(const Vector2F position, const UInt width, const UInt height)
     {
         b2BodyDef bodyDef;
         bodyDef.type = b2_dynamicBody;
@@ -58,7 +58,7 @@ namespace Core
         return body;
     }
 
-    b2Body* Physics::CreateStaticBody(Vector2 position, const UInt width, const UInt height)
+    b2Body* Physics::CreateStaticBody(const Vector2F position, const UInt width, const UInt height)
     {
         b2BodyDef bodyDef;
         bodyDef.type = b2_staticBody;
@@ -68,7 +68,7 @@ namespace Core
         b2Body* body = m_pWorld->CreateBody(&bodyDef);
 
         b2PolygonShape boxCollider;
-        boxCollider.SetAsBox((width / PPM), (height / PPM));
+        boxCollider.SetAsBox(width / PPM, height / PPM);
 
         b2FixtureDef fixtureDef;
         fixtureDef.shape = &boxCollider;

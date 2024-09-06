@@ -1,6 +1,6 @@
-#include "Engine/States/Level.h"
-#include "Engine/Core/Systems/EntityManager.h"
-#include "Engine/Utility/Utility.h"
+#include "States/Level.h"
+#include "Systems/EntityManager.h"
+#include "Core/Utility.h"
 
 namespace Core::States
 {

@@ -22,6 +22,8 @@ find_package(crossguid CONFIG REQUIRED)
 find_package(magic_enum CONFIG REQUIRED)
 find_package(tmxlite REQUIRED)
 find_package(box2d CONFIG REQUIRED)
+find_package(FMOD REQUIRED)
+find_package(FMOD_STUDIO REQUIRED)
 
 add_subdirectory(Engine)
 add_subdirectory(Game)

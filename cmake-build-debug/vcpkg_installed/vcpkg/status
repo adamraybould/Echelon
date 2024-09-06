@@ -2,14 +2,14 @@ Package: vcpkg-cmake-config
 Version: 2024-05-23
 Architecture: x64-windows
 Multi-Arch: same
-Abi: 3c60ee6bd15028a158360af2b36cf69283a60ec8306775a161a225e8d0ad4326
+Abi: ac4ff827c63a6021a07b187fa3f94da1cd55936c9c2ca76d66e7932998b4f375
 Status: install ok installed
 
 Package: vcpkg-cmake
 Version: 2024-04-23
 Architecture: x64-windows
 Multi-Arch: same
-Abi: 3a870a21ca223d7a46bccec71ce50a6bed285a94c04352dfb94ea3d6b4093f62
+Abi: 2fa5d62f34c7ecdb5a74320a2df94fac73df4cd0a6d6535dac7db1943695ef59
 Status: install ok installed
 
 Package: imgui
@@ -17,7 +17,7 @@ Version: 1.91.0
 Depends: vcpkg-cmake:x64-windows, vcpkg-cmake-config:x64-windows
 Architecture: x86-mingw-dynamic
 Multi-Arch: same
-Abi: e4631717bf5c850e8a92cf4304a442b2c9bd847668213e4b95faed488658ccd4
+Abi: aeca4aba4d04d4a16ef03effee4b767b491e7c7da81663e7ddb5489aab7288bd
 Description: Bloat-free Immediate Mode Graphical User interface for C++ with minimal dependencies.
 Status: install ok installed
 
@@ -27,7 +27,7 @@ Port-Version: 4
 Depends: vcpkg-cmake:x64-windows, vcpkg-cmake-config:x64-windows
 Architecture: x86-mingw-dynamic
 Multi-Arch: same
-Abi: 8c5a5812ceb227fae906f6de4bcb05f1c6096513f5b087c6a8294eaa14fe9a15
+Abi: da0adf7d2623b62d7785a6b5d4780234df5e68b047a36c6b1e1daf51e09b09c0
 Description: JsonCpp is a C++ library that allows manipulating JSON values, including serialization and deserialization to and from strings. It can also preserve existing comment in unserialization/serialization steps, making it a convenient format to store user input files.
 Status: install ok installed
 
@@ -37,7 +37,7 @@ Port-Version: 1
 Depends: vcpkg-cmake:x64-windows, vcpkg-cmake-config:x64-windows
 Architecture: x86-mingw-dynamic
 Multi-Arch: same
-Abi: 4deeb5fbd6be754b72befdb5276e48a96ca7f99200b9d55aded1d8b44af76573
+Abi: 055bb9180bd263355ab7633d5e7144fd9d78539f4e2b3d1bb925969cc95ef7dd
 Description: Simple DirectMedia Layer is a cross-platform development library designed to provide low level access to audio, keyboard, mouse, joystick, and graphics hardware via OpenGL and Direct3D.
 Status: install ok installed
 
@@ -46,7 +46,7 @@ Version: 1.3.1
 Depends: vcpkg-cmake:x64-windows
 Architecture: x86-mingw-dynamic
 Multi-Arch: same
-Abi: fd1eb9285aac7e33f5802b231995c0f7af47a03238fd7a6faf044927a6f9fd43
+Abi: d877a5de1cff942dfebde6b6a85feaadb373a4d544a1fb7500ed5c6169f2c90b
 Description: A compression library
 Status: install ok installed
 
@@ -56,7 +56,7 @@ Port-Version: 3
 Depends: vcpkg-cmake:x64-windows, vcpkg-cmake-config:x64-windows, zlib
 Architecture: x86-mingw-dynamic
 Multi-Arch: same
-Abi: 425f07d8adbfa97f6c13ed84d39c627a27b79e038d6972d233e0e643ec052e86
+Abi: 9c92a410d080418c1d38609e1c494f15863668bb25837e5bcd07b32bc74cda86
 Description: libpng is a library implementing an interface for reading and writing PNG (Portable Network Graphics) format files
 Status: install ok installed
 
@@ -66,7 +66,7 @@ Port-Version: 2
 Depends: libpng, sdl2, vcpkg-cmake:x64-windows, vcpkg-cmake-config:x64-windows
 Architecture: x86-mingw-dynamic
 Multi-Arch: same
-Abi: cd46923bdd4da97df53938ae37749d4de15b5d078f9b6f48e9df4834f491fac9
+Abi: d225732979b51b6b131a35948e710a753f7ae8791da3b0366651c60578fd7015
 Description: SDL_image is an image file loading library. It loads images as SDL surfaces and textures, and supports the following formats: BMP, GIF, JPEG, LBM, PCX, PNG, PNM, TGA, TIFF, WEBP, XCF, XPM, XV
 Status: install ok installed
 
@@ -74,15 +74,15 @@ Package: vcpkg-cmake
 Version: 2024-04-23
 Architecture: x86-mingw-dynamic
 Multi-Arch: same
-Abi: 3a7310efc8514d0beb3f5d99471c8f2898cb36eea8444c84772b4bfe0111b9dd
-Status: purge ok not-installed
+Abi: 1f35ef6e7156616e080f7c833e1471efa7870cee536f0b9de40a8e0f4a526841
+Status: install ok installed
 
 Package: vcpkg-cmake-config
 Version: 2024-05-23
 Architecture: x86-mingw-dynamic
 Multi-Arch: same
-Abi: d990c137495bbec32495fa0633d185159ad09607c4883dcf394a509727cc38ff
-Status: purge ok not-installed
+Abi: 0defdd91d0f4513481d93d18efcc11931b908282b137f33208b58f9a1f4c308a
+Status: install ok installed
 
 Package: imgui
 Feature: sdl2-binding
@@ -105,7 +105,7 @@ Version: 5.4.6
 Depends: vcpkg-cmake:x64-windows, vcpkg-cmake-config:x64-windows
 Architecture: x86-mingw-dynamic
 Multi-Arch: same
-Abi: 799e53773be0c55132f6a87b09b1eda794fa2c6136bca38175dfaf3c08f0f79a
+Abi: 6fa1ea61f30cbc11884162cc586a696959af96ae29722587dd7ca364c99f26df
 Description: A powerful, fast, lightweight, embeddable scripting language
 Status: install ok installed
 
@@ -113,7 +113,7 @@ Package: luabridge3
 Version: 3.0-rc3
 Architecture: x86-mingw-dynamic
 Multi-Arch: same
-Abi: ed7172c64a549f97d3ce3b6381852a9bd70f0d0a478b6dc55684c8876bf631e2
+Abi: 34dd7e20f8c4ecaa4e895d3eef45a4a186525e810df41653f0ffec2e04a714a7
 Description: A lightweight, dependency-free, suitable for game development library for binding Lua to C++17
 Status: install ok installed
 
@@ -123,7 +123,7 @@ Port-Version: 3
 Depends: vcpkg-cmake:x64-windows, vcpkg-cmake-config:x64-windows
 Architecture: x86-mingw-dynamic
 Multi-Arch: same
-Abi: d29258e0a613bbcf3d245485f529c5ca7430c8a8084fee6695c7c1802f0aaca9
+Abi: 7d331fd741a4910e36dd507765239e99c1a8390460e79b89bb9b2edd504a697b
 Description: CrossGuid is a minimal, cross platform, C++ GUID library.
 Status: install ok installed
 
@@ -133,7 +133,7 @@ Port-Version: 1
 Depends: vcpkg-cmake:x64-windows, vcpkg-cmake-config:x64-windows
 Architecture: x86-mingw-dynamic
 Multi-Arch: same
-Abi: 35256aaf12a530dc7284ade0eb5754b91571998a90fd09e8881899d5f3a65682
+Abi: a3871b4294901cf65238d48be6518f16df607c6f8affb12ccac2f2822ebf5e95
 Description: Header-only C++17 library provides static reflection for enums, work with any enum type without any macro or boilerplate code.
 Status: install ok installed
 
@@ -151,7 +151,7 @@ Version: 1.5.6
 Depends: vcpkg-cmake:x64-windows, vcpkg-cmake-config:x64-windows
 Architecture: x86-mingw-dynamic
 Multi-Arch: same
-Abi: 75d6e621707a10c76b5397cb347245daa314d18e22486a84001061a71d1b1ffc
+Abi: 9843ae987df8abb01426da8a42849c43ef6e71679a2ad18c8b87c0b4a20dc228
 Description: Zstandard - Fast real-time compression algorithm
 Status: install ok installed
 
@@ -160,7 +160,7 @@ Version: 1.14
 Depends: vcpkg-cmake:x64-windows, vcpkg-cmake-config:x64-windows
 Architecture: x86-mingw-dynamic
 Multi-Arch: same
-Abi: 207b3cc4bfbc2a5b4951d72871be76c72cfd4a02ca007abcc35e806b5c9d2fba
+Abi: 17ab82252991fa15810b1d292995f03a756440fb671f2efba2a92fe9ee5ff47c
 Description: Light-weight, simple and fast XML parser for C++ with XPath support
 Status: install ok installed
 
@@ -169,9 +169,9 @@ Version: 1.4.4
 Depends: pugixml, vcpkg-cmake:x64-windows, vcpkg-cmake-config:x64-windows, zlib, zstd
 Architecture: x86-mingw-dynamic
 Multi-Arch: same
-Abi: 1f5c41850860ea8d1b7e9976d4bcee6067dce8449b8f5faaa8c60beb265e91eb
+Abi: 55e2bfc50879ce0fc8b71efdc2b076241a24197828e35cac06d608d167c1e40c
 Description: A lightweight C++14 parsing library for tmx map files created with the Tiled map editor.
-Status: purge ok not-installed
+Status: install ok installed
 
 Package: vcpkg-cmake-get-vars
 Version: 2023-12-31
@@ -205,7 +205,7 @@ Port-Version: 3
 Depends: vcpkg-cmake:x64-windows, vcpkg-cmake-config:x64-windows
 Architecture: x86-mingw-dynamic
 Multi-Arch: same
-Abi: 111a60b2f408b19235c26fe1c66cfe520ca73d66c55d96a6d1748704af4998e1
+Abi: 42d947721110f32d25d22599e2fead37c0e938a7fb8b1d124677aa58f9766df4
 Description: An open source C++ engine for simulating rigid bodies in 2D
 Status: install ok installed
 

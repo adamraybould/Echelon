@@ -1,5 +1,5 @@
-#include "Engine/Core/Scripting/Prefab.h"
-#include "Engine/Core/Engine.h"
+#include "Core/Scripting/Prefab.h"
+#include "Core/Scripting/Engine.h"
 #include <magic_enum.hpp>
 
 namespace Core
@@ -58,6 +58,8 @@ namespace Core
                     std::cerr << "No valid Lua Function Found" << std::endl;
                 }
             }
+
+            return "";
         }
 
         PrefabAsset* Prefab::GetAsset(const AssetType type) const

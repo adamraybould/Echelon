@@ -5,4 +5,4 @@ Architecture: x86-mingw-dynamic
 Multi-Arch: same
 Abi: 55e2bfc50879ce0fc8b71efdc2b076241a24197828e35cac06d608d167c1e40c
 Description: A lightweight C++14 parsing library for tmx map files created with the Tiled map editor.
-Status: install ok half-installed
+Status: purge ok half-installed

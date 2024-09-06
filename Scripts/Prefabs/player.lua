@@ -1,7 +1,8 @@
 
 local assets =
 {
-	Asset("SPRITE", "Mobs/Human")
+	Asset("SPRITE", "Mobs/Human"),
+	Asset("AUDIO", "Audio/SFX.bank")
 }
 
 local function fn()
@@ -11,6 +12,7 @@ local function fn()
 	inst.entity:AddRenderer()
 	inst.entity:AddRigidbody()
 	inst.entity:AddAnimator()
+	inst.entity:AddSoundEmitter()
 
 	inst.Rigidbody:CreateDynamicBody()
 
@@ -22,6 +24,8 @@ local function fn()
 
 	inst:AddComponent("race")
 	inst.components.race:SetRace(RACES.HUMAN)
+
+	inst:AddComponent("role")
 
 	inst:AddComponent("locomotor")
 	inst:AddComponent("playercontroller")

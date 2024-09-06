@@ -1,16 +1,17 @@
-#include "Engine/Core/Application.h"
+#include "Core/Application.h"
 
-#include <config.h>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
+#include <SDL2/SDL_timer.h>
+#include <windows.h>
 
-#include "../../Include/Engine/Core/Renderer.h"
-#include "Engine/States/GameState.h"
-#include "Engine/Core/Editor/EngineGUI.h"
-#include <SDL.h>
-#include <SDL_image.h>
-#include <SDL_timer.h>
+#include "Core/IO/Renderer.h"
+#include "States/GameState.h"
+#include "Editor/EngineGUI.h"
 
 namespace Core
 {
+    using namespace Audio;
     Application* Application::m_pInstance;
 
     Application::Application()
@@ -56,12 +57,12 @@ namespace Core
         m_pScriptCore.reset();
         m_pEngine.reset();
         m_pPhysics.reset();
+        m_pAudioSystem.reset();
 
         m_pEngineGUI.reset();
         m_pAssetManager.reset();
         m_pStateSystem.reset();
         m_pInput.reset();
-        m_pInputManager.reset();
 
         m_pWindow.reset();
 
@@ -72,7 +73,6 @@ namespace Core
     void Application::HandleInput()
     {
         m_pInput.reset();
-        m_pInputManager->Reset();
 
         SDL_Event event;
         while (SDL_PollEvent(&event))
@@ -92,7 +92,7 @@ namespace Core
             }
 
             m_pInput->ProcessInput(event);
-            m_pInputManager->HandleInput(event);
+            m_pInput->ProcessMouseInput(event);
         }
     }
 
@@ -101,10 +101,10 @@ namespace Core
         m_prevTime = m_currentTime;
         m_currentTime = SDL_GetPerformanceCounter();
 
-        float deltaTime = (m_currentTime - m_prevTime) / (float)SDL_GetPerformanceFrequency();
-        int FPS = static_cast<int>(1.0f / deltaTime);
+        const float deltaTime = (m_currentTime - m_prevTime) / static_cast<float>(SDL_GetPerformanceFrequency());
+        const int FPS = static_cast<int>((1.0f / deltaTime) + 0.5f);
 
-        const int titleUpdateIntervalMs = 1000;
+        const UInt titleUpdateIntervalMs = 1000;
         UInt32 currentTitleUpdateTicks = m_currentTime;
 
         if (currentTitleUpdateTicks - m_lastTitleUpdateTicks >= titleUpdateIntervalMs * SDL_GetPerformanceFrequency() / 1000)
@@ -116,6 +116,7 @@ namespace Core
         }
 
         m_pPhysics->Update();
+        AudioSystem::Update();
 
         GetRenderer().Update(deltaTime);
         m_pEngineGUI->Update(deltaTime);
@@ -130,18 +131,10 @@ namespace Core
 
         GetRenderer().ProcessRenderQueue();
         m_pPhysics->Render(GetRenderer());
-        //m_pStateSystem->Render(GetRenderer());
-        //m_pScriptCore->Render(GetRenderer());
 
         m_pEngineGUI->RenderImGui(GetRenderer());
 
         GetRenderer().PresentScreen();
-    }
-
-    void Application::DisplayError(const char* error, const char* errorTile, bool displaySDLError)
-    {
-        std::string errorMessage = std::string(error) + (displaySDLError ? SDL_GetError() : "");
-        //MessageBoxA(NULL, errorMessage.c_str(), errorTile, MB_ICONERROR | MB_OK);
     }
 
     void Application::Initialize()
@@ -151,39 +144,30 @@ namespace Core
         m_pEngine = std::make_unique<Engine>();
 
         if (SDL_Init(SDL_INIT_VIDEO) < 0)
-        {
-            DisplayError("SDL could not Initialize! SDL_ERROR:", "SDL Error", true);
-            exit(1);
-        }
-        else
-        {
-            m_pWindow = std::make_unique<Window>();
-            if (!m_pWindow->Create("Echelon"))
-            {
-                DisplayError("Window could not be created! SDL_ERROR:", "SDL Error", true);
-                exit(1);
-            }
-        }
+            OutputError("SDL could not Initialize! SDL_ERROR:", "SDL Error", true, true);
+
+        // Only runs if SDL is initialised
+        m_pWindow = std::make_unique<Window>();
+        if (!m_pWindow->Create("Echelon"))
+            OutputError("Window could not be created! SDL_ERROR:", "SDL Error", true, true);
 
         if (IMG_Init(IMG_INIT_PNG) < 0)
-        {
-            DisplayError("SDL Image could not Initialize! SDL_ERROR:", "SDL Error", true);
-            exit(1);
-        }
+            OutputError("SDL Image could not Initialize! SDL_ERROR:", "SDL Error", true, true);
+
 
         // Initialise Systems
         m_pPhysics = std::make_unique<Physics>(GetRenderer());
 
         m_pAssetManager = std::make_unique<Graphics::AssetManager>(m_pWindow->GetRenderer());
+        m_pAudioSystem = std::make_unique<Audio::AudioSystem>();
 
         m_pInput = std::make_unique<Input>();
-        m_pInputManager = std::make_unique<InputManager>(GetRenderer().GetCamera());
 
         m_pScriptCore->InitialiseBinders();
 
         m_pStateSystem = std::make_unique<StateSystem>();
         m_pStateSystem->AddState<States::GameState>(true);
 
-        m_pEngineGUI = std::make_unique<Editor::EngineGUI>(*m_pWindow, *m_pStateSystem, *m_pInputManager);
+        m_pEngineGUI = std::make_unique<Editor::EngineGUI>(*m_pWindow, *m_pStateSystem, *m_pInput);
     }
 }

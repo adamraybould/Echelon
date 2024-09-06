@@ -3,13 +3,13 @@
   "spdxVersion": "SPDX-2.2",
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
-  "documentNamespace": "https://spdx.org/spdxdocs/sdl2-x86-mingw-dynamic-2.30.6#1-c1e67c48-1fb7-4c2d-99be-24e060cc0d1f",
-  "name": "sdl2:x86-mingw-dynamic@2.30.6#1 4deeb5fbd6be754b72befdb5276e48a96ca7f99200b9d55aded1d8b44af76573",
+  "documentNamespace": "https://spdx.org/spdxdocs/sdl2-x86-mingw-dynamic-2.30.6#1-e7cda63c-ad2a-43c3-850d-5a73b7163311",
+  "name": "sdl2:x86-mingw-dynamic@2.30.6#1 055bb9180bd263355ab7633d5e7144fd9d78539f4e2b3d1bb925969cc95ef7dd",
   "creationInfo": {
     "creators": [
       "Tool: vcpkg-2024-08-01-fd884a0d390d12783076341bd43d77c3a6a15658"
     ],
-    "created": "2024-09-03T16:22:51Z"
+    "created": "2024-09-06T12:51:36Z"
   },
   "relationships": [
     {
@@ -109,7 +109,7 @@
     {
       "name": "sdl2:x86-mingw-dynamic",
       "SPDXID": "SPDXRef-binary",
-      "versionInfo": "4deeb5fbd6be754b72befdb5276e48a96ca7f99200b9d55aded1d8b44af76573",
+      "versionInfo": "055bb9180bd263355ab7633d5e7144fd9d78539f4e2b3d1bb925969cc95ef7dd",
       "downloadLocation": "NONE",
       "licenseConcluded": "Zlib",
       "licenseDeclared": "NOASSERTION",

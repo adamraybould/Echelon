@@ -1,14 +1,12 @@
-#include "Engine/Graphics/Sprite.h"
+#include "Graphics/Sprite.h"
 
-namespace Core::Graphics
+namespace Core
 {
-    Sprite::Sprite(SDL_Texture* texture) : Texture2D(texture)
+    namespace Graphics
     {
-        m_origin = Vector2::Zero();
-    }
-
-    void Sprite::SetOrigin(const Vector2 origin)
-    {
-        m_origin = origin;
+        Sprite::Sprite(SDL_Texture* texture) : Texture2D(texture)
+        {
+            m_origin = Vector2F::Zero();
+        }
     }
 }

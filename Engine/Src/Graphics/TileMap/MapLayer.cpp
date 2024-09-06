@@ -1,13 +1,11 @@
-#include "Engine/Graphics/TileMap/MapLayer.h"
+#include "Graphics/TileMap/MapLayer.h"
 
-#include <SDL_rect.h>
-#include <SDL_render.h>
 #include <tmxlite/Map.hpp>
 #include <tmxlite/TileLayer.hpp>
-#include "Engine/Graphics/Texture2D.h"
-#include "Engine/Core/Renderer.h"
-#include "Engine/Graphics/TileMap/Tile.h"
-#include "Engine/Graphics/TileMap/TileMap.h"
+#include "Core/IO/Renderer.h"
+#include "Graphics/TileMap/Tile.h"
+#include "Graphics/TileMap/TileMap.h"
+#include "Core/Constants.h"
 
 namespace Core
 {
@@ -15,8 +13,8 @@ namespace Core
     {
         MapLayer::MapLayer(const tmx::Map& map, const Array<TilesetTexture>& tilesets, tmx::Layer& layer) : m_map(map), m_tilesets(tilesets), m_layer(layer)
         {
-            m_mapSize = Vector2(map.getTileCount().x, map.getTileCount().y);
-            m_tileSize = Vector2(map.getTileSize().x, map.getTileSize().y);
+            m_mapSize = Vector2U(map.getTileCount().x, map.getTileCount().y);
+            m_tileSize = Vector2U(map.getTileSize().x, map.getTileSize().y);
 
             Create();
 
@@ -65,22 +63,22 @@ namespace Core
                     if (tileID >= firstGID && tileID <= lastGID)
                     {
                         UInt id = tileID - firstGID;
-                        Vector2 tilePos = GetTilePosition(i);
+                        Vector2U tilePos = GetTilePosition(i);
 
-                        m_tiles[firstGID].push_back(std::make_unique<Tile>(id, tilePos, Vector2(m_tileSize.X, m_tileSize.Y), tileset.Texture));
+                        m_tiles[firstGID].push_back(std::make_unique<Tile>(id, tilePos, Vector2F(m_tileSize.X, m_tileSize.Y), tileset.Texture));
                     }
                 }
             }
         }
 
-        Vector2 MapLayer::GetTilePosition(const UInt index) const
+        Vector2U MapLayer::GetTilePosition(const UInt index) const
         {
             float col = index % static_cast<int>(m_mapSize.X);
             float row = index / static_cast<int>(m_mapSize.X);
-            int destX = static_cast<int>((col * m_tileSize.X) * TILE_SCALE);
-            int destY = static_cast<int>((row * m_tileSize.Y) * TILE_SCALE);
+            UInt destX = static_cast<UInt>((col * m_tileSize.X) * TILE_SCALE);
+            UInt destY = static_cast<UInt>((row * m_tileSize.Y) * TILE_SCALE);
 
-            return Vector2(destX, destY);
+            return { destX, destY };
         }
     }
 }
