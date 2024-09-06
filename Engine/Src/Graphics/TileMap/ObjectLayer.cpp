@@ -1,15 +1,14 @@
-#include "Engine/Graphics/TileMap/ObjectLayer.h"
+#include "Graphics/TileMap/ObjectLayer.h"
 
 #include <tmxlite/Map.hpp>
 #include <tmxlite/TileLayer.hpp>
 #include <tmxlite/Object.hpp>
 #include <tmxlite/ObjectGroup.hpp>
 
-#include "Engine/Core/Engine.h"
-#include "Engine/Core/Physics.h"
-#include "Engine/Core/ECS/Entity.h"
-#include "Engine/Core/Systems/EntityManager.h"
-#include "Engine/Utility/Constants.h"
+#include "Core/Scripting/Engine.h"
+#include "Core/Physics.h"
+#include "Systems/EntityManager.h"
+#include "Core/Constants.h"
 
 Core::Graphics::ObjectLayer::ObjectLayer(const tmx::Map& map, tmx::Layer& layer) : m_map(map), m_layer(layer)
 {

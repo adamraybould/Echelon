@@ -84,26 +84,26 @@ build Engine/CMakeFiles/Engine.dir/Src/Core/Application.cpp.obj: CXX_COMPILER__E
   OBJECT_DIR = Engine\CMakeFiles\Engine.dir
   OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Core
 
-build Engine/CMakeFiles/Engine.dir/Src/Core/Window.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Core/Window.cpp || cmake_object_order_depends_target_Engine
-  DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Core\Window.cpp.obj.d
+build Engine/CMakeFiles/Engine.dir/Src/Core/IO/Window.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Core/IO/Window.cpp || cmake_object_order_depends_target_Engine
+  DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Core\IO\Window.cpp.obj.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -I"D:/Game Projects/C++/Echelon/FMOD/core/inc" -I"D:/Game Projects/C++/Echelon/FMOD/studio/inc" -I"D:/Game Projects/C++/Echelon/cmake-build-debug" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include/SDL2"
+  OBJECT_DIR = Engine\CMakeFiles\Engine.dir
+  OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Core\IO
+
+build Engine/CMakeFiles/Engine.dir/Src/Core/IProgram.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Core/IProgram.cpp || cmake_object_order_depends_target_Engine
+  DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Core\IProgram.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -I"D:/Game Projects/C++/Echelon/FMOD/core/inc" -I"D:/Game Projects/C++/Echelon/FMOD/studio/inc" -I"D:/Game Projects/C++/Echelon/cmake-build-debug" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include/SDL2"
   OBJECT_DIR = Engine\CMakeFiles\Engine.dir
   OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Core
 
-build Engine/CMakeFiles/Engine.dir/Src/Core/Interfaces/IProgram.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Core/Interfaces/IProgram.cpp || cmake_object_order_depends_target_Engine
-  DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Core\Interfaces\IProgram.cpp.obj.d
+build Engine/CMakeFiles/Engine.dir/Src/Systems/StateSystem.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Systems/StateSystem.cpp || cmake_object_order_depends_target_Engine
+  DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Systems\StateSystem.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -I"D:/Game Projects/C++/Echelon/FMOD/core/inc" -I"D:/Game Projects/C++/Echelon/FMOD/studio/inc" -I"D:/Game Projects/C++/Echelon/cmake-build-debug" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include/SDL2"
   OBJECT_DIR = Engine\CMakeFiles\Engine.dir
-  OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Core\Interfaces
-
-build Engine/CMakeFiles/Engine.dir/Src/Core/Systems/StateSystem.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Core/Systems/StateSystem.cpp || cmake_object_order_depends_target_Engine
-  DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Core\Systems\StateSystem.cpp.obj.d
-  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -I"D:/Game Projects/C++/Echelon/FMOD/core/inc" -I"D:/Game Projects/C++/Echelon/FMOD/studio/inc" -I"D:/Game Projects/C++/Echelon/cmake-build-debug" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include/SDL2"
-  OBJECT_DIR = Engine\CMakeFiles\Engine.dir
-  OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Core\Systems
+  OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Systems
 
 build Engine/CMakeFiles/Engine.dir/Src/States/GameState.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/States/GameState.cpp || cmake_object_order_depends_target_Engine
   DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\States\GameState.cpp.obj.d
@@ -112,19 +112,19 @@ build Engine/CMakeFiles/Engine.dir/Src/States/GameState.cpp.obj: CXX_COMPILER__E
   OBJECT_DIR = Engine\CMakeFiles\Engine.dir
   OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\States
 
-build Engine/CMakeFiles/Engine.dir/Src/Core/ECS/Entity.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Core/ECS/Entity.cpp || cmake_object_order_depends_target_Engine
-  DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Core\ECS\Entity.cpp.obj.d
+build Engine/CMakeFiles/Engine.dir/Src/Scene/Entities/Entity.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Scene/Entities/Entity.cpp || cmake_object_order_depends_target_Engine
+  DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Scene\Entities\Entity.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -I"D:/Game Projects/C++/Echelon/FMOD/core/inc" -I"D:/Game Projects/C++/Echelon/FMOD/studio/inc" -I"D:/Game Projects/C++/Echelon/cmake-build-debug" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include/SDL2"
   OBJECT_DIR = Engine\CMakeFiles\Engine.dir
-  OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Core\ECS
+  OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Scene\Entities
 
-build Engine/CMakeFiles/Engine.dir/Src/Core/ECS/Components/Component.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Core/ECS/Components/Component.cpp || cmake_object_order_depends_target_Engine
-  DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Core\ECS\Components\Component.cpp.obj.d
+build Engine/CMakeFiles/Engine.dir/Src/Scene/Entities/Components/Component.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Scene/Entities/Components/Component.cpp || cmake_object_order_depends_target_Engine
+  DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Scene\Entities\Components\Component.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -I"D:/Game Projects/C++/Echelon/FMOD/core/inc" -I"D:/Game Projects/C++/Echelon/FMOD/studio/inc" -I"D:/Game Projects/C++/Echelon/cmake-build-debug" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include/SDL2"
   OBJECT_DIR = Engine\CMakeFiles\Engine.dir
-  OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Core\ECS\Components
+  OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Scene\Entities\Components
 
 build Engine/CMakeFiles/Engine.dir/Src/Graphics/Texture2D.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Graphics/Texture2D.cpp || cmake_object_order_depends_target_Engine
   DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Graphics\Texture2D.cpp.obj.d
@@ -133,19 +133,19 @@ build Engine/CMakeFiles/Engine.dir/Src/Graphics/Texture2D.cpp.obj: CXX_COMPILER_
   OBJECT_DIR = Engine\CMakeFiles\Engine.dir
   OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Graphics
 
-build Engine/CMakeFiles/Engine.dir/Src/Graphics/AssetManager.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Graphics/AssetManager.cpp || cmake_object_order_depends_target_Engine
-  DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Graphics\AssetManager.cpp.obj.d
+build Engine/CMakeFiles/Engine.dir/Src/Core/AssetManager.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Core/AssetManager.cpp || cmake_object_order_depends_target_Engine
+  DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Core\AssetManager.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -I"D:/Game Projects/C++/Echelon/FMOD/core/inc" -I"D:/Game Projects/C++/Echelon/FMOD/studio/inc" -I"D:/Game Projects/C++/Echelon/cmake-build-debug" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include/SDL2"
   OBJECT_DIR = Engine\CMakeFiles\Engine.dir
-  OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Graphics
+  OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Core
 
-build Engine/CMakeFiles/Engine.dir/Src/Core/ECS/Components/SpriteRenderer.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Core/ECS/Components/SpriteRenderer.cpp || cmake_object_order_depends_target_Engine
-  DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Core\ECS\Components\SpriteRenderer.cpp.obj.d
+build Engine/CMakeFiles/Engine.dir/Src/Scene/Entities/Components/SpriteRenderer.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Scene/Entities/Components/SpriteRenderer.cpp || cmake_object_order_depends_target_Engine
+  DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Scene\Entities\Components\SpriteRenderer.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -I"D:/Game Projects/C++/Echelon/FMOD/core/inc" -I"D:/Game Projects/C++/Echelon/FMOD/studio/inc" -I"D:/Game Projects/C++/Echelon/cmake-build-debug" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include/SDL2"
   OBJECT_DIR = Engine\CMakeFiles\Engine.dir
-  OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Core\ECS\Components
+  OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Scene\Entities\Components
 
 build Engine/CMakeFiles/Engine.dir/Src/Graphics/Sprite.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Graphics/Sprite.cpp || cmake_object_order_depends_target_Engine
   DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Graphics\Sprite.cpp.obj.d
@@ -161,19 +161,19 @@ build Engine/CMakeFiles/Engine.dir/Src/States/Level.cpp.obj: CXX_COMPILER__Engin
   OBJECT_DIR = Engine\CMakeFiles\Engine.dir
   OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\States
 
-build Engine/CMakeFiles/Engine.dir/Src/Core/Systems/LevelManager.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Core/Systems/LevelManager.cpp || cmake_object_order_depends_target_Engine
-  DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Core\Systems\LevelManager.cpp.obj.d
+build Engine/CMakeFiles/Engine.dir/Src/Systems/LevelManager.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Systems/LevelManager.cpp || cmake_object_order_depends_target_Engine
+  DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Systems\LevelManager.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -I"D:/Game Projects/C++/Echelon/FMOD/core/inc" -I"D:/Game Projects/C++/Echelon/FMOD/studio/inc" -I"D:/Game Projects/C++/Echelon/cmake-build-debug" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include/SDL2"
   OBJECT_DIR = Engine\CMakeFiles\Engine.dir
-  OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Core\Systems
+  OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Systems
 
-build Engine/CMakeFiles/Engine.dir/Src/Core/Systems/EntityManager.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Core/Systems/EntityManager.cpp || cmake_object_order_depends_target_Engine
-  DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Core\Systems\EntityManager.cpp.obj.d
+build Engine/CMakeFiles/Engine.dir/Src/Systems/EntityManager.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Systems/EntityManager.cpp || cmake_object_order_depends_target_Engine
+  DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Systems\EntityManager.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -I"D:/Game Projects/C++/Echelon/FMOD/core/inc" -I"D:/Game Projects/C++/Echelon/FMOD/studio/inc" -I"D:/Game Projects/C++/Echelon/cmake-build-debug" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include/SDL2"
   OBJECT_DIR = Engine\CMakeFiles\Engine.dir
-  OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Core\Systems
+  OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Systems
 
 build Engine/CMakeFiles/Engine.dir/Src/Graphics/SpriteSheet.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Graphics/SpriteSheet.cpp || cmake_object_order_depends_target_Engine
   DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Graphics\SpriteSheet.cpp.obj.d
@@ -189,33 +189,33 @@ build Engine/CMakeFiles/Engine.dir/Src/Core/Camera.cpp.obj: CXX_COMPILER__Engine
   OBJECT_DIR = Engine\CMakeFiles\Engine.dir
   OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Core
 
-build Engine/CMakeFiles/Engine.dir/Src/Core/Renderer.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Core/Renderer.cpp || cmake_object_order_depends_target_Engine
-  DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Core\Renderer.cpp.obj.d
+build Engine/CMakeFiles/Engine.dir/Src/Core/IO/Renderer.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Core/IO/Renderer.cpp || cmake_object_order_depends_target_Engine
+  DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Core\IO\Renderer.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -I"D:/Game Projects/C++/Echelon/FMOD/core/inc" -I"D:/Game Projects/C++/Echelon/FMOD/studio/inc" -I"D:/Game Projects/C++/Echelon/cmake-build-debug" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include/SDL2"
   OBJECT_DIR = Engine\CMakeFiles\Engine.dir
-  OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Core
+  OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Core\IO
 
-build Engine/CMakeFiles/Engine.dir/Src/Core/ECS/Components/Transform.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Core/ECS/Components/Transform.cpp || cmake_object_order_depends_target_Engine
-  DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Core\ECS\Components\Transform.cpp.obj.d
+build Engine/CMakeFiles/Engine.dir/Src/Scene/Entities/Components/Transform.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Scene/Entities/Components/Transform.cpp || cmake_object_order_depends_target_Engine
+  DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Scene\Entities\Components\Transform.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -I"D:/Game Projects/C++/Echelon/FMOD/core/inc" -I"D:/Game Projects/C++/Echelon/FMOD/studio/inc" -I"D:/Game Projects/C++/Echelon/cmake-build-debug" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include/SDL2"
   OBJECT_DIR = Engine\CMakeFiles\Engine.dir
-  OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Core\ECS\Components
+  OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Scene\Entities\Components
 
-build Engine/CMakeFiles/Engine.dir/Src/Core/Editor/EngineGUI.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Core/Editor/EngineGUI.cpp || cmake_object_order_depends_target_Engine
-  DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Core\Editor\EngineGUI.cpp.obj.d
+build Engine/CMakeFiles/Engine.dir/Src/Editor/EngineGUI.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Editor/EngineGUI.cpp || cmake_object_order_depends_target_Engine
+  DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Editor\EngineGUI.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -I"D:/Game Projects/C++/Echelon/FMOD/core/inc" -I"D:/Game Projects/C++/Echelon/FMOD/studio/inc" -I"D:/Game Projects/C++/Echelon/cmake-build-debug" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include/SDL2"
   OBJECT_DIR = Engine\CMakeFiles\Engine.dir
-  OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Core\Editor
+  OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Editor
 
-build Engine/CMakeFiles/Engine.dir/Src/Core/Editor/Windows/GUIWindow_EntityInfo.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Core/Editor/Windows/GUIWindow_EntityInfo.cpp || cmake_object_order_depends_target_Engine
-  DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Core\Editor\Windows\GUIWindow_EntityInfo.cpp.obj.d
+build Engine/CMakeFiles/Engine.dir/Src/Editor/Windows/GUIWindow_EntityInfo.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Editor/Windows/GUIWindow_EntityInfo.cpp || cmake_object_order_depends_target_Engine
+  DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Editor\Windows\GUIWindow_EntityInfo.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -I"D:/Game Projects/C++/Echelon/FMOD/core/inc" -I"D:/Game Projects/C++/Echelon/FMOD/studio/inc" -I"D:/Game Projects/C++/Echelon/cmake-build-debug" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include/SDL2"
   OBJECT_DIR = Engine\CMakeFiles\Engine.dir
-  OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Core\Editor\Windows
+  OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Editor\Windows
 
 build Engine/CMakeFiles/Engine.dir/Src/Core/Scripting/ScriptCore.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Core/Scripting/ScriptCore.cpp || cmake_object_order_depends_target_Engine
   DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Core\Scripting\ScriptCore.cpp.obj.d
@@ -238,19 +238,19 @@ build Engine/CMakeFiles/Engine.dir/Src/Core/Scripting/Prefab.cpp.obj: CXX_COMPIL
   OBJECT_DIR = Engine\CMakeFiles\Engine.dir
   OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Core\Scripting
 
-build Engine/CMakeFiles/Engine.dir/Src/Core/Engine.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Core/Engine.cpp || cmake_object_order_depends_target_Engine
-  DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Core\Engine.cpp.obj.d
+build Engine/CMakeFiles/Engine.dir/Src/Core/Scripting/Engine.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Core/Scripting/Engine.cpp || cmake_object_order_depends_target_Engine
+  DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Core\Scripting\Engine.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -I"D:/Game Projects/C++/Echelon/FMOD/core/inc" -I"D:/Game Projects/C++/Echelon/FMOD/studio/inc" -I"D:/Game Projects/C++/Echelon/cmake-build-debug" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include/SDL2"
   OBJECT_DIR = Engine\CMakeFiles\Engine.dir
-  OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Core
+  OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Core\Scripting
 
-build Engine/CMakeFiles/Engine.dir/Src/Core/Input.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Core/Input.cpp || cmake_object_order_depends_target_Engine
-  DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Core\Input.cpp.obj.d
+build Engine/CMakeFiles/Engine.dir/Src/Core/IO/Input.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Core/IO/Input.cpp || cmake_object_order_depends_target_Engine
+  DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Core\IO\Input.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -I"D:/Game Projects/C++/Echelon/FMOD/core/inc" -I"D:/Game Projects/C++/Echelon/FMOD/studio/inc" -I"D:/Game Projects/C++/Echelon/cmake-build-debug" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include/SDL2"
   OBJECT_DIR = Engine\CMakeFiles\Engine.dir
-  OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Core
+  OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Core\IO
 
 build Engine/CMakeFiles/Engine.dir/Src/Graphics/TileMap/TileMap.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Graphics/TileMap/TileMap.cpp || cmake_object_order_depends_target_Engine
   DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Graphics\TileMap\TileMap.cpp.obj.d
@@ -266,12 +266,12 @@ build Engine/CMakeFiles/Engine.dir/Src/Graphics/TileMap/MapLayer.cpp.obj: CXX_CO
   OBJECT_DIR = Engine\CMakeFiles\Engine.dir
   OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Graphics\TileMap
 
-build Engine/CMakeFiles/Engine.dir/Src/Core/ECS/Components/Rigidbody.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Core/ECS/Components/Rigidbody.cpp || cmake_object_order_depends_target_Engine
-  DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Core\ECS\Components\Rigidbody.cpp.obj.d
+build Engine/CMakeFiles/Engine.dir/Src/Scene/Entities/Components/Rigidbody.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Scene/Entities/Components/Rigidbody.cpp || cmake_object_order_depends_target_Engine
+  DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Scene\Entities\Components\Rigidbody.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -I"D:/Game Projects/C++/Echelon/FMOD/core/inc" -I"D:/Game Projects/C++/Echelon/FMOD/studio/inc" -I"D:/Game Projects/C++/Echelon/cmake-build-debug" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include/SDL2"
   OBJECT_DIR = Engine\CMakeFiles\Engine.dir
-  OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Core\ECS\Components
+  OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Scene\Entities\Components
 
 build Engine/CMakeFiles/Engine.dir/Src/Core/Physics.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Core/Physics.cpp || cmake_object_order_depends_target_Engine
   DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Core\Physics.cpp.obj.d
@@ -287,26 +287,26 @@ build Engine/CMakeFiles/Engine.dir/Src/Graphics/TileMap/ObjectLayer.cpp.obj: CXX
   OBJECT_DIR = Engine\CMakeFiles\Engine.dir
   OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Graphics\TileMap
 
-build Engine/CMakeFiles/Engine.dir/Src/Utility/DebugDraw.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Utility/DebugDraw.cpp || cmake_object_order_depends_target_Engine
-  DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Utility\DebugDraw.cpp.obj.d
+build Engine/CMakeFiles/Engine.dir/Src/Debugging/DebugDraw.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Debugging/DebugDraw.cpp || cmake_object_order_depends_target_Engine
+  DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Debugging\DebugDraw.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -I"D:/Game Projects/C++/Echelon/FMOD/core/inc" -I"D:/Game Projects/C++/Echelon/FMOD/studio/inc" -I"D:/Game Projects/C++/Echelon/cmake-build-debug" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include/SDL2"
   OBJECT_DIR = Engine\CMakeFiles\Engine.dir
-  OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Utility
+  OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Debugging
 
-build Engine/CMakeFiles/Engine.dir/Src/Core/ECS/Components/Animator.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Core/ECS/Components/Animator.cpp || cmake_object_order_depends_target_Engine
-  DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Core\ECS\Components\Animator.cpp.obj.d
+build Engine/CMakeFiles/Engine.dir/Src/Scene/Entities/Components/Animator.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Scene/Entities/Components/Animator.cpp || cmake_object_order_depends_target_Engine
+  DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Scene\Entities\Components\Animator.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -I"D:/Game Projects/C++/Echelon/FMOD/core/inc" -I"D:/Game Projects/C++/Echelon/FMOD/studio/inc" -I"D:/Game Projects/C++/Echelon/cmake-build-debug" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include/SDL2"
   OBJECT_DIR = Engine\CMakeFiles\Engine.dir
-  OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Core\ECS\Components
+  OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Scene\Entities\Components
 
-build Engine/CMakeFiles/Engine.dir/Src/Core/Editor/GUIWindow.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Core/Editor/GUIWindow.cpp || cmake_object_order_depends_target_Engine
-  DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Core\Editor\GUIWindow.cpp.obj.d
+build Engine/CMakeFiles/Engine.dir/Src/Editor/GUIWindow.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Editor/GUIWindow.cpp || cmake_object_order_depends_target_Engine
+  DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Editor\GUIWindow.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -I"D:/Game Projects/C++/Echelon/FMOD/core/inc" -I"D:/Game Projects/C++/Echelon/FMOD/studio/inc" -I"D:/Game Projects/C++/Echelon/cmake-build-debug" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include/SDL2"
   OBJECT_DIR = Engine\CMakeFiles\Engine.dir
-  OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Core\Editor
+  OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Editor
 
 build Engine/CMakeFiles/Engine.dir/Src/Graphics/TileMap/Tile.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Graphics/TileMap/Tile.cpp || cmake_object_order_depends_target_Engine
   DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Graphics\TileMap\Tile.cpp.obj.d
@@ -315,33 +315,33 @@ build Engine/CMakeFiles/Engine.dir/Src/Graphics/TileMap/Tile.cpp.obj: CXX_COMPIL
   OBJECT_DIR = Engine\CMakeFiles\Engine.dir
   OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Graphics\TileMap
 
-build Engine/CMakeFiles/Engine.dir/Src/Audio/AudioSystem.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Audio/AudioSystem.cpp || cmake_object_order_depends_target_Engine
-  DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Audio\AudioSystem.cpp.obj.d
+build Engine/CMakeFiles/Engine.dir/Src/Core/Audio/AudioSystem.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Core/Audio/AudioSystem.cpp || cmake_object_order_depends_target_Engine
+  DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Core\Audio\AudioSystem.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -I"D:/Game Projects/C++/Echelon/FMOD/core/inc" -I"D:/Game Projects/C++/Echelon/FMOD/studio/inc" -I"D:/Game Projects/C++/Echelon/cmake-build-debug" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include/SDL2"
   OBJECT_DIR = Engine\CMakeFiles\Engine.dir
-  OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Audio
+  OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Core\Audio
 
-build Engine/CMakeFiles/Engine.dir/Src/Core/ECS/Components/SoundEmitter.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Core/ECS/Components/SoundEmitter.cpp || cmake_object_order_depends_target_Engine
-  DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Core\ECS\Components\SoundEmitter.cpp.obj.d
+build Engine/CMakeFiles/Engine.dir/Src/Scene/Entities/Components/SoundEmitter.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Scene/Entities/Components/SoundEmitter.cpp || cmake_object_order_depends_target_Engine
+  DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Scene\Entities\Components\SoundEmitter.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -I"D:/Game Projects/C++/Echelon/FMOD/core/inc" -I"D:/Game Projects/C++/Echelon/FMOD/studio/inc" -I"D:/Game Projects/C++/Echelon/cmake-build-debug" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include/SDL2"
   OBJECT_DIR = Engine\CMakeFiles\Engine.dir
-  OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Core\ECS\Components
+  OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Scene\Entities\Components
 
-build Engine/CMakeFiles/Engine.dir/Src/Audio/AudioBank.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Audio/AudioBank.cpp || cmake_object_order_depends_target_Engine
-  DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Audio\AudioBank.cpp.obj.d
+build Engine/CMakeFiles/Engine.dir/Src/Core/Audio/AudioBank.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Core/Audio/AudioBank.cpp || cmake_object_order_depends_target_Engine
+  DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Core\Audio\AudioBank.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -I"D:/Game Projects/C++/Echelon/FMOD/core/inc" -I"D:/Game Projects/C++/Echelon/FMOD/studio/inc" -I"D:/Game Projects/C++/Echelon/cmake-build-debug" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include/SDL2"
   OBJECT_DIR = Engine\CMakeFiles\Engine.dir
-  OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Audio
+  OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Core\Audio
 
-build Engine/CMakeFiles/Engine.dir/Src/Audio/AudioEvent.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Audio/AudioEvent.cpp || cmake_object_order_depends_target_Engine
-  DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Audio\AudioEvent.cpp.obj.d
+build Engine/CMakeFiles/Engine.dir/Src/Core/Audio/AudioEvent.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Core/Audio/AudioEvent.cpp || cmake_object_order_depends_target_Engine
+  DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Core\Audio\AudioEvent.cpp.obj.d
   FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
   INCLUDES = -I"D:/Game Projects/C++/Echelon/Engine/Include" -I"D:/Game Projects/C++/Echelon/FMOD/core/inc" -I"D:/Game Projects/C++/Echelon/FMOD/studio/inc" -I"D:/Game Projects/C++/Echelon/cmake-build-debug" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include" -isystem "D:/Game Projects/C++/Echelon/cmake-build-debug/vcpkg_installed/x86-mingw-dynamic/include/SDL2"
   OBJECT_DIR = Engine\CMakeFiles\Engine.dir
-  OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Audio
+  OBJECT_FILE_DIR = Engine\CMakeFiles\Engine.dir\Src\Core\Audio
 
 build Engine/CMakeFiles/Engine.dir/Src/Core/System.cpp.obj: CXX_COMPILER__Engine_unscanned_Debug D$:/Game$ Projects/C++/Echelon/Engine/Src/Core/System.cpp || cmake_object_order_depends_target_Engine
   DEP_FILE = Engine\CMakeFiles\Engine.dir\Src\Core\System.cpp.obj.d
@@ -358,7 +358,7 @@ build Engine/CMakeFiles/Engine.dir/Src/Core/System.cpp.obj: CXX_COMPILER__Engine
 #############################################
 # Link the static library Engine\libEngine.a
 
-build Engine/libEngine.a: CXX_STATIC_LIBRARY_LINKER__Engine_Debug Engine/CMakeFiles/Engine.dir/Src/Core/Application.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Core/Window.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Core/Interfaces/IProgram.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Core/Systems/StateSystem.cpp.obj Engine/CMakeFiles/Engine.dir/Src/States/GameState.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Core/ECS/Entity.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Core/ECS/Components/Component.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Graphics/Texture2D.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Graphics/AssetManager.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Core/ECS/Components/SpriteRenderer.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Graphics/Sprite.cpp.obj Engine/CMakeFiles/Engine.dir/Src/States/Level.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Core/Systems/LevelManager.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Core/Systems/EntityManager.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Graphics/SpriteSheet.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Core/Camera.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Core/Renderer.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Core/ECS/Components/Transform.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Core/Editor/EngineGUI.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Core/Editor/Windows/GUIWindow_EntityInfo.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Core/Scripting/ScriptCore.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Core/Scripting/IBinder.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Core/Scripting/Prefab.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Core/Engine.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Core/Input.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Graphics/TileMap/TileMap.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Graphics/TileMap/MapLayer.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Core/ECS/Components/Rigidbody.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Core/Physics.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Graphics/TileMap/ObjectLayer.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Utility/DebugDraw.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Core/ECS/Components/Animator.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Core/Editor/GUIWindow.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Graphics/TileMap/Tile.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Audio/AudioSystem.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Core/ECS/Components/SoundEmitter.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Audio/AudioBank.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Audio/AudioEvent.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Core/System.cpp.obj
+build Engine/libEngine.a: CXX_STATIC_LIBRARY_LINKER__Engine_Debug Engine/CMakeFiles/Engine.dir/Src/Core/Application.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Core/IO/Window.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Core/IProgram.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Systems/StateSystem.cpp.obj Engine/CMakeFiles/Engine.dir/Src/States/GameState.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Scene/Entities/Entity.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Scene/Entities/Components/Component.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Graphics/Texture2D.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Core/AssetManager.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Scene/Entities/Components/SpriteRenderer.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Graphics/Sprite.cpp.obj Engine/CMakeFiles/Engine.dir/Src/States/Level.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Systems/LevelManager.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Systems/EntityManager.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Graphics/SpriteSheet.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Core/Camera.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Core/IO/Renderer.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Scene/Entities/Components/Transform.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Editor/EngineGUI.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Editor/Windows/GUIWindow_EntityInfo.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Core/Scripting/ScriptCore.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Core/Scripting/IBinder.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Core/Scripting/Prefab.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Core/Scripting/Engine.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Core/IO/Input.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Graphics/TileMap/TileMap.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Graphics/TileMap/MapLayer.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Scene/Entities/Components/Rigidbody.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Core/Physics.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Graphics/TileMap/ObjectLayer.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Debugging/DebugDraw.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Scene/Entities/Components/Animator.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Editor/GUIWindow.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Graphics/TileMap/Tile.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Core/Audio/AudioSystem.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Scene/Entities/Components/SoundEmitter.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Core/Audio/AudioBank.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Core/Audio/AudioEvent.cpp.obj Engine/CMakeFiles/Engine.dir/Src/Core/System.cpp.obj
   LANGUAGE_COMPILE_FLAGS = -g
   OBJECT_DIR = Engine\CMakeFiles\Engine.dir
   POST_BUILD = cd .

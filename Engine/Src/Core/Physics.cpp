@@ -1,7 +1,7 @@
-#include "Engine/Core/Physics.h"
+#include "Core/Physics.h"
 
-#include "Engine/Utility/Constants.h"
-#include "Engine/Utility/DebugDraw.h"
+#include "Core/Constants.h"
+#include "Debugging/DebugDraw.h"
 
 namespace Core
 {

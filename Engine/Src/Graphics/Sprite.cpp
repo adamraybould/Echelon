@@ -1,4 +1,4 @@
-#include "Engine/Graphics/Sprite.h"
+#include "Graphics/Sprite.h"
 
 namespace Core
 {

@@ -1,13 +1,13 @@
-#include "Engine/Graphics/TileMap/TileMap.h"
+#include "Graphics/TileMap/TileMap.h"
 
 #include <config.h>
 #include <iostream>
 #include <tmxlite/Map.hpp>
-#include "Engine/Core/Renderer.h"
-#include "Engine/Graphics/AssetManager.h"
-#include "Engine/Graphics/TileMap/MapLayer.h"
-#include "Engine/Utility/Constants.h"
-#include "Engine/Utility/Utility.h"
+#include "Core/IO/Renderer.h"
+#include "Core/AssetManager.h"
+#include "Graphics/TileMap/MapLayer.h"
+#include "Core/Constants.h"
+#include "Core/Utility.h"
 
 namespace Core
 {

@@ -1,7 +1,8 @@
-#include "Engine/Core/Scripting/ScriptCore.h"
-#include "Engine/Core/Scripting/IBinder.h"
-#include "Engine/Core/Maths/Vector2.h"
-#include "Engine/Core/Maths/Rectangle.h"
+#include "Core/Scripting/ScriptCore.h"
+#include "Core/Scripting/IBinder.h"
+#include "Core/Maths/Rectangle.h"
+#include "Core/Maths/Vector2.h"
+
 #include "config.h"
 #include <iostream>
 #include <filesystem>

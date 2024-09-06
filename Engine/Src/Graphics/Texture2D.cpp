@@ -1,4 +1,4 @@
-#include "Engine/Graphics/Texture2D.h"
+#include "Graphics/Texture2D.h"
 
 #include <SDL2/SDL_render.h>
 

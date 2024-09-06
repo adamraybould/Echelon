@@ -1,10 +1,10 @@
-#include "Engine/Graphics/TileMap/Tile.h"
+#include "Graphics/TileMap/Tile.h"
 
 #include <SDL_rect.h>
 #include <SDL_render.h>
-#include "Engine/Core/Camera.h"
-#include "Engine/Core/Renderer.h"
-#include "Engine/Utility/Constants.h"
+#include "Core/Camera.h"
+#include "Core/IO/Renderer.h"
+#include "Core/Constants.h"
 
 namespace Core
 {

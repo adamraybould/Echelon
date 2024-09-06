@@ -1,5 +1,4 @@
-#include "Engine/Core/Scripting/IBinder.h"
-#include "Engine/Core/Scripting/ScriptCore.h"
+#include "Core/Scripting/IBinder.h"
 
 namespace Core
 {

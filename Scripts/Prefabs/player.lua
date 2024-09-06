@@ -25,6 +25,8 @@ local function fn()
 	inst:AddComponent("race")
 	inst.components.race:SetRace(RACES.HUMAN)
 
+	inst:AddComponent("role")
+
 	inst:AddComponent("locomotor")
 	inst:AddComponent("playercontroller")
 

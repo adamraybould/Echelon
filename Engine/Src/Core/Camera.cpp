@@ -1,8 +1,8 @@
-#include "Engine/Core/Camera.h"
+#include "Core/Camera.h"
 
-#include "Engine/Core/Input.h"
-#include "Engine/Utility/Constants.h"
-#include "Engine/Utility/MathF.h"
+#include "Core/IO/Input.h"
+#include "Core/Constants.h"
+#include "Core//Maths/MathF.h"
 
 namespace Core
 {

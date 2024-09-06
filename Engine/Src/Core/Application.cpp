@@ -1,13 +1,13 @@
-#include "Engine/Core/Application.h"
+#include "Core/Application.h"
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_timer.h>
 #include <windows.h>
 
-#include "Engine/Core/Renderer.h"
-#include "Engine/States/GameState.h"
-#include "Engine/Core/Editor/EngineGUI.h"
+#include "Core/IO/Renderer.h"
+#include "States/GameState.h"
+#include "Editor/EngineGUI.h"
 
 namespace Core
 {

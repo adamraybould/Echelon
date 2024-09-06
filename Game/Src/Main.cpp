@@ -1,10 +1,10 @@
 #include <iostream>
 
 #include <SDL2/SDL.h>
-#include <Engine/Core/Interfaces/IProgram.h>
-#include "Engine/Core/Application.h"
-#include "Engine/Core/Systems/LevelManager.h"
-#include "Engine/States/GameState.h"
+#include <Core/IProgram.h>
+#include "Core/Application.h"
+#include "Systems/LevelManager.h"
+#include "States/GameState.h"
 
 int main(int argc, char *argv[])
 {

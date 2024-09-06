@@ -1,6 +1,6 @@
-#include "Engine/States/GameState.h"
-#include "Engine/Core/Systems/LevelManager.h"
-#include "Engine/Graphics/TileMap/TileMap.h"
+#include "States/GameState.h"
+#include "Systems/LevelManager.h"
+#include "Graphics/TileMap/TileMap.h"
 
 namespace Core::States
 {
