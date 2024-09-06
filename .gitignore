@@ -42,10 +42,8 @@
 
 include/divisible/*
 
-
-## Local 
-
-.idea/*.xml
+/pkg-config
+.idea
 
 build/**/*
 
