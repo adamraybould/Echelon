@@ -12,8 +12,9 @@ namespace Core
     {
         class GUIWindow_EntityInfo : public GUIWindow
         {
-            const int WINDOW_WIDTH = 350;
-            const int WINDOW_HEIGHT = 250;
+            const UInt WINDOW_WIDTH = 350;
+            const UInt WINDOW_HEIGHT = 250;
+            const UInt MAX_WINDOW_DISTANCE = 800;
 
         private:
             Scene::Entity* m_pEntity = nullptr;
@@ -21,6 +22,7 @@ namespace Core
             Graphics::Sprite* m_pEntitySprite = nullptr;
 
             ImVec2 m_windowPos;
+            float m_windowDistance;
 
             float m_offsetX;
             float m_offsetY;

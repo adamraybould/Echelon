@@ -44,10 +44,17 @@ namespace Core
         void GUIWindow_EntityInfo::CloseWindow()
         {
             GUIWindow::CloseWindow();
+
+            m_pEntity = nullptr;
+            m_windowDistance = 0;
         }
 
         void GUIWindow_EntityInfo::Update(float delta)
         {
+            if (m_windowDistance >= MAX_WINDOW_DISTANCE)
+            {
+                CloseWindow();
+            }
         }
 
         void GUIWindow_EntityInfo::Render()
@@ -59,10 +66,11 @@ namespace Core
             float zoom = camera.GetZoom();
             zoom = MathF::Clamp(zoom, 0.5f, 1.0f);
 
-            Vector2I offsetFromCamera = Vector2I(m_pEntity->GetTransform().Position.X - camera.GetCameraOrigin().X, m_pEntity->GetTransform().Position.Y - camera.GetCameraOrigin().Y);
+            Vector2F entityPos = m_pEntity->GetTransform().GetWorldPosition();
+            Vector2F entityOffset = Vector2F((entityPos.X - camera.GetCameraOrigin().X) + SCREEN_WIDTH * 0.5f, (entityPos.Y - camera.GetCameraOrigin().Y) + SCREEN_HEIGHT * 0.5f);
+            Vector2F windowOffset = Vector2F(entityOffset.X + m_offsetX, entityOffset.Y - m_offsetY);
 
-            // Adjust window position based on zoom
-            Vector2I windowOffset = Vector2I(offsetFromCamera.X + (SCREEN_WIDTH * 0.5f) + m_offsetX, offsetFromCamera.Y + (SCREEN_HEIGHT * 0.5f) - m_offsetY);
+            m_windowDistance = (camera.GetCameraOrigin() - windowOffset).Length();
 
             m_windowPos = ImVec2(windowOffset.X * zoom, windowOffset.Y * zoom);
             ImGui::SetNextWindowPos(m_windowPos, ImGuiCond_Always);
@@ -125,9 +133,9 @@ namespace Core
                 ImGui::NextColumn();
 
                 DisplaySprite();
-
-                ImGui::EndChild();
             }
+
+            ImGui::EndChild();
         }
 
         void GUIWindow_EntityInfo::DisplaySprite()
@@ -191,8 +199,6 @@ namespace Core
             if (m_pEntity == nullptr)
                 return;
 
-            int initialHeight = ImGui::GetCursorPosY();
-
             if (ImGui::TreeNode("Tags"))
             {
                 Array<String>& tags = m_pEntity->GetTags();
@@ -223,9 +229,6 @@ namespace Core
 
                     ImGui::EndTable();
                 }
-
-                //float newHeight = ImGui::GetCursorPosY() - initialHeight;
-                //m_windowExpansionHeight = newHeight;
 
                 ImGui::TreePop();
             }
