@@ -70,8 +70,8 @@ namespace Core
             String assetPath = ASSETS_PATH + path;
             if (m_pBanks.contains(assetPath))
             {
-                PrintErrorMessage("Trying to Load Bank that has already been loaded '" + assetPath + "'");
-                return false;
+                //PrintErrorMessage("Trying to Load Bank that has already been loaded '" + assetPath + "'");
+                return true;
             }
 
             UniquePtr<AudioBank> bank = std::make_unique<AudioBank>(*m_pSystem, assetPath);

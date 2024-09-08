@@ -10,27 +10,24 @@ namespace tmx
     class Object;
 }
 
-namespace Core
+namespace Graphics
 {
-    namespace Graphics
+    class ObjectLayer
     {
-        class ObjectLayer
-        {
-        private:
-            const tmx::Map& m_map;
-            tmx::Layer& m_layer;
+    private:
+        const tmx::Map& m_map;
+        tmx::Layer& m_layer;
 
-        public:
-            explicit ObjectLayer(const tmx::Map& map, tmx::Layer& layer);
+    public:
+        explicit ObjectLayer(const tmx::Map& map, tmx::Layer& layer);
 
-            void Create();
+        void Create();
 
-        private:
-            void CreateEntity(const String& prefab, const Vector2F& position);
-            Vector2I GetObjectPosition(const tmx::Object& obj) const;
-        };
+    private:
+        void CreateEntity(const String& prefab, const Vector2F& position);
+        Vector2I GetObjectPosition(const tmx::Object& obj) const;
+    };
 
-    }
 }
 
 #endif //MAPCOLLISIONLAYER_H

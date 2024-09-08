@@ -26,11 +26,11 @@ namespace Core
         UniquePtr<Engine> m_pEngine;
         UniquePtr<ScriptCore> m_pScriptCore;
         UniquePtr<Editor::EngineGUI> m_pEngineGUI;
-        UniquePtr<Graphics::AssetManager> m_pAssetManager;
+        UniquePtr<AssetManager> m_pAssetManager;
 
         UniquePtr<Input> m_pInput;
         UniquePtr<Physics> m_pPhysics;
-        UniquePtr<Systems::StateSystem> m_pStateSystem;
+        UniquePtr<StateSystem> m_pStateSystem;
         UniquePtr<Audio::AudioSystem> m_pAudioSystem;
 
         UInt32 m_currentTime;

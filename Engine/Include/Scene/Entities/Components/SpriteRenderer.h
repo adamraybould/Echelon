@@ -4,8 +4,8 @@
 #include "Core/Maths/Vector2.h"
 #include "Core/Maths/Rectangle.h"
 
-namespace Core::Graphics { class SpriteSheet; class Texture2D; class Sprite; }
-using namespace Core::Graphics;
+namespace Graphics { class SpriteSheet; class Texture2D; class Sprite; }
+using namespace Graphics;
 
 namespace Scene
 {

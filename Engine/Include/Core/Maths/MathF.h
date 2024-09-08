@@ -11,10 +11,12 @@ namespace Core
             return value < min ? min : value > max ? max : value;
         }
 
+        /*
         static int Clamp(const int value, const int min, const int max)
         {
             return value < min ? min : value > max ? max : value;
         }
+        */
 
         static float Lerp(float start, float end, float factor)
         {

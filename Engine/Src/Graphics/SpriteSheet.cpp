@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-namespace Core::Graphics
+namespace Graphics
 {
     SpriteSheet::SpriteSheet(SDL_Texture* texture, const int frameWidth, const int frameHeight, UnorderedMap<String, Animation> animations) : Sprite(texture)
     {

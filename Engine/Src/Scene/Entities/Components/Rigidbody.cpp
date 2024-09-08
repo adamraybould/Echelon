@@ -7,7 +7,7 @@
 #include "Core/Constants.h"
 #include "Scene/Entities/Entity.h"
 
-using namespace Core::Graphics;
+using namespace Graphics;
 namespace Scene
 {
     namespace Components

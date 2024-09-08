@@ -104,5 +104,20 @@ for i, file in ipairs(PREFABFILES) do
 	LoadPrefab(GetScriptPath().. "Prefabs/".. file)
 end
 
+function OnEntityWake(guid)
+	local inst = Entities[guid]
+	if inst then
+		if inst.OnEntityWake then
+			inst:OnEntityWake()
+		end
+
+		for k, v in pairs(inst.components) do
+			if v.OnEntityWake then
+				v:OnEntityWake()
+			end
+		end
+	end
+end
+
 -- Run Test Script
 require("testscript")

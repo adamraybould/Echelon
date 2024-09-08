@@ -96,6 +96,12 @@ add_library(Engine STATIC
         Src/Core/System.cpp
         Include/Scene/Scene.h
         Src/Scene/Scene.cpp
+        Include/Scene/Entities/Components/ParticleSystem.h
+        Src/Scene/Entities/Components/ParticleSystem.cpp
+        Src/Graphics/Particle.cpp
+        Include/Graphics/Particle.h
+        Include/Graphics/ParticleEmitter.h
+        Src/Graphics/ParticleEmitter.cpp
 )
 
 target_include_directories(Engine PUBLIC

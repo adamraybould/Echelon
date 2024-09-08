@@ -4,7 +4,8 @@
 
 class SDL_Texture;
 
-namespace Core::Graphics
+using namespace Core;
+namespace Graphics
 {
     class Texture2D
     {
@@ -22,8 +23,8 @@ namespace Core::Graphics
         void Free();
 
         SDL_Texture& GetRawTexture() const { return *m_pTexture; }
-        UInt GetWidth() const { return m_width; }
-        UInt GetHeight() const { return m_height; }
+        int GetWidth() const { return m_width; }
+        int GetHeight() const { return m_height; }
 
         explicit operator SDL_Texture*() const { return m_pTexture; }
     };

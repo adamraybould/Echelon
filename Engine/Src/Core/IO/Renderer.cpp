@@ -1,4 +1,5 @@
 #include "Core/IO/Renderer.h"
+#include "Graphics/Texture2D.h"
 
 namespace Core
 {
@@ -22,6 +23,7 @@ namespace Core
     void Renderer::RenderScreen() const
     {
         SetViewport();
+
         SDL_SetRenderDrawColor(&m_renderer, 0, 0, 0, 255);
         SDL_RenderClear(&m_renderer);
     }
@@ -58,10 +60,15 @@ namespace Core
         }
     }
 
+    void Renderer::RenderTexture(const Graphics::Texture2D& texture, const SDL_Rect src, const SDL_Rect dest, const float rotation, const SDL_RendererFlip flip) const
+    {
+        SDL_RenderCopyEx(&m_renderer, &texture.GetRawTexture(), &src, &dest, rotation, nullptr, flip);
+    }
+
     void Renderer::SetViewport() const
     {
-        SDL_Rect viewport = { static_cast<int>(m_pCamera->GetViewport().X), static_cast<int>(m_pCamera->GetViewport().Y), static_cast<int>(m_pCamera->GetViewport().Width), static_cast<int>(m_pCamera->GetViewport().Height) };
-        SDL_RenderSetViewport(&m_renderer, &viewport);
-        SDL_RenderSetScale(&m_renderer, m_pCamera->GetZoom(), m_pCamera->GetZoom());
+        const SDL_Rect viewport = m_pCamera->GetViewport();
+        //SDL_RenderSetViewport(&m_renderer, &viewport);
+        //SDL_RenderSetScale(&m_renderer, m_pCamera->GetZoom(), m_pCamera->GetZoom());
     }
 }

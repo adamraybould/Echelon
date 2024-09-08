@@ -4,8 +4,8 @@
 #include "Graphics/Animation.h"
 #include "Core/Delegates.h"
 
-namespace Core::Graphics { class SpriteSheet; struct Animation; }
-using namespace Core::Graphics;
+namespace Graphics { class SpriteSheet; struct Animation; }
+using namespace Graphics;
 
 namespace Scene
 {

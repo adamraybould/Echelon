@@ -2,7 +2,7 @@
 
 #include <SDL2/SDL_render.h>
 
-namespace Core::Graphics
+namespace Graphics
 {
     Texture2D::Texture2D(SDL_Texture* texture)
     {

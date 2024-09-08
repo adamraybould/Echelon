@@ -4,58 +4,52 @@
 #include "Graphics/SpriteSheet.h"
 #include "Graphics/Texture2D.h"
 
-namespace Json
-{
-    class Value;
-}
+namespace Json { class Value; }
 
 namespace Core
 {
     class Application;
     class Renderer;
 
-    namespace Graphics
+    struct MetaData
     {
-        struct MetaData
-        {
-            String ImagePath;
-            int ImageWidth;
-            int ImageHeight;
+        String ImagePath;
+        int ImageWidth;
+        int ImageHeight;
 
-            MetaData(String imagePath, const int imageWidth, const int imageHeight): ImagePath(imagePath), ImageWidth(imageWidth), ImageHeight(imageHeight) {}
+        MetaData(const String& imagePath, const int imageWidth, const int imageHeight): ImagePath(imagePath), ImageWidth(imageWidth), ImageHeight(imageHeight) {}
+    };
+
+    class AssetManager
+    {
+    private:
+        struct FrameData
+        {
+            String Name;
+            int Frame;
+
+            bool IsEmpty() const { return Name.empty(); }
         };
 
-        class AssetManager
-        {
-        private:
-            struct FrameData
-            {
-                String Name;
-                int Frame;
+    private:
+        static Renderer* m_renderer;
+        static Array<UniquePtr<Graphics::Texture2D>> m_loadedTextures; // An Array of Loaded Textures
 
-                bool IsEmpty() const { return Name.empty(); }
-            };
+    public:
+        AssetManager(Renderer& renderer);
+        ~AssetManager();
 
-        private:
-            static Renderer* m_renderer;
-            static Array<UniquePtr<Texture2D>> m_loadedTextures; // An Array of Loaded Textures
+        static Graphics::Texture2D& LoadTexture2D(const String& filePath);
+        static Graphics::Sprite& LoadSprite(const char* filePath);
 
-        public:
-            AssetManager(Renderer& renderer);
-            ~AssetManager();
+        static Graphics::SpriteSheet* LoadSpriteSheet(const String& path);
 
-            static Texture2D& LoadTexture2D(const String& filePath);
-            static Sprite& LoadSprite(const char* filePath);
+    private:
+        /* Loads a Raw SDL texture */
+        static SDL_Texture& LoadRawTexture(const String& filePath);
 
-            static SpriteSheet* LoadSpriteSheet(const String& path);
-
-        private:
-            /* Loads a Raw SDL texture */
-            static SDL_Texture& LoadRawTexture(const String& filePath);
-
-            static UnorderedMap<String, Animation> GetAnimations(Json::Value& data);
-        };
-    }
+        static UnorderedMap<String, Graphics::Animation> GetAnimations(Json::Value& data);
+    };
 }
 
 #endif //ASSETMANAGER_H

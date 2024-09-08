@@ -3,7 +3,6 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_timer.h>
-#include <windows.h>
 
 #include "Core/IO/Renderer.h"
 #include "States/GameState.h"
@@ -72,7 +71,7 @@ namespace Core
 
     void Application::HandleInput()
     {
-        m_pInput.reset();
+        m_pInput->Reset();
 
         SDL_Event event;
         while (SDL_PollEvent(&event))
@@ -158,7 +157,7 @@ namespace Core
         // Initialise Systems
         m_pPhysics = std::make_unique<Physics>(GetRenderer());
 
-        m_pAssetManager = std::make_unique<Graphics::AssetManager>(m_pWindow->GetRenderer());
+        m_pAssetManager = std::make_unique<AssetManager>(m_pWindow->GetRenderer());
         m_pAudioSystem = std::make_unique<Audio::AudioSystem>();
 
         m_pInput = std::make_unique<Input>();

@@ -55,8 +55,13 @@ namespace Core
         // Mouse Wheel
         if (event.type == SDL_MOUSEWHEEL)
         {
-            m_mouseWheel = MathF::Clamp(event.wheel.y, -1, 1);
+            m_mouseWheel = MathF::Clamp(event.wheel.y, -1.0, 1.0);
         }
+    }
+
+    void Input::Reset()
+    {
+        m_mouseWheel = 0.0f;
     }
 
     bool Input::IsKeyDown(LState* L, int key)

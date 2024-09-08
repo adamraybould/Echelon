@@ -6,5 +6,7 @@ PREFABFILES = {
 "focalpoint",
 "gunbot",
 "player",
+"rain",
+"raindrop",
 "tree",
 }

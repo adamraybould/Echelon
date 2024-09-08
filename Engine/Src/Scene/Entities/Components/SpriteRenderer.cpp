@@ -67,10 +67,10 @@ namespace Scene
             Camera& camera = renderer.GetCamera();
             Vector2F screenPosition = camera.CalculateScreenPosition(position);
 
+            SDL_Rect src = m_source;
             SDL_Rect dest = { screenPosition.X - m_spriteScale.X * 0.5f, screenPosition.Y - m_spriteScale.Y * 0.5f, m_spriteScale.X, m_spriteScale.Y };
-            const SDL_Rect& src = m_source;
 
-            SDL_RenderCopyEx(renderer, &m_pSprite->GetRawTexture(), &src, &dest, rotation, NULL, static_cast<SDL_RendererFlip>(m_flipped));
+            SDL_RenderCopyEx(renderer, &m_pSprite->GetRawTexture(), &src, &dest, rotation, nullptr, static_cast<SDL_RendererFlip>(m_flipped));
         }
 
         void SpriteRenderer::Destroy()

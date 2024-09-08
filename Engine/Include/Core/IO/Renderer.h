@@ -1,10 +1,11 @@
 #ifndef RENDERER_H
 #define RENDERER_H
-
 #include <SDL2/SDL.h>
 
 #include "Core/Camera.h"
 #include "IRenderable.h"
+
+namespace Graphics { class Texture2D; }
 
 namespace Core
 {
@@ -36,6 +37,8 @@ namespace Core
 
         static void AddToRenderQueue(IRenderable* renderable, RenderLayer layer);
         void ProcessRenderQueue();
+
+        void RenderTexture(const Graphics::Texture2D& texture, SDL_Rect src, SDL_Rect dest, float rotation = 0.0f, SDL_RendererFlip flip = SDL_FLIP_NONE) const;
 
         Camera& GetCamera() const { return *m_pCamera; }
         operator SDL_Renderer*() const { return &m_renderer; }

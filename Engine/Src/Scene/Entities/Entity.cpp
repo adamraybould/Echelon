@@ -7,6 +7,7 @@
 #include "Scene/Entities/Components/SoundEmitter.h"
 #include "Core/Scripting/Prefab.h"
 #include "Core/Utility.h"
+#include "Scene/Entities/Components/ParticleSystem.h"
 
 namespace Scene
 {
@@ -40,6 +41,7 @@ namespace Scene
         BindFunction<Entity>(L, "AddRigidbody", &Entity::AddRigidbody);
         BindFunction<Entity>(L, "AddAnimator", &Entity::AddAnimator);
         BindFunction<Entity>(L, "AddSoundEmitter", &Entity::AddSoundEmitter);
+        BindFunction<Entity>(L, "AddParticleSystem", &Entity::AddParticleSystem);
 
         BindFunction<Entity>(L, "SetName", &Entity::SetName);
         BindFunction<Entity>(L, "AddTag", &Entity::AddTag);
@@ -58,12 +60,13 @@ namespace Scene
         {
             m_components[i]->Initialize();
         }
+
+        CallFunction("OnEntityWake", m_guid);
     }
 
     void Entity::Update(float delta)
     {
         // Update Bounds
-        Vector2 worldPosition = GetTransform().GetWorldPosition();
         m_bounds.X = GetTransform().Position.X;
         m_bounds.Y = GetTransform().Position.Y;
 
@@ -153,6 +156,14 @@ namespace Scene
         soundEmitter->SetupEmbedding(L);
 
         RegisterComponent<SoundEmitter>(L, soundEmitter, "SoundEmitter");
+    }
+
+    void Entity::AddParticleSystem(LState* L)
+    {
+        ParticleSystem* particleSystem = &AddComponent<ParticleSystem>();
+        particleSystem->SetupEmbedding(L);
+
+        RegisterComponent<ParticleSystem>(L, particleSystem, "ParticleSystem");
     }
 
     void Entity::AddTag(const String& tag)

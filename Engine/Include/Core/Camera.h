@@ -20,7 +20,7 @@ namespace Core
 
         float m_currentZoom = 1.0f;
         float m_zoomSpeed;
-        MinMaxRange m_zoomRange;
+        MinMaxRangeF m_zoomRange;
 
         bool m_canControl = false;
 

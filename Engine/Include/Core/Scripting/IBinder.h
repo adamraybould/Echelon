@@ -109,6 +109,21 @@ namespace Core
             .endClass()
             .endNamespace();
         }
+
+        template <typename... Args>
+        void CallFunction(const String& name, Args&&... args)
+        {
+            using namespace luabridge;
+            LRef function = luabridge::getGlobal(ScriptCore::Instance()->GetLuaState(), name.c_str());
+            if (function.isValid() && function.isFunction())
+            {
+                function(std::forward<Args>(args)...);
+            }
+            else
+            {
+                std::cerr << "Error Calling Lua Function '" << name << "'" << std::endl;
+            }
+        }
     };
 }
 

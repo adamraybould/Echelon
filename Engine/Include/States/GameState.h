@@ -2,6 +2,8 @@
 #define GAMESTATE_H
 #include "Systems/StateSystem.h"
 
+namespace Graphics { class TileMap; }
+
 namespace Core
 {
     namespace Systems
@@ -10,19 +12,15 @@ namespace Core
         class LevelManager;
     }
 
-    namespace Graphics { class TileMap; }
-
-    using namespace Systems;
-    using namespace Graphics;
     namespace States
     {
-        class GameState final : public State
+        class GameState final : public Systems::State
         {
         private:
-            UniquePtr<EntityManager> m_pEntityManager;
-            UniquePtr<LevelManager> m_pLevelManager;
+            UniquePtr<Systems::EntityManager> m_pEntityManager;
+            UniquePtr<Systems::LevelManager> m_pLevelManager;
 
-            UniquePtr<TileMap> m_pTileMap;
+            UniquePtr<Graphics::TileMap> m_pTileMap;
 
         public:
             GameState();
@@ -32,8 +30,8 @@ namespace Core
             void Update(float delta) override;
             void Render(Renderer& renderer) override;
 
-            EntityManager& GetEntityManager() const { return *m_pEntityManager; }
-            LevelManager& GetLevelManager() const { return *m_pLevelManager; }
+            Systems::EntityManager& GetEntityManager() const { return *m_pEntityManager; }
+            Systems::LevelManager& GetLevelManager() const { return *m_pLevelManager; }
         };
     }
 }

@@ -9,6 +9,7 @@ namespace Core
         enum class AssetType
         {
             NIL,
+            TEXTURE,
             SPRITE,
             AUDIO
         };

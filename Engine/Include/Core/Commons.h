@@ -3,23 +3,29 @@
 
 namespace Core
 {
+    template <typename T>
     struct MinMaxRange
     {
-        float Min;
-        float Max;
+        T Min;
+        T Max;
 
         MinMaxRange()
         {
-            Min = 0.0f;
-            Max = 0.0f;
+            Min = 0;
+            Max = 0;
         }
 
-        MinMaxRange(const float min, const float max)
+        MinMaxRange(const T min, const T max)
         {
             Min = min;
             Max = max;
         }
+
     };
+
+    using MinMaxRangeI = MinMaxRange<int>;
+    using MinMaxRangeU = MinMaxRange<unsigned>;
+    using MinMaxRangeF = MinMaxRange<float>;
 }
 
 #endif //COMMONS_H

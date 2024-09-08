@@ -2,6 +2,9 @@
 #include "Systems/LevelManager.h"
 #include "Graphics/TileMap/TileMap.h"
 
+using namespace Systems;
+using namespace Graphics;
+
 namespace Core::States
 {
     GameState::GameState()

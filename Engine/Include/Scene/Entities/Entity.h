@@ -57,6 +57,7 @@ namespace Scene
         void AddRigidbody(LState* L);
         void AddAnimator(LState* L);
         void AddSoundEmitter(LState* L);
+        void AddParticleSystem(LState* L);
 
         Transform& GetTransform() const { return *m_transform; }
 

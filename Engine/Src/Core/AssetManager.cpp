@@ -8,13 +8,12 @@
 
 #include "Core/Application.h"
 #include "Core/IO/Renderer.h"
-#include "Graphics/Sprite.h"
-#include "Graphics/Animation.h"
 #include "Core/Utility.h"
 
 namespace fs = std::filesystem;
 
-namespace Core::Graphics
+using namespace Graphics;
+namespace Core
 {
     const char* ERROR_TEXTURE = "Error.png";
     Renderer* AssetManager::m_renderer;

@@ -42,7 +42,7 @@ namespace Scene
         {
         }
 
-        void SoundEmitter::PlaySound(const String& soundName, float volume, bool restart)
+        void SoundEmitter::PlaySound(const String& soundName, const float volume, const bool restart)
         {
             if (AudioSystem::IsInitialised())
             {

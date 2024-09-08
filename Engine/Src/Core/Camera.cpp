@@ -21,7 +21,7 @@ namespace Core
 
         m_currentZoom = 1.0f;
         m_zoomSpeed = 4.0f;
-        m_zoomRange = MinMaxRange(0.5f, 1.5f);
+        m_zoomRange = MinMaxRangeF(0.5f, 1.5f);
     }
 
     void Camera::SetupEmbedding(lua_State* L)
@@ -62,8 +62,8 @@ namespace Core
 
     Vector2F Camera::CalculateWorldPosition(const Vector2F screenPosition) const
     {
-        Vector2F worldPosition = screenPosition / GetZoom() + m_cameraOrigin;
-        return { worldPosition.X - SCREEN_WIDTH * 0.5f, worldPosition.Y - SCREEN_HEIGHT * 0.5f };
+        Vector2F worldPosition = screenPosition - Vector2F(SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.5f);
+        return worldPosition + m_cameraOrigin;
     }
 
     void Camera::ProcessZoom(const float delta)
@@ -71,13 +71,13 @@ namespace Core
         m_currentZoom += Input::GetMouseWheel() * (m_zoomSpeed * delta);
         m_currentZoom = MathF::Clamp(GetZoom(), m_zoomRange.Min, m_zoomRange.Max);
 
-        float zoomX = SCREEN_WIDTH / GetZoom();
-        float zoomY = SCREEN_HEIGHT / GetZoom();
-        m_cameraOrigin = GetTransform().GetWorldPosition() + Vector2((SCREEN_WIDTH - zoomX) * 0.5f, (SCREEN_HEIGHT  - zoomY) * 0.5f);
+        m_cameraOrigin = GetTransform().GetWorldPosition();
     }
 
     RectI Camera::CalculateViewport() const
     {
+        int x = m_cameraOrigin.X - SCREEN_WIDTH * 0.5f;
+        int y = m_cameraOrigin.Y - SCREEN_HEIGHT * 0.5f;
         return { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
     }
 }

@@ -26,6 +26,7 @@ namespace Core
 
         void ProcessInput(const SDL_Event& event);
         void ProcessMouseInput(const SDL_Event& event);
+        void Reset();
 
         static bool IsKeyDown(LState* L, int key);
         static bool IsKeyPressed(LState* L, int key);
