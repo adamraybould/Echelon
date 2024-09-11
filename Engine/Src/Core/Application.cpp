@@ -3,6 +3,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_timer.h>
+#include <GL/glew.h>
 
 #include "Core/IO/Renderer.h"
 #include "States/GameState.h"
@@ -103,7 +104,7 @@ namespace Core
         const float deltaTime = (m_currentTime - m_prevTime) / static_cast<float>(SDL_GetPerformanceFrequency());
         const int FPS = static_cast<int>((1.0f / deltaTime) + 0.5f);
 
-        const UInt titleUpdateIntervalMs = 1000;
+        constexpr UInt titleUpdateIntervalMs = 1000;
         UInt32 currentTitleUpdateTicks = m_currentTime;
 
         if (currentTitleUpdateTicks - m_lastTitleUpdateTicks >= titleUpdateIntervalMs * SDL_GetPerformanceFrequency() / 1000)
@@ -125,7 +126,7 @@ namespace Core
 
     void Application::Render() const
     {
-        m_pEngineGUI->Render(GetRenderer());
+        m_pEngineGUI->Render();
         GetRenderer().RenderScreen();
 
         GetRenderer().ProcessRenderQueue();
@@ -138,29 +139,36 @@ namespace Core
 
     void Application::Initialize()
     {
-        // Initialise Lua Embedding
-        m_pScriptCore = std::make_unique<ScriptCore>();
-        m_pEngine = std::make_unique<Engine>();
-
         if (SDL_Init(SDL_INIT_VIDEO) < 0)
             OutputError("SDL could not Initialize! SDL_ERROR:", "SDL Error", true, true);
+
+        // Setup OpenGL Attributes
+        //SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
+        //SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
+        //SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
 
         // Only runs if SDL is initialised
         m_pWindow = std::make_unique<Window>();
         if (!m_pWindow->Create("Echelon"))
-            OutputError("Window could not be created! SDL_ERROR:", "SDL Error", true, true);
+            OutputError("Window could not be created! \nSDL_ERROR: ", "SDL Error", true, true);
 
         if (IMG_Init(IMG_INIT_PNG) < 0)
-            OutputError("SDL Image could not Initialize! SDL_ERROR:", "SDL Error", true, true);
+            OutputError("SDL Image could not Initialize! \nSDL_ERROR: ", "SDL Error", true, true);
 
 
-        // Initialise Systems
-        m_pPhysics = std::make_unique<Physics>(GetRenderer());
+        InitialiseSystems();
+    }
+
+    void Application::InitialiseSystems()
+    {
+        // Initialise Lua Embedding
+        m_pScriptCore = std::make_unique<ScriptCore>();
+        m_pEngine = std::make_unique<Engine>();
 
         m_pAssetManager = std::make_unique<AssetManager>(m_pWindow->GetRenderer());
-        m_pAudioSystem = std::make_unique<Audio::AudioSystem>();
-
         m_pInput = std::make_unique<Input>();
+        m_pAudioSystem = std::make_unique<AudioSystem>();
+        m_pPhysics = std::make_unique<Physics>(GetRenderer());
 
         m_pScriptCore->InitialiseBinders();
 

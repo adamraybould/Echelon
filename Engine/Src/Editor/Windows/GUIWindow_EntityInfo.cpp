@@ -22,10 +22,8 @@ namespace Core
     {
         GUIWindow_EntityInfo::GUIWindow_EntityInfo(EngineGUI& engineGUI) : GUIWindow(engineGUI)
         {
-            m_isActive = false;
-
-            m_offsetX = WINDOW_WIDTH * 0.1f;
-            m_offsetY = WINDOW_HEIGHT * 1.2f;
+            SetWindowSize(Vector2U(350, 250));
+            m_windowOffset = Vector2F(GetWindowSize().X * 0.1f, GetWindowSize().Y * 1.2f);
         }
 
         void GUIWindow_EntityInfo::OpenWindow()
@@ -66,16 +64,15 @@ namespace Core
             float zoom = camera.GetZoom();
             zoom = MathF::Clamp(zoom, 0.5f, 1.0f);
 
-            Vector2F entityPos = m_pEntity->GetTransform().GetWorldPosition();
+            const Vector2F entityPos = m_pEntity->GetTransform().GetWorldPosition();
             Vector2F entityOffset = Vector2F((entityPos.X - camera.GetCameraOrigin().X) + SCREEN_WIDTH * 0.5f, (entityPos.Y - camera.GetCameraOrigin().Y) + SCREEN_HEIGHT * 0.5f);
-            Vector2F windowOffset = Vector2F(entityOffset.X + m_offsetX, entityOffset.Y - m_offsetY);
+            const Vector2F windowOffset = Vector2F(entityOffset.X + m_windowOffset.X, entityOffset.Y - m_windowOffset.Y);
 
             m_windowDistance = (camera.GetCameraOrigin() - windowOffset).Length();
 
-            m_windowPos = ImVec2(windowOffset.X * zoom, windowOffset.Y * zoom);
-            ImGui::SetNextWindowPos(m_windowPos, ImGuiCond_Always);
-
-            ImGui::SetNextWindowSize(ImVec2(WINDOW_WIDTH + m_windowExpansionWidth, WINDOW_HEIGHT + m_windowExpansionHeight), ImGuiCond_Always);
+            // Set Position and Size of Window
+            SetWindowPosition(Vector2F(windowOffset.X * zoom, windowOffset.Y * zoom));
+            SetWindowSize(Vector2U(GetWindowSize().X + m_windowExpansionWidth, GetWindowSize().Y + m_windowExpansionHeight));
 
             if (ImGui::Begin("Entity Info", &m_isActive, ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoCollapse))
             {
@@ -91,40 +88,28 @@ namespace Core
             }
         }
 
-        ImVec2 GUIWindow_EntityInfo::GetWindowPosition()
-        {
-            return m_windowPos;
-        }
-
-        ImVec2 GUIWindow_EntityInfo::GetWindowSize()
-        {
-            return ImVec2(WINDOW_WIDTH, WINDOW_HEIGHT);
-        }
-
         Vector2F GUIWindow_EntityInfo::GetEntityScreenPosition(const Entity& entity) const
         {
-            Camera& camera = m_engineGUI.GetEngineWindow().GetRenderer().GetCamera();
+            const Camera& camera = m_engineGUI.GetEngineWindow().GetRenderer().GetCamera();
             return camera.CalculateScreenPosition(entity.GetTransform().GetWorldPosition());
         }
 
         void GUIWindow_EntityInfo::DisplayInfo(const Entity& entity)
         {
-            String prefabName = Utility::Capitalize(entity.GetName());
-            String guid = entity.GetGUID();
+            const String prefabName = Utility::Capitalize(entity.GetName());
+            const String guid = entity.GetGUID();
 
-            Vector2F entityWorldPosition = entity.GetTransform().GetWorldPosition();
+            const Vector2F entityWorldPosition = entity.GetTransform().GetWorldPosition();
 
-            float childWidth = WINDOW_WIDTH;
-            float childHeight = 100 + (m_pEntityRenderer->GetDisplaySource().Height * 0.2f);
+            const UInt childWidth = GetWindowSize().X;
+            const float childHeight = 100 + (m_pEntityRenderer->GetDisplaySource().Height * 0.2f);
 
             if (ImGui::BeginChild("Info", ImVec2(childWidth, childHeight), false))
             {
                 ImGui::Columns(2, nullptr, true);
-                ImGui::SetColumnWidth(0, WINDOW_WIDTH * 0.6f);
+                ImGui::SetColumnWidth(0, GetWindowSize().X * 0.6f);
 
                 PrintHoverText("Guid: ", guid);
-                //ImGui::Text("GUID: %s", entity.GetGUID().c_str());
-
                 ImGui::Text("Prefab: %s", prefabName.c_str());
                 ImGui::Text("Position: (%d, %d)", static_cast<int>(entityWorldPosition.X), static_cast<int>(entityWorldPosition.Y));
 
@@ -138,20 +123,20 @@ namespace Core
             ImGui::EndChild();
         }
 
-        void GUIWindow_EntityInfo::DisplaySprite()
+        void GUIWindow_EntityInfo::DisplaySprite() const
         {
             if (m_pEntitySprite == nullptr)
                 return;
 
-            UInt textureWidth = m_pEntitySprite->GetWidth();
-            UInt textureHeight = m_pEntitySprite->GetHeight();
+            const UInt textureWidth = m_pEntitySprite->GetWidth();
+            const UInt textureHeight = m_pEntitySprite->GetHeight();
 
-            float desiredWidth = 80.0f;
-            float desiredHeight = desiredWidth / m_pEntityRenderer->GetDisplaySource().Width * m_pEntityRenderer->GetDisplaySource().Height;
+            constexpr float desiredWidth = 80.0f;
+            const float desiredHeight = desiredWidth / m_pEntityRenderer->GetDisplaySource().Width * m_pEntityRenderer->GetDisplaySource().Height;
 
-            RectI spriteSource = m_pEntityRenderer->GetDisplaySource();
-            ImVec2 uv0 = ImVec2(static_cast<float>(spriteSource.X) / textureWidth, static_cast<float>(spriteSource.Y) / textureHeight);
-            ImVec2 uv1 = ImVec2(static_cast<float>(spriteSource.X + spriteSource.Width) / textureWidth, static_cast<float>(spriteSource.Y + spriteSource.Height) / textureHeight);
+            const RectI spriteSource = m_pEntityRenderer->GetDisplaySource();
+            const ImVec2 uv0 = ImVec2(static_cast<float>(spriteSource.X) / textureWidth, static_cast<float>(spriteSource.Y) / textureHeight);
+            const ImVec2 uv1 = ImVec2(static_cast<float>(spriteSource.X + spriteSource.Width) / textureWidth, static_cast<float>(spriteSource.Y + spriteSource.Height) / textureHeight);
 
             ImGui::SetCursorPosX(ImGui::GetCursorPosX() + 10.0f);
             ImGui::Image(GetTextureID(*m_pEntitySprite), ImVec2(desiredWidth, desiredHeight), uv0, uv1);
@@ -159,13 +144,13 @@ namespace Core
             // Display current animation if playing
             if (m_pEntity->HasComponent<Animator>())
             {
-                Animator& animator = *m_pEntity->GetComponent<Animator>();
-                String currentAnimName = animator.GetCurrentAnimation().Name;
+                const Animator& animator = *m_pEntity->GetComponent<Animator>();
+                const String currentAnimName = animator.GetCurrentAnimation().Name;
 
-                float width = ImGui::GetColumnWidth();
-                float textWidth = ImGui::CalcTextSize(currentAnimName.c_str()).x;
+                const float width = ImGui::GetColumnWidth();
+                const float textWidth = ImGui::CalcTextSize(currentAnimName.c_str()).x;
 
-                float centerX = (width - textWidth) * 0.35f;
+                const float centerX = (width - textWidth) * 0.35f;
                 ImGui::SetCursorPosX(ImGui::GetCursorPosX() + centerX);
                 ImGui::SetCursorPosY(ImGui::GetCursorPosY() - 15.0f);
 
@@ -178,15 +163,15 @@ namespace Core
             if (m_pEntity->HasPrefab())
             {
                 // Race Component
-                LRef entityRef = luabridge::getGlobal(ScriptCore::Instance()->GetLuaState(), "Entities")[m_pEntity->GetGUID()];
-                LRef raceRef = entityRef["components"]["race"];
+                const LRef entityRef = getGlobal(ScriptCore::Instance()->GetLuaState(), "Entities")[m_pEntity->GetGUID()];
+                const LRef raceRef = entityRef["components"]["race"];
                 if (!raceRef.isNil())
                 {
                     ImGui::Text("Race: %s", raceRef["race"].tostring().c_str());
                 }
 
                 // Health Component
-                LRef healthRef = entityRef["components"]["health"];
+                const LRef healthRef = entityRef["components"]["health"];
                 if (!healthRef.isNil())
                 {
                     ImGui::Text("Health: %s", healthRef["currenthealth"].tostring().c_str());
@@ -201,9 +186,9 @@ namespace Core
 
             if (ImGui::TreeNode("Tags"))
             {
-                Array<String>& tags = m_pEntity->GetTags();
-                int columnWidth = 2;
-                int rowCount = (tags.size() + columnWidth - 1) / columnWidth;
+                const Array<String>& tags = m_pEntity->GetTags();
+                constexpr int columnWidth = 2;
+                const int rowCount = (tags.size() + columnWidth - 1) / columnWidth;
 
                 if (ImGui::BeginTable("tags", columnWidth))
                 {

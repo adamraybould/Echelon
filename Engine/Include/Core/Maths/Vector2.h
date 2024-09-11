@@ -13,16 +13,15 @@ namespace Core
 
         Vector2() { X = 0; Y = 0; }
         Vector2(T x, T y) { X = x; Y = y; }
-        //Vector2(const Vector2<float>& vec) { static_cast<T>(vec.X); static_cast<T>(vec.Y); }
-        template<typename U = T, typename = typename std::enable_if<!std::is_same<U, int>::value>::type>
+
+        template<typename U = T, typename = std::enable_if_t<!std::is_same_v<U, int>>>
         Vector2(const Vector2<int>& other) { X = static_cast<T>(other.X); Y = static_cast<T>(other.Y); }
 
-        template<typename U = T, typename = typename std::enable_if<!std::is_same<U, unsigned>::value>::type>
+        template<typename U = T, typename = std::enable_if_t<!std::is_same_v<U, unsigned>>>
         Vector2(const Vector2<unsigned>& other) { X = static_cast<T>(other.X); Y = static_cast<T>(other.Y); }
 
-        template<typename U = T, typename = typename std::enable_if<!std::is_same<U, float>::value>::type>
+        template<typename U = T, typename = std::enable_if_t<!std::is_same_v<U, float>>>
         Vector2(const Vector2<float>& other) { X = static_cast<T>(other.X); Y = static_cast<T>(other.Y); }
-
 
         T Length() const { return sqrtf(X * X + Y * Y); }
         T Distance(const Vector2& vec) const { return sqrtf((vec.X - X) * (vec.X - X) + (vec.Y - Y) * (vec.Y - Y)); }

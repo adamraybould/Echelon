@@ -1,9 +1,12 @@
 #include "Core/IO/Window.h"
+
+#include "config.h"
 #include "Core/Constants.h"
+#include "Core/IO/Renderer.h"
+
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
-#include "Core/IO/Renderer.h"
-#include "config.h"
+#include <GL/glew.h>
 
 namespace Core
 {
@@ -19,9 +22,29 @@ namespace Core
         if (m_pWindow == nullptr)
             return false;
 
+        /*
+        m_context = SDL_GL_CreateContext(m_pWindow);
+        if (m_context == nullptr)
+            return false;
+
+        // Initialise GLEW
+        glewExperimental = GL_TRUE;
+        if (glewInit() != GLEW_OK)
+        {
+            //SDL_GL_DeleteContext(m_context);
+            //SDL_DestroyWindow(m_pWindow);
+            //SDL_Quit();
+
+            OutputError("Failed to Initialise GLEW", "GLEW Error");
+        }
+
+        // Use Vsync
+        SDL_GL_SetSwapInterval(1);
+        */
+
         SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "nearest");
 
-        int rendererFlags = SDL_RENDERER_ACCELERATED;
+        constexpr int rendererFlags = SDL_RENDERER_ACCELERATED;
         SDL_Renderer* renderer = SDL_CreateRenderer(m_pWindow, -1, rendererFlags);
         if (renderer == nullptr)
             return false;
@@ -36,14 +59,14 @@ namespace Core
         return true;
     }
 
-    void Window::SetTitle(const char* title)
+    void Window::SetTitle(const char* title) const
     {
         SDL_SetWindowTitle(m_pWindow, title);
     }
 
-    bool Window::SetIcon()
+    bool Window::SetIcon() const
     {
-        std::string path = std::string(ASSETS_PATH) + "Icon.png";
+        const std::string path = std::string(ASSETS_PATH) + "Icon.png";
         SDL_Surface* icon = IMG_Load(path.c_str());
         if (icon == nullptr)
             return false;

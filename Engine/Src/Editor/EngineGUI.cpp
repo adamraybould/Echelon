@@ -47,7 +47,7 @@ namespace Core::Editor
         ImGui::DestroyContext();
     }
 
-    void EngineGUI::Update(float delta) const
+    void EngineGUI::Update(const float delta) const
     {
         for (UInt i = 0; i < m_windows.size(); i++)
         {
@@ -58,13 +58,13 @@ namespace Core::Editor
         }
     }
 
-    void EngineGUI::Render(Renderer& renderer) const
+    void EngineGUI::Render() const
     {
         ImGui_ImplSDLRenderer2_NewFrame();
         ImGui_ImplSDL2_NewFrame();
         ImGui::NewFrame();
 
-        RenderMenuBar();
+        DisplayMenuBar();
 
         for (UInt i = 0; i < m_windows.size(); i++)
         {
@@ -93,7 +93,7 @@ namespace Core::Editor
         return *m_pEntity;
     }
 
-    void EngineGUI::RenderMenuBar() const
+    void EngineGUI::DisplayMenuBar() const
     {
         if (ImGui::BeginMainMenuBar())
         {
@@ -102,7 +102,12 @@ namespace Core::Editor
                 ImGui::EndMenu();
             }
 
-            if (ImGui::BeginMenu("Resources"))
+            if (ImGui::BeginMenu("Edit"))
+            {
+                ImGui::EndMenu();
+            }
+
+            if (ImGui::BeginMenu("Options"))
             {
                 ImGui::EndMenu();
             }
@@ -146,11 +151,12 @@ namespace Core::Editor
     {
         ImVec2 mousePos = ImGui::GetMousePos();
 
-        ImVec2 windowPos = m_windows[0]->GetWindowPosition();
-        ImVec2 windowSize = m_windows[0]->GetWindowSize();
-        ImVec2 windowMin = windowPos;
-        ImVec2 windowMax = ImVec2(windowPos.x + windowSize.x, windowPos.y + windowSize.y);
+        const Vector2F& windowPos = m_windows[0]->GetWindowPosition();
+        const Vector2U& windowSize = m_windows[0]->GetWindowSize();
 
-        return (mousePos.x >= windowMin.x && mousePos.x <= windowMax.x && mousePos.y >= windowMin.y && mousePos.y <= windowMax.y);
+        const Vector2F& min = windowPos;
+        const Vector2F max = Vector2F(windowPos.X + windowSize.X, windowPos.Y + windowSize.Y);
+
+        return mousePos.x >= min.X && mousePos.x <= max.X && mousePos.y >= min.Y && mousePos.y <= max.Y;
     }
 }

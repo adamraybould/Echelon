@@ -6,8 +6,8 @@ local focalpoint = SpawnPrefab("focalpoint")
 Camera:SnapToPosition(Player:GetPosition())
 Camera:SetTarget(Player)
 
-local rain = SpawnPrefab("rain")
-rain.Transform:SetParent(Player.Transform)
+--local rain = SpawnPrefab("rain")
+--rain.Transform:SetParent(Player.Transform)
 
 --SpawnMultiplePrefabs("blank", 5)
 

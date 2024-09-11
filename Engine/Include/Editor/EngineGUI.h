@@ -31,14 +31,14 @@ namespace Core
 
             std::vector<std::unique_ptr<GUIWindow>> m_windows;
 
-            Scene::Entity* m_pEntity;
+            Scene::Entity* m_pEntity{};
 
         public:
             EngineGUI(Window& window, StateSystem& stateSystem, Input& input);
             ~EngineGUI();
 
             void Update(float delta) const;
-            void Render(Renderer& renderer) const;
+            void Render() const;
 
             void RenderImGui(const Renderer& renderer);
             void HandleInput(const SDL_Event& event);
@@ -48,7 +48,7 @@ namespace Core
             Window& GetEngineWindow() const { return m_window; }
 
         private:
-            void RenderMenuBar() const;
+            void DisplayMenuBar() const;
             void DisplayEntityInfo();
 
             bool HasClickedWithinWindow() const;

@@ -117,6 +117,7 @@ target_include_directories(Engine PRIVATE
         ${TMXLITE_INCLUDE_DIR}
 )
 
+target_link_libraries(Engine PRIVATE GLEW::GLEW)
 target_link_libraries(Engine PRIVATE ${LUA_LIBRARIES})
 target_link_libraries(Engine PRIVATE ZLIB::ZLIB)
 target_link_libraries(Engine PRIVATE $<TARGET_NAME_IF_EXISTS:SDL2::SDL2main> $<IF:$<TARGET_EXISTS:SDL2::SDL2>,SDL2::SDL2,SDL2::SDL2-static>)

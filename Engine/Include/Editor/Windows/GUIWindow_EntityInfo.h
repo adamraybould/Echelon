@@ -12,8 +12,6 @@ namespace Core
     {
         class GUIWindow_EntityInfo : public GUIWindow
         {
-            const UInt WINDOW_WIDTH = 350;
-            const UInt WINDOW_HEIGHT = 250;
             const UInt MAX_WINDOW_DISTANCE = 800;
 
         private:
@@ -21,11 +19,8 @@ namespace Core
             Scene::Components::SpriteRenderer* m_pEntityRenderer;
             Graphics::Sprite* m_pEntitySprite = nullptr;
 
-            ImVec2 m_windowPos;
+            Vector2F m_windowOffset;
             float m_windowDistance;
-
-            float m_offsetX;
-            float m_offsetY;
 
             float m_windowExpansionWidth = 0.0f;
             float m_windowExpansionHeight = 0.0f;
@@ -39,16 +34,13 @@ namespace Core
             void Update(float delta) override;
             void Render() override;
 
-            ImVec2 GetWindowPosition() override;
-            ImVec2 GetWindowSize() override;
-
         private:
             Vector2F GetEntityScreenPosition(const Scene::Entity& entity) const;
-            ImTextureID GetTextureID(const Graphics::Texture2D& texture) { return (ImTextureID)(intptr_t)&texture.GetRawTexture(); }
+            static ImTextureID GetTextureID(const Graphics::Texture2D& texture) { return reinterpret_cast<ImTextureID>(reinterpret_cast<intptr_t>(&texture.GetRawTexture())); }
 
             void DisplayInfo(const Scene::Entity& entity);
 
-            void DisplaySprite();
+            void DisplaySprite() const;
             void DisplayComponentInfo() const;
             void DisplayTags() const;
         };
