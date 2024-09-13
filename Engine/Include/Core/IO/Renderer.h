@@ -1,10 +1,10 @@
 #ifndef RENDERER_H
 #define RENDERER_H
-#include <SDL2/SDL.h>
 
+#include <SDL2/SDL.h>
 #include "Core/Camera.h"
 
-namespace Rendering { class Renderable; }
+namespace Rendering { class IRenderable; }
 namespace Graphics { class Sprite; class Texture2D; class SpriteMesh; struct Vector2F4X; }
 
 namespace Core
@@ -27,7 +27,7 @@ namespace Core
         SDL_GLContext& m_context;
 
         static Array<UniquePtr<Graphics::Sprite>> m_pSprites;
-        static Map<RenderLayer, Array<Rendering::Renderable*>> m_pRenderQueue;
+        static Map<RenderLayer, Array<Rendering::IRenderable*>> m_pRenderQueue;
 
         UniquePtr<Graphics::SpriteMesh> m_pSpriteMesh;
         UniquePtr<Camera> m_pCamera;
@@ -40,10 +40,10 @@ namespace Core
         void ProcessRenderQueue();
 
         static Graphics::Sprite& CreateSprite(Graphics::Texture2D& texture);
-        static void AddToRenderQueue(Rendering::Renderable& renderable);
+        static void AddToRenderQueue(Rendering::IRenderable& renderable);
 
         //void Render(const Graphics::Texture2D* texture, RectF& src, RectF& dest, float rotation);
-        void Render(const Graphics::Sprite* sprite, const RectF& src, const RectF& dest, float rotation);
+        void Render(const Graphics::Sprite* sprite, const RectF& src, const RectF& dest, float rotation) const;
 
         Window& GetWindow() const { return m_window; }
         SDL_GLContext& GetContext() const { return m_context; }

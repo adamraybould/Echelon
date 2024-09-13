@@ -1,5 +1,5 @@
-#ifndef RENDERABLE_H
-#define RENDERABLE_H
+#ifndef IRENDERABLE_H
+#define IRENDERABLE_H
 #include "Core/Maths/Vector2.h"
 
 namespace Core
@@ -13,14 +13,14 @@ namespace Scene::Components { class Transform; }
 
 namespace Rendering
 {
-    class Renderable
+    class IRenderable
     {
     private:
         bool m_isActive;
         Core::RenderLayer m_renderLayer;
 
     public:
-        Renderable();
+        IRenderable();
 
         virtual void Render(Core::Renderer& renderer) = 0;
 
@@ -34,4 +34,4 @@ namespace Rendering
     };
 }
 
-#endif //RENDERABLE_H
+#endif //IRENDERABLE_H

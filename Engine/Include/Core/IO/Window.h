@@ -25,7 +25,7 @@ namespace Core
 
         bool Create(const char* title);
 
-        void ClearScreen();
+        void ClearScreen() const;
         void SwapBuffers() const;
 
         void SetTitle(const char* title) const;

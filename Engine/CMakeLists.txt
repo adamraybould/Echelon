@@ -107,8 +107,8 @@ add_library(Engine STATIC
         Src/Graphics/Texture2D.cpp
         Include/Graphics/Material.h
         Src/Graphics/Material.cpp
-        Include/Rendering/Renderable.h
-        Src/Rendering/Renderable.cpp
+        Include/Rendering/IRenderable.h
+        Src/Rendering/IRenderable.cpp
 )
 
 target_include_directories(Engine PUBLIC

@@ -1,13 +1,7 @@
 #include "Graphics/Sprite.h"
 
-#include <GL/glew.h>
-#include <glm/ext/matrix_transform.hpp>
-
 #include "Core/Camera.h"
-#include "Core/IO/Renderer.h"
 #include "Graphics/Material.h"
-#include "Graphics/Texture2D.h"
-#include "Rendering/Shader.h"
 
 using namespace Rendering;
 namespace Graphics
@@ -24,4 +18,7 @@ namespace Graphics
             m_pMaterial.reset();
         }
     }
+
+    UInt Sprite::GetWidth() const { return m_pMaterial->GetTextureWidth(); }
+    UInt Sprite::GetHeight() const { return m_pMaterial->GetTextureHeight(); }
 }

@@ -45,10 +45,11 @@ namespace Core
 
         glViewport(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-        //glEnable(GL_DEPTH_TEST);
+        m_pRenderer = std::make_unique<Renderer>(*this, m_context);
 
         // Sets Window Icon
         if (!SetIcon())
@@ -58,25 +59,10 @@ namespace Core
         std::cout << "GLEW Version: " << glewGetString(GLEW_VERSION) << std::endl;
         std::cout << "-----------------------------------------" << std::endl;
 
-        m_pRenderer = std::make_unique<Renderer>(*this, m_context);
-
-        /*
-        SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "nearest");
-
-        constexpr int rendererFlags = SDL_RENDERER_ACCELERATED;
-        SDL_Renderer* renderer = SDL_CreateRenderer(m_pWindow, -1, rendererFlags);
-        if (renderer == nullptr)
-            return false;
-
-        m_pRenderer = std::make_unique<Renderer>(*renderer);
-
-        SDL_RenderSetIntegerScale(*m_pRenderer, SDL_TRUE);
-        */
-
         return true;
     }
 
-    void Window::ClearScreen()
+    void Window::ClearScreen() const
     {
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);

@@ -3,7 +3,7 @@
 #include "Component.h"
 #include "Core/Maths/Vector2.h"
 #include "Core/Maths/Rectangle.h"
-#include "Rendering/Renderable.h"
+#include "Rendering/IRenderable.h"
 
 namespace Graphics { class SpriteSheet; class Texture2DOLD; class Sprite; }
 using namespace Graphics;
@@ -12,7 +12,7 @@ namespace Scene
 {
     namespace Components
     {
-        class SpriteRenderer final : public Component, Rendering::Renderable
+        class SpriteRenderer final : public Component, Rendering::IRenderable
         {
         private:
             Sprite* m_pSprite;

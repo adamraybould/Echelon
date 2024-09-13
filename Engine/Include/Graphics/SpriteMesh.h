@@ -1,35 +1,11 @@
 #ifndef SPRITEMESH_H
 #define SPRITEMESH_H
+
 #include "Core/TypeDefs.h"
 #include "Core/Maths/Vector2.h"
 
 namespace Graphics
 {
-    struct Vertex
-    {
-        Vector2F Position;
-        Vector2F UV;
-
-        Vertex(const Vector2F position, const Vector2F uv) : Position(position), UV(uv) {}
-    };
-
-    struct Vector2F4X
-    {
-    private:
-        Vector2F m_vectors[4];
-
-    public:
-        Vector2F4X(const Vector2F vec1, const Vector2F vec2, const Vector2F vec3, const Vector2F vec4)
-        {
-            m_vectors[0] = vec1;
-            m_vectors[1] = vec2;
-            m_vectors[2] = vec3;
-            m_vectors[3] = vec4;
-        }
-
-        const Vector2F* GetArray() const { return m_vectors; }
-    };
-
     class SpriteMesh
     {
     private:

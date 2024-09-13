@@ -135,18 +135,6 @@ namespace Core
 
         m_pEngineGUI->RenderImGui(GetRenderer());
         m_pWindow->SwapBuffers();
-
-        /*
-        m_pEngineGUI->Render();
-        GetRenderer().RenderScreen();
-
-        GetRenderer().ProcessRenderQueue();
-        m_pPhysics->Render(GetRenderer());
-
-        m_pEngineGUI->RenderImGui(GetRenderer());
-
-        GetRenderer().PresentScreen();
-        */
     }
 
     void Application::Initialise()

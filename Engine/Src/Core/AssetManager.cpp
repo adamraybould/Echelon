@@ -2,7 +2,6 @@
 
 #include <SDL2/SDL_surface.h>
 #include <SDL2/SDL_image.h>
-#include <GL/glew.h>
 #include <fstream>
 #include <filesystem>
 #include <json/json.h>
@@ -49,37 +48,31 @@ namespace Core
     Texture2D& AssetManager::LoadTexture(const String& path)
     {
         SDL_Surface* surface = LoadSurface(ASSETS_PATH + path);
+        if (surface != nullptr)
+        {
+            m_pTextures.push_back(std::make_shared<Texture2D>(*surface));
+            SDL_FreeSurface(surface);
 
-        // Get the Surface Format
-        UInt format = 0;
-        if (surface->format->BytesPerPixel == 4)
-        {
-            format = (surface->format->Rmask == 0x000000ff) ? GL_RGBA : GL_BGRA;
-        }
-        else
-        {
-            format = GL_RGB;
+            return *m_pTextures.back();
         }
 
-        m_pTextures.push_back(std::make_shared<Texture2D>(*surface));
-        SDL_FreeSurface(surface);
-
-        return *m_pTextures.back();
+        throw std::runtime_error("Failed to Load Texture '" + path + "'");
     }
 
     SpriteSheet& AssetManager::LoadSpriteSheet(const String& path)
     {
-        fs::path filePath(ASSETS_PATH + path);
+        const String& assetPath = ASSETS_PATH + path;
+
+        fs::path filePath(assetPath);
         fs::path fileDirectory = filePath.parent_path();
         String directoryPath = fileDirectory.string();
 
         std::ifstream file(filePath.string() + ".json");
-        Json::Reader reader;
         Json::Value data;
+        Json::Reader reader;
         if (!reader.parse(file, data))
         {
-            std::cerr << "Failed to parse Sprite Sheet: '" << path << "'" << std::endl;
-            throw std::invalid_argument("Failed to Read Sprite Sheet: '" + path + "'");
+            throw std::runtime_error("Failed to Read Sprite Sheet at path '" + assetPath + "'");
         }
 
         // Load meta data
@@ -90,11 +83,15 @@ namespace Core
         UInt spriteHeight = frameData["sourceSize"]["h"].asInt();
 
         String pngPath = directoryPath + "/" + imagePath;
-        SDL_Surface& surface = *LoadSurface(pngPath);
+        SDL_Surface* surface = LoadSurface(pngPath);
+        if (surface != nullptr)
+        {
+            const UnorderedMap<String, Animation> animations = GetAnimations(data); // Load Animations
+            m_pTextures.push_back(std::make_unique<SpriteSheet>(*surface, spriteWidth, spriteHeight, animations));
+            return static_cast<SpriteSheet&>(*m_pTextures.back());
+        }
 
-        const UnorderedMap<String, Animation> animations = GetAnimations(data); // Load Animations
-        m_pTextures.push_back(std::make_unique<SpriteSheet>(surface, spriteWidth, spriteHeight, animations));
-        return static_cast<SpriteSheet&>(*m_pTextures.back());
+        throw std::runtime_error("Failed to load Sprite Sheet Surface '" + assetPath + "'");
     }
 
     SDL_Surface* AssetManager::LoadSurface(const String& path)
@@ -109,23 +106,6 @@ namespace Core
         }
 
         return surface;
-    }
-
-    SDL_Texture& AssetManager::LoadRawTexture(const String& filePath)
-    {
-        /*
-        SDL_Texture* texture = IMG_LoadTexture(*m_renderer, filePath.c_str());
-        if (texture == nullptr)
-        {
-            std::cerr << "Failed to Load Texture: " << SDL_GetError() << std::endl;
-
-            String errorPath = ASSETS_PATH + std::string(ERROR_TEXTURE);
-            texture = IMG_LoadTexture(*m_renderer, errorPath.c_str());
-        }
-        return *texture;
-        */
-
-        throw std::invalid_argument("File does not exist");
     }
 
     UnorderedMap<String, Animation> AssetManager::GetAnimations(Json::Value& data)

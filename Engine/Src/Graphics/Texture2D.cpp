@@ -1,13 +1,13 @@
 #include "Graphics/Texture2D.h"
 
 #include <GL/glew.h>
-#include <iostream>
 #include <SDL_surface.h>
 
 namespace Graphics
 {
     Texture2D::Texture2D(const SDL_Surface& surface)
     {
+        m_texture = 0;
         m_width = surface.w;
         m_height = surface.h;
 

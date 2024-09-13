@@ -4,7 +4,7 @@
 #include "Core/Commons.h"
 #include "Core/Maths/Vector2.h"
 #include "Core/Utility.h"
-#include "Rendering/Renderable.h"
+#include "Rendering/IRenderable.h"
 
 constexpr int MAX_PARTICLES = 200;
 
@@ -14,7 +14,7 @@ namespace Scene
 {
     namespace Components
     {
-        class ParticleSystem final : public Component, public Rendering::Renderable
+        class ParticleSystem final : public Component, public Rendering::IRenderable
         {
         private:
             UniquePtr<Graphics::ParticleEmitter> m_pEmitter;

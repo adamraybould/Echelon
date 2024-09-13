@@ -41,17 +41,18 @@ namespace Core
         static Array<SharedPtr<Graphics::Texture2D>> m_pTextures;
 
     public:
-        AssetManager(Renderer& renderer);
+        explicit AssetManager(Renderer& renderer);
         ~AssetManager();
 
+        /* Loads a Texture2D from a specific file path. Will throw an error if no Texture can be loaded */
         static Graphics::Texture2D& LoadTexture(const String& path);
+
+        /* Loads a Sprite Sheet from a .json file. Any Animations will be loaded and set within the Sprite Sheet. */
         static Graphics::SpriteSheet& LoadSpriteSheet(const String& path);
 
     private:
+        /* Loads a SDL Surface from a specific file path */
         static SDL_Surface* LoadSurface(const String& path);
-
-        /* Loads a Raw SDL texture */
-        static SDL_Texture& LoadRawTexture(const String& filePath);
 
         static UnorderedMap<String, Graphics::Animation> GetAnimations(Json::Value& data);
     };

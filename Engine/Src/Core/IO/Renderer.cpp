@@ -3,9 +3,10 @@
 #include <GL/glew.h>
 #include <glm/ext/matrix_transform.hpp>
 
+#include "Graphics/Material.h"
 #include "Graphics/SpriteMesh.h"
 #include "Graphics/Sprite.h"
-#include "Rendering/Renderable.h"
+#include "Rendering/IRenderable.h"
 #include "Rendering/Shader.h"
 
 using namespace Graphics;
@@ -13,7 +14,7 @@ using namespace Rendering;
 namespace Core
 {
     Array<UniquePtr<Sprite>> Renderer::m_pSprites;
-    Map<RenderLayer, Array<Renderable*>> Renderer::m_pRenderQueue;
+    Map<RenderLayer, Array<IRenderable*>> Renderer::m_pRenderQueue;
 
     Renderer::Renderer(Window& window, SDL_GLContext& context) : m_window(window), m_context(context)
     {
@@ -40,12 +41,12 @@ namespace Core
     {
         for (auto& layer : m_pRenderQueue)
         {
-            std::sort(layer.second.begin(), layer.second.end(), [] (Renderable* a, Renderable* b)
+            std::sort(layer.second.begin(), layer.second.end(), [] (IRenderable* a, IRenderable* b)
             {
                 return a->GetDepth() > b->GetDepth();
             });
 
-            for(Renderable* renderable : layer.second)
+            for(IRenderable* renderable : layer.second)
             {
                 if (renderable->IsActive())
                 {
@@ -61,12 +62,12 @@ namespace Core
         return *m_pSprites.back();
     }
 
-    void Renderer::AddToRenderQueue(Renderable& renderable)
+    void Renderer::AddToRenderQueue(IRenderable& renderable)
     {
         m_pRenderQueue[renderable.GetRenderLayer()].push_back(&renderable);
     }
 
-    void Renderer::Render(const Sprite* sprite, const RectF& src, const RectF& dest, const float rotation)
+    void Renderer::Render(const Sprite* sprite, const RectF& src, const RectF& dest, const float rotation) const
     {
         AttachMesh(sprite, src, dest);
 

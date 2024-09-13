@@ -1,6 +1,5 @@
 #include "Graphics/Particle.h"
 
-#include "Core/AssetManager.h"
 #include "Core/IO/Renderer.h"
 #include "Graphics/Sprite.h"
 
@@ -25,9 +24,6 @@ namespace Graphics
 
     void Particle::Render(Renderer& renderer) const
     {
-        //m_sprite.Render(m_position, m_rotation, m_scale);
-        //SDL_RenderCopyEx(renderer, &m_texture.GetRawTexture(), &src, &dest, m_rotation, nullptr, SDL_FLIP_NONE);
-
         const RectF src = { 0, 0, static_cast<float>(m_sprite.GetWidth()), static_cast<float>(m_sprite.GetHeight()) };
         const RectF dest = RectF(m_screenPosition.X, m_screenPosition.Y, m_sprite.GetWidth() * m_scale.X, m_sprite.GetHeight() * m_scale.Y);
         renderer.Render(&m_sprite, src, dest, 0.0f);

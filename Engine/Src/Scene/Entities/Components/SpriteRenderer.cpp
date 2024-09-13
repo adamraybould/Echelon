@@ -7,6 +7,7 @@
 #include "Graphics/SpriteSheet.h"
 #include "Core//Scripting/Prefab.h"
 #include "Core/Constants.h"
+#include "Graphics/Material.h"
 #include "Graphics/Sprite.h"
 
 namespace Scene

@@ -14,6 +14,7 @@
 #include "Core/Constants.h"
 #include "Core/Maths/MathF.h"
 #include "Core/Utility.h"
+#include "Graphics/Material.h"
 #include "Graphics/Sprite.h"
 
 using namespace Scene;

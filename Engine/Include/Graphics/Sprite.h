@@ -1,17 +1,11 @@
 #ifndef SPRITE_H
 #define SPRITE_H
-#include <glm/fwd.hpp>
-
-#include "Material.h"
-#include "Texture2D.h"
 #include "Core/TypeDefs.h"
-#include "Core/Maths/Rectangle.h"
-
-namespace Rendering { class Shader; }
 
 namespace Graphics
 {
     class SpriteMesh;
+    class Texture2D;
     class Material;
 
     class Sprite
@@ -24,8 +18,8 @@ namespace Graphics
         ~Sprite();
 
         Material& GetMaterial() const { return *m_pMaterial; }
-        UInt GetWidth() const { return GetMaterial().GetTextureWidth(); }
-        UInt GetHeight() const { return GetMaterial().GetTextureHeight(); }
+        UInt GetWidth() const;
+        UInt GetHeight() const;
     };
 }
 

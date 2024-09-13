@@ -2,7 +2,7 @@
 #define MAPLAYER_H
 #include <tmxlite/TileLayer.hpp>
 #include "Graphics/TileMap/Tile.h"
-#include "Rendering/Renderable.h"
+#include "Rendering/IRenderable.h"
 
 namespace tmx
 {
@@ -41,7 +41,7 @@ namespace Graphics
         }
     };
 
-    class MapLayer : public Rendering::Renderable
+    class MapLayer : public Rendering::IRenderable
     {
     private:
         const tmx::Map& m_map;

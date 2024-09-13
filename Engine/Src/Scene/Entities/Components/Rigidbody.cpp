@@ -5,6 +5,7 @@
 #include "Scene/Entities/Components/SpriteRenderer.h"
 #include "Graphics/SpriteSheet.h"
 #include "Core/Constants.h"
+#include "Graphics/Material.h"
 #include "Graphics/Sprite.h"
 #include "Scene/Entities/Entity.h"
 

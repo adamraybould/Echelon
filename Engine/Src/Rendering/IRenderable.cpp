@@ -1,11 +1,11 @@
-#include "Rendering/Renderable.h"
+#include "Rendering/IRenderable.h"
 
 #include "Core/IO/Renderer.h"
 
 using namespace Core;
 namespace Rendering
 {
-    Renderable::Renderable()
+    IRenderable::IRenderable()
     {
         SetActiveRendering(true);
     }

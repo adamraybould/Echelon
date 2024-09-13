@@ -1,9 +1,10 @@
 #include "Scene/Entities/Components/Animator.h"
 
+#include "Scene/Entities/Components/SpriteRenderer.h"
+#include "Graphics/Material.h"
 #include "Graphics/Sprite.h"
 #include "Scene/Entities/Entity.h"
 #include "Graphics/SpriteSheet.h"
-#include "Scene/Entities/Components/SpriteRenderer.h"
 
 namespace Scene
 {
