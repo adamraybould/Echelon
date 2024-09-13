@@ -19,7 +19,6 @@ namespace Core
     private:
         static Application* m_pInstance;
 
-
         UniquePtr<Window> m_pWindow;
         bool m_isRunning;
 
@@ -56,7 +55,9 @@ namespace Core
         StateSystem& GetStateSystem() const { return *m_pStateSystem; }
 
     private:
-        void Initialize();
+        void Initialise();
+        void CreateWindow();
+
         void InitialiseSystems();
     };
 }

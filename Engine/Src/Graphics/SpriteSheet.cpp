@@ -1,10 +1,11 @@
 #include "Graphics/SpriteSheet.h"
 
 #include <iostream>
+#include <SDL2/SDL.h>
 
 namespace Graphics
 {
-    SpriteSheet::SpriteSheet(SDL_Texture* texture, const int frameWidth, const int frameHeight, UnorderedMap<String, Animation> animations) : Sprite(texture)
+    SpriteSheet::SpriteSheet(const SDL_Surface& surface, const int frameWidth, const int frameHeight, const UnorderedMap<String, Animation>& animations) : Texture2D(surface)
     {
         m_spriteWidth = frameWidth;
         m_spriteHeight = frameHeight;
@@ -15,10 +16,9 @@ namespace Graphics
 
     SpriteSheet::~SpriteSheet()
     {
-        Sprite::~Sprite();
     }
 
-    RectI SpriteSheet::GetSpriteSource(const UInt frameIndex) const
+    RectF SpriteSheet::GetSpriteSource(const UInt frameIndex) const
     {
         int maxXIndex = GetWidth() / m_spriteWidth;
         int xFramePos = (frameIndex % maxXIndex) * m_spriteWidth;

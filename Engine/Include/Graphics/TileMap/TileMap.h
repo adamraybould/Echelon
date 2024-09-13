@@ -1,7 +1,6 @@
 #ifndef TILEMAP_H
 #define TILEMAP_H
 #include "ObjectLayer.h"
-#include "Core/IO/IRenderable.h"
 #include "Core/Commons.h"
 
 namespace tmx { class Tileset; }
@@ -14,12 +13,11 @@ namespace Graphics
 
     struct TilesetTexture
     {
-        const Texture2D& Texture;
+        Texture2D& Texture;
         const tmx::Tileset& Tileset;
 
-        TilesetTexture(const Texture2D& texture, const tmx::Tileset& tileset) : Texture(texture), Tileset(tileset)
+        TilesetTexture(Texture2D& texture, const tmx::Tileset& tileset) : Texture(texture), Tileset(tileset)
         {
-
         }
     };
 
@@ -36,8 +34,6 @@ namespace Graphics
     public:
         TileMap();
         ~TileMap();
-
-        void Render(const Renderer& renderer) const;
 
         void LoadTileMap(const String& filePath);
 

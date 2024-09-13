@@ -18,7 +18,7 @@ namespace Graphics
         Create();
     }
 
-    void ObjectLayer::Create()
+    void ObjectLayer::Create() const
     {
         const auto& objectLayer = m_layer.getLayerAs<tmx::ObjectGroup>();
         for (const auto& object : objectLayer.getObjects())
@@ -30,8 +30,7 @@ namespace Graphics
                 if (property.getName() == "Prefab")
                 {
                     isEntity = true;
-                    CreateEntity(property.getStringValue(),
-                                 Vector2F(GetObjectPosition(object).X, GetObjectPosition(object).Y));
+                    CreateEntity(property.getStringValue(),Vector2F(GetObjectPosition(object).X, GetObjectPosition(object).Y));
                     break;
                 }
             }
@@ -42,30 +41,30 @@ namespace Graphics
             // Create Collisions
             if (object.getShape() == tmx::Object::Shape::Rectangle)
             {
-                float width = object.getAABB().width;
-                float height = object.getAABB().height;
+                const float width = object.getAABB().width;
+                const float height = object.getAABB().height;
 
-                Vector2U tileSize = Vector2(m_map.getTileSize().x * TILE_SCALE, m_map.getTileSize().y * TILE_SCALE);
-                UInt positionX = (object.getPosition().x * TILE_SCALE) - (tileSize.X * 0.5f) + width;
-                UInt positionY = (object.getPosition().y * TILE_SCALE) - (tileSize.Y * 0.5f) + height;
-                Vector2F position = Vector2F(positionX, positionY);
+                const Vector2U tileSize = Vector2(m_map.getTileSize().x * TILE_SCALE, m_map.getTileSize().y * TILE_SCALE);
+                const float positionX = (object.getPosition().x * TILE_SCALE) - (tileSize.X * 0.5f) + width;
+                const float positionY = ((m_map.getBounds().height - object.getPosition().y) * TILE_SCALE) - (tileSize.Y * 0.5f) - height;
+                const Vector2F position = Vector2F(positionX, positionY);
 
                 Physics::CreateStaticBody(position, width, height);
             }
         }
     }
 
-    void ObjectLayer::CreateEntity(const String& prefab, const Vector2F& position)
+    void ObjectLayer::CreateEntity(const String& prefab, const Vector2F& position) const
     {
         const GUID entity = Engine::SpawnPrefab(ScriptCore::Instance()->GetLuaState(), prefab);
         EntityManager::GetEntityByGUID(entity)->GetTransform().SetWorldPosition(position);
     }
 
-    Vector2I ObjectLayer::GetObjectPosition(const tmx::Object& obj) const
+    Vector2F ObjectLayer::GetObjectPosition(const tmx::Object& obj) const
     {
         Vector2U tileSize = Vector2U(obj.getAABB().width * TILE_SCALE, obj.getAABB().height * TILE_SCALE);
-        int positionX = (obj.getPosition().x * TILE_SCALE) + (tileSize.X * 0.5f) - m_map.getTileSize().x;
-        int positionY = (obj.getPosition().y * TILE_SCALE) - (tileSize.Y * 0.5f) - m_map.getTileSize().y;
-        return {positionX, positionY};
+        float positionX = (obj.getPosition().x * TILE_SCALE) + (tileSize.X * 0.5f) - m_map.getTileSize().x;
+        float positionY = ((m_map.getBounds().height - obj.getPosition().y) * TILE_SCALE) + (tileSize.Y * 0.5f) - m_map.getTileSize().y;
+        return { positionX, positionY };
     }
 }

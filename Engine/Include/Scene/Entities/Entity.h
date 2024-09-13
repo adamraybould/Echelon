@@ -2,7 +2,6 @@
 #define ENTITY_H
 
 #include "Core/Scripting/IBinder.h"
-#include "Core/IO/IRenderable.h"
 
 #include "Components/Component.h"
 #include "Components/Transform.h"
@@ -14,7 +13,7 @@ using namespace Core::Scripting;
 namespace Scene
 {
     using namespace Scene::Components;
-    class Entity : public IBinder, public IRenderable
+    class Entity : public IBinder
     {
     private:
         Prefab* m_prefab = nullptr;
@@ -23,7 +22,7 @@ namespace Scene
         GUID m_guid;
         String m_name;
 
-        RectI m_bounds;
+        RectF m_bounds;
 
         Array<UniquePtr<Component>> m_components;
         Array<String> m_tags;
@@ -36,12 +35,11 @@ namespace Scene
 
         virtual void Initialize();
         virtual void Update(float delta);
-        void Render(Renderer& renderer) override;
 
         void RemoveAllComponents();
 
-        void SetBounds(const RectI rect) { m_bounds = rect; }
-        RectI GetBounds() const { return m_bounds; }
+        void SetBounds(const RectF rect) { m_bounds = rect; }
+        RectF GetBounds() const { return m_bounds; }
 
         Prefab& GetPrefab() const { return *m_prefab; }
         bool HasPrefab() const { return m_prefab != nullptr; }
@@ -65,8 +63,6 @@ namespace Scene
         void RemoveTag(const String& tag);
         bool HasTag(const String& tag) const;
         Array<String>& GetTags() { return m_tags; }
-
-        float GetDepth() override;
 
         template<typename T, typename... Args>
         T& AddComponent(Args&&... args)

@@ -2,31 +2,28 @@
 #define TEXTURE2D_H
 #include "Core/TypeDefs.h"
 
-class SDL_Texture;
+struct SDL_Surface;
 
-using namespace Core;
 namespace Graphics
 {
     class Texture2D
     {
     private:
-        SDL_Texture* m_pTexture;
+        UInt m_texture;
 
-        int m_width;
-        int m_height;
-        UInt32 m_format;
+        UInt m_width;
+        UInt m_height;
+        UInt m_format;
 
     public:
-        Texture2D(SDL_Texture* texture);
-        ~Texture2D();
+        Texture2D(const SDL_Surface& surface);
+        ~Texture2D() = default;
 
-        void Free();
+        UInt GetWidth() const { return m_width; }
+        UInt GetHeight() const { return m_height; }
+        UInt GetFormat() const { return m_format; }
 
-        SDL_Texture& GetRawTexture() const { return *m_pTexture; }
-        int GetWidth() const { return m_width; }
-        int GetHeight() const { return m_height; }
-
-        explicit operator SDL_Texture*() const { return m_pTexture; }
+        operator UInt() const { return m_texture; }
     };
 }
 

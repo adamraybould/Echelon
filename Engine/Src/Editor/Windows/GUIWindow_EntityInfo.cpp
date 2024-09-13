@@ -3,6 +3,7 @@
 #include <imgui.h>
 #include <iostream>
 #include <cctype>
+#include <GL/glew.h>
 
 #include "Core/IO/Window.h"
 #include "Scene/Entities/Components/SpriteRenderer.h"
@@ -13,6 +14,7 @@
 #include "Core/Constants.h"
 #include "Core/Maths/MathF.h"
 #include "Core/Utility.h"
+#include "Graphics/Sprite.h"
 
 using namespace Scene;
 using namespace Scene::Components;
@@ -65,13 +67,11 @@ namespace Core
             zoom = MathF::Clamp(zoom, 0.5f, 1.0f);
 
             const Vector2F entityPos = m_pEntity->GetTransform().GetWorldPosition();
-            Vector2F entityOffset = Vector2F((entityPos.X - camera.GetCameraOrigin().X) + SCREEN_WIDTH * 0.5f, (entityPos.Y - camera.GetCameraOrigin().Y) + SCREEN_HEIGHT * 0.5f);
-            const Vector2F windowOffset = Vector2F(entityOffset.X + m_windowOffset.X, entityOffset.Y - m_windowOffset.Y);
-
-            m_windowDistance = (camera.GetCameraOrigin() - windowOffset).Length();
+            const Vector2F windowPos = camera.CalculateScreenPosition(entityPos);
+            m_windowDistance = (camera.GetCameraPosition() - windowPos).Length();
 
             // Set Position and Size of Window
-            SetWindowPosition(Vector2F(windowOffset.X * zoom, windowOffset.Y * zoom));
+            SetWindowPosition(Vector2F(windowPos.X * zoom, windowPos.Y * zoom));
             SetWindowSize(Vector2U(GetWindowSize().X + m_windowExpansionWidth, GetWindowSize().Y + m_windowExpansionHeight));
 
             if (ImGui::Begin("Entity Info", &m_isActive, ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoCollapse))
@@ -134,12 +134,12 @@ namespace Core
             constexpr float desiredWidth = 80.0f;
             const float desiredHeight = desiredWidth / m_pEntityRenderer->GetDisplaySource().Width * m_pEntityRenderer->GetDisplaySource().Height;
 
-            const RectI spriteSource = m_pEntityRenderer->GetDisplaySource();
+            const RectF spriteSource = m_pEntityRenderer->GetDisplaySource();
             const ImVec2 uv0 = ImVec2(static_cast<float>(spriteSource.X) / textureWidth, static_cast<float>(spriteSource.Y) / textureHeight);
             const ImVec2 uv1 = ImVec2(static_cast<float>(spriteSource.X + spriteSource.Width) / textureWidth, static_cast<float>(spriteSource.Y + spriteSource.Height) / textureHeight);
 
             ImGui::SetCursorPosX(ImGui::GetCursorPosX() + 10.0f);
-            ImGui::Image(GetTextureID(*m_pEntitySprite), ImVec2(desiredWidth, desiredHeight), uv0, uv1);
+            ImGui::Image((void*)(intptr_t)m_pEntitySprite->GetMaterial().GetTexture(), ImVec2(desiredWidth, desiredHeight), uv0, uv1);
 
             // Display current animation if playing
             if (m_pEntity->HasComponent<Animator>())

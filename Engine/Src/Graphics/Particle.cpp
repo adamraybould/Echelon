@@ -1,10 +1,12 @@
 #include "Graphics/Particle.h"
-#include "Graphics/Texture2D.h"
+
+#include "Core/AssetManager.h"
 #include "Core/IO/Renderer.h"
+#include "Graphics/Sprite.h"
 
 namespace Graphics
 {
-    Particle::Particle(Texture2D& texture, const UInt lifetime, const float speed) : m_texture(texture)
+    Particle::Particle(Texture2D& texture, const UInt lifetime, const float speed) : m_sprite(Renderer::CreateSprite(texture))
     {
         m_position = Vector2F::Zero();
         m_rotation = 0.0f;
@@ -21,11 +23,14 @@ namespace Graphics
         m_screenPosition = Camera::Main->CalculateScreenPosition(m_position);
     }
 
-    void Particle::Render(const Renderer& renderer) const
+    void Particle::Render(Renderer& renderer) const
     {
-        SDL_Rect src = { 0, 0, m_texture.GetWidth(), m_texture.GetHeight() };
-        SDL_Rect dest = RectF(m_screenPosition.X, m_screenPosition.Y, m_texture.GetWidth() * m_scale.X, m_texture.GetHeight() * m_scale.Y);
-        SDL_RenderCopyEx(renderer, &m_texture.GetRawTexture(), &src, &dest, m_rotation, nullptr, SDL_FLIP_NONE);
+        //m_sprite.Render(m_position, m_rotation, m_scale);
+        //SDL_RenderCopyEx(renderer, &m_texture.GetRawTexture(), &src, &dest, m_rotation, nullptr, SDL_FLIP_NONE);
+
+        const RectF src = { 0, 0, static_cast<float>(m_sprite.GetWidth()), static_cast<float>(m_sprite.GetHeight()) };
+        const RectF dest = RectF(m_screenPosition.X, m_screenPosition.Y, m_sprite.GetWidth() * m_scale.X, m_sprite.GetHeight() * m_scale.Y);
+        renderer.Render(&m_sprite, src, dest, 0.0f);
     }
 
     void Particle::Reset(const Vector2F& position, const UInt lifetime, const float speed)
@@ -44,7 +49,7 @@ namespace Graphics
 
     bool Particle::IsOffScreen() const
     {
-        const RectI& viewport = Camera::Main->GetViewport();
+        const RectF& viewport = Camera::Main->GetViewport();
         return m_screenPosition.X < viewport.X || m_screenPosition.X > viewport.X + viewport.Width || m_screenPosition.Y < viewport.Y || m_screenPosition.Y > viewport.Y + viewport.Height;
     }
 }

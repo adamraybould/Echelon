@@ -17,7 +17,7 @@ namespace Graphics
         Create();
 
         SetRenderLayer(RenderLayer::Map);
-        Renderer::AddToRenderQueue(this, GetRenderLayer());
+        Renderer::AddToRenderQueue(*this);
     }
 
     MapLayer::~MapLayer()
@@ -63,8 +63,7 @@ namespace Graphics
                     UInt id = tileID - firstGID;
                     Vector2U tilePos = GetTilePosition(i);
 
-                    m_tiles[firstGID].push_back(
-                        std::make_unique<Tile>(id, tilePos, Vector2F(m_tileSize.X, m_tileSize.Y), tileset.Texture));
+                    m_tiles[firstGID].push_back(std::make_unique<Tile>(id, tilePos, Vector2F(m_tileSize.X, m_tileSize.Y), tileset.Texture));
                 }
             }
         }
@@ -75,7 +74,7 @@ namespace Graphics
         float col = index % static_cast<int>(m_mapSize.X);
         float row = index / static_cast<int>(m_mapSize.X);
         UInt destX = static_cast<UInt>((col * m_tileSize.X) * TILE_SCALE);
-        UInt destY = static_cast<UInt>((row * m_tileSize.Y) * TILE_SCALE);
+        UInt destY = static_cast<UInt>(((m_mapSize.Y - 1 - row) * m_tileSize.Y) * TILE_SCALE);
 
         return {destX, destY};
     }

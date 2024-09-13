@@ -2,8 +2,7 @@
 #define MAPLAYER_H
 #include <tmxlite/TileLayer.hpp>
 #include "Graphics/TileMap/Tile.h"
-#include "Core/IO/IRenderable.h"
-#include "Core/Commons.h"
+#include "Rendering/Renderable.h"
 
 namespace tmx
 {
@@ -17,7 +16,6 @@ namespace Core { class Renderer; }
 
 namespace Graphics
 {
-    class Texture2D;
     struct TilesetTexture;
 
     struct MapTile
@@ -43,7 +41,7 @@ namespace Graphics
         }
     };
 
-    class MapLayer : public IRenderable
+    class MapLayer : public Rendering::Renderable
     {
     private:
         const tmx::Map& m_map;
@@ -58,7 +56,7 @@ namespace Graphics
 
     public:
         explicit MapLayer(const tmx::Map& map, const Array<TilesetTexture>& tilesets, tmx::Layer& layer);
-        ~MapLayer() override;
+        ~MapLayer();
 
         void Render(Renderer& renderer) override;
 

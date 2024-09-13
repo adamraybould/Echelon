@@ -6,6 +6,7 @@ set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake_modules)
 
 set(ASSETS_PATH "${CMAKE_SOURCE_DIR}/Echelon/Assets/")
 set(SCRIPTS_PATH "${CMAKE_SOURCE_DIR}/Echelon/Scripts/")
+set(SHADERS_PATH "${CMAKE_SOURCE_DIR}/Echelon/Shaders/")
 set(VERSION "1.0.0")
 
 configure_file(config.h.in ${CMAKE_BINARY_DIR}/config.h)
@@ -25,6 +26,7 @@ find_package(tmxlite REQUIRED)
 find_package(box2d CONFIG REQUIRED)
 find_package(FMOD REQUIRED)
 find_package(FMOD_STUDIO REQUIRED)
+find_package(glm CONFIG REQUIRED)
 
 add_subdirectory(Engine)
 add_subdirectory(Echelon)

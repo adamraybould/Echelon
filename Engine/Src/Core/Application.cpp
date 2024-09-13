@@ -27,7 +27,7 @@ namespace Core
 
         std::srand(static_cast<UInt>(time(nullptr)));
 
-        Initialize();
+        Initialise();
     }
 
     void Application::Run()
@@ -35,10 +35,8 @@ namespace Core
         m_isRunning = true;
         m_prevTime = SDL_GetTicks();
 
-        //m_pScriptCore->SetupBindings();
-
         // Initialize Systems
-        m_pStateSystem->Initialize();
+       m_pStateSystem->Initialize();
 
         while (m_isRunning)
         {
@@ -46,7 +44,7 @@ namespace Core
             Update();
             Render();
 
-            SDL_Delay(16);
+            //SDL_Delay(16);
         }
 
         Clean();
@@ -105,11 +103,14 @@ namespace Core
         const int FPS = static_cast<int>((1.0f / deltaTime) + 0.5f);
 
         constexpr UInt titleUpdateIntervalMs = 1000;
-        UInt32 currentTitleUpdateTicks = m_currentTime;
+        const UInt32 currentTitleUpdateTicks = m_currentTime;
 
         if (currentTitleUpdateTicks - m_lastTitleUpdateTicks >= titleUpdateIntervalMs * SDL_GetPerformanceFrequency() / 1000)
         {
-            std::string title = "Echelon | FPS: " + std::to_string(FPS);
+            const auto openGLVersion = reinterpret_cast<const char*>(glGetString(GL_VERSION));
+            const auto glewVersion = reinterpret_cast<const char*>(glewGetString(GLEW_VERSION));
+
+            const std::string title = "Echelon | FPS: " + std::to_string(FPS) + " | OpenGL Version: " + openGLVersion + " | GLEW Version: " + glewVersion;
             m_pWindow->SetTitle(title.c_str());
 
             m_lastTitleUpdateTicks = currentTitleUpdateTicks;
@@ -117,8 +118,8 @@ namespace Core
 
         m_pPhysics->Update();
         AudioSystem::Update();
-
         GetRenderer().Update(deltaTime);
+
         m_pEngineGUI->Update(deltaTime);
         m_pStateSystem->Update(deltaTime);
         m_pScriptCore->Update(deltaTime);
@@ -126,6 +127,16 @@ namespace Core
 
     void Application::Render() const
     {
+        m_pEngineGUI->Render();
+        m_pWindow->ClearScreen();
+
+        GetRenderer().ProcessRenderQueue();
+        m_pPhysics->Render(GetRenderer());
+
+        m_pEngineGUI->RenderImGui(GetRenderer());
+        m_pWindow->SwapBuffers();
+
+        /*
         m_pEngineGUI->Render();
         GetRenderer().RenderScreen();
 
@@ -135,28 +146,40 @@ namespace Core
         m_pEngineGUI->RenderImGui(GetRenderer());
 
         GetRenderer().PresentScreen();
+        */
     }
 
-    void Application::Initialize()
+    void Application::Initialise()
     {
         if (SDL_Init(SDL_INIT_VIDEO) < 0)
-            OutputError("SDL could not Initialize! SDL_ERROR:", "SDL Error", true, true);
-
-        // Setup OpenGL Attributes
-        //SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
-        //SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
-        //SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
-
-        // Only runs if SDL is initialised
-        m_pWindow = std::make_unique<Window>();
-        if (!m_pWindow->Create("Echelon"))
-            OutputError("Window could not be created! \nSDL_ERROR: ", "SDL Error", true, true);
+        {
+            OutputError("SDL could not Initialize! \nSDL_ERROR: ", "SDL Error", true);
+            Exit();
+        }
 
         if (IMG_Init(IMG_INIT_PNG) < 0)
-            OutputError("SDL Image could not Initialize! \nSDL_ERROR: ", "SDL Error", true, true);
+        {
+            OutputError("SDL Image could not Initialize! \nSDL_ERROR: ", "SDL Error", true);
+            Exit();
+        }
 
+        // Setup OpenGL Attributes
+        SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
+        SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 5);
+        SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
 
+        CreateWindow();
         InitialiseSystems();
+    }
+
+    void Application::CreateWindow()
+    {
+        m_pWindow = std::make_unique<Window>();
+        if (!m_pWindow->Create("Echelon"))
+        {
+            OutputError("Window could not be created! \nSDL_ERROR: ", "SDL Error", true);
+            Exit();
+        }
     }
 
     void Application::InitialiseSystems()

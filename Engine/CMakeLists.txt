@@ -23,14 +23,10 @@ add_library(Engine STATIC
         Include/Scene/Entities/Components/Component.h
         Src/Scene/Entities/Components/Component.cpp
         Include/Core/Utility.h
-        Include/Graphics/Texture2D.h
-        Src/Graphics/Texture2D.cpp
         Include/Core/AssetManager.h
         Src/Core/AssetManager.cpp
         Include/Scene/Entities/Components/SpriteRenderer.h
         Src/Scene/Entities/Components/SpriteRenderer.cpp
-        Include/Graphics/Sprite.h
-        Src/Graphics/Sprite.cpp
         Include/States/Level.h
         Src/States/Level.cpp
         Include/Systems/LevelManager.h
@@ -68,7 +64,6 @@ add_library(Engine STATIC
         Src/Graphics/TileMap/TileMap.cpp
         Include/Graphics/TileMap/MapLayer.h
         Src/Graphics/TileMap/MapLayer.cpp
-        Include/Core/IO/IRenderable.h
         Include/Scene/Entities/Components/Rigidbody.h
         Src/Scene/Entities/Components/Rigidbody.cpp
         Include/Core/Physics.h
@@ -102,6 +97,18 @@ add_library(Engine STATIC
         Include/Graphics/Particle.h
         Include/Graphics/ParticleEmitter.h
         Src/Graphics/ParticleEmitter.cpp
+        Include/Rendering/Shader.h
+        Src/Rendering/Shader.cpp
+        Include/Graphics/SpriteMesh.h
+        Src/Graphics/SpriteMesh.cpp
+        Include/Graphics/Sprite.h
+        Src/Graphics/Sprite.cpp
+        Include/Graphics/Texture2D.h
+        Src/Graphics/Texture2D.cpp
+        Include/Graphics/Material.h
+        Src/Graphics/Material.cpp
+        Include/Rendering/Renderable.h
+        Src/Rendering/Renderable.cpp
 )
 
 target_include_directories(Engine PUBLIC
@@ -130,3 +137,4 @@ target_link_libraries(Engine PRIVATE ${TMXLITE_LIBRARY})
 target_link_libraries(Engine PRIVATE box2d::box2d)
 target_link_libraries(Engine PRIVATE ${FMOD_LIBRARIES})
 target_link_libraries(Engine PRIVATE ${FMOD_STUDIO_LIBRARIES})
+target_link_libraries(Engine PRIVATE glm::glm)

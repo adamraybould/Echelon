@@ -1,20 +1,31 @@
 #ifndef SPRITE_H
 #define SPRITE_H
+#include <glm/fwd.hpp>
+
+#include "Material.h"
 #include "Texture2D.h"
-#include "Core/Maths/Vector2.h"
+#include "Core/TypeDefs.h"
+#include "Core/Maths/Rectangle.h"
+
+namespace Rendering { class Shader; }
 
 namespace Graphics
 {
-    class Sprite : public Texture2D
+    class SpriteMesh;
+    class Material;
+
+    class Sprite
     {
     private:
-        Vector2F m_origin;
+        UniquePtr<Material> m_pMaterial;
 
     public:
-        Sprite(SDL_Texture* texture);
+        explicit Sprite(Texture2D& texture);
+        ~Sprite();
 
-        void SetOrigin(const Vector2F& origin) { m_origin = origin; }
-        Vector2F& GetOrigin() { return m_origin; }
+        Material& GetMaterial() const { return *m_pMaterial; }
+        UInt GetWidth() const { return GetMaterial().GetTextureWidth(); }
+        UInt GetHeight() const { return GetMaterial().GetTextureHeight(); }
     };
 }
 

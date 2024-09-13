@@ -16,10 +16,7 @@ namespace Scene
         m_guid = Utility::GenerateGUID();
         m_name = name;
 
-        m_bounds = RectI();
-
-        SetRenderLayer(RenderLayer::Default);
-        Renderer::AddToRenderQueue(this, GetRenderLayer());
+        m_bounds = RectF();
     }
 
     Entity::~Entity()
@@ -34,7 +31,7 @@ namespace Scene
         BindClass<Entity>(L);
         BindProperty<Entity>(L, "name", &Entity::GetName);
         BindProperty<Entity>(L, "GUID", &Entity::GetGUID);
-        BindFunction<Entity>(L, "SetRenderLayer", &IRenderable::SetRenderLayer);
+        //BindFunction<Entity>(L, "SetRenderLayer", &IRenderable::SetRenderLayer);
 
         BindFunction<Entity>(L, "AddTransform", &Entity::AddTransform);
         BindFunction<Entity>(L, "AddRenderer", &Entity::AddRenderer);
@@ -64,11 +61,11 @@ namespace Scene
         CallFunction("OnEntityWake", m_guid);
     }
 
-    void Entity::Update(float delta)
+    void Entity::Update(const float delta)
     {
         // Update Bounds
-        m_bounds.X = GetTransform().Position.X;
-        m_bounds.Y = GetTransform().Position.Y;
+        m_bounds.X = GetTransform().GetWorldPosition().X;
+        m_bounds.Y = GetTransform().GetWorldPosition().Y;
 
         for (UInt i = 0; i < m_components.size(); i++)
         {
@@ -84,18 +81,6 @@ namespace Scene
         for (UInt i = 0; i < children.size(); i++)
         {
             children[i]->GetOwner().Update(delta);
-        }
-    }
-
-    void Entity::Render(Renderer& renderer)
-    {
-        for (UInt i = 0; i < m_components.size(); i++)
-        {
-            Component& component = *m_components[i];
-            if (component.IsActive())
-            {
-                component.Render(renderer);
-            }
         }
     }
 
@@ -196,15 +181,5 @@ namespace Scene
         }
 
         return false;
-    }
-
-    float Entity::GetDepth()
-    {
-        if (m_transform != nullptr)
-        {
-            return m_transform->Position.Y;
-        }
-
-        return 0.0f;
     }
 }

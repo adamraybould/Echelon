@@ -12,7 +12,8 @@ namespace Core
 
     protected:
         static void PrintErrorMessage(const std::string& message);
-        static void OutputError(const std::string& error, const std::string& errorTile, bool shouldExit = true, bool displaySDLError = false);
+        static void OutputError(const std::string& error, const std::string& errorTile, bool displaySDLError = false);
+        static void Exit();
     };
 }
 

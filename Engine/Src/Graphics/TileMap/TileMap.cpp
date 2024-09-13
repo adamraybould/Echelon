@@ -25,19 +25,6 @@ namespace Graphics
         m_layers.clear();
     }
 
-    void TileMap::Render(const Renderer& renderer) const
-    {
-        if (m_pSpaceTexture != nullptr)
-        {
-            RenderBackground(renderer);
-        }
-
-        for (UInt i = 0; i < m_layers.size(); i++)
-        {
-            //m_layers[i]->RenderF(renderer);
-        }
-    }
-
     void TileMap::LoadTileMap(const String& filePath)
     {
         String path = std::string(ASSETS_PATH) + "Maps/" + filePath + ".tmx";
@@ -58,7 +45,7 @@ namespace Graphics
         }
 
         // Load Space Background
-        m_pSpaceTexture = &AssetManager::LoadTexture2D("Tilesets/space.png");
+        //m_pSpaceTexture = &AssetManager::LoadTexture2DOLD("Tilesets/space.png");
     }
 
     void TileMap::LoadTilesets(const tmx::Map& map)
@@ -73,7 +60,7 @@ namespace Graphics
             String prefix = ASSETS_PATH;
             String filePath = Utility::RemovePrefix(tilesetPath, prefix);
 
-            Texture2D* texture = &AssetManager::LoadTexture2D(filePath);
+            Texture2D* texture = &AssetManager::LoadTexture(filePath);
             m_tilesets.emplace_back(TilesetTexture(*texture, tileset));
         }
     }
@@ -98,6 +85,6 @@ namespace Graphics
     {
         SDL_Rect src = {0, 0, m_pSpaceTexture->GetWidth(), m_pSpaceTexture->GetHeight()};
         SDL_Rect dst = {0, 0, SCREEN_WIDTH / Camera::Main->GetZoom(), SCREEN_HEIGHT / Camera::Main->GetZoom()};
-        SDL_RenderCopy(renderer, &m_pSpaceTexture->GetRawTexture(), &src, &dst);
+        //SDL_RenderCopy(renderer, &m_pSpaceTexture->GetRawTexture(), &src, &dst);
     }
 }

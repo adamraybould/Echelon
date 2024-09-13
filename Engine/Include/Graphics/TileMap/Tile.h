@@ -1,11 +1,15 @@
 #ifndef TILE_H
 #define TILE_H
-#include "Core/IO/IRenderable.h"
+#include "Core/TypeDefs.h"
 #include "Core/Maths/Vector2.h"
-#include "Graphics/Texture2D.h"
+
+namespace Core { class Renderer; }
 
 namespace Graphics
 {
+    class Texture2D;
+    class Sprite;
+
     class Tile
     {
     private:
@@ -13,11 +17,12 @@ namespace Graphics
 
         Vector2U m_position;
         Vector2U m_size;
-        const Texture2D& m_texture;
+
+        Sprite& m_sprite;
 
     public:
-        Tile(UInt id, Vector2U position, Vector2U size, const Texture2D& texture);
-        void Render(const Renderer& renderer);
+        Tile(UInt id, Vector2U position, Vector2U size, Texture2D& texture);
+        void Render(Renderer& renderer) const;
     };
 }
 

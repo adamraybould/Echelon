@@ -1,6 +1,7 @@
 #include "Scene/Entities/Components/ParticleSystem.h"
 
 #include "Core/AssetManager.h"
+#include "Core/IO/Renderer.h"
 #include "Graphics/ParticleEmitter.h"
 #include "Graphics/Particle.h"
 #include "Scene/Entities/Entity.h"
@@ -12,8 +13,13 @@ namespace Scene
     {
         ParticleSystem::ParticleSystem(Entity& owner) : Component(owner)
         {
+            m_pTexture = nullptr;
+
             m_velocity = Vector2F::Zero();
             m_scale = Vector2F::One();
+
+            SetRenderLayer(RenderLayer::Default);
+            Renderer::AddToRenderQueue(*this);
         }
 
         void ParticleSystem::SetupEmbedding(lua_State* L)
@@ -122,7 +128,7 @@ namespace Scene
 
         void ParticleSystem::SetParticleTexture(const String& texturePath)
         {
-            m_pTexture = &AssetManager::LoadTexture2D(texturePath);
+            m_pTexture = &AssetManager::LoadTexture(texturePath);
         }
 
         Vector2F ParticleSystem::GetRandomParticlePosition() const

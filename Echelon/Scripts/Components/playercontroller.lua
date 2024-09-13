@@ -1,8 +1,8 @@
 
 local animations =
 {
-	[KEY_W] = {movement = Vector2(0.0, -1.0), pressed = false, idle = "Idle(U)", walk = "Walk(U)", run = "Run(U)" },
-	[KEY_S] = {movement = Vector2(0.0, 1.0),  pressed = false, idle = "Idle(D)", walk = "Walk(D)", run = "Run(D)" },
+	[KEY_W] = {movement = Vector2(0.0, 1.0), pressed = false, idle = "Idle(U)", walk = "Walk(U)", run = "Run(U)" },
+	[KEY_S] = {movement = Vector2(0.0, -1.0),  pressed = false, idle = "Idle(D)", walk = "Walk(D)", run = "Run(D)" },
 	[KEY_A] = {movement = Vector2(-1.0, 0.0), pressed = false, idle = "Idle(L)", walk = "Walk(L)", run = "Run(L)" },
 	[KEY_D] = {movement = Vector2(1.0, 0.0),  pressed = false, idle = "Idle(R)", walk = "Walk(R)", run = "Run(R)" }
 }
@@ -43,14 +43,15 @@ function PlayerController:Update(delta)
 	-- Sprinting
 	if IsMovementButtonDown() then
 		if Input:IsKeyDown(KEY_SHIFT) then
-			self.locomotor:RunInDirection(movement:Normalise())
+			self.locomotor:RunInDirection(movement:Normalise(), delta)
 
 			self:PlayAnimation(self.animation.run)
 
 			self.inst.SoundEmitter:StopSound("PlayerWalk")
 			self.inst.SoundEmitter:PlaySound("PlayerRun", 0.5, false)
 		else
-			self.locomotor:WalkInDirection(movement:Normalise())
+			self.locomotor:WalkInDirection(movement:Normalise(), delta)
+
 			self:PlayAnimation(self.animation.walk)
 
 			self.inst.SoundEmitter:StopSound("PlayerRun")

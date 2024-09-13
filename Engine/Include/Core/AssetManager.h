@@ -1,9 +1,13 @@
 #ifndef ASSETMANAGER_H
 #define ASSETMANAGER_H
-#include "Graphics/Sprite.h"
+
 #include "Graphics/SpriteSheet.h"
 #include "Graphics/Texture2D.h"
 
+struct SDL_Surface;
+struct SDL_Texture;
+
+namespace Graphics { class Texture2D; class Sprite; }
 namespace Json { class Value; }
 
 namespace Core
@@ -33,18 +37,19 @@ namespace Core
 
     private:
         static Renderer* m_renderer;
-        static Array<UniquePtr<Graphics::Texture2D>> m_loadedTextures; // An Array of Loaded Textures
+        static Array<SharedPtr<Graphics::Sprite>> m_pSprites;
+        static Array<SharedPtr<Graphics::Texture2D>> m_pTextures;
 
     public:
         AssetManager(Renderer& renderer);
         ~AssetManager();
 
-        static Graphics::Texture2D& LoadTexture2D(const String& filePath);
-        static Graphics::Sprite& LoadSprite(const char* filePath);
-
-        static Graphics::SpriteSheet* LoadSpriteSheet(const String& path);
+        static Graphics::Texture2D& LoadTexture(const String& path);
+        static Graphics::SpriteSheet& LoadSpriteSheet(const String& path);
 
     private:
+        static SDL_Surface* LoadSurface(const String& path);
+
         /* Loads a Raw SDL texture */
         static SDL_Texture& LoadRawTexture(const String& filePath);
 

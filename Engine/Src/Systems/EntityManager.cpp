@@ -73,7 +73,7 @@ namespace Core::Systems
         for (auto i = m_entities.begin(); i != m_entities.end(); ++i)
         {
             Entity& entity = *i->second;
-            Rectangle bounds = entity.GetBounds();
+            RectF bounds = entity.GetBounds();
 
             if (bounds.IsZero())
                 continue;

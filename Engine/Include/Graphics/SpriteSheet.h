@@ -1,13 +1,13 @@
 #ifndef SPRITESHEET_H
 #define SPRITESHEET_H
 
-#include "Sprite.h"
 #include "Animation.h"
+#include "Texture2D.h"
 #include "Core/Maths/Rectangle.h"
 
 namespace Graphics
 {
-    class SpriteSheet : public Sprite
+    class SpriteSheet : public Texture2D
     {
     private:
         UnorderedMap<String, Animation> m_animations;
@@ -17,11 +17,11 @@ namespace Graphics
         int m_frameCount;
 
     public:
-        SpriteSheet(SDL_Texture* texture, int frameWidth, int frameHeight, UnorderedMap<String, Animation> animations);
+        SpriteSheet(const SDL_Surface& surface, int frameWidth, int frameHeight, const UnorderedMap<String, Animation>& animations);
         ~SpriteSheet();
 
         /* Returns the Source Rect of a Sprite within the Sprite Sheet */
-        RectI GetSpriteSource(UInt frameIndex) const;
+        RectF GetSpriteSource(UInt frameIndex) const;
 
         bool IsAnimationValid(const String& animName) const;
         Animation* GetAnimation(const String& animName);

@@ -16,7 +16,7 @@ local function fn()
 
 	inst.Rigidbody:CreateDynamicBody()
 
-	inst.Transform:SetPosition(Vector2(488, 128))
+	inst.Transform:SetPosition(Vector2(488, 428))
 	inst.Animator:PlayAnimation("Idle(D)")
 
 	inst:AddComponent("health")

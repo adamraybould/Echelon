@@ -20,7 +20,7 @@
   }, {
     "name" : "imgui",
     "version>=" : "1.91.0",
-    "features" : [ "sdl2-binding", "sdl2-renderer-binding" ]
+    "features" : [ "sdl2-binding", "sdl2-renderer-binding", "opengl3-binding" ]
   }, {
     "name" : "jsoncpp",
     "version>=" : "1.9.5#4"
@@ -45,5 +45,8 @@
   }, {
     "name" : "glew",
     "version>=" : "2.2.0#3"
+  }, {
+    "name" : "glm",
+    "version>=" : "1.0.1#3"
   } ]
 }

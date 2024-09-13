@@ -1,5 +1,8 @@
 #include "Editor/EngineGUI.h"
+
 #include <iostream>
+#include "imgui_impl_opengl3.h"
+
 #include "Core/IO/Window.h"
 #include "Editor/Windows/GUIWindow_EntityInfo.h"
 #include "Systems/EntityManager.h"
@@ -16,16 +19,13 @@ namespace Core::Editor
         ImGui::CreateContext();
 
         ImGuiIO& io = ImGui::GetIO();
+        io.IniFilename = nullptr;
         io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
-        //io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
-        //io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
 
         ImGui::StyleColorsDark();
 
-        ImGui_ImplSDL2_InitForSDLRenderer(&window.GetWindow(), window.GetRenderer());
-        ImGui_ImplSDLRenderer2_Init(window.GetRenderer());
-
-        io.IniFilename = nullptr;
+        ImGui_ImplSDL2_InitForOpenGL(&window.GetWindow(), window.GetContext());
+        ImGui_ImplOpenGL3_Init("#version 450");
 
         // Create GUI Windows
         m_windows.push_back(std::make_unique<GUIWindow_EntityInfo>(*this));
@@ -42,7 +42,7 @@ namespace Core::Editor
         }
         m_windows.clear();
 
-        ImGui_ImplSDLRenderer2_Shutdown();
+        ImGui_ImplOpenGL3_Shutdown();
         ImGui_ImplSDL2_Shutdown();
         ImGui::DestroyContext();
     }
@@ -60,7 +60,7 @@ namespace Core::Editor
 
     void EngineGUI::Render() const
     {
-        ImGui_ImplSDLRenderer2_NewFrame();
+        ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplSDL2_NewFrame();
         ImGui::NewFrame();
 
@@ -79,8 +79,7 @@ namespace Core::Editor
 
     void EngineGUI::RenderImGui(const Renderer& renderer)
     {
-        renderer.ResetRenderer();
-        ImGui_ImplSDLRenderer2_RenderDrawData(ImGui::GetDrawData(), renderer);
+        ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
     }
 
     void EngineGUI::HandleInput(const SDL_Event& event)
@@ -118,7 +117,7 @@ namespace Core::Editor
 
     void EngineGUI::DisplayEntityInfo()
     {
-        Vector2F mousePosition = Input::GetMousePosition();
+        const Vector2F mousePosition = Input::GetMousePosition();
         EntityManager& entityManager = static_cast<States::GameState&>(m_stateSystem.GetCurrentState()).GetEntityManager();
 
         Entity* highlightedEntity = entityManager.GetEntityAtPoint(mousePosition);
@@ -149,7 +148,7 @@ namespace Core::Editor
 
     bool EngineGUI::HasClickedWithinWindow() const
     {
-        ImVec2 mousePos = ImGui::GetMousePos();
+        const ImVec2 mousePos = ImGui::GetMousePos();
 
         const Vector2F& windowPos = m_windows[0]->GetWindowPosition();
         const Vector2U& windowSize = m_windows[0]->GetWindowSize();

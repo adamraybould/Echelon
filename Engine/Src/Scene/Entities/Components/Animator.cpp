@@ -1,5 +1,6 @@
 #include "Scene/Entities/Components/Animator.h"
 
+#include "Graphics/Sprite.h"
 #include "Scene/Entities/Entity.h"
 #include "Graphics/SpriteSheet.h"
 #include "Scene/Entities/Components/SpriteRenderer.h"
@@ -42,7 +43,7 @@ namespace Scene
         void Animator::Initialize()
         {
             m_pRenderer = GetOwner().GetComponent<SpriteRenderer>();
-            m_pSpriteSheet = static_cast<SpriteSheet*>(&m_pRenderer->GetSprite());
+            m_pSpriteSheet = static_cast<SpriteSheet*>(&m_pRenderer->GetSprite().GetMaterial().GetTexture());
 
             if (!m_initialAnimName.empty())
             {

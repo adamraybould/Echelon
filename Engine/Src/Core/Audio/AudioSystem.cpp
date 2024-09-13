@@ -28,7 +28,7 @@ namespace Core
             LoadBank("Audio/Master.bank");
             LoadBank("Audio/Master.strings.bank");
 
-            std::cout << "Audio System Initialised" << std::endl;
+            std::cout << "Audio System Initialised. FMOD Version: " << FMOD_VERSION << std::endl;
         }
 
         AudioSystem::~AudioSystem()

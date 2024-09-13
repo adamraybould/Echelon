@@ -1,14 +1,18 @@
 #include "Core/AssetManager.h"
 
+#include <SDL2/SDL_surface.h>
+#include <SDL2/SDL_image.h>
+#include <GL/glew.h>
 #include <fstream>
 #include <filesystem>
-#include <SDL2/SDL_image.h>
 #include <json/json.h>
 #include <config.h>
 
+#include "Graphics/Texture2D.h"
 #include "Core/Application.h"
 #include "Core/IO/Renderer.h"
 #include "Core/Utility.h"
+#include "Graphics/Sprite.h"
 
 namespace fs = std::filesystem;
 
@@ -17,7 +21,9 @@ namespace Core
 {
     const char* ERROR_TEXTURE = "Error.png";
     Renderer* AssetManager::m_renderer;
-    Array<UniquePtr<Texture2D>> AssetManager::m_loadedTextures;
+
+    Array<SharedPtr<Sprite>> AssetManager::m_pSprites;
+    Array<SharedPtr<Texture2D>> AssetManager::m_pTextures;
 
     AssetManager::AssetManager(Renderer& renderer)
     {
@@ -26,43 +32,42 @@ namespace Core
 
     AssetManager::~AssetManager()
     {
-        for (auto& texture : m_loadedTextures)
+        for (auto& texture : m_pTextures)
         {
             texture.reset();
         }
 
-        m_loadedTextures.clear();
-    }
-
-    Texture2D& AssetManager::LoadTexture2D(const String& filePath)
-    {
-        SDL_Texture& texture = LoadRawTexture(ASSETS_PATH + filePath);
-        m_loadedTextures.push_back(std::make_unique<Texture2D>(&texture));
-
-        Texture2D& loadedTexture = *m_loadedTextures.back();
-        return loadedTexture;
-    }
-
-    Sprite& AssetManager::LoadSprite(const char* filePath)
-    {
-        std::string texturePath = ASSETS_PATH + std::string(filePath);
-
-        SDL_Texture* texture = IMG_LoadTexture(*m_renderer, texturePath.c_str());
-        if (texture == nullptr)
+        for (auto& sprite : m_pSprites)
         {
-            printf("Failed to load texture: %s\n", SDL_GetError());
-            texture = IMG_LoadTexture(*m_renderer, ERROR_TEXTURE);
+            sprite.reset();
         }
 
-        m_loadedTextures.push_back(std::make_unique<Sprite>(texture));
-        printf("Loaded texture: %s\n", texturePath.c_str());
-
-        Texture2D* loadedTexture = m_loadedTextures.back().get();
-        Sprite* loadedSprite = static_cast<Sprite*>(loadedTexture);
-        return *loadedSprite;
+        m_pTextures.clear();
+        m_pSprites.clear();
     }
 
-    SpriteSheet* AssetManager::LoadSpriteSheet(const String& path)
+    Texture2D& AssetManager::LoadTexture(const String& path)
+    {
+        SDL_Surface* surface = LoadSurface(ASSETS_PATH + path);
+
+        // Get the Surface Format
+        UInt format = 0;
+        if (surface->format->BytesPerPixel == 4)
+        {
+            format = (surface->format->Rmask == 0x000000ff) ? GL_RGBA : GL_BGRA;
+        }
+        else
+        {
+            format = GL_RGB;
+        }
+
+        m_pTextures.push_back(std::make_shared<Texture2D>(*surface));
+        SDL_FreeSurface(surface);
+
+        return *m_pTextures.back();
+    }
+
+    SpriteSheet& AssetManager::LoadSpriteSheet(const String& path)
     {
         fs::path filePath(ASSETS_PATH + path);
         fs::path fileDirectory = filePath.parent_path();
@@ -74,7 +79,7 @@ namespace Core
         if (!reader.parse(file, data))
         {
             std::cerr << "Failed to parse Sprite Sheet: '" << path << "'" << std::endl;
-            return nullptr;
+            throw std::invalid_argument("Failed to Read Sprite Sheet: '" + path + "'");
         }
 
         // Load meta data
@@ -85,19 +90,30 @@ namespace Core
         UInt spriteHeight = frameData["sourceSize"]["h"].asInt();
 
         String pngPath = directoryPath + "/" + imagePath;
-        SDL_Texture& rawTexture = LoadRawTexture(pngPath);
+        SDL_Surface& surface = *LoadSurface(pngPath);
 
         const UnorderedMap<String, Animation> animations = GetAnimations(data); // Load Animations
-        m_loadedTextures.push_back(std::make_unique<SpriteSheet>(&rawTexture, spriteWidth, spriteHeight, animations));
+        m_pTextures.push_back(std::make_unique<SpriteSheet>(surface, spriteWidth, spriteHeight, animations));
+        return static_cast<SpriteSheet&>(*m_pTextures.back());
+    }
 
-        Texture2D* texture = m_loadedTextures.back().get();
-        SpriteSheet* spriteSheet = static_cast<SpriteSheet*>(texture);
+    SDL_Surface* AssetManager::LoadSurface(const String& path)
+    {
+        SDL_Surface* surface = IMG_Load(path.c_str());
+        if (surface == nullptr)
+        {
+            std::cerr << "Failed to Load Surface: " << SDL_GetError() << std::endl;
 
-        return spriteSheet;
+            const String errorPath = ASSETS_PATH + std::string(ERROR_TEXTURE);
+            surface = IMG_Load(errorPath.c_str());
+        }
+
+        return surface;
     }
 
     SDL_Texture& AssetManager::LoadRawTexture(const String& filePath)
     {
+        /*
         SDL_Texture* texture = IMG_LoadTexture(*m_renderer, filePath.c_str());
         if (texture == nullptr)
         {
@@ -106,8 +122,10 @@ namespace Core
             String errorPath = ASSETS_PATH + std::string(ERROR_TEXTURE);
             texture = IMG_LoadTexture(*m_renderer, errorPath.c_str());
         }
-
         return *texture;
+        */
+
+        throw std::invalid_argument("File does not exist");
     }
 
     UnorderedMap<String, Animation> AssetManager::GetAnimations(Json::Value& data)

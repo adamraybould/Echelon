@@ -19,6 +19,8 @@ namespace Core::States
     {
         m_pEntityManager.reset();
         m_pLevelManager.reset();
+
+        m_pTileMap.reset();
     }
 
     void GameState::Initialize()
@@ -32,7 +34,7 @@ namespace Core::States
             m_pEntityManager->Initialise();
     }
 
-    void GameState::Update(float delta)
+    void GameState::Update(const float delta)
     {
         if (m_pEntityManager != nullptr)
             m_pEntityManager->Update(delta);

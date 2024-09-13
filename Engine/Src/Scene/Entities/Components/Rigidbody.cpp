@@ -1,10 +1,11 @@
 #include "Scene/Entities/Components/Rigidbody.h"
 #include <box2d/box2d.h>
 
-#include "Core//Physics.h"
+#include "Core/Physics.h"
 #include "Scene/Entities/Components/SpriteRenderer.h"
 #include "Graphics/SpriteSheet.h"
 #include "Core/Constants.h"
+#include "Graphics/Sprite.h"
 #include "Scene/Entities/Entity.h"
 
 using namespace Graphics;
@@ -58,11 +59,6 @@ namespace Scene
 
             GetOwner().GetTransform().SetWorldPosition(position);
             GetOwner().GetTransform().Rotation = angle * (180.0f / M_PI);
-        }
-
-        void Rigidbody::Render(Renderer& renderer)
-        {
-            Component::Render(renderer);
         }
 
         void Rigidbody::Destroy()
@@ -125,17 +121,17 @@ namespace Scene
 
         Vector2F Rigidbody::GetSpriteSize() const
         {
-            SpriteRenderer* renderer = GetOwner().GetComponent<SpriteRenderer>();
+            const SpriteRenderer* renderer = GetOwner().GetComponent<SpriteRenderer>();
             if (renderer != nullptr)
             {
-                SpriteSheet* spriteSheet = static_cast<SpriteSheet*>(&renderer->GetSprite());
+                const SpriteSheet* spriteSheet = static_cast<SpriteSheet*>(&renderer->GetSprite().GetMaterial().GetTexture());
                 if (spriteSheet != nullptr)
                 {
                     return Vector2F(spriteSheet->GetFrameWidth() * 0.5f, spriteSheet->GetFrameHeight() * 0.5f);
                 }
             }
 
-            return Vector2F(16, 16);
+            return Vector2F(0, 0);
         }
     }
 }

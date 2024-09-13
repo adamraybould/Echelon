@@ -32,7 +32,6 @@ namespace Scene
 
             void Initialize() override;
             void Update(float delta) override;
-            void Render(Renderer& renderer) override;
             void Destroy() override;
 
             void CreateStaticBody();

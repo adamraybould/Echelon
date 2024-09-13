@@ -9,11 +9,12 @@ using namespace Core;
 namespace Graphics
 {
     class Texture2D;
+    class Sprite;
 
     class Particle
     {
     private:
-        Texture2D& m_texture;
+        Sprite& m_sprite;
 
         Vector2F m_position;
         Vector2F m_screenPosition;
@@ -31,7 +32,7 @@ namespace Graphics
         ~Particle() = default;
 
         void Update(float delta);
-        void Render(const Renderer& renderer) const;
+        void Render(Renderer& renderer) const;
 
         void SetPosition(const Vector2F position) { m_position = position; }
         void SetVelocity(const Vector2F velocity) { m_velocity = velocity; }
@@ -46,6 +47,11 @@ namespace Graphics
         bool IsActive () const { return m_isActive; }
 
         Vector2F GetScreenPosition() const { return m_screenPosition; }
+
+        Sprite& GetSprite() const { return m_sprite; }
+        Vector2F& GetPosition() { return m_position; }
+        float& GetRotation() { return m_rotation; }
+        Vector2F& GetScale () { return m_scale; }
 
         bool IsDead() const;
         bool IsOffScreen() const;

@@ -4,7 +4,7 @@
 #include "Core/Commons.h"
 #include "Core/Maths/Vector2.h"
 #include "Core/Utility.h"
-
+#include "Rendering/Renderable.h"
 
 constexpr int MAX_PARTICLES = 200;
 
@@ -14,7 +14,7 @@ namespace Scene
 {
     namespace Components
     {
-        class ParticleSystem final : public Component
+        class ParticleSystem final : public Component, public Rendering::Renderable
         {
         private:
             UniquePtr<Graphics::ParticleEmitter> m_pEmitter;
@@ -61,7 +61,7 @@ namespace Scene
             UInt GetParticleCount() const { return m_particleCount; }
 
         private:
-            bool IsParticleSystemInitialized() const { return m_pEmitter != nullptr && m_pTexture != nullptr; }
+            bool IsParticleSystemInitialized() const { return m_pEmitter != nullptr; }
 
             Vector2F GetRandomParticlePosition() const;
             float GetRandomParticleLifetime();

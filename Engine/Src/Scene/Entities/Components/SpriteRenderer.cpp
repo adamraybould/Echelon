@@ -7,6 +7,7 @@
 #include "Graphics/SpriteSheet.h"
 #include "Core//Scripting/Prefab.h"
 #include "Core/Constants.h"
+#include "Graphics/Sprite.h"
 
 namespace Scene
 {
@@ -16,6 +17,9 @@ namespace Scene
         {
             m_pSprite = nullptr;
             m_flipped = SDL_FLIP_NONE;
+
+            SetRenderLayer(RenderLayer::Default);
+            Renderer::AddToRenderQueue(*this);
         }
 
         void SpriteRenderer::SetupEmbedding(lua_State* L)
@@ -31,10 +35,12 @@ namespace Scene
             PrefabAsset* spriteAsset = GetPrefabAsset(AssetType::SPRITE);
             if (spriteAsset != nullptr)
             {
-                String path = spriteAsset->GetPath();
-                int param = spriteAsset->GetParam();
+                const String path = spriteAsset->GetPath();
+                const int param = spriteAsset->GetParam();
 
-                m_pSprite = AssetManager::LoadSpriteSheet(path.c_str());
+                //m_pSprite = AssetManager::LoadSpriteSheet(path.c_str());
+                Texture2D& texture = AssetManager::LoadSpriteSheet(path);
+                m_pSprite = &Renderer::CreateSprite(texture);
                 m_source = { 0, 0, m_pSprite->GetWidth(), m_pSprite->GetHeight() };
 
                 if (spriteAsset->HasParams())
@@ -47,30 +53,29 @@ namespace Scene
         void SpriteRenderer::Update(float delta)
         {
             const Rectangle bounds = GetOwner().GetBounds();
-            const Vector2F scale = GetOwner().GetTransform().Scale;
+            const Vector2F scale = GetOwner().GetTransform().GetWorldScale();
 
             if (m_pSprite != nullptr)
             {
                 m_spriteScale = Vector2F((m_source.Width * scale.X) * SPRITE_SCALE, (m_source.Height * scale.Y) * SPRITE_SCALE);
-                GetOwner().SetBounds(RectI(bounds.X, bounds.Y, m_spriteScale.X * 0.5f, m_spriteScale.Y));
+                GetOwner().SetBounds(RectF(bounds.X, bounds.Y, m_spriteScale.X * 0.5f, m_spriteScale.Y));
             }
         }
 
         void SpriteRenderer::Render(Renderer& renderer)
         {
-            if (m_pSprite == nullptr)
-                return;
+            const Vector2F position = GetOwner().GetTransform().GetWorldPosition();
+            const float rotation = GetOwner().GetTransform().GetWorldRotation();
 
-            Vector2F position = GetOwner().GetTransform().GetWorldPosition();
-            float rotation = GetOwner().GetTransform().GetWorldRotation();
+            const RectF src = m_source;
+            const RectF dest = { position.X, position.Y, m_spriteScale.X, m_spriteScale.Y };
 
-            Camera& camera = renderer.GetCamera();
-            Vector2F screenPosition = camera.CalculateScreenPosition(position);
+            renderer.Render(m_pSprite, src, dest, rotation);
+        }
 
-            SDL_Rect src = m_source;
-            SDL_Rect dest = { screenPosition.X - m_spriteScale.X * 0.5f, screenPosition.Y - m_spriteScale.Y * 0.5f, m_spriteScale.X, m_spriteScale.Y };
-
-            SDL_RenderCopyEx(renderer, &m_pSprite->GetRawTexture(), &src, &dest, rotation, nullptr, static_cast<SDL_RendererFlip>(m_flipped));
+        float SpriteRenderer::GetDepth()
+        {
+            return GetOwner().GetTransform().Position.Y;
         }
 
         void SpriteRenderer::Destroy()
@@ -80,17 +85,17 @@ namespace Scene
 
         void SpriteRenderer::SetSourceFromFrame(const UInt frameIndex)
         {
-            SpriteSheet* spriteSheet = static_cast<SpriteSheet*>(m_pSprite);
+            const SpriteSheet* spriteSheet = static_cast<SpriteSheet*>(&m_pSprite->GetMaterial().GetTexture());
             if (spriteSheet != nullptr)
             {
-                RectI sourceRect = spriteSheet->GetSpriteSource(frameIndex);
+                RectF sourceRect = spriteSheet->GetSpriteSource(frameIndex);
                 m_source = sourceRect;
             }
         }
 
         void SpriteRenderer::SetDisplaySource(const int x, const int y, const int width, const int height)
         {
-            m_source = RectI(x, y, width, height);
+            m_source = RectF(x, y, width, height);
         }
 
         Sprite& SpriteRenderer::GetSprite() const

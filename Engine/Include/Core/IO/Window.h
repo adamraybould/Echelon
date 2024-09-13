@@ -24,9 +24,14 @@ namespace Core
         ~Window() override;
 
         bool Create(const char* title);
+
+        void ClearScreen();
+        void SwapBuffers() const;
+
         void SetTitle(const char* title) const;
 
         SDL_Window& GetWindow() const { return *m_pWindow; }
+        SDL_GLContext& GetContext() { return m_context; }
         Renderer& GetRenderer() const { return *m_pRenderer; }
 
     private:

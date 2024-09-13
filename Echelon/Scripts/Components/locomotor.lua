@@ -14,14 +14,14 @@ end)
 function LocoMotor:Update(delta)
 end
 
-function LocoMotor:WalkInDirection(dir)
+function LocoMotor:WalkInDirection(dir, delta)
 	self.isrunning = false
-	self.inst.Rigidbody:ApplyImpulse(dir * self:GetWalkSpeed())
+	self.inst.Rigidbody:ApplyImpulse(dir * (self:GetWalkSpeed() * delta))
 end
 
-function LocoMotor:RunInDirection(dir)
+function LocoMotor:RunInDirection(dir, delta)
 	self.isrunning = true
-	self.inst.Rigidbody:ApplyImpulse(dir * self:GetRunSpeed())
+	self.inst.Rigidbody:ApplyImpulse(dir * (self:GetRunSpeed() * delta))
 end
 
 function LocoMotor:GetWalkSpeed()

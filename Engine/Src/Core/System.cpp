@@ -13,12 +13,14 @@ namespace Core
         std::cerr << message << std::endl;
     }
 
-    void System::OutputError(const std::string& error, const std::string& errorTile, const bool shouldExit, const bool displaySDLError)
+    void System::OutputError(const std::string& error, const std::string& errorTile, const bool displaySDLError)
     {
         std::string errorMessage = std::string(error) + (displaySDLError ? SDL_GetError() : "");
         MessageBoxA(NULL, errorMessage.c_str(), errorTile.c_str(), MB_ICONERROR | MB_OK);
+    }
 
-        if (shouldExit)
-            exit(-1);
+    void System::Exit()
+    {
+        exit(-1);
     }
 }

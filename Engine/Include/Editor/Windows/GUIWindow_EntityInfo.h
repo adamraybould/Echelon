@@ -1,10 +1,11 @@
 #ifndef GUIWINDOW_ENTITYINFO_H
 #define GUIWINDOW_ENTITYINFO_H
 #include "Editor/GUIWindow.h"
-#include "Graphics/Sprite.h"
+#include "Graphics/Texture2D.h"
 
 namespace Scene { class Entity; }
 namespace Scene::Components { class SpriteRenderer; }
+namespace Graphics { class Sprite; class Texture2D; }
 
 namespace Core
 {
@@ -36,10 +37,8 @@ namespace Core
 
         private:
             Vector2F GetEntityScreenPosition(const Scene::Entity& entity) const;
-            static ImTextureID GetTextureID(const Graphics::Texture2D& texture) { return reinterpret_cast<ImTextureID>(reinterpret_cast<intptr_t>(&texture.GetRawTexture())); }
 
             void DisplayInfo(const Scene::Entity& entity);
-
             void DisplaySprite() const;
             void DisplayComponentInfo() const;
             void DisplayTags() const;

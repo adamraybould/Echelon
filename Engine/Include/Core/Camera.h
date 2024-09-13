@@ -1,5 +1,7 @@
 #ifndef CAMERA_H
 #define CAMERA_H
+#include <glm/glm.hpp>
+
 #include "Scene/Entities/Entity.h"
 #include "Commons.h"
 
@@ -11,10 +13,12 @@ namespace Core
         static Camera* Main;
 
     private:
-        Vector2F m_cameraOrigin;
+        glm::mat4 m_projection;
+        glm::mat4 m_view;
+
         Vector2F m_cameraPosition;
 
-        RectI m_viewport;
+        RectF m_viewport;
 
         float m_movementSpeed;
 
@@ -30,20 +34,25 @@ namespace Core
 
         void Initialize() override;
         void Update(float delta) override;
-        void Render(Renderer& renderer) override;
 
         void Zoom(float amount);
 
         Vector2F CalculateScreenPosition(const Vector2F& worldPosition) const;
         Vector2F CalculateWorldPosition(Vector2F screenPosition) const;
 
-        Vector2F& GetCameraOrigin() { return m_cameraOrigin; }
-        RectI& GetViewport() { return m_viewport; }
+        Vector2F& GetCameraPosition() { return m_cameraPosition; }
+        RectF& GetViewport() { return m_viewport; }
         float GetZoom() const { return m_currentZoom; }
 
+        glm::mat4& GetProjection() { return m_projection; }
+        glm::mat4& GetView() { return m_view; }
+
     private:
+        void UpdateProjection();
+        void UpdateView();
+
         void ProcessZoom(float delta);
-        RectI CalculateViewport() const;
+        RectF CalculateViewport() const;
     };
 }
 

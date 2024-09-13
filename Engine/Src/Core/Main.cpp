@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
     IProgram* program = CreateProgram();
     Application* application = static_cast<Application*>(program);
 
-    GameState& gameState = static_cast<GameState&>(application->GetStateSystem().GetCurrentState());
+    const GameState& gameState = static_cast<GameState&>(application->GetStateSystem().GetCurrentState());
     LevelManager& levelManager = gameState.GetLevelManager();
 
     program->Run();

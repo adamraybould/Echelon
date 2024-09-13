@@ -29,7 +29,6 @@ namespace Scene
 
             virtual void Initialize() {}
             virtual void Update(float delta) {}
-            virtual void Render(Renderer& renderer) {}
             virtual void Destroy() {}
 
             /* Returns the Owner of this Component */

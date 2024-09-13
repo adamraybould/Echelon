@@ -21,11 +21,11 @@ namespace Graphics
     public:
         explicit ObjectLayer(const tmx::Map& map, tmx::Layer& layer);
 
-        void Create();
+        void Create() const;
 
     private:
-        void CreateEntity(const String& prefab, const Vector2F& position);
-        Vector2I GetObjectPosition(const tmx::Object& obj) const;
+        void CreateEntity(const String& prefab, const Vector2F& position) const;
+        Vector2F GetObjectPosition(const tmx::Object& obj) const;
     };
 
 }
