@@ -31,7 +31,14 @@ namespace Core
                 point.Y >= Top() && point.Y <= Bottom();
         }
 
+        bool Intersects(const Rectangle& other) const
+        {
+            return Left() < other.Right() && Right() > other.Left() &&
+                Top() < other.Bottom() && Bottom() > other.Top();
+        }
+
         bool IsZero() const { return Width == 0 && Height == 0; }
+        bool IsEqual(const Rectangle& other) { return X == other.X && Y == other.Y && Width == other.Width && Height == other.Height; }
 
         float Left() const { return X - Width * 0.5f; }
         float Right() const { return X + Width * 0.5f; }

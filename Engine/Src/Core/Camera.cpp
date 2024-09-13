@@ -56,18 +56,13 @@ namespace Core
 
     Vector2F Camera::CalculateScreenPosition(const Vector2F& worldPosition) const
     {
-        glm::vec4 clipCoords = m_projection * m_view * glm::vec4(worldPosition.X, worldPosition.Y, 0.0f, 1.0f);
-        glm::vec3 ndsCoords = glm::vec3(clipCoords) / clipCoords.w;
+        const glm::vec4 clipCoords = m_projection * m_view * glm::vec4(worldPosition.X, worldPosition.Y, 0.0f, 1.0f);
+        const glm::vec3 ndsCoords = glm::vec3(clipCoords) / clipCoords.w;
 
         float screenX = ((ndsCoords.x + 1.0f) / 2.0f) * SCREEN_WIDTH;
         float screenY = ((1.0f - ndsCoords.y) / 2.0f) * SCREEN_HEIGHT;
 
-        return Vector2F(screenX, screenY);
-
-        /*
-        const Vector2F screenPosition = worldPosition - m_cameraPosition;
-        return { screenPosition.X + SCREEN_WIDTH * 0.5f, screenPosition.Y + SCREEN_HEIGHT * 0.5f };
-        */
+        return { screenX, screenY };
     }
 
     Vector2F Camera::CalculateWorldPosition(const Vector2F screenPosition) const
@@ -75,22 +70,21 @@ namespace Core
         float ndcX = (2.0f * screenPosition.X) / SCREEN_WIDTH - 1.0f;
         float ndcY = 1.0f - (2.0f * screenPosition.Y) / SCREEN_HEIGHT;
 
-        glm::mat4 invProjView = glm::inverse(m_projection * m_view);
+        const glm::mat4 invProjView = glm::inverse(m_projection * m_view);
         glm::vec4 worldPos = invProjView * glm::vec4(ndcX, ndcY, 0.0f, 1.0f);
 
-        return Vector2F(worldPos.x, worldPos.y);
-
-        /*
-        const Vector2F worldPosition = screenPosition - Vector2F(SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.5f);
-        return worldPosition + m_cameraPosition;
-        */
+        return { worldPos.x, worldPos.y };
     }
 
     void Camera::UpdateProjection()
     {
         constexpr float halfWidth = SCREEN_WIDTH * 0.5f;
         constexpr float halfHeight = SCREEN_HEIGHT * 0.5f;
-        m_projection = glm::ortho(-halfWidth, halfWidth, -halfHeight, halfHeight, -1.0f, 100.0f);
+
+        float zoomedWidth = halfWidth / m_currentZoom;
+        float zoomedHeight = halfHeight / m_currentZoom;
+
+        m_projection = glm::ortho(-zoomedWidth, zoomedWidth, -zoomedHeight, zoomedHeight, -1.0f, 100.0f);
     }
 
     void Camera::UpdateView()
@@ -109,8 +103,6 @@ namespace Core
 
     RectF Camera::CalculateViewport() const
     {
-        float x = m_cameraPosition.X - SCREEN_WIDTH * 0.5f;
-        float y = m_cameraPosition.Y - SCREEN_HEIGHT * 0.5f;
-        return { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
+        return { m_cameraPosition.X, m_cameraPosition.Y, SCREEN_WIDTH / m_currentZoom, SCREEN_HEIGHT / m_currentZoom };
     }
 }

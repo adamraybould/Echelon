@@ -29,11 +29,11 @@ local function fn()
 	inst:AddTag("FX")
 
 	-----------------------------------------------------
-	local angle = -45
+	local angle = 145
 	local dx = math.cos(angle * PI / 180)
 	inst.ParticleSystem:SetVelocity(-0.3, dx)
 
-	inst.ParticleSystem:CreateBoxEmitter(MAX_PARTICLES, 0, -500, 2000, 500)
+	inst.ParticleSystem:CreateBoxEmitter(MAX_PARTICLES, 0, 500, 2000, 500)
 	inst.ParticleSystem:SetScale(1)
 
 	inst.ParticleSystem:SetParticleTexture(TEXTURE)

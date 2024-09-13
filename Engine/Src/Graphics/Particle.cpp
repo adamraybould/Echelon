@@ -19,13 +19,12 @@ namespace Graphics
     void Particle::Update(const float delta)
     {
         m_position += m_velocity * (m_speed * delta);
-        m_screenPosition = Camera::Main->CalculateScreenPosition(m_position);
     }
 
     void Particle::Render(Renderer& renderer) const
     {
-        const RectF src = { 0, 0, static_cast<float>(m_sprite.GetWidth()), static_cast<float>(m_sprite.GetHeight()) };
-        const RectF dest = RectF(m_screenPosition.X, m_screenPosition.Y, m_sprite.GetWidth() * m_scale.X, m_sprite.GetHeight() * m_scale.Y);
+        RectF src = { 0, 0, static_cast<float>(m_sprite.GetWidth()), static_cast<float>(m_sprite.GetHeight()) };
+        RectF dest = RectF(m_position.X, m_position.Y, m_sprite.GetWidth() * m_scale.X, m_sprite.GetHeight() * m_scale.Y);
         renderer.Render(&m_sprite, src, dest, 0.0f);
     }
 
@@ -46,6 +45,6 @@ namespace Graphics
     bool Particle::IsOffScreen() const
     {
         const RectF& viewport = Camera::Main->GetViewport();
-        return m_screenPosition.X < viewport.X || m_screenPosition.X > viewport.X + viewport.Width || m_screenPosition.Y < viewport.Y || m_screenPosition.Y > viewport.Y + viewport.Height;
+        return !viewport.ContainsPoint(m_position);
     }
 }

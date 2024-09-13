@@ -2,6 +2,8 @@
 
 #include "Core/Camera.h"
 #include "Graphics/Material.h"
+#include "Graphics/Texture2D.h"
+#include "Rendering/Shader.h"
 
 using namespace Rendering;
 namespace Graphics
@@ -9,6 +11,7 @@ namespace Graphics
     Sprite::Sprite(Texture2D& texture)
     {
         m_pMaterial = std::make_unique<Material>(texture, "Base.glsl");
+        m_id = m_pMaterial->GetTexture().GetTextureID();
     }
 
     Sprite::~Sprite()

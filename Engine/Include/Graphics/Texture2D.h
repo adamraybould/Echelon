@@ -24,6 +24,8 @@ namespace Graphics
         UInt GetHeight() const { return m_height; }
         UInt GetFormat() const { return m_format; }
 
+        UInt GetTextureID() const { return m_texture; }
+
         operator UInt() const { return m_texture; }
     };
 }

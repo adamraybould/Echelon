@@ -68,8 +68,8 @@ namespace Scene
             const Vector2F position = GetOwner().GetTransform().GetWorldPosition();
             const float rotation = GetOwner().GetTransform().GetWorldRotation();
 
-            const RectF src = m_source;
-            const RectF dest = { position.X, position.Y, m_spriteScale.X, m_spriteScale.Y };
+            RectF src = m_source;
+            RectF dest = { position.X, position.Y, m_spriteScale.X, m_spriteScale.Y };
 
             renderer.Render(m_pSprite, src, dest, rotation);
         }

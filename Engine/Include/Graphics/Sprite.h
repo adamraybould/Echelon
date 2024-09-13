@@ -4,7 +4,6 @@
 
 namespace Graphics
 {
-    class SpriteMesh;
     class Texture2D;
     class Material;
 
@@ -12,6 +11,7 @@ namespace Graphics
     {
     private:
         UniquePtr<Material> m_pMaterial;
+        UInt m_id;
 
     public:
         explicit Sprite(Texture2D& texture);
@@ -20,6 +20,8 @@ namespace Graphics
         Material& GetMaterial() const { return *m_pMaterial; }
         UInt GetWidth() const;
         UInt GetHeight() const;
+
+        UInt GetID() const { return m_id; }
     };
 }
 

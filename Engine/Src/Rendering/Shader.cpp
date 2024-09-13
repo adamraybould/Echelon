@@ -83,8 +83,9 @@ namespace Rendering
         }
     }
 
-    UInt Shader::LoadShader(const UInt& program, const UInt type, const String& source) const
+    UInt Shader::LoadShader(const UInt& program, const UInt type, const String& source)
     {
+        m_id += source.size();
         const char* data = source.c_str();
 
         const GLuint shader = glCreateShader(type);

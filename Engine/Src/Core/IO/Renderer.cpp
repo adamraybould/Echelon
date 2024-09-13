@@ -6,6 +6,7 @@
 #include "Graphics/Material.h"
 #include "Graphics/SpriteMesh.h"
 #include "Graphics/Sprite.h"
+#include "Graphics/Texture2D.h"
 #include "Rendering/IRenderable.h"
 #include "Rendering/Shader.h"
 
@@ -39,6 +40,8 @@ namespace Core
 
     void Renderer::ProcessRenderQueue()
     {
+        m_pSpriteMesh->AttachMesh();
+
         for (auto& layer : m_pRenderQueue)
         {
             std::sort(layer.second.begin(), layer.second.end(), [] (IRenderable* a, IRenderable* b)
@@ -54,6 +57,11 @@ namespace Core
                 }
             }
         }
+
+        m_pSpriteMesh->DetachMesh();
+
+        m_currentTextureID = 0;
+        m_currentShaderID = 0;
     }
 
     Sprite& Renderer::CreateSprite(Texture2D& texture)
@@ -67,27 +75,47 @@ namespace Core
         m_pRenderQueue[renderable.GetRenderLayer()].push_back(&renderable);
     }
 
-    void Renderer::Render(const Sprite* sprite, const RectF& src, const RectF& dest, const float rotation) const
+    void Renderer::Render(const Sprite* sprite, const RectF& src, const RectF& dest, const float rotation)
     {
-        AttachMesh(sprite, src, dest);
+        if (IsWithinViewport(dest))
+        {
+            AttachMesh(sprite, src, dest);
 
-        // Set Uniform Variables
-        const Shader& shader = sprite->GetMaterial().GetShader();
-        shader.SetUniformMat4("Projection", m_pCamera->GetProjection());
-        shader.SetUniformMat4("View", m_pCamera->GetView());
-        shader.SetUniformMat4("Transform", CalculateTransformMatrix(dest, rotation));
+            // Set Uniform Variables
+            const Shader& shader = sprite->GetMaterial().GetShader();
+            shader.SetUniformMat4("Projection", m_pCamera->GetProjection());
+            shader.SetUniformMat4("View", m_pCamera->GetView());
+            shader.SetUniformMat4("Transform", CalculateTransformMatrix(dest, rotation));
 
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
-
-        DetachMesh(sprite);
+            glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
+        }
     }
 
-    void Renderer::AttachMesh(const Sprite* sprite, const RectF& src, const RectF& dest) const
+    void Renderer::AttachMesh(const Sprite* sprite, const RectF& src, const RectF& dest)
     {
         if (m_pSpriteMesh != nullptr && sprite != nullptr)
         {
-            m_pSpriteMesh->AttachMesh();
-            sprite->GetMaterial().Attach();
+            const UInt shaderID = sprite->GetMaterial().GetShader().GetID();
+            const UInt textureID = sprite->GetMaterial().GetTexture().GetTextureID();
+
+            if (m_currentShaderID != shaderID)
+            {
+                m_currentShaderID = shaderID;
+                m_currentTextureID = textureID;
+
+                sprite->GetMaterial().DetachTexture();
+                sprite->GetMaterial().DetachShader();
+
+                sprite->GetMaterial().AttachShader();
+                sprite->GetMaterial().AttachTexture();
+            }
+            else if (m_currentTextureID != textureID)
+            {
+                sprite->GetMaterial().DetachTexture();
+                sprite->GetMaterial().AttachTexture();
+
+                m_currentTextureID = textureID;
+            }
 
             UpdateVertices(dest);
             UpdateUVs(src, sprite->GetWidth(), sprite->GetHeight());
@@ -98,8 +126,7 @@ namespace Core
     {
         if (m_pSpriteMesh != nullptr && sprite != nullptr)
         {
-            sprite->GetMaterial().Detach();
-            m_pSpriteMesh->DetachMesh();
+            sprite->GetMaterial().DetachTexture();
         }
     }
 
@@ -136,5 +163,10 @@ namespace Core
         transform = scale(transform, glm::vec3(1.0f, 1.0f, 0.0f));
 
         return transform;
+    }
+
+    bool Renderer::IsWithinViewport(const RectF& dest) const
+    {
+        return dest.Intersects(m_pCamera->GetViewport());
     }
 }

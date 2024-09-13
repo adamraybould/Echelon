@@ -69,10 +69,10 @@ namespace Core
 
             const Vector2F entityPos = m_pEntity->GetTransform().GetWorldPosition();
             const Vector2F windowPos = camera.CalculateScreenPosition(entityPos);
-            m_windowDistance = (camera.GetCameraPosition() - windowPos).Length();
+            m_windowDistance = (camera.GetCameraPosition() - windowPos).Length() * zoom;
 
             // Set Position and Size of Window
-            SetWindowPosition(Vector2F(windowPos.X * zoom, windowPos.Y * zoom));
+            SetWindowPosition(Vector2F(windowPos.X, windowPos.Y));
             SetWindowSize(Vector2U(GetWindowSize().X + m_windowExpansionWidth, GetWindowSize().Y + m_windowExpansionHeight));
 
             if (ImGui::Begin("Entity Info", &m_isActive, ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoCollapse))

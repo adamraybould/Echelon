@@ -17,13 +17,26 @@ namespace Graphics
         m_pShader.reset();
     }
 
-    void Material::Attach() const
+    void Material::AttachShader() const
     {
-        // Ignore if Shader isn't Set
         if (m_pShader == nullptr)
             return;
 
         m_pShader->Use();
+    }
+
+    void Material::DetachShader() const
+    {
+        if (m_pShader == nullptr)
+            return;
+
+        m_pShader->Detach();
+    }
+
+    void Material::AttachTexture() const
+    {
+        if (m_pShader == nullptr)
+            return;
 
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, m_texture);
@@ -31,14 +44,12 @@ namespace Graphics
         m_pShader->SetUniformTexture2D("TEX", 0, m_texture);
     }
 
-    void Material::Detach() const
+    void Material::DetachTexture() const
     {
-        // Ignore if Shader isn't Set
         if (m_pShader == nullptr)
             return;
 
         glBindTexture(GL_TEXTURE_2D, 0);
-        m_pShader->Detach();
     }
 
     UInt Material::GetTextureWidth() const { return m_texture.GetWidth(); }

@@ -8,7 +8,8 @@ namespace Rendering
     class Shader
     {
     private:
-        UInt m_program;
+        UInt m_program = 0;
+        UInt m_id = 0;
 
     public:
         Shader(const String& path);
@@ -22,10 +23,11 @@ namespace Rendering
         void SetUniformTexture2D(const String& name, UInt slot, const UInt& texture) const;
 
         UInt GetProgram() const { return m_program; }
+        UInt GetID() const { return m_id; }
 
     private:
         void Create(const String& path);
-        UInt LoadShader(const UInt& program, UInt type, const String& source) const;
+        UInt LoadShader(const UInt& program, UInt type, const String& source);
 
         void ReadShaderFile(const String& path, String& vertexShader, String& fragmentShader) const;
         void CheckForErrors(const UInt& shader, const UInt param) const;

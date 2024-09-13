@@ -27,7 +27,7 @@ namespace Graphics
 
     void TileMap::LoadTileMap(const String& filePath)
     {
-        String path = std::string(ASSETS_PATH) + "Maps/" + filePath + ".tmx";
+        const String path = std::string(ASSETS_PATH) + "Maps/" + filePath + ".tmx";
 
         tmx::Map map;
         if (!map.load(path))
@@ -43,9 +43,6 @@ namespace Graphics
         {
             LoadLayers(map, m_tilesets);
         }
-
-        // Load Space Background
-        //m_pSpaceTexture = &AssetManager::LoadTexture2DOLD("Tilesets/space.png");
     }
 
     void TileMap::LoadTilesets(const tmx::Map& map)
@@ -56,7 +53,7 @@ namespace Graphics
 
         for (const tmx::Tileset& tileset : tilesets)
         {
-            String tilesetPath = tileset.getImagePath();
+            const String& tilesetPath = tileset.getImagePath();
             String prefix = ASSETS_PATH;
             String filePath = Utility::RemovePrefix(tilesetPath, prefix);
 
@@ -79,12 +76,5 @@ namespace Graphics
                 m_collisionLayers.emplace_back(std::make_unique<ObjectLayer>(map, *layers[i]));
             }
         }
-    }
-
-    void TileMap::RenderBackground(const Renderer& renderer) const
-    {
-        SDL_Rect src = {0, 0, m_pSpaceTexture->GetWidth(), m_pSpaceTexture->GetHeight()};
-        SDL_Rect dst = {0, 0, SCREEN_WIDTH / Camera::Main->GetZoom(), SCREEN_HEIGHT / Camera::Main->GetZoom()};
-        //SDL_RenderCopy(renderer, &m_pSpaceTexture->GetRawTexture(), &src, &dst);
     }
 }
