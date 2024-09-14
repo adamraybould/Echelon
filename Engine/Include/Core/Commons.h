@@ -3,6 +3,18 @@
 
 namespace Core
 {
+    struct Color
+    {
+        int R;
+        int G;
+        int B;
+
+        Color() { R = 0; G = 0; B = 0; }
+        Color(const int r, const int g, const int b) { R = r; G = g; B = b; }
+
+        Color Normalise() const { return Color(R / 255, G / 255, B / 255); }
+    };
+
     template <typename T>
     struct MinMaxRange
     {

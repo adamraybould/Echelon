@@ -109,6 +109,10 @@ add_library(Engine STATIC
         Src/Graphics/Material.cpp
         Include/Rendering/IRenderable.h
         Src/Rendering/IRenderable.cpp
+        Include/Scene/Entities/Components/LightSource.h
+        Src/Scene/Entities/Components/LightSource.cpp
+        Include/Rendering/LightManager.h
+        Src/Rendering/LightManager.cpp
 )
 
 target_include_directories(Engine PUBLIC

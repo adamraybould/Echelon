@@ -7,6 +7,7 @@
 #include "Scene/Entities/Components/SoundEmitter.h"
 #include "Core/Scripting/Prefab.h"
 #include "Core/Utility.h"
+#include "Scene/Entities/Components/LightSource.h"
 #include "Scene/Entities/Components/ParticleSystem.h"
 
 namespace Scene
@@ -39,6 +40,7 @@ namespace Scene
         BindFunction<Entity>(L, "AddAnimator", &Entity::AddAnimator);
         BindFunction<Entity>(L, "AddSoundEmitter", &Entity::AddSoundEmitter);
         BindFunction<Entity>(L, "AddParticleSystem", &Entity::AddParticleSystem);
+        BindFunction<Entity>(L, "AddLightSource", &Entity::AddLightSource);
 
         BindFunction<Entity>(L, "SetName", &Entity::SetName);
         BindFunction<Entity>(L, "AddTag", &Entity::AddTag);
@@ -49,6 +51,8 @@ namespace Scene
         BindClass<Rigidbody>(L);
         BindClass<Animator>(L);
         BindClass<SoundEmitter>(L);
+        BindClass<ParticleSystem>(L);
+        BindClass<LightSource>(L);
     }
 
     void Entity::Initialize()
@@ -149,6 +153,14 @@ namespace Scene
         particleSystem->SetupEmbedding(L);
 
         RegisterComponent<ParticleSystem>(L, particleSystem, "ParticleSystem");
+    }
+
+    void Entity::AddLightSource(LState* L)
+    {
+        LightSource* lightSource = &AddComponent<LightSource>();
+        lightSource->SetupEmbedding(L);
+
+        RegisterComponent<LightSource>(L, lightSource, "Light");
     }
 
     void Entity::AddTag(const String& tag)

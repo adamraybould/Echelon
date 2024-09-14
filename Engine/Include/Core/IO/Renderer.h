@@ -5,7 +5,7 @@
 #include "Core/Camera.h"
 #include "Graphics/Material.h"
 
-namespace Rendering { class IRenderable; }
+namespace Rendering { class IRenderable; class LightManager; }
 namespace Graphics { class Sprite; class Texture2D; class SpriteMesh; struct Vector2F4X; }
 
 namespace Core
@@ -26,6 +26,8 @@ namespace Core
     private:
         Window& m_window;
         SDL_GLContext& m_context;
+
+        UniquePtr<Rendering::LightManager> m_pLightManager;
 
         static Array<UniquePtr<Graphics::Sprite>> m_pSprites;
         static Map<RenderLayer, Array<Rendering::IRenderable*>> m_pRenderQueue;
@@ -58,13 +60,14 @@ namespace Core
     private:
         void AttachMesh(const Graphics::Sprite* sprite, const RectF& src, const RectF& dest);
         void DetachMesh(const Graphics::Sprite* sprite) const;
+        glm::mat4 CalculateTransformMatrix(const RectF& dest, float rotation) const;
 
         void UpdateVertices(const RectF& dest) const;
         void UpdateUVs(const RectF& src, float textureWidth, float textureHeight) const;
 
-        glm::mat4 CalculateTransformMatrix(const RectF& dest, float rotation) const;
+        void ProcessLights(const Rendering::Shader& shader) const;
 
-        bool IsWithinViewport(const RectF& dest) const;
+        bool IsWithinViewport(const RectF& dest) const { return dest.Intersects(m_pCamera->GetViewport()); }
     };
 }
 

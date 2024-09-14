@@ -70,16 +70,55 @@ namespace Rendering
 
     void Shader::SetUniformMat4(const String& name, const glm::mat4& matrix) const
     {
-        GLuint location = GetUniformLocation(name);
-        glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(matrix));
+        const GLuint location = GetUniformLocation(name);
+        if (location != -1)
+        {
+            glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(matrix));
+        }
     }
 
     void Shader::SetUniformTexture2D(const String& name, const UInt slot, const UInt& texture) const
     {
-        GLuint location = GetUniformLocation(name);
+        const GLuint location = GetUniformLocation(name);
         if (location != -1)
         {
             glUniform1i(location, slot);
+        }
+    }
+
+    void Shader::SetUniformVector2(const String& name, const Vector2F& vector) const
+    {
+        const GLuint location = GetUniformLocation(name);
+        if (location != -1)
+        {
+            glUniform2f(location, vector.X, vector.Y);
+        }
+    }
+
+    void Shader::SetUniformColor(const String& name, const Color& color) const
+    {
+        const GLuint location = GetUniformLocation(name);
+        if (location != -1)
+        {
+            glUniform3f(location, color.R, color.G, color.B);
+        }
+    }
+
+    void Shader::SetUniformInt(const String& name, const int value) const
+    {
+        const GLuint location = GetUniformLocation(name);
+        if (location != -1)
+        {
+            glUniform1i(location, value);
+        }
+    }
+
+    void Shader::SetUniformFloat(const String& name, const float value) const
+    {
+        const GLuint location = GetUniformLocation(name);
+        if (location != -1)
+        {
+            glUniform1f(location, value);
         }
     }
 

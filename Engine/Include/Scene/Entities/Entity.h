@@ -56,6 +56,7 @@ namespace Scene
         void AddAnimator(LState* L);
         void AddSoundEmitter(LState* L);
         void AddParticleSystem(LState* L);
+        void AddLightSource(LState* L);
 
         Transform& GetTransform() const { return *m_transform; }
 

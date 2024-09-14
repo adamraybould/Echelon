@@ -1,7 +1,10 @@
 #ifndef SHADER_H
 #define SHADER_H
 #include <glm/glm.hpp>
+
 #include "Core/TypeDefs.h"
+#include "Core/Commons.h"
+#include "Core/Maths/Vector2.h"
 
 namespace Rendering
 {
@@ -21,6 +24,11 @@ namespace Rendering
         UInt GetUniformLocation(const String& name) const;
         void SetUniformMat4(const String& name, const glm::mat4& matrix) const;
         void SetUniformTexture2D(const String& name, UInt slot, const UInt& texture) const;
+        void SetUniformVector2(const String& name, const Vector2F& vector) const;
+        void SetUniformColor(const String& name, const Color& color) const;
+
+        void SetUniformInt(const String& name, int value) const;
+        void SetUniformFloat(const String& name, float value) const;
 
         UInt GetProgram() const { return m_program; }
         UInt GetID() const { return m_id; }

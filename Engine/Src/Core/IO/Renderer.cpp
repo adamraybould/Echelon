@@ -3,6 +3,7 @@
 #include <GL/glew.h>
 #include <glm/ext/matrix_transform.hpp>
 
+#include "Rendering/LightManager.h"
 #include "Graphics/Material.h"
 #include "Graphics/SpriteMesh.h"
 #include "Graphics/Sprite.h"
@@ -19,12 +20,17 @@ namespace Core
 
     Renderer::Renderer(Window& window, SDL_GLContext& context) : m_window(window), m_context(context)
     {
+        m_pLightManager = std::make_unique<LightManager>();
+
         m_pSpriteMesh = std::make_unique<SpriteMesh>();
         m_pCamera = std::make_unique<Camera>("Camera");
     }
 
     Renderer::~Renderer()
     {
+        if (m_pLightManager != nullptr)
+            m_pLightManager.reset();
+
         for (auto& sprite : m_pSprites)
         {
             sprite.reset();
@@ -108,6 +114,8 @@ namespace Core
 
                 sprite->GetMaterial().AttachShader();
                 sprite->GetMaterial().AttachTexture();
+
+                ProcessLights(sprite->GetMaterial().GetShader());
             }
             else if (m_currentTextureID != textureID)
             {
@@ -128,6 +136,16 @@ namespace Core
         {
             sprite->GetMaterial().DetachTexture();
         }
+    }
+
+    glm::mat4 Renderer::CalculateTransformMatrix(const RectF& dest, const float rotation) const
+    {
+        auto transform = glm::mat4(1.0f);
+        transform = translate(transform, glm::vec3(dest.X, dest.Y, 0.0f));
+        transform = rotate(transform, rotation, glm::vec3(0.0f, 0.0f, 1.0f));
+        transform = scale(transform, glm::vec3(1.0f, 1.0f, 0.0f));
+
+        return transform;
     }
 
     void Renderer::UpdateVertices(const RectF& dest) const
@@ -155,18 +173,22 @@ namespace Core
         m_pSpriteMesh->UpdateUVBuffer(uvs);
     }
 
-    glm::mat4 Renderer::CalculateTransformMatrix(const RectF& dest, const float rotation) const
+    void Renderer::ProcessLights(const Shader& shader) const
     {
-        auto transform = glm::mat4(1.0f);
-        transform = translate(transform, glm::vec3(dest.X, dest.Y, 0.0f));
-        transform = rotate(transform, rotation, glm::vec3(0.0f, 0.0f, 1.0f));
-        transform = scale(transform, glm::vec3(1.0f, 1.0f, 0.0f));
+        if (m_pLightManager == nullptr)
+            return;
 
-        return transform;
-    }
+        const Array<UniquePtr<Light>>& lights = m_pLightManager->GetLights();
+        shader.SetUniformInt("LightCount", lights.size());
 
-    bool Renderer::IsWithinViewport(const RectF& dest) const
-    {
-        return dest.Intersects(m_pCamera->GetViewport());
+        for (UInt i = 0; i < lights.size(); i++)
+        {
+            const Light& light = *lights[i];
+
+            shader.SetUniformVector2("Lights[" + std::to_string(i) + "].Pos", light.Position);
+            shader.SetUniformColor("Lights[" + std::to_string(i) + "].Color", light.LightColor.Normalise());
+            shader.SetUniformFloat("Lights[" + std::to_string(i) + "].Intensity", light.Intensity);
+            shader.SetUniformFloat("Lights[" + std::to_string(i) + "].Radius", light.Radius);
+        }
     }
 }

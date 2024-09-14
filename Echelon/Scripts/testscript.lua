@@ -1,6 +1,6 @@
 
 Player = SpawnPrefab("player")
-Player.Transform:SetPosition(Vector2(500, 500))
+Player.Transform:SetPosition(Vector2(700, 700))
 
 local focalpoint = SpawnPrefab("focalpoint")
 
