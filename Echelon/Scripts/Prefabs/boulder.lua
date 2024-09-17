@@ -1,7 +1,7 @@
 
 local assets =
 {
-	Asset("SPRITE", "Objects/Rocks", 0)
+	Asset("SPRITE", "Objects/Terrain/Rocks", 0)
 }
 
 local function fn()

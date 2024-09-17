@@ -27,7 +27,7 @@ namespace Scene
             SpriteSheet* m_pSpriteSheet;
 
             Animation* m_pCurrentAnimation;
-            Frame* m_pCurrentFrame;
+            AnimationFrame* m_pCurrentFrame;
             String m_initialAnimName;
 
             float m_speed = 1.0f;

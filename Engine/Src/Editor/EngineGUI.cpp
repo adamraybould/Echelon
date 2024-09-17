@@ -9,6 +9,7 @@
 #include "Core/IO/Input.h"
 #include "Systems/StateSystem.h"
 #include "Core/IO/Renderer.h"
+#include "Scene/World.h"
 #include "States/GameState.h"
 
 namespace Core::Editor
@@ -118,9 +119,9 @@ namespace Core::Editor
     void EngineGUI::DisplayEntityInfo()
     {
         const Vector2F mousePosition = Input::GetMousePosition();
-        EntityManager& entityManager = static_cast<States::GameState&>(m_stateSystem.GetCurrentState()).GetEntityManager();
+        World& world = static_cast<States::GameState&>(m_stateSystem.GetCurrentState()).GetWorld();
 
-        Entity* highlightedEntity = entityManager.GetEntityAtPoint(mousePosition);
+        Entity* highlightedEntity = world.FindEntity(mousePosition.X, mousePosition.Y);
         if (highlightedEntity != nullptr)
         {
             if (HasClickedWithinWindow())

@@ -36,7 +36,8 @@ namespace Core
         m_prevTime = SDL_GetTicks();
 
         // Initialize Systems
-       m_pStateSystem->Initialize();
+        m_pScriptCore->InitialiseBinders();
+        m_pStateSystem->Initialize();
 
         while (m_isRunning)
         {
@@ -180,8 +181,6 @@ namespace Core
         m_pInput = std::make_unique<Input>();
         m_pAudioSystem = std::make_unique<AudioSystem>();
         m_pPhysics = std::make_unique<Physics>(GetRenderer());
-
-        m_pScriptCore->InitialiseBinders();
 
         m_pStateSystem = std::make_unique<StateSystem>();
         m_pStateSystem->AddState<States::GameState>(true);

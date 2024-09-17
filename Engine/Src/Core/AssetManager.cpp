@@ -71,9 +71,7 @@ namespace Core
         Json::Value data;
         Json::Reader reader;
         if (!reader.parse(file, data))
-        {
             throw std::runtime_error("Failed to Read Sprite Sheet at path '" + assetPath + "'");
-        }
 
         // Load meta data
         String imagePath = data["meta"]["image"].asString();
@@ -86,8 +84,10 @@ namespace Core
         SDL_Surface* surface = LoadSurface(pngPath);
         if (surface != nullptr)
         {
-            const UnorderedMap<String, Animation> animations = GetAnimations(data); // Load Animations
-            m_pTextures.push_back(std::make_unique<SpriteSheet>(*surface, spriteWidth, spriteHeight, animations));
+            const Array<Frame> frames = GetFrames(data);
+            const UnorderedMap<String, Animation> animations = GetAnimations(data);
+
+            m_pTextures.push_back(std::make_unique<SpriteSheet>(*surface, spriteWidth, spriteHeight, frames, animations));
             return static_cast<SpriteSheet&>(*m_pTextures.back());
         }
 
@@ -108,6 +108,26 @@ namespace Core
         return surface;
     }
 
+    Array<Frame> AssetManager::GetFrames(Json::Value& data)
+    {
+        Array<Frame> frames;
+        if (data.isMember("frames"))
+        {
+            for (const Json::Value& frame : data["frames"])
+            {
+                String name = frame["filename"].asString();
+                const UInt x = frame["frame"]["x"].asInt();
+                const UInt y = frame["frame"]["y"].asInt();
+                const UInt width = frame["frame"]["w"].asInt();
+                const UInt height = frame["frame"]["h"].asInt();
+
+                frames.push_back(Frame(x, y, width, height));
+            }
+        }
+
+        return frames;
+    }
+
     UnorderedMap<String, Animation> AssetManager::GetAnimations(Json::Value& data)
     {
         UnorderedMap<String, Animation> animations;
@@ -126,7 +146,7 @@ namespace Core
                 if (!animationName.empty())
                 {
                     animations[animationName].SetName(animationName);
-                    animations[animationName].AddFrame(Frame(x, y, w, h, duration));
+                    animations[animationName].AddFrame(AnimationFrame(x, y, w, h, duration));
                 }
             }
         }

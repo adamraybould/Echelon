@@ -8,6 +8,7 @@ require("class")
 require("prefab")
 require("entity")
 require("update")
+require("Levels/level")
 
 Prefabs = {}
 Entities = {}
@@ -19,7 +20,7 @@ local MainCamera = require("camera")
 Camera = MainCamera()
 
 function CreateEntity(name)
-	local base = Engine:CreateEntity()
+	local base = World:CreateEntity()
 	local guid = base.GUID
 	local entity = Entity(base)
 
@@ -34,7 +35,7 @@ end
 function SpawnPrefab(name)
 	name = string.sub(name, string.find(name, "[^/]*$"))
 
-	local guid = Engine:SpawnPrefab(name)
+	local guid = World:SpawnPrefab(name)
 	return Entities[guid]
 end
 
@@ -46,9 +47,8 @@ function SpawnMultiplePrefabs(name, num)
 end
 
 function RegisterPrefab(prefab)
-
 	Prefabs[prefab.name] = prefab
-	Engine:RegisterPrefab(prefab.name, prefab)
+	World:RegisterPrefab(prefab.name, prefab)
 end
 
 PREFABDEFINITIONS = {}
@@ -119,5 +119,26 @@ function OnEntityWake(guid)
 	end
 end
 
--- Run Test Script
-require("testscript")
+function RegisterLevel(file)
+	local path = file .. ".lua"
+
+	local level = loadfile(path)
+	assert(level, "Failed to load Level: '".. file.. "' at '"..path.."'")
+	if type(level) == "string" then
+		local errorMessage = "Error loading file: '"..path.."'\n"
+
+		print(errorMessage)
+		assert(false, errorMessage)
+	end
+
+	assert(type(level) == "function", "Level file doesn't return a callable chunk: "..file)
+
+	local ret = {level()}
+	if ret then
+		for i, val in ipairs(ret) do
+			if type(val) == "table" and val.is_a and val:is_a(Level) then
+				LevelManager:RegisterLevel(val.name, val)
+			end
+		end
+	end
+end

@@ -30,7 +30,6 @@ namespace Core
         ~ScriptCore();
 
         void Update(float delta) const;
-        void Render(Renderer& renderer);
 
         void RegisterBinder(IBinder* binder);
         void InitialiseBinders();

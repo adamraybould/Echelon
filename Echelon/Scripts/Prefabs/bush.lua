@@ -1,7 +1,7 @@
 
 local bush1_assets =
 {
-	Asset("SPRITE", "Objects/Bushes", 0)
+	Asset("SPRITE", "Objects/Terrain/Bushes", 0)
 }
 
 local bush2_assets =

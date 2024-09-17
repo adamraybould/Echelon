@@ -19,11 +19,7 @@ namespace Core
         Engine();
         void SetupEmbedding(LState* L) override;
 
-        static Scene::Entity& CreateEntity();
-
         // -- Prefabs
-        static void RegisterPrefab(LState* self, const String& name, LRef prefab);
-        static GUID SpawnPrefab(LState* self, String name);
         static bool HasPrefab(const String& name);
         static Scripting::Prefab& GetPrefab(const String& name);
 

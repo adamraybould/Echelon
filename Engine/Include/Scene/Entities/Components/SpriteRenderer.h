@@ -5,7 +5,7 @@
 #include "Core/Maths/Rectangle.h"
 #include "Rendering/IRenderable.h"
 
-namespace Graphics { class SpriteSheet; class Texture2DOLD; class Sprite; }
+namespace Graphics { class SpriteSheet; class Texture2DOLD; class Sprite; struct Frame; }
 using namespace Graphics;
 
 namespace Scene
@@ -16,31 +16,34 @@ namespace Scene
         {
         private:
             Sprite* m_pSprite;
+            SpriteSheet* m_pSpriteSheet;
+
+            RectF m_src;
+            RectF m_dest;
             UInt m_flipped;
-
-            RectF m_source;
-            Vector2F m_spriteScale;
-
-            Vector2F m_uv0;
-            Vector2F m_uv1;
 
         public:
             SpriteRenderer(Entity& owner);
             void SetupEmbedding(lua_State* L) override;
 
             void Initialize() override;
-            void Update(float delta) override;
             void Destroy() override;
 
             void Render(Renderer& renderer) override;
             float GetDepth() override;
 
-            void SetSourceFromFrame(UInt frameIndex);
+            void SetFrame(UInt index);
 
-            void SetDisplaySource(int x, int y, int width, int height);
-            RectF GetDisplaySource() const { return m_source; }
+            void SetFrameSource(UInt x, UInt y, UInt width, UInt height);
+            void SetFrameSource(RectU source);
 
-            Sprite& GetSprite() const;
+            RectF GetFrameSource() const { return m_src; }
+            RectF GetDisplayRect() const { return m_dest; }
+
+            Vector2F GetFrameSize() const { return { m_src.Width, m_src.Height }; }
+
+            Sprite& GetSprite() const { return *m_pSprite; }
+            SpriteSheet* GetSpriteSheet() const { return m_pSpriteSheet; }
         };
     }
 }

@@ -1,20 +1,15 @@
 
 Player = SpawnPrefab("player")
-Player.Transform:SetPosition(Vector2(700, 700))
+Player.Transform:SetPosition(Vector2(1024, 1024))
 
 local focalpoint = SpawnPrefab("focalpoint")
 
 Camera:SnapToPosition(Player:GetPosition())
 Camera:SetTarget(Player)
 
-local rain = SpawnPrefab("rain")
-rain.Transform:SetParent(Player.Transform)
+local lantern = SpawnPrefab("lantern_lit")
+lantern.Transform:SetPosition(Vector2(1000, 1000))
 
---SpawnMultiplePrefabs("blank", 5)
-
---local gunbot = SpawnPrefab("gunbot")
---local drillbot = SpawnPrefab("drillbot")
-
---gunbot.Rigidbody:SetPosition(Vector2(GetRandomRange(-500, 500), GetRandomRange(-500, 500)))
---drillbot.Rigidbody:SetPosition(Vector2(GetRandomRange(-500, 500), GetRandomRange(-500, 500)))
+--local rain = SpawnPrefab("rain")
+--rain.Transform:SetParent(Player.Transform)
 

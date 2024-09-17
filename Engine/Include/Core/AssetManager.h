@@ -54,6 +54,7 @@ namespace Core
         /* Loads a SDL Surface from a specific file path */
         static SDL_Surface* LoadSurface(const String& path);
 
+        static Array<Graphics::Frame> GetFrames(Json::Value& data);
         static UnorderedMap<String, Graphics::Animation> GetAnimations(Json::Value& data);
     };
 }

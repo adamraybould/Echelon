@@ -7,9 +7,18 @@
 
 namespace Graphics
 {
+    struct Frame
+    {
+        UInt X;
+        UInt Y;
+        UInt Width;
+        UInt Height;
+    };
+
     class SpriteSheet : public Texture2D
     {
     private:
+        Array<Frame> m_frames;
         UnorderedMap<String, Animation> m_animations;
 
         int m_spriteWidth;
@@ -17,11 +26,11 @@ namespace Graphics
         int m_frameCount;
 
     public:
-        SpriteSheet(const SDL_Surface& surface, int frameWidth, int frameHeight, const UnorderedMap<String, Animation>& animations);
+        SpriteSheet(const SDL_Surface& surface, int frameWidth, int frameHeight, const Array<Frame>& frames, const UnorderedMap<String, Animation>& animations);
         ~SpriteSheet();
 
-        /* Returns the Source Rect of a Sprite within the Sprite Sheet */
-        RectF GetSpriteSource(UInt frameIndex) const;
+        /* Returns a Sprite Frame from the Sprite Sheet at a specific index */
+        RectU GetFrame(UInt index);
 
         bool IsAnimationValid(const String& animName) const;
         Animation* GetAnimation(const String& animName);

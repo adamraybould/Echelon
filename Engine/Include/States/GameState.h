@@ -2,36 +2,30 @@
 #define GAMESTATE_H
 #include "Systems/StateSystem.h"
 
+namespace Scene { class LevelManager; class World; }
+
 namespace Graphics { class TileMap; }
 
 namespace Core
 {
-    namespace Systems
-    {
-        class EntityManager;
-        class LevelManager;
-    }
-
     namespace States
     {
         class GameState final : public Systems::State
         {
         private:
-            UniquePtr<Systems::EntityManager> m_pEntityManager;
-            UniquePtr<Systems::LevelManager> m_pLevelManager;
-
+            UniquePtr<Scene::LevelManager> m_pLevelManager;
+            UniquePtr<Scene::World> m_pWorld;
             UniquePtr<Graphics::TileMap> m_pTileMap;
 
         public:
             GameState();
             ~GameState() override;
 
-            void Initialize() override;
+            void Setup() override;
+            void Initialise() override;
             void Update(float delta) override;
-            void Render(Renderer& renderer) override;
 
-            Systems::EntityManager& GetEntityManager() const { return *m_pEntityManager; }
-            Systems::LevelManager& GetLevelManager() const { return *m_pLevelManager; }
+            Scene::World& GetWorld() const { return *m_pWorld; }
         };
     }
 }

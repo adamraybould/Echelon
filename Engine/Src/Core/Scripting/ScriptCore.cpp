@@ -43,10 +43,6 @@ namespace Core
         }
     }
 
-    void ScriptCore::Render(Renderer& renderer)
-    {
-    }
-
     void ScriptCore::RegisterBinder(IBinder* binder)
     {
         m_binders.push_back(binder);

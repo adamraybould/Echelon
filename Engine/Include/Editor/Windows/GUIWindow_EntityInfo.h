@@ -4,7 +4,7 @@
 #include "Graphics/Texture2D.h"
 
 namespace Scene { class Entity; }
-namespace Scene::Components { class SpriteRenderer; }
+namespace Scene::Components { class SpriteRenderer; class Rigidbody; }
 namespace Graphics { class Sprite; class Texture2D; }
 
 namespace Core
@@ -13,12 +13,14 @@ namespace Core
     {
         class GUIWindow_EntityInfo : public GUIWindow
         {
-            const UInt MAX_WINDOW_DISTANCE = 800;
+            const UInt MAX_WINDOW_DISTANCE = 700;
 
         private:
             Scene::Entity* m_pEntity = nullptr;
-            Scene::Components::SpriteRenderer* m_pEntityRenderer;
+
             Graphics::Sprite* m_pEntitySprite = nullptr;
+            Scene::Components::SpriteRenderer* m_pEntityRenderer;
+            Scene::Components::Rigidbody* m_pEntityRigidBody;
 
             Vector2F m_windowOffset;
             float m_windowDistance;

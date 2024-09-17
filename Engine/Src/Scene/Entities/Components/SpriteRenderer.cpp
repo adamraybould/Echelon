@@ -28,7 +28,7 @@ namespace Scene
             Component::SetupEmbedding(L);
 
             BindClass<SpriteRenderer>(L);
-            BindFunction<SpriteRenderer>(L, "SetFrame", &SpriteRenderer::SetSourceFromFrame);
+            BindFunction<SpriteRenderer>(L, "SetFrame", &SpriteRenderer::SetFrame);
         }
 
         void SpriteRenderer::Initialize()
@@ -39,27 +39,15 @@ namespace Scene
                 const String path = spriteAsset->GetPath();
                 const int param = spriteAsset->GetParam();
 
-                //m_pSprite = AssetManager::LoadSpriteSheet(path.c_str());
-                Texture2D& texture = AssetManager::LoadSpriteSheet(path);
-                m_pSprite = &Renderer::CreateSprite(texture);
-                m_source = { 0, 0, m_pSprite->GetWidth(), m_pSprite->GetHeight() };
+                m_pSpriteSheet = &AssetManager::LoadSpriteSheet(path);
+                m_pSprite = &Renderer::CreateSprite(*m_pSpriteSheet);
 
+                const RectU firstFrame = m_pSpriteSheet->GetFrame(0);
+                SetFrameSource(0, 0, firstFrame.Width,firstFrame.Height);
                 if (spriteAsset->HasParams())
                 {
-                    SetSourceFromFrame(param);
+                    SetFrame(param);
                 }
-            }
-        }
-
-        void SpriteRenderer::Update(float delta)
-        {
-            const Rectangle bounds = GetOwner().GetBounds();
-            const Vector2F scale = GetOwner().GetTransform().GetWorldScale();
-
-            if (m_pSprite != nullptr)
-            {
-                m_spriteScale = Vector2F((m_source.Width * scale.X) * SPRITE_SCALE, (m_source.Height * scale.Y) * SPRITE_SCALE);
-                GetOwner().SetBounds(RectF(bounds.X, bounds.Y, m_spriteScale.X * 0.5f, m_spriteScale.Y));
             }
         }
 
@@ -67,11 +55,12 @@ namespace Scene
         {
             const Vector2F position = GetOwner().GetTransform().GetWorldPosition();
             const float rotation = GetOwner().GetTransform().GetWorldRotation();
+            const Vector2F scale = GetOwner().GetTransform().GetWorldScale();
 
-            RectF src = m_source;
-            RectF dest = { position.X, position.Y, m_spriteScale.X, m_spriteScale.Y };
+            const Vector2F worldScale = Vector2F((m_src.Width * scale.X) * SPRITE_SCALE, (m_src.Height * scale.Y) * SPRITE_SCALE);
+            m_dest = { position.X, position.Y, worldScale.X, worldScale.Y };
 
-            renderer.Render(m_pSprite, src, dest, rotation);
+            renderer.Render(m_pSprite, m_src, m_dest, rotation);
         }
 
         float SpriteRenderer::GetDepth()
@@ -84,24 +73,23 @@ namespace Scene
             m_pSprite = nullptr;
         }
 
-        void SpriteRenderer::SetSourceFromFrame(const UInt frameIndex)
+        void SpriteRenderer::SetFrame(const UInt index)
         {
-            const SpriteSheet* spriteSheet = static_cast<SpriteSheet*>(&m_pSprite->GetMaterial().GetTexture());
-            if (spriteSheet != nullptr)
+            if (m_pSpriteSheet != nullptr)
             {
-                RectF sourceRect = spriteSheet->GetSpriteSource(frameIndex);
-                m_source = sourceRect;
+                const RectU source = m_pSpriteSheet->GetFrame(index);
+                SetFrameSource(source);
             }
         }
 
-        void SpriteRenderer::SetDisplaySource(const int x, const int y, const int width, const int height)
+        void SpriteRenderer::SetFrameSource(const UInt x, const UInt y, const UInt width, const UInt height)
         {
-            m_source = RectF(x, y, width, height);
+            m_src = RectF(x, y, width, height);
         }
 
-        Sprite& SpriteRenderer::GetSprite() const
+        void SpriteRenderer::SetFrameSource(const RectU source)
         {
-            return *m_pSprite;
+            SetFrameSource(source.X, source.Y, source.Width, source.Height);
         }
     }
 }

@@ -1,17 +1,14 @@
 #include "Editor/Windows/GUIWindow_EntityInfo.h"
 
 #include <imgui.h>
-#include <iostream>
-#include <cctype>
-#include <GL/glew.h>
-
 #include "Core/IO/Window.h"
 #include "Scene/Entities/Components/SpriteRenderer.h"
+#include "Scene/Entities/Components/Animator.h"
+#include "Scene/Entities/Components/Rigidbody.h"
 #include "Core/IO/Renderer.h"
 #include "Core/Camera.h"
-#include "Scene/Entities/Components/Animator.h"
-#include "Core/Scripting/Prefab.h"
 #include "Core/Constants.h"
+#include "Core/Scripting/Prefab.h"
 #include "Core/Maths/MathF.h"
 #include "Core/Utility.h"
 #include "Graphics/Material.h"
@@ -40,6 +37,8 @@ namespace Core
                 m_pEntityRenderer = spriteRenderer;
                 m_pEntitySprite = &spriteRenderer->GetSprite();
             }
+
+            m_pEntityRigidBody = m_pEntity->GetComponent<Rigidbody>();
         }
 
         void GUIWindow_EntityInfo::CloseWindow()
@@ -69,7 +68,7 @@ namespace Core
 
             const Vector2F entityPos = m_pEntity->GetTransform().GetWorldPosition();
             const Vector2F windowPos = camera.CalculateScreenPosition(entityPos);
-            m_windowDistance = (camera.GetCameraPosition() - windowPos).Length() * zoom;
+            m_windowDistance = (Vector2F(SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.5f) - windowPos).Length();
 
             // Set Position and Size of Window
             SetWindowPosition(Vector2F(windowPos.X, windowPos.Y));
@@ -103,7 +102,7 @@ namespace Core
             const Vector2F entityWorldPosition = entity.GetTransform().GetWorldPosition();
 
             const UInt childWidth = GetWindowSize().X;
-            const float childHeight = 100 + (m_pEntityRenderer->GetDisplaySource().Height * 0.2f);
+            const float childHeight = 100 + (m_pEntityRenderer->GetFrameSource().Height * 0.2f);
 
             if (ImGui::BeginChild("Info", ImVec2(childWidth, childHeight), false))
             {
@@ -133,9 +132,9 @@ namespace Core
             const UInt textureHeight = m_pEntitySprite->GetHeight();
 
             constexpr float desiredWidth = 80.0f;
-            const float desiredHeight = desiredWidth / m_pEntityRenderer->GetDisplaySource().Width * m_pEntityRenderer->GetDisplaySource().Height;
+            const float desiredHeight = desiredWidth / m_pEntityRenderer->GetFrameSource().Width * m_pEntityRenderer->GetFrameSource().Height;
 
-            const RectF spriteSource = m_pEntityRenderer->GetDisplaySource();
+            const RectF spriteSource = m_pEntityRenderer->GetFrameSource();
             const ImVec2 uv0 = ImVec2(static_cast<float>(spriteSource.X) / textureWidth, static_cast<float>(spriteSource.Y) / textureHeight);
             const ImVec2 uv1 = ImVec2(static_cast<float>(spriteSource.X + spriteSource.Width) / textureWidth, static_cast<float>(spriteSource.Y + spriteSource.Height) / textureHeight);
 

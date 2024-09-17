@@ -141,7 +141,7 @@ namespace Scene
             if (m_pCurrentAnimation != nullptr)
             {
                 m_pCurrentFrame = &m_pCurrentAnimation->Frames[index];
-                m_pRenderer->SetDisplaySource(m_pCurrentFrame->X, m_pCurrentFrame->Y, m_pCurrentFrame->Width, m_pCurrentFrame->Height);
+                m_pRenderer->SetFrameSource(m_pCurrentFrame->X, m_pCurrentFrame->Y, m_pCurrentFrame->Width, m_pCurrentFrame->Height);
             }
         }
     }

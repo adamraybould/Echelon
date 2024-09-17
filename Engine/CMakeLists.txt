@@ -27,10 +27,6 @@ add_library(Engine STATIC
         Src/Core/AssetManager.cpp
         Include/Scene/Entities/Components/SpriteRenderer.h
         Src/Scene/Entities/Components/SpriteRenderer.cpp
-        Include/States/Level.h
-        Src/States/Level.cpp
-        Include/Systems/LevelManager.h
-        Src/Systems/LevelManager.cpp
         Include/Systems/EntityManager.h
         Src/Systems/EntityManager.cpp
         Include/Graphics/SpriteSheet.h
@@ -113,6 +109,12 @@ add_library(Engine STATIC
         Src/Scene/Entities/Components/LightSource.cpp
         Include/Rendering/LightManager.h
         Src/Rendering/LightManager.cpp
+        Include/Scene/World.h
+        Src/Scene/World.cpp
+        Include/Scene/Level.h
+        Src/Scene/Level.cpp
+        Include/Scene/LevelManager.h
+        Src/Scene/LevelManager.cpp
 )
 
 target_include_directories(Engine PUBLIC

@@ -11,15 +11,14 @@ namespace Core
     {
         struct State
         {
-        public:
             virtual ~State() = default;
 
-            virtual void Initialize() = 0;
+            virtual void Setup() = 0;
+            virtual void Initialise() = 0;
             virtual void Update(float delta) = 0;
-            virtual void Render(Renderer& renderer) = 0;
         };
 
-        class StateSystem : public Singleton<StateSystem>
+        class StateSystem final : public Singleton<StateSystem>
         {
         private:
             State* m_pCurrentState;
@@ -31,13 +30,12 @@ namespace Core
 
             void Initialize() const;
             void Update(float delta) const;
-            void Render(Renderer& renderer) const;
 
             State& GetCurrentState() const { return *m_pCurrentState; }
             bool IsStateLoaded() const { return m_pCurrentState != nullptr; }
 
             template<typename T>
-            bool AddState(bool load = false)
+            bool AddState(const bool load = false)
             {
                 static_assert(std::is_base_of_v<State, T>, "T must be a subclass of State");
 
@@ -64,6 +62,7 @@ namespace Core
                 {
                     m_pCurrentState = nullptr;
                     m_pCurrentState = GetState<T>();
+
                     return true;
                 }
 
@@ -75,7 +74,7 @@ namespace Core
             {
                 static_assert(std::is_base_of_v<State, T>, "T must be a subclass of State");
 
-                for(auto i = m_states.begin(); i != m_states.end(); i++)
+                for(auto i = m_states.begin(); i != m_states.end(); ++i)
                 {
                     T* state = dynamic_cast<T*>(&**i);
                     if (state != nullptr)

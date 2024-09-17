@@ -23,7 +23,7 @@ namespace Core::Systems
     {
         for (UInt i = 0; i < m_states.size(); i++)
         {
-            m_states[i]->Initialize();
+            m_states[i]->Initialise();
         }
     }
 
@@ -32,14 +32,6 @@ namespace Core::Systems
         if (IsStateLoaded())
         {
             m_pCurrentState->Update(delta);
-        }
-    }
-
-    void StateSystem::Render(Renderer& renderer) const
-    {
-        if (IsStateLoaded())
-        {
-            m_pCurrentState->Render(renderer);
         }
     }
 }

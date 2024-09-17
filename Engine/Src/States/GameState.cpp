@@ -1,59 +1,41 @@
 #include "States/GameState.h"
-#include "Systems/LevelManager.h"
 #include "Graphics/TileMap/TileMap.h"
+#include "Scene/LevelManager.h"
+#include "Scene/World.h"
 
 using namespace Systems;
 using namespace Graphics;
+using namespace Scene;
 
 namespace Core::States
 {
     GameState::GameState()
     {
-        m_pEntityManager = std::make_unique<EntityManager>();
-        m_pLevelManager = std::make_unique<LevelManager>(*m_pEntityManager);
-
-        m_pTileMap = std::make_unique<TileMap>();
+        m_pLevelManager = std::make_unique<LevelManager>();
+        m_pWorld = std::make_unique<World>();
     }
 
     GameState::~GameState()
     {
-        m_pEntityManager.reset();
         m_pLevelManager.reset();
-
-        m_pTileMap.reset();
+        m_pWorld.reset();
     }
 
-    void GameState::Initialize()
+    void GameState::Setup()
     {
-        m_pTileMap->LoadTileMap("TestMap");
+    }
 
-        if (m_pLevelManager != nullptr)
-            m_pLevelManager->Initialise();
+    void GameState::Initialise()
+    {
+        ScriptCore::Instance()->LoadScript("game.lua");
 
-        if (m_pEntityManager != nullptr)
-            m_pEntityManager->Initialise();
+        if (m_pWorld != nullptr)
+            m_pWorld->Initialise();
     }
 
     void GameState::Update(const float delta)
     {
-        if (m_pEntityManager != nullptr)
-            m_pEntityManager->Update(delta);
-
-        if (m_pLevelManager != nullptr)
-            m_pLevelManager->Update(delta);
-    }
-
-    void GameState::Render(Renderer& renderer)
-    {
-        /*
-        if (m_pEntityManager != nullptr)
-            m_pEntityManager->Render(renderer);
-
-        if (m_pLevelManager != nullptr)
-            m_pLevelManager->Render(renderer);
-
-        if (m_pTileMap != nullptr)
-            m_pTileMap->RenderMap(renderer);
-        */
+        if (m_pWorld != nullptr)
+            m_pWorld->Update(delta);
     }
 }

@@ -5,7 +5,7 @@
 using namespace Core;
 namespace Graphics
 {
-    struct Frame
+    struct AnimationFrame
     {
         int X;
         int Y;
@@ -13,7 +13,7 @@ namespace Graphics
         int Height;
         int Duration;
 
-        Frame(const int x, const int y, const int width, const int height, const int duration)
+        AnimationFrame(const int x, const int y, const int width, const int height, const int duration)
                 : X(x), Y(y), Width(width), Height(height), Duration(duration) {}
     };
 
@@ -22,16 +22,16 @@ namespace Graphics
     public:
         String Name;
 
-        std::vector<Frame> Frames;
+        std::vector<AnimationFrame> Frames;
         bool Looping = true;
 
     public:
         Animation() = default;
 
         void SetName(const String& name) { Name = name; }
-        void AddFrame(const Frame frame) { Frames.push_back(frame); }
+        void AddFrame(const AnimationFrame frame) { Frames.push_back(frame); }
 
-        Frame& GetFrame(const UInt index) { return Frames.at(index); }
+        AnimationFrame& GetFrame(const UInt index) { return Frames.at(index); }
         UInt GetFrameLength() const { return Frames.size(); }
     };
 }

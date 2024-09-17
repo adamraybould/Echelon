@@ -5,10 +5,10 @@
 #include <tmxlite/Object.hpp>
 #include <tmxlite/ObjectGroup.hpp>
 
-#include "Core/Scripting/Engine.h"
 #include "Core/Physics.h"
 #include "Systems/EntityManager.h"
 #include "Core/Constants.h"
+#include "Scene/World.h"
 
 using namespace Systems;
 namespace Graphics
@@ -56,7 +56,7 @@ namespace Graphics
 
     void ObjectLayer::CreateEntity(const String& prefab, const Vector2F& position) const
     {
-        const GUID entity = Engine::SpawnPrefab(ScriptCore::Instance()->GetLuaState(), prefab);
+        const GUID entity = World::SpawnPrefab(ScriptCore::Instance()->GetLuaState(), prefab);
         EntityManager::GetEntityByGUID(entity)->GetTransform().SetWorldPosition(position);
     }
 

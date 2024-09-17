@@ -55,8 +55,8 @@ namespace Scene
             m_pBody->SetLinearDamping(m_linearDamping);
             m_pBody->SetAngularDamping(m_angularDamping);
 
-            Vector2F position = Vector2F(m_pBody->GetPosition().x * PPM, m_pBody->GetPosition().y * PPM);
-            float angle = m_pBody->GetAngle();
+            const Vector2F position = Vector2F(m_pBody->GetPosition().x * PPM, m_pBody->GetPosition().y * PPM);
+            const float angle = m_pBody->GetAngle();
 
             GetOwner().GetTransform().SetWorldPosition(position);
             GetOwner().GetTransform().Rotation = angle * (180.0f / M_PI);
@@ -79,7 +79,7 @@ namespace Scene
 
         void Rigidbody::ApplyForce(const LRef& force) const
         {
-            b2Vec2 vecForce = b2Vec2(force["x"], force["y"]);
+            const b2Vec2 vecForce = b2Vec2(force["x"], force["y"]);
             m_pBody->ApplyForceToCenter(vecForce, true);
         }
 
@@ -91,7 +91,7 @@ namespace Scene
 
         void Rigidbody::SetPosition(const Vector2F& position) const
         {
-            b2Vec2 pos = b2Vec2(position.X / PPM, position.Y / PPM);
+            const b2Vec2 pos = b2Vec2(position.X / PPM, position.Y / PPM);
             m_pBody->SetTransform(pos, m_pBody->GetAngle());
         }
 
@@ -100,13 +100,21 @@ namespace Scene
             const int x = position["x"];
             const int y = position["y"];
 
-            b2Vec2 pos = b2Vec2(x / PPM, y / PPM);
+            const b2Vec2 pos = b2Vec2(x / PPM, y / PPM);
             m_pBody->SetTransform(pos, m_pBody->GetAngle());
+        }
+
+        Vector2F Rigidbody::GetBodySize() const
+        {
+            b2Shape* bodyType = m_pBody->GetFixtureList()[0].GetShape();
+            const b2PolygonShape* shape = static_cast<b2PolygonShape*>(bodyType);
+
+            return Vector2F(shape->m_vertices[0].x * 2.0f, shape->m_vertices[0].y * 2.0f);
         }
 
         void Rigidbody::CreateBody()
         {
-            Vector2 collisionSize = GetSpriteSize();
+            const Vector2F collisionSize = GetSpriteSize();
 
             if (m_bodyType == BodyType::STATIC)
             {
@@ -125,14 +133,11 @@ namespace Scene
             const SpriteRenderer* renderer = GetOwner().GetComponent<SpriteRenderer>();
             if (renderer != nullptr)
             {
-                const SpriteSheet* spriteSheet = static_cast<SpriteSheet*>(&renderer->GetSprite().GetMaterial().GetTexture());
-                if (spriteSheet != nullptr)
-                {
-                    return Vector2F(spriteSheet->GetFrameWidth() * 0.5f, spriteSheet->GetFrameHeight() * 0.5f);
-                }
+                return renderer->GetFrameSize() * 0.5f;
             }
 
-            return Vector2F(0, 0);
+            std::cerr << "Unable to get Sprite Size. Defaulting to (0, 0)" << std::endl;
+            return { 1, 1 };
         }
     }
 }

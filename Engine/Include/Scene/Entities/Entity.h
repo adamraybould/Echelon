@@ -22,8 +22,6 @@ namespace Scene
         GUID m_guid;
         String m_name;
 
-        RectF m_bounds;
-
         Array<UniquePtr<Component>> m_components;
         Array<String> m_tags;
 
@@ -37,9 +35,6 @@ namespace Scene
         virtual void Update(float delta);
 
         void RemoveAllComponents();
-
-        void SetBounds(const RectF rect) { m_bounds = rect; }
-        RectF GetBounds() const { return m_bounds; }
 
         Prefab& GetPrefab() const { return *m_prefab; }
         bool HasPrefab() const { return m_prefab != nullptr; }

@@ -5,10 +5,12 @@
 
 namespace Graphics
 {
-    SpriteSheet::SpriteSheet(const SDL_Surface& surface, const int frameWidth, const int frameHeight, const UnorderedMap<String, Animation>& animations) : Texture2D(surface)
+    SpriteSheet::SpriteSheet(const SDL_Surface& surface, const int frameWidth, const int frameHeight, const Array<Frame>& frames, const UnorderedMap<String, Animation>& animations) : Texture2D(surface)
     {
         m_spriteWidth = frameWidth;
         m_spriteHeight = frameHeight;
+
+        m_frames = frames;
         m_animations = animations;
 
         m_frameCount = m_spriteWidth * m_spriteHeight;
@@ -16,16 +18,19 @@ namespace Graphics
 
     SpriteSheet::~SpriteSheet()
     {
+        m_frames.clear();
+        m_animations.clear();
     }
 
-    RectF SpriteSheet::GetSpriteSource(const UInt frameIndex) const
+    RectU SpriteSheet::GetFrame(const UInt index)
     {
-        int maxXIndex = GetWidth() / m_spriteWidth;
-        int xFramePos = (frameIndex % maxXIndex) * m_spriteWidth;
-        int yFrameIndex = (int)(frameIndex / maxXIndex);
-        int yFramePos = yFrameIndex * m_spriteHeight;
+        if (index < m_frames.size())
+        {
+            Frame& frame = m_frames[index];
+            return { frame.X, frame.Y, frame.Width, frame.Height };
+        }
 
-        return { xFramePos, yFramePos, m_spriteWidth, m_spriteHeight };
+        throw std::out_of_range("Index is Out of Range. Trying to retrieve frame " + index);
     }
 
     bool SpriteSheet::IsAnimationValid(const String& animName) const

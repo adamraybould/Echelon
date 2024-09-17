@@ -1,5 +1,8 @@
 #ifndef RIGIDBODY_H
 #define RIGIDBODY_H
+#include <box2d/b2_body.h>
+#include <box2d/b2_fixture.h>
+
 #include "Component.h"
 #include "Core/Maths/Vector2.h"
 
@@ -45,6 +48,8 @@ namespace Scene
 
             void SetPosition(const Vector2F& position) const;
             void SetPositionL(const LRef& position) const;
+
+            Vector2F GetBodySize() const;
 
         private:
             void CreateBody();

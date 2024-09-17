@@ -16,8 +16,6 @@ namespace Scene
     {
         m_guid = Utility::GenerateGUID();
         m_name = name;
-
-        m_bounds = RectF();
     }
 
     Entity::~Entity()
@@ -67,10 +65,6 @@ namespace Scene
 
     void Entity::Update(const float delta)
     {
-        // Update Bounds
-        m_bounds.X = GetTransform().GetWorldPosition().X;
-        m_bounds.Y = GetTransform().GetWorldPosition().Y;
-
         for (UInt i = 0; i < m_components.size(); i++)
         {
             Component& component = *m_components[i];

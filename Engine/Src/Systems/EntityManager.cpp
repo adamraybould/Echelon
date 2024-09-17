@@ -2,6 +2,7 @@
 
 #include "Core/Scripting/Engine.h"
 #include "Core/IO/Renderer.h"
+#include "Scene/Entities/Components/SpriteRenderer.h"
 
 namespace Core::Systems
 {
@@ -70,16 +71,20 @@ namespace Core::Systems
 
     Entity* EntityManager::GetEntityAtPoint(const Vector2F& point)
     {
-        for (auto i = m_entities.begin(); i != m_entities.end(); ++i)
+        for (auto& entityRef : m_entities)
         {
-            Entity& entity = *i->second;
-            RectF bounds = entity.GetBounds();
+            Entity& entity = *entityRef.second;
+            const SpriteRenderer* renderer = entity.GetComponent<SpriteRenderer>();
+            if (renderer != nullptr)
+            {
+                RectF bounds = renderer->GetDisplayRect();
 
-            if (bounds.IsZero())
-                continue;
+                if (bounds.IsZero())
+                    continue;
 
-            if (bounds.ContainsPoint(point))
-                return &entity;
+                if (bounds.ContainsPoint(point))
+                    return &entity;
+            }
         }
 
         // No Entity could be Found

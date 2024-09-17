@@ -21,46 +21,7 @@ namespace Core
 
     void Engine::SetupEmbedding(LState* L)
     {
-        BindStaticFunction(L, "Engine", "RegisterPrefab", &Engine::RegisterPrefab);
-        BindStaticFunction(L, "Engine", "SpawnPrefab", &Engine::SpawnPrefab);
-        BindStaticFunction(L, "Engine", "CreateEntity", &Engine::CreateEntity);
-
         BindStaticFunction(L, "Engine", "SetCameraPosition", &Engine::SetCameraPosition);
-    }
-
-    Entity& Engine::CreateEntity()
-    {
-        return EntityManager::CreateEntity();
-
-        /*
-        UniquePtr<Entity> entity = std::make_unique<Entity>("");
-        GUID guid = entity->GetGUID();
-
-        m_entities.insert(std::make_pair(guid, std::move(entity)));
-        return *m_entities[guid];
-        */
-    }
-
-    void Engine::RegisterPrefab(LState* self, const String& name, LRef prefab)
-    {
-        UniquePtr<Prefab> prefabPtr = std::make_unique<Prefab>(self, name, prefab);
-        m_prefabs.insert(std::make_pair(name, std::move(prefabPtr)));
-    }
-
-    GUID Engine::SpawnPrefab(LState* self, String name)
-    {
-        using namespace luabridge;
-
-        Prefab& prefab = *m_prefabs[name];
-        if (prefab.IsValid())
-        {
-            GUID entity = prefab.CallFn();
-            EntityManager::GetEntityByGUID(entity)->SetName(name);
-
-            return entity;
-        }
-
-        return "GUID ERROR";
     }
 
     Prefab& Engine::GetPrefab(const String& name)
